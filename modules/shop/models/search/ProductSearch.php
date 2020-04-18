@@ -51,10 +51,10 @@ class ProductSearch extends Product
      */
     public function search($params, $configure = [])
     {
-        $query = Product::find()->translate();
+        $query = Product::find();
         $query->sort();
 
-        $query->joinWith(['translations translate','categorization categories']); //, 'commentsCount'
+        $query->joinWith(['categorization categories']); //, 'commentsCount'
         $className = substr(strrchr(__CLASS__, "\\"), 1);
 
 
@@ -67,8 +67,8 @@ class ProductSearch extends Product
                     'price',
                     'created_at',
                     'name' => [
-                        'asc' => ['translations.name' => SORT_ASC],
-                        'desc' => ['translations.name' => SORT_DESC],
+                        'asc' => ['name' => SORT_ASC],
+                        'desc' => ['name' => SORT_DESC],
                     ]
                 ],
             ],*/
@@ -134,7 +134,7 @@ class ProductSearch extends Product
             $query->andFilterWhere([
                 self::tableName() . '.id' => $this->id,
             ]);
-            $query->andFilterWhere(['like', 'translate.name', $this->name]);
+            $query->andFilterWhere(['like', 'name', $this->name]);
         }
 
         /*$query->andFilterWhere([
@@ -165,7 +165,6 @@ class ProductSearch extends Product
     public function searchBySite($params)
     {
         $query = Product::find();
-        $query->joinWith('translations');
         $this->load($params);
         return $query;
     }
