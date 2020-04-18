@@ -5,13 +5,13 @@
  * @link http://pixelion.com.ua PIXELION CMS
  */
 
-namespace app\modules\shop\bundles;
+namespace core\modules\shop\bundles;
 
 use panix\engine\web\AssetBundle;
 
 /**
  * Class AdminAsset
- * @package app\modules\shop\assets
+ * @package core\modules\shop\assets
  */
 class AdminAsset extends AssetBundle
 {

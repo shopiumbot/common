@@ -1,11 +1,11 @@
 <?php
 use panix\engine\Html;
 use yii\helpers\ArrayHelper;
-use app\modules\shop\models\Currency;
+use core\modules\shop\models\Currency;
 
 /**
  * @var \panix\engine\bootstrap\ActiveForm $form
- * @var \app\modules\shop\models\Product $model
+ * @var \core\modules\shop\models\Product $model
  */
 ?>
 

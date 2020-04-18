@@ -2,7 +2,7 @@
 use panix\engine\Html;
 use yii\helpers\Url;
 use panix\engine\CMS;
-use panix\mod\shop\models\Category;
+use core\modules\shop\models\Category;
 
 $this->registerJs("
     $(window).on('load', function () {

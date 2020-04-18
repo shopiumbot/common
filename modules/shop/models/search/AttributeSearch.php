@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\shop\models\search;
+namespace core\modules\shop\models\search;
 
 use Yii;
 use yii\base\Model;
 use panix\engine\data\ActiveDataProvider;
-use app\modules\shop\models\Attribute;
+use core\modules\shop\models\Attribute;
 
 /**
  * PagesSearch represents the model behind the search form about `app\modules\pages\models\Pages`.

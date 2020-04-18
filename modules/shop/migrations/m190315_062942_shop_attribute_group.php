@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\migrations;
+namespace core\modules\shop\migrations;
 
 /**
  * Generation migrate by PIXELION CMS
@@ -12,7 +12,7 @@ namespace app\modules\shop\migrations;
  */
 
 use panix\engine\db\Migration;
-use app\modules\shop\models\AttributeGroup;
+use core\modules\shop\models\AttributeGroup;
 
 class m190315_062942_shop_attribute_group extends Migration
 {

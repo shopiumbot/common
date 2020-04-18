@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop;
+namespace core\modules\shop;
 
 
 use yii\base\BootstrapInterface;

@@ -1,17 +1,17 @@
 <?php
 
-namespace app\modules\shop\controllers\admin;
+namespace core\modules\shop\controllers\admin;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use panix\engine\controllers\AdminController;
-use app\modules\shop\models\ProductType;
-use app\modules\shop\models\search\ProductTypeSearch;
-use app\modules\shop\models\Attribute;
+use core\modules\shop\models\ProductType;
+use core\modules\shop\models\search\ProductTypeSearch;
+use core\modules\shop\models\Attribute;
 
 /**
  * Class TypeController
- * @package app\modules\shop\controllers\admin
+ * @package core\modules\shop\controllers\admin
  */
 class TypeController extends AdminController
 {
@@ -87,7 +87,7 @@ class TypeController extends AdminController
         ];
         $this->breadcrumbs[] = $this->pageName;
 
-        \app\modules\shop\bundles\admin\ProductTypeAsset::register($this->view);
+        \core\modules\shop\bundles\admin\ProductTypeAsset::register($this->view);
 
         $post = Yii::$app->request->post();
 

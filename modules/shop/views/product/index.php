@@ -8,7 +8,7 @@ Url::remember(); // сохраняем URL для последующего ис�
 
 <?php
 
-use app\modules\shop\widgets\categories\CategoriesWidget;
+use core\modules\shop\widgets\categories\CategoriesWidget;
 ?>
 <?= CategoriesWidget::widget([]) ?>
         

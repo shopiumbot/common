@@ -6,13 +6,13 @@
  * @link http://www.pixelion.com.ua/
  */
 
-namespace app\modules\shop\bundles\admin;
+namespace core\modules\shop\bundles\admin;
 
 use panix\engine\web\AssetBundle;
 
 /**
  * Class ProductIndex
- * @package app\modules\shop\assets\admin
+ * @package core\modules\shop\assets\admin
  */
 class ProductIndex extends AssetBundle
 {

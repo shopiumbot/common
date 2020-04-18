@@ -1,8 +1,8 @@
 <?php
 
-namespace app\modules\shop\components;
+namespace core\modules\shop\components;
 
-use app\modules\shop\models\AttributeOption;
+use core\modules\shop\models\AttributeOption;
 use Yii;
 use yii\base\Exception;
 use yii\db\ActiveRecord;
@@ -532,7 +532,7 @@ class EavBehavior extends \yii\base\Behavior
 
     protected function getFindByEavAttributes2($attributes)
     {
-        /** @var \app\modules\shop\models\Product $owner */
+        /** @var \core\modules\shop\models\Product $owner */
         $owner = $this->owner;
         $pk = '{{%shop__product}}.id';
 

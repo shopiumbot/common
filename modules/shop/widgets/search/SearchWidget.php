@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\widgets\search;
+namespace core\modules\shop\widgets\search;
 
 use Yii;
 use panix\engine\data\Widget;

@@ -1,13 +1,13 @@
 <?php
 
-namespace app\modules\shop\models;
+namespace core\modules\shop\models;
 
 use Yii;
 use yii\caching\DbDependency;
 use yii\db\Exception;
 use yii\helpers\ArrayHelper;
-use app\modules\shop\models\translate\AttributeOptionTranslate;
-use app\modules\shop\models\query\AttributeOptionsQuery;
+use core\modules\shop\models\translate\AttributeOptionTranslate;
+use core\modules\shop\models\query\AttributeOptionsQuery;
 use panix\engine\db\ActiveRecord;
 
 /**

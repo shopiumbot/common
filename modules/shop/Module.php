@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop;
+namespace core\modules\shop;
 
 use Yii;
 use panix\engine\WebModule;
@@ -29,20 +29,20 @@ class Module extends WebModule implements BootstrapInterface
 
         if (!($app instanceof \panix\engine\console\Application)) {
             $rules[] = [
-                'class' => 'app\modules\shop\components\SearchUrlRule',
+                'class' => 'core\modules\shop\components\SearchUrlRule',
                 //'pattern'=>'products/search',
                 'route' => 'shop/search/index',
                 'defaults' => ['q' => Yii::$app->request->get('q')]
             ];
 
             $rules[] = [
-                'class' => 'app\modules\shop\components\ManufacturerUrlRule',
+                'class' => 'core\modules\shop\components\ManufacturerUrlRule',
                 'route' => 'shop/manufacturer/view',
                 'index' => 'manufacturer',
                 'pattern'=>'manufacturer/<slug:[0-9a-zA-Z_\-]+>'
             ];
             $rules[] = [
-                'class' => 'app\modules\shop\components\CategoryUrlRule',
+                'class' => 'core\modules\shop\components\CategoryUrlRule',
                 'route' => 'shop/catalog/view',
                 'index' => 'catalog',
                 'pattern'=>'catalog/<slug:[0-9a-zA-Z_\-]+>',
@@ -51,7 +51,7 @@ class Module extends WebModule implements BootstrapInterface
             ];
 
             /*$rules[] = [
-                'class' => 'app\modules\shop\components\CategoryUrlRule',
+                'class' => 'core\modules\shop\components\CategoryUrlRule',
             ];*/
         }
 
@@ -60,7 +60,7 @@ class Module extends WebModule implements BootstrapInterface
             false
         );
         $app->setComponents([
-            'currency' => ['class' => 'app\modules\shop\components\CurrencyManager'],
+            'currency' => ['class' => 'core\modules\shop\components\CurrencyManager'],
         ]);
 
     }
@@ -68,7 +68,7 @@ class Module extends WebModule implements BootstrapInterface
     public function init()
     {
         if (Yii::$app->id == 'console') {
-            $this->controllerNamespace = 'app\modules\shop\commands';
+            $this->controllerNamespace = 'core\modules\shop\commands';
         }
         if (!(Yii::$app instanceof \yii\console\Application)) {
             parent::init();
@@ -77,11 +77,11 @@ class Module extends WebModule implements BootstrapInterface
 
     /**
      * @param bool|int $current_id
-     * @return array|\app\modules\shop\models\Product[]
+     * @return array|\core\modules\shop\models\Product[]
      */
     public function getViewProducts($current_id = false)
     {
-        /** @var \app\modules\shop\models\Product $productModel */
+        /** @var \core\modules\shop\models\Product $productModel */
         $productModel = Yii::$app->getModule('shop')->model('Product');
         $list = [];
         $session = Yii::$app->session->get('views');
@@ -179,9 +179,9 @@ class Module extends WebModule implements BootstrapInterface
     public function getDefaultModelClasses()
     {
         return [
-            'Product' => '\app\modules\shop\models\Product',
-            'Manufacturer' => '\app\modules\shop\models\Manufacturer',
-            'Category' => '\app\modules\shop\models\Category',
+            'Product' => '\core\modules\shop\models\Product',
+            'Manufacturer' => '\core\modules\shop\models\Manufacturer',
+            'Category' => '\core\modules\shop\models\Category',
         ];
     }
 

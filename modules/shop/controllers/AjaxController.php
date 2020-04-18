@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\controllers;
+namespace core\modules\shop\controllers;
 
 use Yii;
 use panix\engine\controllers\WebController;

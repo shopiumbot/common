@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\shop\controllers\admin;
+namespace core\modules\shop\controllers\admin;
 
 use Yii;
-use app\modules\shop\models\ProductNotifications;
-use app\modules\shop\models\search\ProductNotificationsSearch;
+use core\modules\shop\models\ProductNotifications;
+use core\modules\shop\models\search\ProductNotificationsSearch;
 use panix\engine\controllers\AdminController;
 
 class NotifyController extends AdminController

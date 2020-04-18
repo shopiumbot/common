@@ -1,17 +1,17 @@
 <?php
 
-namespace app\modules\shop\components\forsage;
+namespace core\modules\shop\components\forsage;
 
 /**
  * Find objects by external id
  */
 
 use panix\mod\images\models\Image;
-use app\modules\shop\models\Attribute;
-use app\modules\shop\models\AttributeOption;
-use app\modules\shop\models\Category;
-use app\modules\shop\models\Manufacturer;
-use app\modules\shop\models\Product;
+use core\modules\shop\models\Attribute;
+use core\modules\shop\models\AttributeOption;
+use core\modules\shop\models\Category;
+use core\modules\shop\models\Manufacturer;
+use core\modules\shop\models\Product;
 use yii\db\Query;
 
 class ForsageExternalFinder

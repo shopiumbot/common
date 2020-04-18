@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\components\forsage;
+namespace core\modules\shop\components\forsage;
 
 use yii\helpers\FileHelper;
 use yii\web\UploadedFile;

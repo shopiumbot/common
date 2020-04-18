@@ -1,9 +1,9 @@
 <?php
 use panix\engine\Html;
-use app\modules\shop\models\Product;
-use app\modules\shop\models\Attribute;
+use core\modules\shop\models\Product;
+use core\modules\shop\models\Attribute;
 use yii\helpers\ArrayHelper;
-use app\modules\shop\models\search\ProductSearch;
+use core\modules\shop\models\search\ProductSearch;
 use yii\grid\GridView;
 use panix\engine\data\ActiveDataProvider;
 /**
@@ -14,7 +14,7 @@ use panix\engine\data\ActiveDataProvider;
  * @var Product $model
  */
 
-\app\modules\shop\bundles\admin\ConfigurationsAsset::register($this);
+\core\modules\shop\bundles\admin\ConfigurationsAsset::register($this);
 // For grid view we use new products instance
 $model =  Product::find(); 
 $model2 =  new Product; 

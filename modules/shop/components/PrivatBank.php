@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\components;
+namespace core\modules\shop\components;
 
 use yii\httpclient\Client;
 

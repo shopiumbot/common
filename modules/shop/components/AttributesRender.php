@@ -1,12 +1,12 @@
 <?php
 
-namespace app\modules\shop\components;
+namespace core\modules\shop\components;
 
 use Yii;
 use yii\base\Widget;
 use panix\engine\Html;
-use app\modules\shop\models\Attribute;
-use app\modules\shop\models\Product;
+use core\modules\shop\models\Attribute;
+use core\modules\shop\models\Product;
 
 class AttributesRender extends Widget
 {
@@ -40,7 +40,7 @@ class AttributesRender extends Widget
     {
 
         $eav = $this->model;
-        /** @var \app\modules\shop\components\EavBehavior $eav */
+        /** @var \core\modules\shop\components\EavBehavior $eav */
         $this->_attributes = $eav->getEavAttributes();
 
 

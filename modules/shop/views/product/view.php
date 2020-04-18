@@ -47,8 +47,8 @@ echo \yii\helpers\Inflector::sentence($words);
             <?php
 
             /**
-             * @var $prev \app\modules\shop\models\Product
-             * @var $next \app\modules\shop\models\Product
+             * @var $prev \core\modules\shop\models\Product
+             * @var $next \core\modules\shop\models\Product
              */
             if ($prev = $model->getPrev(['switch'=>1, 'main_category_id' => $model->main_category_id])->one()) {
                 echo Html::a(Html::icon('arrow-left'), $prev->getUrl(), ['title' => $prev->name]);

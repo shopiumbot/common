@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\shop\components;
+namespace core\modules\shop\components;
 
 use Yii;
 use yii\base\Component;
-use app\modules\shop\models\Currency;
+use core\modules\shop\models\Currency;
 use yii\caching\DbDependency;
 
 /**

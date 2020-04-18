@@ -1,12 +1,12 @@
 <?php
 
-namespace app\modules\shop\components;
+namespace core\modules\shop\components;
 
 use Yii;
 use yii\base\Exception;
 use yii\db\ActiveRecord;
-use app\modules\shop\components\collections\CAttributeCollection;
-use app\modules\shop\components\collections\CList;
+use core\modules\shop\components\collections\CAttributeCollection;
+use core\modules\shop\components\collections\CList;
 use yii\db\Query;
 use yii\db\QueryBuilder;
 

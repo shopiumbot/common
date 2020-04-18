@@ -1,5 +1,5 @@
 <?php
-use app\modules\shop\models\Category;
+use core\modules\shop\models\Category;
 
 ?>
 <div class="p-3">

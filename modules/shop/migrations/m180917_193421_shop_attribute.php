@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\migrations;
+namespace core\modules\shop\migrations;
 
 /**
  * Generation migrate by PIXELION CMS
@@ -12,8 +12,8 @@ namespace app\modules\shop\migrations;
 use Yii;
 use panix\engine\CMS;
 use panix\engine\db\Migration;
-use app\modules\shop\models\Attribute;
-use app\modules\shop\models\translate\AttributeTranslate;
+use core\modules\shop\models\Attribute;
+use core\modules\shop\models\translate\AttributeTranslate;
 
 class m180917_193421_shop_attribute extends Migration
 {

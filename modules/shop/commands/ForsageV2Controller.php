@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\commands;
+namespace core\modules\shop\commands;
 
 
 use Yii;
@@ -8,16 +8,16 @@ use yii\db\QueryBuilder;
 use yii\helpers\Console;
 use yii\helpers\FileHelper;
 use panix\engine\console\controllers\ConsoleController;
-use app\modules\shop\models\Attribute;
-use app\modules\shop\models\Category;
-use app\modules\shop\models\Manufacturer;
-use app\modules\shop\components\forsagev2\ForsageProductsImport;
-use app\modules\shop\components\forsagev2\ForsageExternalFinder;
+use core\modules\shop\models\Attribute;
+use core\modules\shop\models\Category;
+use core\modules\shop\models\Manufacturer;
+use core\modules\shop\components\forsagev2\ForsageProductsImport;
+use core\modules\shop\components\forsagev2\ForsageExternalFinder;
 
 
 /**
  * Sync "Forsage studio" API
- * @package app\modules\shop\commands
+ * @package core\modules\shop\commands
  */
 class ForsageV2Controller extends ConsoleController
 {

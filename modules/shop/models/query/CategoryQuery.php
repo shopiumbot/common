@@ -1,22 +1,21 @@
 <?php
 
-namespace app\modules\shop\models\query;
+namespace core\modules\shop\models\query;
 
 use panix\engine\behaviors\nestedsets\NestedSetsQueryBehavior;
-use panix\engine\traits\query\TranslateQueryTrait;
 use panix\engine\traits\query\DefaultQueryTrait;
 use yii\db\ActiveQuery;
 use yii\helpers\Url;
 
 /**
  * Class CategoryQuery
- * @package app\modules\shop\models\query
+ * @package core\modules\shop\models\query
  * @use ActiveQuery
  */
 class CategoryQuery extends ActiveQuery
 {
 
-    use DefaultQueryTrait, TranslateQueryTrait;
+    use DefaultQueryTrait;
 
     public function behaviors()
     {
@@ -57,7 +56,7 @@ class CategoryQuery extends ActiveQuery
         $res = [];
         $totalCount = 0;
         if (is_object($root)) {
-            /** @var \app\modules\shop\models\Category|\panix\engine\behaviors\nestedsets\NestedSetsBehavior $root */
+            /** @var \core\modules\shop\models\Category|\panix\engine\behaviors\nestedsets\NestedSetsBehavior $root */
             $res[$root->{$root->idAttribute}]['key'] = $root->{$root->idAttribute};
             $res[$root->{$root->idAttribute}]['title'] = $root->{$root->titleAttribute};
             $res[$root->{$root->idAttribute}]['count'] = $root->countItems;

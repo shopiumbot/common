@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\models;
+namespace core\modules\shop\models;
 
 use panix\engine\db\ActiveRecord;
 use panix\engine\Html;
@@ -14,7 +14,7 @@ use panix\engine\Html;
  * @property string $phone
  * @property Product $productsCount Counter
  *
- * @package app\modules\shop\models
+ * @package core\modules\shop\models
  */
 class Supplier extends ActiveRecord
 {

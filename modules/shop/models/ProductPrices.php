@@ -1,9 +1,9 @@
 <?php
 
-namespace app\modules\shop\models;
+namespace core\modules\shop\models;
 
 use Yii;
-use app\modules\shop\models\query\ProductQuery;
+use core\modules\shop\models\query\ProductQuery;
 use yii\db\ActiveRecord;
 
 /**
@@ -14,7 +14,7 @@ use yii\db\ActiveRecord;
  * @property string $value
  * @property integer $product_id
  *
- * @package app\modules\shop\models
+ * @package core\modules\shop\models
  */
 class ProductPrices extends ActiveRecord
 {

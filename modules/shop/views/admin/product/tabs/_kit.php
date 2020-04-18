@@ -4,7 +4,7 @@ use panix\engine\Html;
 use panix\engine\widgets\Pjax;
 use panix\engine\grid\GridView;
 
-\app\modules\shop\bundles\AdminAsset::register($this);
+\core\modules\shop\bundles\AdminAsset::register($this);
 ?>
 
 <?php
@@ -49,7 +49,7 @@ zzzz
 <?php
 
 
-$searchModel = new app\modules\shop\models\search\ProductSearch();
+$searchModel = new core\modules\shop\models\search\ProductSearch();
 $searchModel->exclude[] = $exclude;
 
 foreach ($model->kit as $d) {

@@ -1,14 +1,14 @@
 <?php
 
-namespace app\modules\shop\controllers;
+namespace core\modules\shop\controllers;
 
 
 use Yii;
 use yii\helpers\Url;
 use yii\web\Response;
-use app\modules\shop\models\Manufacturer;
-use app\modules\shop\models\Product;
-use app\modules\shop\components\FilterController;
+use core\modules\shop\models\Manufacturer;
+use core\modules\shop\models\Product;
+use core\modules\shop\components\FilterController;
 
 class ManufacturerController extends FilterController
 {

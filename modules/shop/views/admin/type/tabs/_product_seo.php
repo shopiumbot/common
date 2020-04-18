@@ -2,7 +2,7 @@
 use panix\engine\Html;
 use yii\helpers\ArrayHelper;
 
-$product = new \app\modules\shop\models\Product();
+$product = new \core\modules\shop\models\Product();
 $templates = [
     'product_id' => $product->getAttributeLabel('id'),
     'product_name' => $product->getAttributeLabel('name'),

@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $data \app\modules\shop\models\Attribute
+ * @var $data \core\modules\shop\models\Attribute
  */
 ?>
 

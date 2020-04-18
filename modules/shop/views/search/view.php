@@ -2,8 +2,8 @@
 
 use yii\helpers\Url;
 use yii\helpers\Html;
-use app\modules\shop\widgets\categories\CategoriesWidget;
-use app\modules\shop\widgets\filtersnew\FiltersWidget;
+use core\modules\shop\widgets\categories\CategoriesWidget;
+use core\modules\shop\widgets\filtersnew\FiltersWidget;
 
 ?>
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\shop\controllers;
+namespace core\modules\shop\controllers;
 
 use Yii;
 use panix\engine\controllers\WebController;
-use app\modules\shop\models\Product;
-use app\modules\shop\models\ProductNotifications;
+use core\modules\shop\models\Product;
+use core\modules\shop\models\ProductNotifications;
 use yii\web\Response;
 
 class NotifyController extends WebController

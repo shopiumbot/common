@@ -1,18 +1,18 @@
 <?php
 
-namespace app\modules\shop\controllers\admin;
+namespace core\modules\shop\controllers\admin;
 
 use panix\engine\CMS;
 use panix\ext\colorpicker\ColorPicker;
 use panix\ext\colorpicker\ColorPickerAsset;
 use panix\ext\multipleinput\MultipleInput;
-use app\modules\shop\models\translate\AttributeOptionTranslate;
+use core\modules\shop\models\translate\AttributeOptionTranslate;
 use Yii;
 use panix\engine\controllers\AdminController;
-use app\modules\shop\models\Attribute;
-use app\modules\shop\models\search\AttributeSearch;
-use app\modules\shop\models\AttributeOption;
-use app\modules\shop\models\Product;
+use core\modules\shop\models\Attribute;
+use core\modules\shop\models\search\AttributeSearch;
+use core\modules\shop\models\AttributeOption;
+use core\modules\shop\models\Product;
 use yii\web\Response;
 
 class AttributeController extends AdminController

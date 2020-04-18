@@ -1,9 +1,9 @@
 <?php
 
-namespace app\modules\shop\models\search;
+namespace core\modules\shop\models\search;
 
 use panix\engine\data\ActiveDataProvider;
-use app\modules\shop\models\ProductNotifications;
+use core\modules\shop\models\ProductNotifications;
 
 class ProductNotificationsSearch extends ProductNotifications {
 

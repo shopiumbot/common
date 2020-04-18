@@ -10,7 +10,7 @@
  * change to ($.fn.button && $.fn.button.noConflict !== undefined)
  */
 
-use app\modules\shop\models\Category;
+use core\modules\shop\models\Category;
 use yii\web\View;
 
 echo \panix\ext\jstree\JsTree::widget([

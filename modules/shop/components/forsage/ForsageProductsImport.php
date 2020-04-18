@@ -1,14 +1,14 @@
 <?php
 
-namespace app\modules\shop\components\forsage;
+namespace core\modules\shop\components\forsage;
 
 use panix\engine\CMS;
-use app\modules\shop\models\Attribute;
-use app\modules\shop\models\AttributeOption;
-use app\modules\shop\models\translate\AttributeOptionTranslate;
-use app\modules\shop\models\Category;
-use app\modules\shop\models\Manufacturer;
-use app\modules\shop\models\Product;
+use core\modules\shop\models\Attribute;
+use core\modules\shop\models\AttributeOption;
+use core\modules\shop\models\translate\AttributeOptionTranslate;
+use core\modules\shop\models\Category;
+use core\modules\shop\models\Manufacturer;
+use core\modules\shop\models\Product;
 use yii\helpers\FileHelper;
 use yii\helpers\Inflector;
 use yii\helpers\Json;

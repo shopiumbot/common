@@ -1,12 +1,12 @@
 <?php
 
-namespace app\modules\shop\bundles;
+namespace core\modules\shop\bundles;
 
 use panix\engine\web\AssetBundle;
 
 /**
  * Class WebAsset
- * @package app\modules\shop\assets
+ * @package core\modules\shop\assets
  */
 class ProductConfigureAsset extends AssetBundle
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace app\modules\shop\components;
+namespace core\modules\shop\components;
 
 use panix\engine\Html;
-use app\modules\shop\models\Attribute;
+use core\modules\shop\models\Attribute;
 use Yii;
 class AttributeData {
 

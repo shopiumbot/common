@@ -1,21 +1,19 @@
 <?php
 
-namespace app\modules\shop\models;
+namespace core\modules\shop\models;
 
 
-use panix\mod\sitemap\behaviors\SitemapBehavior;
 use Yii;
 use yii\helpers\ArrayHelper;
 use panix\engine\behaviors\nestedsets\NestedSetsBehavior;
-use app\modules\shop\models\translate\CategoryTranslate;
-use app\modules\shop\models\query\CategoryQuery;
+use core\modules\shop\models\query\CategoryQuery;
 use panix\engine\CMS;
 use panix\engine\db\ActiveRecord;
 use panix\engine\behaviors\UploadFileBehavior;
 
 /**
  * Class Category
- * @package app\modules\shop\models
+ * @package core\modules\shop\models
  *
  * @property integer $id
  * @property integer $tree
@@ -70,7 +68,7 @@ class Category extends ActiveRecord
     {
         return [
             [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => ['png', 'jpg', 'jpeg']],
-            ['slug', '\app\modules\shop\components\CategoryUrlValidator', 'attributeCompare' => 'name'],
+            ['slug', '\core\modules\shop\components\CategoryUrlValidator', 'attributeCompare' => 'name'],
             ['slug', 'fullPathValidator'],
             ['slug', 'match',
                 'pattern' => '/^([a-z0-9-])+$/i',

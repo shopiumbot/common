@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\migrations;
+namespace core\modules\shop\migrations;
 
 /**
  * Generation migrate by PIXELION CMS
@@ -14,21 +14,21 @@ namespace app\modules\shop\migrations;
 use Yii;
 use panix\engine\CMS;
 use panix\engine\db\Migration;
-use app\modules\shop\models\Attribute;
-use app\modules\shop\models\AttributeOption;
-use app\modules\shop\models\ProductType;
-use app\modules\shop\models\Category;
-use app\modules\shop\models\Product;
+use core\modules\shop\models\Attribute;
+use core\modules\shop\models\AttributeOption;
+use core\modules\shop\models\ProductType;
+use core\modules\shop\models\Category;
+use core\modules\shop\models\Product;
 use panix\mod\images\models\Image;
-use app\modules\shop\models\AttributeGroup;
-use app\modules\shop\models\ProductAttributesEav;
-use app\modules\shop\models\ProductCategoryRef;
-use app\modules\shop\models\Kit;
+use core\modules\shop\models\AttributeGroup;
+use core\modules\shop\models\ProductAttributesEav;
+use core\modules\shop\models\ProductCategoryRef;
+use core\modules\shop\models\Kit;
 
 
 /**
  * Class m190316_061840_shop_insert
- * @package app\modules\shop\migrations
+ * @package core\modules\shop\migrations
  */
 class m190316_061840_shop_insert extends Migration
 {
@@ -281,7 +281,7 @@ class m190316_061840_shop_insert extends Migration
                         $attribute->save(false);
                     }
                     if ($attribute) {
-                        /** @var \app\modules\shop\components\EavBehavior $model */
+                        /** @var \core\modules\shop\components\EavBehavior $model */
                         if (is_array($attribute_value)) {
                             if (isset($attribute_value['items'])) {
                                 foreach ($attribute_value['items'] as $item) {

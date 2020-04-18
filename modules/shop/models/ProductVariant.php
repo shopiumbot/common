@@ -1,5 +1,5 @@
 <?php
-namespace app\modules\shop\models;
+namespace core\modules\shop\models;
 
 /**
  * This is the model class for table "ProductVariant".

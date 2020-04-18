@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $groups \app\modules\shop\models\AttributeGroup
+ * @var $groups \core\modules\shop\models\AttributeGroup
  */
 
 use yii\helpers\Html;

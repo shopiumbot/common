@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\models;
+namespace core\modules\shop\models;
 
 
 use panix\mod\discounts\components\DiscountBehavior;
@@ -9,8 +9,8 @@ use panix\mod\sitemap\behaviors\SitemapBehavior;
 use panix\mod\user\models\User;
 use Yii;
 use panix\engine\CMS;
-use app\modules\shop\models\query\ProductQuery;
-use app\modules\shop\models\translate\ProductTranslate;
+use core\modules\shop\models\query\ProductQuery;
+use core\modules\shop\models\translate\ProductTranslate;
 use yii\caching\DbDependency;
 use yii\caching\TagDependency;
 use yii\db\Query;
@@ -864,7 +864,7 @@ class Product extends ActiveRecord
                 return null;
 
             $attribute = substr($name, 4);
-            /** @var \app\modules\shop\components\EavBehavior $this */
+            /** @var \core\modules\shop\components\EavBehavior $this */
             $eavData = $this->getEavAttributes();
 
             if (isset($eavData[$attribute]))
@@ -926,7 +926,7 @@ class Product extends ActiveRecord
             'slugAttribute' => 'slug',
         ];
         $a['eav'] = [
-            'class' => '\app\modules\shop\components\EavBehavior',
+            'class' => '\core\modules\shop\components\EavBehavior',
             'tableName' => '{{%shop__product_attribute_eav}}'
         ];
         if (Yii::$app->getModule('seo'))

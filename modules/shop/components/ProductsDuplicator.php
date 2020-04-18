@@ -1,13 +1,13 @@
 <?php
 
-namespace app\modules\shop\components;
+namespace core\modules\shop\components;
 
 
 use panix\mod\images\models\Image;
 use Yii;
-use app\modules\shop\models\Product;
-use app\modules\shop\models\RelatedProduct;
-use app\modules\shop\models\ProductVariant;
+use core\modules\shop\models\Product;
+use core\modules\shop\models\RelatedProduct;
+use core\modules\shop\models\ProductVariant;
 use panix\engine\CMS;
 use yii\helpers\BaseFileHelper;
 

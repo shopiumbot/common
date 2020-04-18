@@ -1,10 +1,9 @@
 <?php
 
-namespace app\modules\shop\models;
+namespace core\modules\shop\models;
 
 use Yii;
-use app\modules\shop\models\translate\AttributeGroupTranslate;
-use app\modules\shop\models\query\AttributeGroupQuery;
+use core\modules\shop\models\query\AttributeGroupQuery;
 use panix\engine\db\ActiveRecord;
 
 
@@ -12,7 +11,6 @@ class AttributeGroup extends ActiveRecord
 {
 
     const MODULE_ID = 'shop';
-    public $translationClass = AttributeGroupTranslate::class;
 
     public static function find2()
     {

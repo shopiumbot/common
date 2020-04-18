@@ -1,19 +1,19 @@
 <?php
 
-namespace app\modules\shop\models\query;
+namespace core\modules\shop\models\query;
 
 use yii\db\ActiveQuery;
 use panix\engine\traits\query\DefaultQueryTrait;
 use panix\engine\traits\query\TranslateQueryTrait;
-use app\modules\shop\models\traits\EavQueryTrait;
-use app\modules\shop\models\Category;
-use app\modules\shop\models\Product;
-use app\modules\shop\models\ProductCategoryRef;
+use core\modules\shop\models\traits\EavQueryTrait;
+use core\modules\shop\models\Category;
+use core\modules\shop\models\Product;
+use core\modules\shop\models\ProductCategoryRef;
 
 class ProductQuery extends ActiveQuery
 {
 
-    use DefaultQueryTrait, EavQueryTrait, TranslateQueryTrait, FilterQueryTrait;
+    use DefaultQueryTrait, EavQueryTrait, FilterQueryTrait;
 
     /**
      * Product by category

@@ -1,9 +1,9 @@
 <?php
 
-namespace app\modules\shop\models\query;
+namespace core\modules\shop\models\query;
 
-use app\modules\shop\models\Currency;
-use app\modules\shop\models\Product;
+use core\modules\shop\models\Currency;
+use core\modules\shop\models\Product;
 use yii\db\Exception;
 
 trait FilterQueryTrait

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\models\query;
+namespace core\modules\shop\models\query;
 
 
 use yii\db\ActiveQuery;
@@ -10,7 +10,7 @@ use panix\engine\traits\query\TranslateQueryTrait;
 class AttributeQuery extends ActiveQuery
 {
 
-    use DefaultQueryTrait, TranslateQueryTrait;
+    use DefaultQueryTrait;
 
     public function useInFilter()
     {

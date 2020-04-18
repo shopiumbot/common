@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\shop\models\search;
+namespace core\modules\shop\models\search;
 
 use yii\base\Model;
 use panix\engine\data\ActiveDataProvider;
-use app\modules\shop\models\AttributeGroup;
+use core\modules\shop\models\AttributeGroup;
 
 /**
  * AttributeGroupSearch represents the model behind the search form about `panix\shop\models\search\AttributeGroupSearch`.

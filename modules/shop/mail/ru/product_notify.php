@@ -4,7 +4,7 @@ use panix\engine\Html;
 
 /**
  * @var $site_name string
- * @var $product \app\modules\shop\models\Product
+ * @var $product \core\modules\shop\models\Product
  */
 
 $thStyle = 'border-color:#D8D8D8; border-width:1px; border-style:solid;';

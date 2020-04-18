@@ -1,7 +1,7 @@
 <?php
 
 use panix\engine\Html;
-use app\modules\shop\models\Attribute;
+use core\modules\shop\models\Attribute;
 
 //$chosen = array(); // Array of ids to enable chosen
 $attributes = (isset($model->type->shopAttributes)) ? $model->type->shopAttributes : [];
@@ -64,7 +64,7 @@ echo \panix\engine\barcode\BarcodeGenerator::widget([
             foreach ($result as $group_name => $attributes) {
                 echo '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4"><h3 class="text-center mt-3">' . $group_name . '</h3>';
                 foreach ($attributes as $a) {
-                    /** @var Attribute|\app\modules\shop\components\EavBehavior $a */
+                    /** @var Attribute|\core\modules\shop\components\EavBehavior $a */
                     // Repopulate data from POST if exists
                     if (isset($_POST['Attribute'][$a->name])) {
                         $value = $_POST['Attribute'][$a->name];

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\models;
+namespace core\modules\shop\models;
 
 use \panix\engine\db\ActiveRecord;
 

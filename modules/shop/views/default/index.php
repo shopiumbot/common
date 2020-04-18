@@ -2,7 +2,7 @@
 
 use panix\engine\Html;
 use panix\engine\CMS;
-use app\modules\shop\models\Category;
+use core\modules\shop\models\Category;
 
 // \yii\helpers\VarDumper::dump(Category::findOne(44),100,true);
 // die;

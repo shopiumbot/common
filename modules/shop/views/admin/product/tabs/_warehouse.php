@@ -2,7 +2,7 @@
 
 use yii\helpers\ArrayHelper;
 use yii\caching\DbDependency;
-use app\modules\shop\models\Supplier;
+use core\modules\shop\models\Supplier;
 
 /** @var $form panix\engine\bootstrap\ActiveForm */
 ?>

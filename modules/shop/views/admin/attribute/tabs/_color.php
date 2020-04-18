@@ -1,16 +1,15 @@
 <?php
 
-use app\modules\shop\models\translate\AttributeOptionTranslate;
 use panix\engine\Html;
 use panix\engine\widgets\Pjax;
 use panix\ext\multipleinput\MultipleInput;
 
-\app\modules\shop\bundles\admin\AttributeAsset::register($this);
+\core\modules\shop\bundles\admin\AttributeAsset::register($this);
 
 /**
  * @var $this \yii\web\View
  * @var $form \panix\engine\bootstrap\ActiveForm
- * @var $model \app\modules\shop\models\Attribute
+ * @var $model \core\modules\shop\models\Attribute
  */
 
 $this->registerCss('

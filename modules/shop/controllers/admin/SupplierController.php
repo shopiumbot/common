@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\shop\controllers\admin;
+namespace core\modules\shop\controllers\admin;
 
 use Yii;
 use panix\engine\controllers\AdminController;
-use app\modules\shop\models\search\SupplierSearch;
-use app\modules\shop\models\Supplier;
+use core\modules\shop\models\search\SupplierSearch;
+use core\modules\shop\models\Supplier;
 
 class SupplierController extends AdminController
 {

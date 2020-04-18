@@ -1,12 +1,12 @@
 <?php
 
-namespace app\modules\shop\components;
+namespace core\modules\shop\components;
 
 use yii\web\UrlRule;
 
 /**
  * Class SearchUrlRule
- * @package app\modules\shop\components
+ * @package core\modules\shop\components
  */
 class SearchUrlRule extends UrlRule
 {

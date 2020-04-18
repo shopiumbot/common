@@ -1,14 +1,11 @@
 <?php
 
-namespace app\modules\shop\controllers\admin;
+namespace core\modules\shop\controllers\admin;
 
 use panix\engine\CMS;
-use app\modules\shop\models\translate\CategoryTranslate;
 use Yii;
 use panix\engine\controllers\AdminController;
-use app\modules\shop\models\Category;
-use yii\filters\VerbFilter;
-use yii\helpers\Inflector;
+use core\modules\shop\models\Category;
 use yii\web\Response;
 
 /**

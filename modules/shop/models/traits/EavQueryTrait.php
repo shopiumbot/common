@@ -1,8 +1,8 @@
 <?php
 
-namespace app\modules\shop\models\traits;
+namespace core\modules\shop\models\traits;
 
-use app\modules\shop\components\collections\CList;
+use core\modules\shop\components\collections\CList;
 use Yii;
 
 trait EavQueryTrait

@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\shop\controllers\admin;
+namespace core\modules\shop\controllers\admin;
 
 use Yii;
-use app\modules\shop\models\Manufacturer;
-use app\modules\shop\models\search\ManufacturerSearch;
+use core\modules\shop\models\Manufacturer;
+use core\modules\shop\models\search\ManufacturerSearch;
 use panix\engine\controllers\AdminController;
 
 class ManufacturerController extends AdminController

@@ -14,7 +14,7 @@ $classCol_2 = ($eavAttributes) ? 'col-lg-9' : 'col-12';
 ?>
 
 <div class="<?= $classCol_1; ?>">
-    <?= \app\modules\shop\widgets\filtersnew\FiltersWidget::widget([
+    <?= \core\modules\shop\widgets\filtersnew\FiltersWidget::widget([
         'model' => $this->context->dataModel,
         'attributes' => $eavAttributes,
     ]); ?>

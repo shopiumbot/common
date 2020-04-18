@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \panix\engine\bootstrap\ActiveForm $form
- * @var \app\modules\shop\models\forms\SettingsForm $model
+ * @var \core\modules\shop\models\forms\SettingsForm $model
  */
 ?>
 

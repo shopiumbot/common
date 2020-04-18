@@ -4,7 +4,7 @@ use panix\engine\Html;
 use panix\engine\bootstrap\ActiveForm;
 //use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use app\modules\shop\models\ProductType;
+use core\modules\shop\models\ProductType;
 
 ?>
 <?php if (!$model->isNewRecord) { ?>
@@ -46,7 +46,7 @@ use app\modules\shop\models\ProductType;
 
 
                 echo Html::beginForm('', 'GET');
-                app\modules\shop\bundles\admin\ProductAsset::register($this);
+                core\modules\shop\bundles\admin\ProductAsset::register($this);
 
                 if ($attributeError) {
                     echo '<div class="alert alert-danger">' . Yii::t('shop/admin', 'SELECT_ATTRIBUTE_PRODUCT') . '</div>';

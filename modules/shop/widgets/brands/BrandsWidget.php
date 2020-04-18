@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\shop\widgets\brands;
+namespace core\modules\shop\widgets\brands;
 
 use panix\engine\data\Widget;
 use panix\ext\owlcarousel\OwlCarouselAsset;
-use app\modules\shop\models\Manufacturer;
+use core\modules\shop\models\Manufacturer;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
 

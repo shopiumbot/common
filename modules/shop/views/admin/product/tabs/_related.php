@@ -3,7 +3,7 @@
 use panix\engine\Html;
 use yii\widgets\Pjax;
 
-\app\modules\shop\bundles\AdminAsset::register($this);
+\core\modules\shop\bundles\AdminAsset::register($this);
 ?>
 
 <?php
@@ -51,7 +51,7 @@ use yii\widgets\Pjax;
 <?php
 
 
-$searchModel = new app\modules\shop\models\search\ProductSearch();
+$searchModel = new core\modules\shop\models\search\ProductSearch();
 $searchModel->exclude[] = $exclude;
 
 foreach ($model->relatedProducts as $d) {

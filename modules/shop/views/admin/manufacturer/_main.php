@@ -3,7 +3,7 @@ use panix\ext\tinymce\TinyMce;
 
 /**
  * @var panix\engine\bootstrap\ActiveForm $form
- * @var \app\modules\shop\models\Manufacturer $model
+ * @var \core\modules\shop\models\Manufacturer $model
  */
 ?>
 

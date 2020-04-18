@@ -2,7 +2,7 @@
 use panix\engine\grid\GridView;
 use panix\engine\widgets\Pjax;
 use panix\ext\fancybox\Fancybox;
-use app\modules\shop\bundles\admin\ProductIndex;
+use core\modules\shop\bundles\admin\ProductIndex;
 
 echo Fancybox::widget(['target' => '.image a']);
 

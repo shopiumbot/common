@@ -1,11 +1,10 @@
 <?php
 
-use app\modules\shop\models\translate\AttributeOptionTranslate;
 use panix\engine\Html;
 use panix\engine\widgets\Pjax;
-use app\modules\shop\models\AttributeOption;
+use core\modules\shop\models\AttributeOption;
 
-\app\modules\shop\bundles\admin\AttributeAsset::register($this);
+\core\modules\shop\bundles\admin\AttributeAsset::register($this);
 ?>
 
 <style type="text/css">

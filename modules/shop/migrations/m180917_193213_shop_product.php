@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\migrations;
+namespace core\modules\shop\migrations;
 
 /**
  * Generation migrate by PIXELION CMS
@@ -9,13 +9,13 @@ namespace app\modules\shop\migrations;
  * Class m180917_193213_shop_product
  */
 
-use app\modules\shop\models\Product;
-use app\modules\shop\models\translate\ProductTranslate;
+use core\modules\shop\models\Product;
+use core\modules\shop\models\translate\ProductTranslate;
 use panix\engine\db\Migration;
 
 class m180917_193213_shop_product extends Migration
 {
-    public $settingsForm = 'app\modules\shop\models\forms\SettingsForm';
+    public $settingsForm = 'core\modules\shop\models\forms\SettingsForm';
 
     /**
      * {@inheritdoc}

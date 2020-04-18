@@ -1,21 +1,21 @@
 <?php
 
-namespace app\modules\shop\controllers\admin;
+namespace core\modules\shop\controllers\admin;
 
 use panix\engine\CMS;
-use app\modules\shop\components\EavBehavior;
-use app\modules\shop\models\Category;
+use core\modules\shop\components\EavBehavior;
+use core\modules\shop\models\Category;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Json;
-use app\modules\shop\models\Product;
-use app\modules\shop\models\search\ProductSearch;
+use core\modules\shop\models\Product;
+use core\modules\shop\models\search\ProductSearch;
 use panix\engine\controllers\AdminController;
-use app\modules\shop\models\ProductType;
-use app\modules\shop\models\Attribute;
-use app\modules\shop\models\AttributeOption;
-use app\modules\shop\models\ProductVariant;
+use core\modules\shop\models\ProductType;
+use core\modules\shop\models\Attribute;
+use core\modules\shop\models\AttributeOption;
+use core\modules\shop\models\ProductVariant;
 use yii\helpers\StringHelper;
 use yii\web\ForbiddenHttpException;
 use yii\web\HttpException;
@@ -514,7 +514,7 @@ class ProductController extends AdminController
                 if (!isset($duplicates['copy']))
                     $duplicates['copy'] = [];
 
-                $duplicator = new \app\modules\shop\components\ProductsDuplicator;
+                $duplicator = new \core\modules\shop\components\ProductsDuplicator;
                 $ids = $duplicator->createCopy($product_ids, $duplicates['copy']);
                 //return $this->redirect('/admin/shop/product/?Product[id]=' . implode(',', $ids));
                 $result['success'] = true;
@@ -560,7 +560,7 @@ class ProductController extends AdminController
             if (!isset($duplicates['copy']))
                 $duplicates['copy'] = [];
 
-            $duplicator = new \app\modules\shop\components\ProductsDuplicator;
+            $duplicator = new \core\modules\shop\components\ProductsDuplicator;
             $ids = $duplicator->createCopy($product_ids, $duplicates['copy']);
             if($ids){
                 $result['success'] = true;

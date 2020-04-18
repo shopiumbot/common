@@ -1,15 +1,15 @@
 <?php
 
-namespace app\modules\shop\models;
+namespace core\modules\shop\models;
 
 use panix\engine\CMS;
 use Yii;
 use yii\caching\DbDependency;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use app\modules\shop\models\translate\AttributeTranslate;
-use app\modules\shop\models\AttributeOption;
-use app\modules\shop\models\query\AttributeQuery;
+use core\modules\shop\models\translate\AttributeTranslate;
+use core\modules\shop\models\AttributeOption;
+use core\modules\shop\models\query\AttributeQuery;
 use panix\engine\db\ActiveRecord;
 
 /**

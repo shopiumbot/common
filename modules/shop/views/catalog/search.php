@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use app\modules\shop\widgets\filters\FiltersWidget;
+use core\modules\shop\widgets\filters\FiltersWidget;
 
 if (($q = Yii::$app->request->get('q')))
     $result = Html::encode($q);

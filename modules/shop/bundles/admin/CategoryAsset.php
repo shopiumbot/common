@@ -4,7 +4,7 @@
  * @author Pixelion CMS <dev@pixelion.com.ua>
  * @link http://www.pixelion.com.ua/
  */
-namespace app\modules\shop\bundles\admin;
+namespace core\modules\shop\bundles\admin;
 
 
 

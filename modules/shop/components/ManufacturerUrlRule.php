@@ -1,13 +1,13 @@
 <?php
 
-namespace app\modules\shop\components;
+namespace core\modules\shop\components;
 
-use app\modules\shop\models\Manufacturer;
+use core\modules\shop\models\Manufacturer;
 use yii\web\UrlRule;
 
 /**
  * Class ManufacturerUrlRule
- * @package app\modules\shop\components
+ * @package core\modules\shop\components
  */
 class ManufacturerUrlRule extends UrlRule
 {

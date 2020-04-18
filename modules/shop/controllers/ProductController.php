@@ -1,9 +1,9 @@
 <?php
 
-namespace app\modules\shop\controllers;
+namespace core\modules\shop\controllers;
 
 use panix\engine\CMS;
-use app\modules\shop\models\Attribute;
+use core\modules\shop\models\Attribute;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
@@ -13,9 +13,9 @@ use yii\web\Response;
 use yii\web\View;
 use panix\engine\Html;
 use panix\engine\controllers\WebController;
-use app\modules\shop\models\Product;
-use app\modules\shop\models\Category;
-use app\modules\shop\bundles\ProductConfigureAsset;
+use core\modules\shop\models\Product;
+use core\modules\shop\models\Category;
+use core\modules\shop\bundles\ProductConfigureAsset;
 
 class ProductController extends WebController
 {

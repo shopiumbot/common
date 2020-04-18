@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\migrations;
+namespace core\modules\shop\migrations;
 /**
  * Generation migrate by PIXELION CMS
  * @author PIXELION CMS development team <dev@pixelion.com.ua>
@@ -9,7 +9,7 @@ namespace app\modules\shop\migrations;
  */
 
 use panix\engine\db\Migration;
-use app\modules\shop\models\Supplier;
+use core\modules\shop\models\Supplier;
 
 class m180917_193557_shop_suppliers extends Migration
 {

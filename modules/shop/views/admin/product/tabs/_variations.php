@@ -2,7 +2,7 @@
 use panix\engine\Html;
 use yii\helpers\ArrayHelper;
 
-\app\modules\shop\bundles\admin\VariationsAsset::register($this);
+\core\modules\shop\bundles\admin\VariationsAsset::register($this);
 #Yii::app()->getClientScript()->registerScriptFile($this->module->assetsUrl . '/admin/products.variations.js', CClientScript::POS_END);
 ?>
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace app\modules\shop\controllers\admin;
+namespace core\modules\shop\controllers\admin;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use panix\engine\controllers\AdminController;
-use app\modules\shop\models\ProductType;
-use app\modules\shop\models\search\ProductTypeSearch;
-use app\modules\shop\models\Attribute;
+use core\modules\shop\models\ProductType;
+use core\modules\shop\models\search\ProductTypeSearch;
+use core\modules\shop\models\Attribute;
 
 class DefaultController extends AdminController {
 

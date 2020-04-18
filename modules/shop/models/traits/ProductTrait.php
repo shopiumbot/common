@@ -1,23 +1,23 @@
 <?php
 
-namespace app\modules\shop\models\traits;
+namespace core\modules\shop\models\traits;
 
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\caching\DbDependency;
-use app\modules\shop\models\Category;
-use app\modules\shop\models\Manufacturer;
-use app\modules\shop\models\ProductType;
-use app\modules\shop\models\search\ProductSearch;
-use app\modules\shop\models\Supplier;
+use core\modules\shop\models\Category;
+use core\modules\shop\models\Manufacturer;
+use core\modules\shop\models\ProductType;
+use core\modules\shop\models\search\ProductSearch;
+use core\modules\shop\models\Supplier;
 use panix\engine\Html;
 use panix\engine\CMS;
-use app\modules\shop\models\Attribute;
-use app\modules\shop\models\Product;
+use core\modules\shop\models\Attribute;
+use core\modules\shop\models\Product;
 
 /**
  * Trait ProductTrait
- * @package app\modules\shop\models\traits
+ * @package core\modules\shop\models\traits
  */
 trait ProductTrait
 {
@@ -118,14 +118,15 @@ trait ProductTrait
             'prefix' => '<sup>' . Yii::$app->currency->main['symbol'] . '</sup>',
             'contentOptions' => ['class' => 'text-center', 'style' => 'position:relative'],
             'value' => function ($model) {
+
                 $prices = [];
                 $newprice = [];
                 /** @var $model Product */
                 $discount = '';
                 if ($model->hasDiscount) {
                     $price = $model->discountPrice;
-                    $priceCurrency = $model->discountPrice * Yii::$app->currency->currencies[$model->currency_id]['rate'];
-                    $discount = '<del class="text-secondary">' . Yii::$app->currency->number_format($model->originalPrice) . '</del> / ';
+                    //$priceCurrency = $model->discountPrice * Yii::$app->currency->currencies[$model->currency_id]['rate'];
+                    //$discount = '<del class="text-secondary">' . Yii::$app->currency->number_format($model->originalPrice) . '</del> / ';
                     if ($model->currency_id) {
                         $newprice[$model->currency_id]['price'] = $model->discountPrice;
                         $newprice[$model->currency_id]['discount_price'] = $model->price;
@@ -153,7 +154,7 @@ trait ProductTrait
                 if ($model->currency_id) {
                     $newprice[$model->currency_id]['symbol'] = Yii::$app->currency->currencies[$model->currency_id]['symbol'];
 
-                    // $newprice[$model->currency_id]['price']=$price;
+                     $newprice[$model->currency_id]['price']=$price;
 
                     // $symbol = Html::tag('span', Yii::$app->currency->currencies[$model->currency_id]['symbol']);
                     // $symbol2 = Html::tag('span', Yii::$app->currency->currencies[1]['symbol']);
@@ -163,6 +164,7 @@ trait ProductTrait
 
                 } else {
                     $newprice[0]['symbol'] = Yii::$app->currency->main['symbol'];
+                    $newprice[0]['price'] = $model->price;
                     $symbol = Html::tag('sup', Yii::$app->currency->main['symbol']);
                     $priceHtml = Html::tag('span', Yii::$app->currency->number_format(Yii::$app->currency->convert($price, $model->currency_id)), ['class' => 'text-success font-weight-bold']) . ' ' . $symbol;
 
@@ -174,6 +176,7 @@ trait ProductTrait
                 $data=[];
                 foreach ($newprice as $currency=>$price_data){
                     $price='';
+
                     if(isset($price_data['discount_price'])){
                         $price.='<del class="text-secondary">'.Yii::$app->currency->number_format($price_data['discount_price']).'</del> / ';
                     }
@@ -296,7 +299,7 @@ trait ProductTrait
         foreach ($query as $m) {
 
             $columns['' . $m->name] = [
-                //'class' => 'app\modules\shop\components\EavColumn',
+                //'class' => 'core\modules\shop\components\EavColumn',
                 'attribute' => 'eav_' . $m->name,
                 'header' => $m->title,
                 'filter' => Html::dropDownList(
@@ -395,7 +398,7 @@ trait ProductTrait
     {
 
 
-        /** @var \app\modules\shop\components\EavBehavior $attributes */
+        /** @var \core\modules\shop\components\EavBehavior $attributes */
         $attributes = $this->getEavAttributes();
         $data = [];
         $groups = [];
@@ -456,7 +459,7 @@ trait ProductTrait
     {
         /** @var $this Product */
         //Yii::import('mod.shop.components.AttributesRender');
-        $attributes = new \app\modules\shop\components\AttributesRender;
+        $attributes = new \core\modules\shop\components\AttributesRender;
         return $attributes->getData($this);
     }
 

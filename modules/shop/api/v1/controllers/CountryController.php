@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\api\v1\controllers;
+namespace core\modules\shop\api\v1\controllers;
 
 use panix\mod\user\models\forms\LoginForm;
 use Yii;
@@ -16,11 +16,11 @@ use yii\web\Response;
 
 /**
  * Class CountryController
- * @package app\modules\shop\api\v1\controllers
+ * @package core\modules\shop\api\v1\controllers
  */
 class CountryController extends ActiveController
 {
-    public $modelClass = 'app\modules\shop\api\v1\models\Country';
+    public $modelClass = 'core\modules\shop\api\v1\models\Country';
 
     public function init()
     {

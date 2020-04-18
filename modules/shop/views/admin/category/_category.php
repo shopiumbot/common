@@ -1,9 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-use app\modules\shop\models\Category;
+use core\modules\shop\models\Category;
 
-\app\modules\shop\bundles\admin\CategoryAsset::register($this);
+\core\modules\shop\bundles\admin\CategoryAsset::register($this);
 
 ?>
 

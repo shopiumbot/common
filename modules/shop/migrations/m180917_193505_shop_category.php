@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\migrations;
+namespace core\modules\shop\migrations;
 /**
  * Generation migrate by PIXELION CMS
  * @author PIXELION CMS development team <dev@pixelion.com.ua>
@@ -9,8 +9,8 @@ namespace app\modules\shop\migrations;
  */
 use Yii;
 use panix\engine\db\Migration;
-use app\modules\shop\models\Category;
-use app\modules\shop\models\translate\CategoryTranslate;
+use core\modules\shop\models\Category;
+use core\modules\shop\models\translate\CategoryTranslate;
 
 class m180917_193505_shop_category extends Migration {
 

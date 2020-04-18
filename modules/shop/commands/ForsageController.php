@@ -1,22 +1,22 @@
 <?php
 
-namespace app\modules\shop\commands;
+namespace core\modules\shop\commands;
 
 use Yii;
 use yii\db\QueryBuilder;
 use yii\helpers\Console;
 use yii\helpers\FileHelper;
 use panix\engine\console\controllers\ConsoleController;
-use app\modules\shop\models\Attribute;
-use app\modules\shop\models\Category;
-use app\modules\shop\models\Manufacturer;
-use app\modules\shop\components\forsage\ForsageProductsImport;
-use app\modules\shop\components\forsage\ForsageExternalFinder;
+use core\modules\shop\models\Attribute;
+use core\modules\shop\models\Category;
+use core\modules\shop\models\Manufacturer;
+use core\modules\shop\components\forsage\ForsageProductsImport;
+use core\modules\shop\components\forsage\ForsageExternalFinder;
 
 
 /**
  * Sync "Forsage studio" API
- * @package app\modules\shop\commands
+ * @package core\modules\shop\commands
  */
 class ForsageController extends ConsoleController
 {

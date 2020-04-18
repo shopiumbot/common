@@ -1,7 +1,7 @@
 <?php
 use panix\engine\Html;
 use yii\helpers\ArrayHelper;
-use app\modules\shop\models\Currency;
+use core\modules\shop\models\Currency;
 
 /**
  * @var $form \panix\engine\bootstrap\ActiveForm

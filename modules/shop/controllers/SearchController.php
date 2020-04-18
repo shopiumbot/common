@@ -1,14 +1,14 @@
 <?php
 
-namespace app\modules\shop\controllers;
+namespace core\modules\shop\controllers;
 
 use panix\engine\Html;
 use Yii;
 use yii\helpers\Url;
 use yii\web\Response;
-use app\modules\shop\components\FilterController;
-use app\modules\shop\models\Product;
-use app\modules\shop\models\Category;
+use core\modules\shop\components\FilterController;
+use core\modules\shop\models\Product;
+use core\modules\shop\models\Category;
 
 class SearchController extends FilterController
 {

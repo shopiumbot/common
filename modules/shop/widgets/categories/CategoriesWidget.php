@@ -1,9 +1,9 @@
 <?php
 
-namespace app\modules\shop\widgets\categories;
+namespace core\modules\shop\widgets\categories;
 
 use panix\engine\CMS;
-use app\modules\shop\models\Category;
+use core\modules\shop\models\Category;
 use panix\engine\data\Widget;
 use yii\helpers\Html;
 use Yii;

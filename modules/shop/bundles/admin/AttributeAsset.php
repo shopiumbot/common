@@ -4,7 +4,7 @@
  * @author PIXELION CMS development team <dev@pixelion.com.ua>
  * @link http://pixelion.com.ua PIXELION CMS
  */
-namespace app\modules\shop\bundles\admin;
+namespace core\modules\shop\bundles\admin;
 
 
 use panix\engine\web\AssetBundle;

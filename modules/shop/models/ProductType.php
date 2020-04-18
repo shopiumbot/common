@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\models;
+namespace core\modules\shop\models;
 
 use panix\engine\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
@@ -14,7 +14,7 @@ use yii\helpers\ArrayHelper;
  * @property string $product_description
  * @property string $name
  *
- * @package app\modules\shop\models
+ * @package core\modules\shop\models
  */
 class ProductType extends ActiveRecord
 {

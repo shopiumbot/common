@@ -7,7 +7,7 @@ use yii\helpers\ArrayHelper;
 /**
  * @var $this \yii\web\View
  * @var $form \panix\engine\bootstrap\ActiveForm
- * @var $model \app\modules\shop\models\Attribute
+ * @var $model \core\modules\shop\models\Attribute
  */
 
 echo \panix\engine\bootstrap\Alert::widget([

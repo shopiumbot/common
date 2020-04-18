@@ -1,14 +1,14 @@
 <?php
 
-namespace app\modules\shop\components;
+namespace core\modules\shop\components;
 
 use panix\engine\CMS;
 use yii\web\UrlRule;
-use app\modules\shop\models\Category;
+use core\modules\shop\models\Category;
 
 /**
  * Class CategoryUrlRule
- * @package app\modules\shop\components
+ * @package core\modules\shop\components
  */
 class CategoryUrlRule extends BaseUrlRule
 {

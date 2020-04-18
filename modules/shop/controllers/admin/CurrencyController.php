@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\shop\controllers\admin;
+namespace core\modules\shop\controllers\admin;
 
 use Yii;
-use app\modules\shop\models\Currency;
-use app\modules\shop\models\search\CurrencySearch;
+use core\modules\shop\models\Currency;
+use core\modules\shop\models\search\CurrencySearch;
 use panix\engine\controllers\AdminController;
 
 class CurrencyController extends AdminController

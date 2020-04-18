@@ -1,14 +1,14 @@
 <?php
 
 use yii\helpers\ArrayHelper;
-use app\modules\shop\models\AttributeGroup;
-use app\modules\shop\models\Attribute;
+use core\modules\shop\models\AttributeGroup;
+use core\modules\shop\models\Attribute;
 use panix\engine\Html;
 
 /**
  * @var $this \yii\web\View
  * @var $form \panix\engine\bootstrap\ActiveForm
- * @var $model \app\modules\shop\models\Attribute
+ * @var $model \core\modules\shop\models\Attribute
  */
 ?>
 <?= $form->field($model, 'title')->textInput(['maxlength' => 255]); ?>

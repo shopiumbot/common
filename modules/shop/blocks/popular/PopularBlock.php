@@ -1,8 +1,8 @@
 <?php
 
-namespace app\modules\shop\blocks\popular;
+namespace core\modules\shop\blocks\popular;
 
-use app\modules\shop\models\Product;
+use core\modules\shop\models\Product;
 use panix\engine\data\ActiveDataProvider;
 use panix\engine\data\Widget;
 

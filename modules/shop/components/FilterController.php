@@ -1,15 +1,15 @@
 <?php
 
-namespace app\modules\shop\components;
+namespace core\modules\shop\components;
 
-use app\modules\shop\models\Category;
+use core\modules\shop\models\Category;
 use Yii;
 use yii\helpers\Url;
 use yii\web\Response;
 use panix\engine\Html;
-use app\modules\shop\models\Attribute;
-use app\modules\shop\models\Manufacturer;
-use app\modules\shop\models\Product;
+use core\modules\shop\models\Attribute;
+use core\modules\shop\models\Manufacturer;
+use core\modules\shop\models\Product;
 use panix\engine\controllers\WebController;
 
 /**
@@ -17,7 +17,7 @@ use panix\engine\controllers\WebController;
  *
  * @property array $activeAttributes
  *
- * @package app\modules\shop\components
+ * @package core\modules\shop\components
  */
 class FilterController extends WebController
 {
@@ -28,12 +28,12 @@ class FilterController extends WebController
     public $allowedPageLimit;
 
     /**
-     * @var \app\modules\shop\models\query\ProductQuery
+     * @var \core\modules\shop\models\query\ProductQuery
      */
     public $query;
 
     /**
-     * @var \app\modules\shop\models\query\ProductQuery
+     * @var \core\modules\shop\models\query\ProductQuery
      */
     public $currentQuery;
     public $prices;

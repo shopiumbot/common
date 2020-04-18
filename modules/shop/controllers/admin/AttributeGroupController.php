@@ -1,10 +1,10 @@
 <?php
 
-namespace app\modules\shop\controllers\admin;
+namespace core\modules\shop\controllers\admin;
 
 use Yii;
-use app\modules\shop\models\AttributeGroup;
-use app\modules\shop\models\search\AttributeGroupSearch;
+use core\modules\shop\models\AttributeGroup;
+use core\modules\shop\models\search\AttributeGroupSearch;
 use panix\engine\controllers\AdminController;
 
 class AttributeGroupController extends AdminController {

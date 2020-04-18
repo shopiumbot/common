@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\migrations;
+namespace core\modules\shop\migrations;
 
 /**
  * Generation migrate by PIXELION CMS
@@ -9,7 +9,7 @@ namespace app\modules\shop\migrations;
  * Class m180857_193215_shop_kit
  */
 
-use app\modules\shop\models\Kit;
+use core\modules\shop\models\Kit;
 use panix\engine\db\Migration;
 
 class m180857_193215_shop_kit extends Migration

@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use app\modules\shop\widgets\filtersnew\FiltersWidget;
+use core\modules\shop\widgets\filtersnew\FiltersWidget;
 
 
 ?>

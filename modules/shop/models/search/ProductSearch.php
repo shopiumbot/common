@@ -1,14 +1,14 @@
 <?php
 
-namespace app\modules\shop\models\search;
+namespace core\modules\shop\models\search;
 
 use Yii;
 use yii\base\Model;
 use panix\engine\data\ActiveDataProvider;
-use app\modules\shop\models\Product;
+use core\modules\shop\models\Product;
 
 /**
- * ProductSearch represents the model behind the search form about `app\modules\shop\models\Product`.
+ * ProductSearch represents the model behind the search form about `core\modules\shop\models\Product`.
  */
 class ProductSearch extends Product
 {

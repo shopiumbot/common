@@ -1,13 +1,12 @@
 <?php
 
-namespace app\modules\shop\models;
+namespace core\modules\shop\models;
 
 use panix\engine\Html;
 use Yii;
 use yii\helpers\ArrayHelper;
 use panix\engine\db\ActiveRecord;
-use app\modules\shop\models\query\ManufacturerQuery;
-use app\modules\shop\models\translate\ManufacturerTranslate;
+use core\modules\shop\models\query\ManufacturerQuery;
 
 /**
  * Class Manufacturer

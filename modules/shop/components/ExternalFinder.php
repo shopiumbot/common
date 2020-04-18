@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\components;
+namespace core\modules\shop\components;
 
 /**
  * Find objects by external id
@@ -10,12 +10,12 @@ namespace app\modules\shop\components;
 use Yii;
 use yii\db\Query;
 use panix\mod\images\models\Image;
-use app\modules\shop\models\Attribute;
-use app\modules\shop\models\AttributeOption;
-use app\modules\shop\models\Category;
-use app\modules\shop\models\Manufacturer;
-use app\modules\shop\models\Product;
-use app\modules\shop\models\Supplier;
+use core\modules\shop\models\Attribute;
+use core\modules\shop\models\AttributeOption;
+use core\modules\shop\models\Category;
+use core\modules\shop\models\Manufacturer;
+use core\modules\shop\models\Product;
+use core\modules\shop\models\Supplier;
 
 class ExternalFinder
 {

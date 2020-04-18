@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\migrations;
+namespace core\modules\shop\migrations;
 
 /**
  * Generation migrate by PIXELION CMS
@@ -49,7 +49,6 @@ class m180917_193216_shop_product_length extends Migration
     public function down()
     {
         $this->dropTable('{{%shop_product_length}}');
-        $this->dropTable('{{%shop_product_length_translate}}');
     }
 
 }

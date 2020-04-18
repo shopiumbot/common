@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\shop\migrations;
+namespace core\modules\shop\migrations;
 
 /**
  * Generation migrate by PIXELION CMS
@@ -8,7 +8,7 @@ namespace app\modules\shop\migrations;
  *
  * Class m180917_193913_shop_product_notify
  */
-use app\modules\shop\models\ProductNotifications;
+use core\modules\shop\models\ProductNotifications;
 use panix\engine\db\Migration;
 
 class m180917_193913_shop_product_notify extends Migration

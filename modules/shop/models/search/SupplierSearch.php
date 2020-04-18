@@ -1,11 +1,11 @@
 <?php
 
-namespace app\modules\shop\models\search;
+namespace core\modules\shop\models\search;
 
 use Yii;
 use yii\base\Model;
 use panix\engine\data\ActiveDataProvider;
-use app\modules\shop\models\Supplier;
+use core\modules\shop\models\Supplier;
 
 /**
  * ManufacturerSearch represents the model behind the search form about `panix\shop\models\Manufacturer`.

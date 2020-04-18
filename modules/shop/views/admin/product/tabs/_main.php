@@ -2,8 +2,8 @@
 
 use yii\helpers\ArrayHelper;
 use yii\caching\DbDependency;
-use app\modules\shop\models\Manufacturer;
-use app\modules\shop\models\Category;
+use core\modules\shop\models\Manufacturer;
+use core\modules\shop\models\Category;
 use panix\ext\tinymce\TinyMce;
 
 /**
