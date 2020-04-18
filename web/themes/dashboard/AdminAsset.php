@@ -24,15 +24,17 @@ class AdminAsset extends AssetBundle
     ];
 
     public $depends = [
-        //'app\web\themes\dashboard\ThemeCssAsset',
+        'panix\ext\fancybox\FancyboxAsset',
         'panix\engine\assets\CommonAsset',
         'panix\engine\assets\ClipboardAsset',
         'app\web\themes\dashboard\AdminCountersAsset',
-
     ];
+
+    public $cssOptions = ['data-theme' => 1];
 
     public function init()
     {
+
         $this->sourcePath = __DIR__ . '/assets';
         parent::init();
     }

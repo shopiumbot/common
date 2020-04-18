@@ -3,7 +3,7 @@
 use panix\engine\Html;
 use app\web\themes\dashboard\AdminAsset;
 
-AdminAsset::register($this);
+$asset = AdminAsset::register($this);
 
 $this->registerJs('
 $(document).ready(function () {
@@ -134,9 +134,31 @@ $sideBar = (method_exists($this->context->module, 'getAdminSidebar')) ? true : f
                             <?= $this->render('partials/_addonsMenu'); ?>
                         </div>
 
+
+                        <a href="#" onclick="changeCSS('<?= $asset->baseUrl;?>/css/dark.css');">dark</a>
+                        <a href="#" onclick="changeCSS('<?= $asset->baseUrl;?>/css/light.css');">light</a>
                         <div class="col-12">
 
-                            <?php if (Yii::$app->session->allFlashes) { ?>
+                            <?php
+
+                           // echo '\\'.get_class(new \panix\mod\shop\models\Product);
+                            /*$images = \panix\mod\images\models\Image::find()->all();
+                            foreach ($images as $img){
+                                $img->path = '@uploads/store/product';
+                                $img->filePath = str_replace('Products/'.$img->object_id.'/','',$img->filePath);
+                                $img->handler_class = '\\panix\\mod\\shop\\models\\Product';
+                                $img->handler_hash = (new $img->handler_class)->getHash();
+                                $img->save();
+                            }*/
+
+
+
+
+
+
+
+
+                            if (Yii::$app->session->allFlashes) { ?>
                                 <?php foreach (Yii::$app->session->allFlashes as $key => $message) {
                                     $key = ($key == 'error') ? 'danger' : $key;
                                     ?>
@@ -161,6 +183,7 @@ $sideBar = (method_exists($this->context->module, 'getAdminSidebar')) ? true : f
 
         </div>
         <footer class="footer">
+
             <div class="col-md-12 text-center">
                 <?= Yii::$app->powered() ?> &mdash; <?= Yii::$app->version ?>
             </div>

@@ -127,11 +127,7 @@ $config = [
             'cacheExpire' => 1, // 1 second. Default is 24 hours,
             'sortByPriority' => true, // default is false
         ],
-        'curl' => ['class' => 'panix\engine\Curl'],
-        'consoleRunner' => [
-            'class' => 'panix\engine\components\ConsoleRunner',
-            'file' => '@my/path/to/yii' // or an absolute path to console file
-        ],
+
         'geoip' => ['class' => 'panix\engine\components\geoip\GeoIP'],
         'formatter' => ['class' => 'panix\engine\i18n\Formatter'],
         'maintenanceMode' => [
@@ -315,7 +311,7 @@ $config = [
         ],
         'db' => [
             'class' => 'panix\engine\db\Connection',
-            'charset' => 'utf8mb4', //utf8 на utf8mb4. FOR Emoji
+            'charset' => 'utf8', //utf8 на utf8mb4. FOR Emoji
             'serverStatusCache' => YII_DEBUG ? 0 : 3600,
             'schemaCacheDuration' => YII_DEBUG ? 0 : 3600 * 24,
             'enableSchemaCache' => true,
