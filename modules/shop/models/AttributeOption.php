@@ -24,8 +24,6 @@ use panix\engine\db\ActiveRecord;
 class AttributeOption extends ActiveRecord
 {
 
-    public $translationClass = AttributeOptionTranslate::class;
-
     /**
      * @return string the associated database table name
      */

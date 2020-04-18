@@ -69,8 +69,6 @@ class Product extends ActiveRecord
 
     use traits\ProductTrait;
 
-    public $translationClass = ProductTranslate::class;
-
     const SCENARIO_INSERT = 'insert';
 
     /**
