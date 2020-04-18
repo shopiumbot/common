@@ -1,12 +1,12 @@
 <?php
 
-namespace app\web\themes\basicnew;
+namespace app\web\themes\basic;
 
 use panix\engine\web\AssetBundle;
 
 /**
  * Class ThemeAsset
- * @package app\web\themes\basicnew
+ * @package app\web\themes\basic
  */
 class ThemeAsset extends AssetBundle
 {

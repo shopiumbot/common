@@ -4,7 +4,16 @@ use panix\engine\Html;
 use panix\engine\widgets\Breadcrumbs;
 
 
-\app\web\themes\basicnew\ThemeAsset::register($this);
+\app\web\themes\basic\ThemeAsset::register($this);
+
+/*$c = Yii::$app->settings->get('shop');
+
+
+$this->registerJs("
+        var price_penny = " . $c->price_penny . ";
+        var price_thousand = " . $c->price_thousand . ";
+        var price_decimal = " . $c->price_decimal . ";
+     ", yii\web\View::POS_HEAD, 'numberformat');*/
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -23,12 +32,13 @@ use panix\engine\widgets\Breadcrumbs;
     }*/
     ?>
 
+
 </head>
 <body>
 <?php $this->beginBody() ?>
 <div class="wrap">
-    <?= $this->render('@theme/views/layouts/partials/_header'); ?>
-    <div class="container-fluid">
+    <?= $this->render('partials/_header'); ?>
+    <div class="container">
         <?php
         if (isset($this->context->breadcrumbs)) {
             echo Breadcrumbs::widget([
@@ -36,7 +46,6 @@ use panix\engine\widgets\Breadcrumbs;
             ]);
         }
         ?>
-
 
         <?php
         if (Yii::$app->session->allFlashes) {
@@ -54,8 +63,8 @@ use panix\engine\widgets\Breadcrumbs;
 
     </div>
 </div>
-<?= $this->render('@theme/views/layouts/partials/_subscribe'); ?>
-<?= $this->render('@theme/views/layouts/partials/_footer'); ?>
+<?= $this->render('partials/_subscribe'); ?>
+<?= $this->render('partials/_footer'); ?>
 <?php $this->endBody() ?>
 </body>
 </html>
