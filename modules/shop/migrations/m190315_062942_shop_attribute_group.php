@@ -13,7 +13,6 @@ namespace app\modules\shop\migrations;
 
 use panix\engine\db\Migration;
 use app\modules\shop\models\AttributeGroup;
-use app\modules\shop\models\translate\AttributeGroupTranslate;
 
 class m190315_062942_shop_attribute_group extends Migration
 {
@@ -22,32 +21,20 @@ class m190315_062942_shop_attribute_group extends Migration
     {
         $this->createTable(AttributeGroup::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
-            'name' => $this->string()->null()->defaultValue(null),
+            'name' => $this->string(255)->notNull(),
             'switch' => $this->boolean()->notNull()->defaultValue(null),
             'ordern' => $this->integer()->unsigned(),
-        ]);
-
-
-        $this->createTable(AttributeGroupTranslate::tableName(), [
-            'id' => $this->primaryKey()->unsigned(),
-            'object_id' => $this->integer()->unsigned(),
-            'language_id' => $this->tinyInteger()->unsigned(),
-            'name' => $this->string(255)->notNull(),
         ]);
 
 
         $this->createIndex('switch', AttributeGroup::tableName(), 'switch');
         $this->createIndex('ordern', AttributeGroup::tableName(), 'ordern');
 
-        $this->createIndex('object_id', AttributeGroupTranslate::tableName(), 'object_id');
-        $this->createIndex('language_id', AttributeGroupTranslate::tableName(), 'language_id');
-
     }
 
     public function down()
     {
         $this->dropTable(AttributeGroup::tableName());
-        $this->dropTable(AttributeGroupTranslate::tableName());
     }
 
 }

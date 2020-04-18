@@ -23,17 +23,9 @@ class m180917_193214_shop_product_weight extends Migration
         $this->createTable('{{%shop_product_weight}}', [
             'id' => $this->primaryKey()->unsigned(),
             'value' => $this->decimal(15,4),
-        ]);
-        $this->createTable('{{%shop_product_weight_translate}}', [
-            'id' => $this->primaryKey()->unsigned(),
-            'object_id' => $this->integer()->unsigned(),
-            'language_id' => $this->tinyInteger()->unsigned(),
             'title' => $this->string(32)->notNull(),
             'unit' => $this->string(4)->notNull(),
         ]);
-
-        $this->createIndex('object_id', '{{%shop_product_weight_translate}}', 'object_id');
-        $this->createIndex('language_id', '{{%shop_product_weight_translate}}', 'language_id');
 
 
         $list = [
@@ -44,15 +36,9 @@ class m180917_193214_shop_product_weight extends Migration
         ];
         $id=1;
         foreach ($list as $key => $data) {
-            $this->batchInsert('{{%shop_product_length}}', ['value'], [
-                [$data['value']]
+            $this->batchInsert('{{%shop_product_weight}}', ['value', 'title', 'unit'], [
+                [$data['value'], $data['name'], $data['unit']]
             ]);
-
-            foreach (Yii::$app->languageManager->getLanguages(false) as $lang) {
-                $this->batchInsert('{{%shop_product_length_translate}}', ['object_id', 'language_id', 'title', 'unit'], [
-                    [$id, $lang['id'], $data['name'], $data['unit']]
-                ]);
-            }
             $id++;
         }
 
@@ -64,7 +50,6 @@ class m180917_193214_shop_product_weight extends Migration
     public function down()
     {
         $this->dropTable('{{%shop_product_weight}}');
-        $this->dropTable('{{%shop_product_weight_translate}}');
     }
 
 }

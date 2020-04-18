@@ -8,8 +8,10 @@ namespace app\modules\shop\migrations;
  *
  * Class m180917_193650_shop_product_attribute_eav
  */
+
 use panix\engine\db\Migration;
 use app\modules\shop\models\ProductAttributesEav;
+use app\modules\shop\models\Attribute;
 
 class m180917_193650_shop_product_attribute_eav extends Migration
 {
