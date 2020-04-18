@@ -32,8 +32,8 @@ $config = [
         ],
         'request' => [
             'class' => 'panix\engine\WebRequest',
+            'baseUrl' => '',
         ],
-
         'errorHandler' => [
             //'class'=>'panix\engine\base\ErrorHandler'
             'errorAction' => 'site/error',

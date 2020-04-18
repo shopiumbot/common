@@ -22,7 +22,6 @@ $config = [
     'bootstrap' => [
         'log',
         'maintenanceMode',
-        'panix\engine\widgets\webcontrol\WebInlineControl',
         'panix\engine\BootstrapModule'
     ],
     'controllerMap' => [
@@ -45,13 +44,7 @@ $config = [
         ],
         'telegram' => ['class' => 'panix\mod\telegram\Module'],
         'user' => ['class' => 'panix\mod\user\Module'],
-        //'presentation' => ['class' => 'panix\mod\presentation\Module'],
-       // 'compare' => ['class' => 'panix\mod\compare\Module'],
         'shop' => ['class' => 'app\modules\shop\Module'],
-        //'shop' => ['class' => 'app\modules\shop\Module'],
-        //'sitemap' => ['class' => 'panix\mod\sitemap\Module'],
-       // 'banner' => ['class' => 'panix\mod\banner\Module'],
-        // 'sendpulse' => ['class' => 'panix\mod\sendpulse\Module'],
         'contacts' => ['class' => 'panix\mod\contacts\Module'],
         'seo' => ['class' => 'panix\mod\seo\Module'],
         'discounts' => ['class' => 'panix\mod\discounts\Module'],
@@ -188,10 +181,6 @@ $config = [
             //'class' => '\yii\web\DbSession',
             //'writeCallback'=>['panix\engine\web\DbSession', 'writeFields']
         ],
-        'request' => [
-            'class' => 'panix\engine\WebRequest',
-            'baseUrl' => '',
-        ],
         'cache' => [
             'directoryLevel' => 0,
             'keyPrefix' => '',
@@ -323,7 +312,7 @@ $config = [
         ],
         'db' => [
             'class' => 'panix\engine\db\Connection',
-            'charset' => 'utf8mb4', //utf8 на utf8mb4. FOR Emoji
+            'charset' => 'utf8', //utf8 на utf8mb4. FOR Emoji
             'serverStatusCache' => YII_DEBUG ? 0 : 3600,
             'schemaCacheDuration' => YII_DEBUG ? 0 : 3600 * 24,
             'enableSchemaCache' => true,

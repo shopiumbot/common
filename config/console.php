@@ -15,14 +15,7 @@ return [
             'class' => 'panix\mod\sitemap\console\CreateController',
         ],
         'migrate' => ['class' => 'panix\engine\console\controllers\MigrateController',
-            //'migrationPath' => '@console/migrations',
-            'migrationNamespaces' => [
-                //  'console\migrations',
-                // 'lo\plugins\migrations',
-                //'app\migrations',
-                // 'yii\rbac\migrations'
-            ],
-            'migrationPath' => ['@app/migrations', '@yii/rbac/migrations'], //,'@vendor/panix/mod-rbac/migrations'
+            'migrationPath' => ['@app/migrations', '@yii/rbac/migrations']
         ]
     ],
     'components' => [
