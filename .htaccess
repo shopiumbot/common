@@ -1,0 +1,11 @@
+AddDefaultCharset UTF-8
+
+RewriteEngine On
+#IndexIgnore */*
+RewriteRule ^images/language/(.*)$ images/language/$1 [L]
+RewriteRule ^assets/(.*)$ assets/$1 [L]
+
+RedirectMatch 403 ^/images\/language/$
+RedirectMatch 403 ^/assets/$
+RedirectMatch 403 ^/assets/(.*)/$
+RewriteRule ^.*$ index.php
