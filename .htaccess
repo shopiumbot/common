@@ -1,5 +1,9 @@
 AddDefaultCharset UTF-8
 
+<FilesMatch "^.+(eot|svg|ttf|otf|woff2|woff)$">
+    Header set "Access-Control-Allow-Origin" "*"
+</FilesMatch>
+
 RewriteEngine On
 #IndexIgnore */*
 RewriteRule ^images/language/(.*)$ images/language/$1 [L]
