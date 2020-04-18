@@ -48,21 +48,7 @@ $config = Yii::$app->settings->get('contacts');
                         <li class="nav-item">
                             <?= Html::a(Yii::t('app/default', 'Возврат'), ['/compare'], ['class' => 'nav-link']) ?>
                         </li>
-                        <?php if (Yii::$app->hasModule('compare')) {
-                            $count = Html::tag('span', \panix\mod\compare\components\CompareProducts::countSession(), ['class' => 'badge badge-secondary', 'id' => 'countCompare']);
-                            ?>
-                            <li class="nav-item">
-                                <?= Html::a('<span class="d-none d-md-inline">' . Yii::t('compare/default', 'MODULE_NAME') . '</span> ' . $count, ['/compare'], ['class' => 'top-compare nav-link']) ?>
-                            </li>
-                        <?php } ?>
 
-                        <?php if (Yii::$app->hasModule('wishlist')) {
-                            $count = Html::tag('span', (new \panix\mod\wishlist\components\WishListComponent)->count(), ['class' => 'badge badge-secondary', 'id' => 'countWishlist']);
-                            ?>
-                            <li class="nav-item">
-                                <?= Html::a('<span class="d-none d-md-inline">' . Yii::t('wishlist/default', 'WISHLIST') . '</span> ' . $count, ['/wishlist'], ['class' => 'top-wishlist nav-link']) ?>
-                            </li>
-                        <?php } ?>
 
                     </ul>
                     <ul class="nav ml-auto">
