@@ -43,10 +43,10 @@ $config = Yii::$app->settings->get('contacts');
                 <div class="navbar-collapse">
                     <ul class="nav">
                         <li class="nav-item">
-                            <?= Html::a(Yii::t('compare/default', 'Доставка'), ['/compare'], ['class' => 'nav-link']) ?>
+                            <?= Html::a(Yii::t('app/default', 'Доставка'), ['/compare'], ['class' => 'nav-link']) ?>
                         </li>
                         <li class="nav-item">
-                            <?= Html::a(Yii::t('compare/default', 'Возврат'), ['/compare'], ['class' => 'nav-link']) ?>
+                            <?= Html::a(Yii::t('app/default', 'Возврат'), ['/compare'], ['class' => 'nav-link']) ?>
                         </li>
                         <?php if (Yii::$app->hasModule('compare')) {
                             $count = Html::tag('span', \panix\mod\compare\components\CompareProducts::countSession(), ['class' => 'badge badge-secondary', 'id' => 'countCompare']);
@@ -241,13 +241,13 @@ $config = Yii::$app->settings->get('contacts');
                         </div>
                     </li>
                     <li class="nav-item active">
-                        <?= Html::a(Yii::t('compare/default', 'Доставка и оплата'), ['/compare'], ['class' => 'nav-link']) ?>
+                        <?= Html::a(Yii::t('app/default', 'Доставка и оплата'), ['/compare'], ['class' => 'nav-link']) ?>
                     </li>
                     <li class="nav-item">
                         <?= Html::a(Yii::t('shop/default', 'MANUFACTURER'), ['/manufacturer'], ['class' => 'nav-link active']) ?>
                     </li>
                     <li class="nav-item">
-                        <?= Html::a(Yii::t('compare/default', 'Контакты'), ['/contacts'], ['class' => 'nav-link']) ?>
+                        <?= Html::a(Yii::t('app/default', 'Контакты'), ['/contacts'], ['class' => 'nav-link']) ?>
                     </li>
                     <li class="nav-item dropdown megamenu-down">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown07"

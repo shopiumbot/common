@@ -1,6 +1,6 @@
 <?php
 
-namespace app\web\themes\basic;
+namespace core\web\themes\basic;
 
 use panix\engine\web\AssetBundle;
 
@@ -36,7 +36,6 @@ class ThemeAsset extends AssetBundle
         'panix\engine\assets\TouchPunchAsset',
         'panix\engine\assets\CommonAsset',
         'panix\mod\shop\bundles\WebAsset',
-        'panix\mod\comments\WebAsset',
         'panix\mod\cart\CartAsset',
     ];
 

@@ -3,7 +3,7 @@
 use panix\engine\Html;
 use panix\engine\widgets\Breadcrumbs;
 
-\app\web\themes\basic\ThemeAsset::register($this);
+\core\web\themes\basic\ThemeAsset::register($this);
 \panix\engine\assets\ErrorAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
