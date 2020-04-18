@@ -1,13 +1,12 @@
 {
-    "name": "shopium24/common",
+    "name": "shopiumbot/common",
     "description": "Common application",
     "keywords": [],
-    "homepage": "https://shopium24.com/",
     "type": "project",
     "license": "BSD-3-Clause",
     "support": {
-        "issues": "https://github.com/shopium24/common/issues?state=open",
-        "source": "https://github.com/shopium24/common"
+        "issues": "https://github.com/shopiumbot/common/issues?state=open",
+        "source": "https://github.com/shopiumbot/common"
     },
     "minimum-stability": "dev",
     "require": {
@@ -19,20 +18,6 @@
         "yiisoft/yii2-bootstrap4": "^2.0.0",
         "yiisoft/yii2-debug": "~2",
         "panix/engine": "dev-master",
-        "panix/mod-stats": "dev-master",
-        "panix/mod-plugins": "dev-master",
-        "panix/mod-rbac": "dev-master",
-        "panix/mod-seo": "dev-master",
-        "panix/mod-admin": "dev-master",
-        "panix/mod-sitemap": "dev-master",
-        "panix/mod-pages": "dev-master",
-        "panix/mod-contacts": "dev-master",
-        "panix/mod-user": "dev-master",
-        "panix/mod-shop": "dev-master",
-        "panix/mod-compare": "dev-master",
-        "panix/mod-banner": "dev-master",
-        "panix/mod-delivery": "dev-master",
-        "panix/mod-sendpulse": "dev-master"
     },
     "config": {
         "process-timeout": 1800
