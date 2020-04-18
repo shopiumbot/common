@@ -18,7 +18,7 @@ $config = [
     //'sourceLanguage'=>'ru',
     // 'runtimePath' => '@app/backend/runtime',
     'controllerNamespace' => 'panix\engine\controllers',
-    //'defaultRoute' => 'main/index',
+    //'defaultRoute' => 'site/index',
     'bootstrap' => [
         'log',
         'maintenanceMode',
@@ -26,7 +26,7 @@ $config = [
         'panix\engine\BootstrapModule'
     ],
     'controllerMap' => [
-        'main' => 'panix\engine\controllers\WebController',
+        'site' => 'panix\engine\controllers\WebController',
         'badmin' => 'panix\engine\controllers\AdminController',
     ],
     'modules' => [
@@ -43,15 +43,28 @@ $config = [
             //    'class' => panix\mod\rbac\filters\AccessControl::class
             //],
         ],
-
+        'telegram' => ['class' => 'panix\mod\telegram\Module'],
         'user' => ['class' => 'panix\mod\user\Module'],
+        //'presentation' => ['class' => 'panix\mod\presentation\Module'],
+       // 'compare' => ['class' => 'panix\mod\compare\Module'],
         'shop' => ['class' => 'panix\mod\shop\Module'],
+        //'shop' => ['class' => 'app\modules\shop\Module'],
+        //'sitemap' => ['class' => 'panix\mod\sitemap\Module'],
+       // 'banner' => ['class' => 'panix\mod\banner\Module'],
+        // 'sendpulse' => ['class' => 'panix\mod\sendpulse\Module'],
         'contacts' => ['class' => 'panix\mod\contacts\Module'],
-        'seo' => ['class' => 'panix\mod\seo\Module'],
+       // 'seo' => ['class' => 'panix\mod\seo\Module'],
         'discounts' => ['class' => 'panix\mod\discounts\Module'],
+       // 'comments' => ['class' => 'panix\mod\comments\Module'],
+       // 'wishlist' => ['class' => 'panix\mod\wishlist\Module'],
+        //'exchange1c' => ['class' => 'panix\mod\exchange1c\Module'],
         'csv' => ['class' => 'panix\mod\csv\Module'],
+        //'yandexmarket' => ['class' => 'panix\mod\yandexmarket\Module'],
+       // 'delivery' => ['class' => 'panix\mod\delivery\Module'],
         'images' => ['class' => 'panix\mod\images\Module'],
+        //'forum' => ['class' => 'panix\mod\forum\Module'],
         'cart' => ['class' => 'panix\mod\cart\Module'],
+        //'pages' => ['class' => 'panix\mod\pages\Module'],
     ],
     'components' => [
         'authManager' => [
@@ -127,7 +140,6 @@ $config = [
             'cacheExpire' => 1, // 1 second. Default is 24 hours,
             'sortByPriority' => true, // default is false
         ],
-
         'geoip' => ['class' => 'panix\engine\components\geoip\GeoIP'],
         'formatter' => ['class' => 'panix\engine\i18n\Formatter'],
         'maintenanceMode' => [
@@ -285,11 +297,11 @@ $config = [
             //    'action' => UrlNormalizer::ACTION_REDIRECT_TEMPORARY,
             //],
             'rules' => [
-                '' => 'main/index',
-                'placeholder' => 'main/placeholder',
+                '' => 'site/index',
+                'placeholder' => 'site/placeholder',
                 //'/admin' => 'admin/admin/default/index',
                 // 'admin/auth' => 'admin/auth/index',
-                ['pattern' => 'like/<type:(up|down)>/<id:\d+>', 'route' => 'main/like'],
+                ['pattern' => 'like/<type:(up|down)>/<id:\d+>', 'route' => 'site/like'],
                 // ['pattern' => 'admin/app/<controller:\w+>', 'route' => 'admin/admin/<controller>/index'],
                 //['pattern' => 'admin/app/<controller:\w+>/<action:[0-9a-zA-Z_\-]+>', 'route' => 'admin/admin/<controller>/<action>'],
                 //  ['pattern' => 'admin/<module:\w+>/<controller:[0-9a-zA-Z_\-]+>/<action:[0-9a-zA-Z_\-]+>', 'route' => '<module>/admin/<controller>/<action>'],
@@ -311,7 +323,7 @@ $config = [
         ],
         'db' => [
             'class' => 'panix\engine\db\Connection',
-            'charset' => 'utf8', //utf8 на utf8mb4. FOR Emoji
+            'charset' => 'utf8mb4', //utf8 на utf8mb4. FOR Emoji
             'serverStatusCache' => YII_DEBUG ? 0 : 3600,
             'schemaCacheDuration' => YII_DEBUG ? 0 : 3600 * 24,
             'enableSchemaCache' => true,

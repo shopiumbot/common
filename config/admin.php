@@ -12,7 +12,7 @@ $config = [
            // '@common' => dirname(__DIR__).'/../common',
        // ],
         'assetManager' => [
-            'baseUrl' => 'http://common/assets',
+            'baseUrl' => 'https://common.shopiumbot.com/assets',
             'basePath' => dirname(__DIR__) . '/assets',
         ],
         'view' => [

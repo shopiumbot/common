@@ -5,7 +5,7 @@ $config = [
     'id' => 'web',
     'homeUrl' => '/',
     'basePath' => dirname(__DIR__),
-    'defaultRoute' => 'main/index',
+    'defaultRoute' => 'site/index',
     'bootstrap' => [
         'plugins',
         'panix\engine\plugins\goaway\GoAway',
@@ -36,9 +36,8 @@ $config = [
 
         'errorHandler' => [
             //'class'=>'panix\engine\base\ErrorHandler'
-            //'errorAction' => 'site/error',
-            'errorAction' => 'main/error',
-            // 'errorView' => '@webroot/themes/basic/views/layouts/error.php'
+            'errorAction' => 'site/error',
+            //'errorView' => '@app/web/themes/basic/views/layouts/error.php'
         ],
 
     ],

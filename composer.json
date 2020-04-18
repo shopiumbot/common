@@ -41,6 +41,11 @@
             "yii\\composer\\Installer::postInstall"
         ]
     },
+    "autoload": {
+        "psr-4": {
+            "core\\": ""
+        }
+    }
     "extra": {
         "yii\\composer\\Installer::postCreateProject": {
             "setPermission": [
