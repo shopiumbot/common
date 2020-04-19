@@ -23,7 +23,7 @@
         "panix/mod-admin": "dev-master",
         "panix/mod-discounts": "dev-master",
         "panix/mod-contacts": "dev-master",
-        "panix/mod-telegram": "dev-master",
+        "shopium/mod-telegram": "dev-master",
         "panix/mod-user": "dev-master",
         "panix/mod-shop": "dev-master",
         "panix/mod-images": "dev-master",
