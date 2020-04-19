@@ -54,8 +54,8 @@ class m190316_061840_shop_insert extends Migration
 
 
         //Add Root Category
-        $this->batchInsert(Category::tableName(), ['lft', 'rgt', 'depth', 'slug', 'full_path', 'name'], [
-            [1, 2, 1, 'root', '', 'Каталог продукции']
+        $this->batchInsert(Category::tableName(), ['lft', 'rgt', 'depth', 'name'], [
+            [1, 2, 1, 'Каталог продукции']
         ]);
 
 
@@ -89,7 +89,6 @@ class m190316_061840_shop_insert extends Migration
             if (isset($cat['id']))
                 $s->id = $cat['id'];
             $s->name = $cat['name'];
-            $s->slug = CMS::slug($s->name);
             $s->appendTo($parent_id);
             if (isset($cat['children'])) {
                 foreach ($cat['children'] as $child) {
@@ -97,7 +96,6 @@ class m190316_061840_shop_insert extends Migration
                     if (isset($child['id']))
                         $subCategory->id = $child['id'];
                     $subCategory->name = $child['name'];
-                    $subCategory->slug = CMS::slug($subCategory->name);
                     $subCategory->appendTo($s);
                 }
             }
@@ -244,7 +242,6 @@ class m190316_061840_shop_insert extends Migration
             $model->id = $product['id'];
             $model->type_id = $product['type_id'];
             $model->name = $product['name'];
-            $model->slug = CMS::slug($model->name);
             $model->price = $product['price'];
             $model->manufacturer_id = $product['manufacturer_id'];
             $model->main_category_id = $product['main_category'];
@@ -311,21 +308,6 @@ class m190316_061840_shop_insert extends Migration
             }
         }
 
-        /*$this->batchInsert('{{%shop__product_attribute_eav}}', ['entity', 'attribute', 'value'], [
-            [1, CMS::slug(array_keys($attributesList)[0]), 3]
-        ]);
-        $this->batchInsert('{{%shop__product_attribute_eav}}', ['entity', 'attribute', 'value'], [
-            [2, CMS::slug(array_keys($attributesList)[0]), 2]
-        ]);
-        $this->batchInsert('{{%shop__product_attribute_eav}}', ['entity', 'attribute', 'value'], [
-            [3, CMS::slug(array_keys($attributesList)[0]), 2]
-        ]);
-        $this->batchInsert('{{%shop__product_attribute_eav}}', ['entity', 'attribute', 'value'], [
-            [4, CMS::slug(array_keys($attributesList)[0]), 2]
-        ]);
-        $this->batchInsert('{{%shop__product_attribute_eav}}', ['entity', 'attribute', 'value'], [
-            [5, CMS::slug(array_keys($attributesList)[0]), 2]
-        ]);*/
     }
 
     public function down()

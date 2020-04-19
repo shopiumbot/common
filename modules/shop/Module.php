@@ -27,34 +27,6 @@ class Module extends WebModule implements BootstrapInterface
         $rules['product/<id:\d+>/<action:[0-9a-zA-Z_\-]+>'] = 'shop/product/<action>';
 
 
-        if (!($app instanceof \panix\engine\console\Application)) {
-            $rules[] = [
-                'class' => 'core\modules\shop\components\SearchUrlRule',
-                //'pattern'=>'products/search',
-                'route' => 'shop/search/index',
-                'defaults' => ['q' => Yii::$app->request->get('q')]
-            ];
-
-            $rules[] = [
-                'class' => 'core\modules\shop\components\ManufacturerUrlRule',
-                'route' => 'shop/manufacturer/view',
-                'index' => 'manufacturer',
-                'pattern'=>'manufacturer/<slug:[0-9a-zA-Z_\-]+>'
-            ];
-            $rules[] = [
-                'class' => 'core\modules\shop\components\CategoryUrlRule',
-                'route' => 'shop/catalog/view',
-                'index' => 'catalog',
-                'pattern'=>'catalog/<slug:[0-9a-zA-Z_\-]+>',
-                'alias' => 'full_path',
-                //  'pattern' => ''
-            ];
-
-            /*$rules[] = [
-                'class' => 'core\modules\shop\components\CategoryUrlRule',
-            ];*/
-        }
-
         $app->urlManager->addRules(
             $rules,
             false
