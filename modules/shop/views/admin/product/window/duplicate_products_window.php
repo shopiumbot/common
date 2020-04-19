@@ -22,18 +22,7 @@ $this->registerJs("
             <?= Html::label(Yii::t('shop/Product', 'TAB_IMG'), 'images', ['class' => 'custom-control-label']); ?>
         </div>
     </div>
-    <div class="form-group">
-        <div class="custom-control custom-checkbox">
-            <?= Html::checkbox('copy[]', true, ['value' => 'variants', 'id' => 'variants', 'class' => 'custom-control-input']); ?>
-            <?= Html::label(Yii::t('shop/Product', 'TAB_VARIANTS'), 'variants', ['class' => 'custom-control-label']); ?>
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="custom-control custom-checkbox">
-            <?= Html::checkbox('copy[]', true, ['value' => 'related', 'id' => 'related', 'class' => 'custom-control-input']); ?>
-            <?= Html::label(Yii::t('shop/Product', 'TAB_REL'), 'related', ['class' => 'custom-control-label']); ?>
-        </div>
-    </div>
+
     <div class="form-group">
         <div class="custom-control custom-checkbox">
             <?= Html::checkbox('copy[]', true, ['value' => 'attributes', 'id' => 'attributes', 'class' => 'custom-control-input']); ?>

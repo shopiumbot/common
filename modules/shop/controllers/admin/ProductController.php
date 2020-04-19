@@ -15,7 +15,6 @@ use panix\engine\controllers\AdminController;
 use core\modules\shop\models\ProductType;
 use core\modules\shop\models\Attribute;
 use core\modules\shop\models\AttributeOption;
-use core\modules\shop\models\ProductVariant;
 use yii\helpers\StringHelper;
 use yii\web\ForbiddenHttpException;
 use yii\web\HttpException;
@@ -158,9 +157,6 @@ class ProductController extends AdminController
         }
 
         if ($model->load($post) && $model->validate() && $this->validateAttributes($model) && $this->validatePrices($model)) {
-            $model->setRelatedProducts(Yii::$app->request->post('RelatedProductId', []));
-            $model->setKitProducts(Yii::$app->request->post('kitProductId', []));
-
 
             $model->file = \yii\web\UploadedFile::getInstances($model, 'file');
             $data=[];
@@ -218,7 +214,6 @@ class ProductController extends AdminController
                 }
                 $this->processAttributes($model);
                 // Process variants
-                $this->processVariants($model);
                 $this->processConfigurations($model);
             }
 
@@ -428,59 +423,6 @@ class ProductController extends AdminController
         }
 
         return $model->setEavAttributes($reAttributes, true);
-    }
-
-    /**
-     * Save product variants
-     * @param Product $model
-     */
-    protected function processVariants(Product $model)
-    {
-        $dontDelete = array();
-
-        if (!empty($_POST['variants'])) {
-            foreach ($_POST['variants'] as $attribute_id => $values) {
-                $i = 0;
-                foreach ($values['option_id'] as $option_id) {
-                    // Try to load variant from DB
-                    $variant = ProductVariant::find()
-                        ->where(['product_id' => $model->id,
-                            'attribute_id' => $attribute_id,
-                            'option_id' => $option_id])
-                        ->one();
-                    // If not - create new.
-                    if (!$variant)
-                        $variant = new ProductVariant();
-
-                    $variant->setAttributes(array(
-                        'attribute_id' => $attribute_id,
-                        'option_id' => $option_id,
-                        'product_id' => $model->id,
-                        'price' => $values['price'][$i],
-                        'price_type' => $values['price_type'][$i],
-                        'sku' => $values['sku'][$i],
-                    ), false);
-
-                    $variant->save(false);
-                    array_push($dontDelete, $variant->id);
-                    $i++;
-                }
-            }
-        }
-
-        if (!empty($dontDelete)) {
-            //$cr = new CDbCriteria;
-            //$cr->addNotInCondition('id', $dontDelete);
-            //$cr->addCondition();
-            ProductVariant::deleteAll(
-                ['AND', 'product_id=:id', ['NOT IN', 'id', $dontDelete]], [':id' => $model->id]);
-            /* ProductVariant::find()->where(['NOT IN','id',$dontDelete])->deleteAll([
-              'product_id'=>$model->id
-              ]); */
-        } else {
-            //ProductVariant::find()->where(['product_id'=>$model->id])->deleteAll();
-            ProductVariant::deleteAll(['product_id' => $model->id]);
-        }
     }
 
     /**

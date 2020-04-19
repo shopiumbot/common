@@ -6,7 +6,6 @@
 ?>
 
 <?php echo $form->field($model, 'per_page') ?>
-<?php echo $form->field($model, 'product_related_bilateral')->checkbox(); ?>
 <?php echo $form->field($model, 'group_attribute')->checkbox(); ?>
 <?php echo $form->field($model, 'smart_bc')->checkbox(); ?>
 <?php echo $form->field($model, 'smart_title')->checkbox(); ?>

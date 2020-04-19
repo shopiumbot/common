@@ -6,8 +6,6 @@ namespace core\modules\shop\components;
 use panix\mod\images\models\Image;
 use Yii;
 use core\modules\shop\models\Product;
-use core\modules\shop\models\RelatedProduct;
-use core\modules\shop\models\ProductVariant;
 use panix\engine\CMS;
 use yii\helpers\BaseFileHelper;
 
@@ -181,58 +179,6 @@ class ProductsDuplicator extends \yii\base\Component
             }
         }
     }
-
-    /**
-     * Copy related products
-     *
-     * @param Product $original
-     * @param Product $copy
-     */
-    protected function copyRelated(Product $original, Product $copy)
-    {
-        $related = $original->related;
-
-        if (!empty($related)) {
-            foreach ($related as $p) {
-                $model = new RelatedProduct();
-                $model->product_id = $copy->id;
-                $model->related_id = $p->related_id;
-                $model->save();
-                //двустороннюю связь между товарами
-                if (Yii::$app->settings->get('shop', 'product_related_bilateral')) {
-                    $related = new RelatedProduct;
-                    $related->product_id = $p->related_id;
-                    $related->related_id = $copy->id;
-                    $related->save();
-                }
-            }
-        }
-    }
-
-    /**
-     * Copy product variants
-     *
-     * @param Product $original
-     * @param Product $copy
-     */
-    public function copyVariants(Product $original, Product $copy)
-    {
-        $variants = $original->variants;
-
-        if (!empty($variants)) {
-            foreach ($variants as $v) {
-                $record = new ProductVariant();
-                $record->product_id = $copy->id;
-                $record->attribute_id = $v->attribute_id;
-                $record->option_id = $v->option_id;
-                $record->price = $v->price;
-                $record->price_type = $v->price_type;
-                $record->sku = $v->sku;
-                $record->save();
-            }
-        }
-    }
-
     /**
      * @param $str string product suffix
      */

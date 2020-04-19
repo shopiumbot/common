@@ -11,7 +11,6 @@ class SettingsForm extends SettingsModel
     protected $module = 'shop';
 
     public $per_page;
-    public $product_related_bilateral;
     public $group_attribute;
     public $label_expire_new;
     public $smart_bc;
@@ -21,7 +20,7 @@ class SettingsForm extends SettingsModel
     {
         return [
             [['per_page'], "required"],
-            [['product_related_bilateral', 'group_attribute', 'smart_bc', 'smart_title'], 'boolean'],
+            [['group_attribute', 'smart_bc', 'smart_title'], 'boolean'],
             [['label_expire_new'], 'integer'],
         ];
     }
@@ -34,7 +33,6 @@ class SettingsForm extends SettingsModel
         return [
             'per_page' => '10,20,30',
             'seo_categories' => false,
-            'product_related_bilateral' => false,
             'group_attribute' => false,
             'label_expire_new' => 7,
             'smart_bc' => true,

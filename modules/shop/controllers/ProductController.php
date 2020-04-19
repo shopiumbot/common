@@ -118,7 +118,7 @@ class ProductController extends WebController
         var separator_hundredth = '" . Yii::$app->currency->active['separator_hundredth'] . "';
         ", View::POS_END);
 
-        if ($this->dataModel->use_configurations || $this->dataModel->processVariants())
+        if ($this->dataModel->use_configurations)
             ProductConfigureAsset::register($this->view);
         //$this->view->registerJsFile($this->module->assetsUrl . '/js/product.view.configurations.js', ['position'=>View::POS_END]);
 
@@ -172,18 +172,6 @@ class ProductController extends WebController
         if ($id && Yii::$app->request->isAjax) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             $model = Product::findOne($id);
-            if ($model) {
-                foreach ($model->processVariants() as $variant) {
-                    foreach ($variant['options'] as $v) {
-                        $result_test[$v->id] = [
-                            'price_type' => (int)$v->price_type,
-                            'price' => $v->price
-                        ];
-
-
-                    }
-                }
-            }
 
             $price = $model->getFrontPrice();
             foreach ($eav as $k => $e) {

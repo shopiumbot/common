@@ -59,9 +59,7 @@ use panix\engine\db\ActiveRecord;
  * @property Category $categories
  * @property array $eavAttributes
  * @property \panix\mod\comments\models\Comments $commentsCount
- * @property Kit $kit
  * @property ProductPrices[] $prices
- * @property ProductVariant[] $variants
  * @property ProductType $type
  */
 class Product extends ActiveRecord
@@ -81,8 +79,6 @@ class Product extends ActiveRecord
      * @var array
      */
     private $_configurations;
-    private $_related;
-    private $_kit;
     public $file;
 
     const route = '/admin/shop/default';
@@ -361,17 +357,6 @@ class Product extends ActiveRecord
         ];
     }
 
-    public function processVariants()
-    {
-        $result = [];
-        foreach ($this->variants as $v) {
-            //print_r($v);die;
-            $result[$v->productAttribute->id]['attribute'] = $v->productAttribute;
-            $result[$v->productAttribute->id]['options'][] = $v;
-        };
-        return $result;
-    }
-
     public function beforeValidate()
     {
         // For configurable product set 0 price
@@ -386,13 +371,6 @@ class Product extends ActiveRecord
         return $this->hasOne(User::class, ['id' => 'user_id'])->cache(3600);
     }
 
-    /* public function getCategory2() {
-      return $this->hasOne(Category::className(), ['id' => 'category_id']);
-      } */
-    public function getKit()
-    {
-        return $this->hasMany(Kit::class, ['owner_id' => 'id']);
-    }
 
 
     public function getManufacturer()
@@ -424,28 +402,6 @@ class Product extends ActiveRecord
         return $this->hasOne(ProductType::class, ['type_id' => 'id']);
     }
 
-    public function getRelated()
-    {
-        return $this->hasMany(RelatedProduct::class, ['related_id' => 'id']);
-    }
-
-    public function getRelatedProductCount()
-    {
-        return $this->hasMany(RelatedProduct::class, ['product_id' => 'id'])->count();
-    }
-
-    public function getRelatedProducts()
-    {
-        return $this->hasMany(Product::class, ['id' => 'product_id'])
-            ->viaTable(RelatedProduct::tableName(), ['related_id' => 'id']);
-    }
-
-
-    public function getKitProducts()
-    {
-        return $this->hasMany(Product::class, ['id' => 'product_id'])
-            ->viaTable(Kit::tableName(), ['owner_id' => 'id']);
-    }
 
     public function getCategorization()
     {
@@ -583,30 +539,6 @@ class Product extends ActiveRecord
 
     }
 
-    public function setRelatedProducts($ids = [])
-    {
-        $this->_related = $ids;
-    }
-
-    private function clearRelatedProducts()
-    {
-        RelatedProduct::deleteAll(['product_id' => $this->id]);
-        if (Yii::$app->settings->get('shop', 'product_related_bilateral')) {
-            RelatedProduct::deleteAll(['related_id' => $this->id]);
-        }
-    }
-
-    public function setKitProducts($ids = [])
-    {
-        $this->_kit = $ids;
-    }
-
-    private function clearKitProducts()
-    {
-        Kit::deleteAll(['owner_id' => $this->id]);
-
-    }
-
     public $auto = false;
 
     public function init()
@@ -624,39 +556,6 @@ class Product extends ActiveRecord
     public function afterSave($insert, $changedAttributes)
     {
 
-        // Process related products
-        if ($this->_related !== null) {
-            $this->clearRelatedProducts();
-
-            foreach ($this->_related as $id) {
-                $related = new RelatedProduct;
-                $related->product_id = $this->id;
-                $related->related_id = (int)$id;
-                if ($related->save()) {
-                    //двустороннюю связь между товарами
-                    if (Yii::$app->settings->get('shop', 'product_related_bilateral')) {
-                        $related = new RelatedProduct;
-
-                        $related->product_id = (int)$id;
-                        $related->related_id = $this->id;
-                        if (!$related->save()) {
-                            throw new \yii\base\Exception('Error save product relation');
-                        }
-                    }
-                }
-            }
-        }
-
-        if ($this->_kit !== null) {
-            $this->clearKitProducts();
-
-            foreach ($this->_kit as $id) {
-                $kit = new Kit;
-                $kit->owner_id = $this->id;
-                $kit->product_id = (int)$id;
-                $kit->save();
-            }
-        }
         // Save configurable attributes
         if ($this->_configurable_attribute_changed === true) {
             // Clear
@@ -777,12 +676,6 @@ class Product extends ActiveRecord
 
     public function afterDelete()
     {
-        $this->clearRelatedProducts();
-        RelatedProduct::deleteAll(['related_id' => $this->id]);
-
-        $this->clearKitProducts();
-        Kit::deleteAll(['owner_id' => $this->id]);
-
         // Delete categorization
         ProductCategoryRef::deleteAll([
             'product' => $this->id
@@ -806,12 +699,7 @@ class Product extends ActiveRecord
           $comapreProduct = new CompareProducts;
           $comapreProduct->remove($this->id);
           } */
-		  
 
-        if (Yii::$app->hasModule('wishlist')) {
-            Yii::$app->db->createCommand()->delete(\panix\mod\wishlist\models\WishListProducts::tableName(), ['product_id' => $this->id])->execute();
-        }
-		  
         parent::afterDelete();
     }
 

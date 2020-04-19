@@ -144,20 +144,8 @@ echo \yii\helpers\Inflector::sentence($words);
                 'options' => ['id' => 'attributes'],
             ];
         }
-        if (Yii::$app->hasModule('comments')) {
-        $tabs[] = [
-            'label' => Yii::t('app/default', 'REVIEWS', ['n' => $model->commentsCount]),
-            'content' => $this->render('tabs/_comments', ['model' => $model]),
-            'options' => ['id' => 'comments'],
-        ];
-        }
-        if ($model->relatedProducts) {
-            $tabs[] = [
-                'label' => 'Связи',
-                'content' => $this->render('tabs/_related', ['model' => $model]),
-                'options' => ['id' => 'related'],
-            ];
-        }
+
+
         if ($model->video) {
             $tabs[] = [
                 'label' => 'Видео',

@@ -23,7 +23,6 @@ use panix\mod\images\models\Image;
 use core\modules\shop\models\AttributeGroup;
 use core\modules\shop\models\ProductAttributesEav;
 use core\modules\shop\models\ProductCategoryRef;
-use core\modules\shop\models\Kit;
 
 
 /**
@@ -311,15 +310,6 @@ class m190316_061840_shop_insert extends Migration
 
             }
         }
-        $this->batchInsert(Kit::tableName(), ['owner_id', 'product_id', 'price', 'from'], [
-            [4, 2, '', '']
-        ]);
-        $this->batchInsert(Kit::tableName(), ['owner_id', 'product_id', 'price', 'from'], [
-            [4, 1, '', '']
-        ]);
-        $this->batchInsert(Kit::tableName(), ['owner_id', 'product_id', 'price', 'from'], [
-            [4, 3, '', '']
-        ]);
 
         /*$this->batchInsert('{{%shop__product_attribute_eav}}', ['entity', 'attribute', 'value'], [
             [1, CMS::slug(array_keys($attributesList)[0]), 3]
