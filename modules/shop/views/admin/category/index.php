@@ -23,11 +23,6 @@ use panix\engine\bootstrap\ActiveForm;
                     'encode' => false,
                     'options' => ['class' => 'text-center nav-item'],
                 ];
-                $tabs[] = [
-                    'label' => Yii::t('seo/default','TAB_SEO'),
-                    'content' => $this->render('@seo/views/admin/default/_module_seo', ['model' => $model]),
-                    'options' => ['class' => 'text-center nav-item'],
-                ];
 
                 echo \panix\engine\bootstrap\Tabs::widget([
                     //'encodeLabels'=>true,

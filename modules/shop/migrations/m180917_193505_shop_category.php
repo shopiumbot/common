@@ -23,9 +23,8 @@ class m180917_193505_shop_category extends Migration {
             'rgt' => $this->integer()->unsigned()->notNull(),
             'depth' => $this->smallInteger(5)->unsigned()->notNull(),
             'name' => $this->string(255)->notNull(),
-            'description' => $this->text()->null()->defaultValue(null),
-            'slug' => $this->string(255)->null()->defaultValue(null),
-            'full_path' => $this->string(255)->null(),
+            //'slug' => $this->string(255)->null()->defaultValue(null),
+            //'full_path' => $this->string(255)->null(),
             'image' => $this->string(50)->null(),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
@@ -37,7 +36,7 @@ class m180917_193505_shop_category extends Migration {
         $this->createIndex('lft', Category::tableName(), 'lft');
         $this->createIndex('rgt', Category::tableName(), 'rgt');
         $this->createIndex('depth', Category::tableName(), 'depth');
-        $this->createIndex('full_path', Category::tableName(), 'full_path');
+       // $this->createIndex('full_path', Category::tableName(), 'full_path');
         $this->createIndex('switch', Category::tableName(), 'switch');
 
     }

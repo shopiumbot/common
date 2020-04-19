@@ -20,16 +20,12 @@ use panix\engine\behaviors\UploadFileBehavior;
  * @property integer $lft
  * @property integer $rgt
  * @property integer $depth
- * @property string $image
  * @property string $name
- * @property string $description
  * @property string $full_path
  * @property integer $switch
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $countItems Relation of getCountItems()
- * @property string getMetaDescription()
- * @property string getMetaTitle()
  */
 class Category extends ActiveRecord
 {
@@ -60,40 +56,18 @@ class Category extends ActiveRecord
     public function rules()
     {
         return [
-            [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => ['png', 'jpg', 'jpeg']],
             [['name'], 'trim'],
             [['name'], 'required'],
-            [['description', 'image'], 'default', 'value' => null],
             [['name'], 'string', 'max' => 255],
-            ['description', 'safe']
         ];
     }
 
-
-    public function fullPathValidator($attribute)
-    {
-        if ($this->parent_id) {
-            $count = Category::find()->where(['full_path' => $this->parent_id->full_path . '/' . $this->{$attribute}])->count();
-            if ($count) {
-                $this->addError($attribute, 'Такой URL уже есть!');
-            }
-        }
-    }
 
     /**
      * @inheritdoc
      */
     public function behaviors()
     {
-        $a['uploadFile'] = [
-            'class' => UploadFileBehavior::class,
-            'files' => [
-                'image' => '@uploads/categories',
-            ],
-            //'options' => [
-            //    'watermark' => false
-            // ]
-        ];
         $a['tree'] = [
             'class' => NestedSetsBehavior::class,
             'hasManyRoots' => false
@@ -107,7 +81,7 @@ class Category extends ActiveRecord
      */
     public function getCountItems()
     {
-        return (int)$this->hasMany(ProductCategoryRef::class, ['category' => 'id'])->count();
+        return $this->hasMany(ProductCategoryRef::class, ['category' => 'id'])->count();
     }
 
     public static function flatTree()
@@ -131,44 +105,6 @@ class Category extends ActiveRecord
     }
 
 
-    public function test($item)
-    {
-        $childCounter = 0;
-        $categories = [];
-        $children = $item->children()->all();
-        if ($children) {
-            foreach ($children as $child) {
-                /** @var static|\panix\engine\behaviors\nestedsets\NestedSetsBehavior $child * */
-                $categories[] = [
-                    'id' => $child->id,
-                    'name' => $child->name,
-                    'url' => $child->getUrl(),
-                    'productsCount' => $child->countItems,
-                    //'child' => $this->test($child)
-                ];
-                $categories[]['child'][] = $this->test($child);
-                $childCounter += $child->countItems;
-            }
-            CMS::dump($categories);
-            die;
-        }
-
-        return [
-            'children' => $categories,
-            'counter' => $childCounter
-        ];
-    }
-
-
-    /**
-     * @inheritdoc
-     */
-    public function beforeSave($insert)
-    {
-        //$this->rebuildFullPath();
-        return parent::beforeSave($insert);
-    }
-
     /**
      * @inheritdoc
      */
@@ -187,26 +123,6 @@ class Category extends ActiveRecord
         return parent::afterSave($insert, $changedAttributes);
     }
 
-   /* public function rebuildFullPath()
-    {
-        // Create category full path.
-        $ancestors = $this->ancestors()
-            //->orderBy('depth')
-            ->all();
-        if ($ancestors) {
-            // Remove root category from path
-            unset($ancestors[0]);
-
-            $parts = [];
-            foreach ($ancestors as $ancestor)
-                $parts[] = $ancestor->slug;
-
-            $parts[] = $this->slug;
-            $this->full_path = implode('/', array_filter($parts));
-        }
-
-        return $this;
-    }*/
 
     /**
      * @return string

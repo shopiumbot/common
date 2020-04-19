@@ -90,16 +90,6 @@ class ProductController extends AdminController
         $isNew = $model->isNewRecord;
         $this->pageName = Yii::t('shop/default', 'MODULE_NAME');
 
-
-        if (!$isNew && $model->switch) {
-            $this->buttons[] = [
-                'icon' => 'eye',
-                'label' => Yii::t('shop/admin', 'VIEW_PRODUCT'),
-                'url' => $model->getUrl(),
-                'options' => ['class' => 'btn btn-info', 'target' => '_blank']
-            ];
-        }
-
         $post = Yii::$app->request->post();
 
 

@@ -54,7 +54,7 @@ trait ProductTrait
             'value' => function ($model) {
                 /** @var $model Product */
                 if ($model->name) {
-                    $html = Html::a($model->name, $model->getUrl(), ['data-pjax' => 0, 'target' => '_blank']);
+                    $html = $model->name;
                     if ($model->views > 0) {
                         $html .= " <small>(" . Yii::t('app/default', 'VIEWS', ['n' => $model->views]) . ")</small>";
                     }
@@ -253,7 +253,7 @@ trait ProductTrait
                     } else {
                         $options['class'] = 'badge badge-light';
                     }
-                    $result .= Html::a($category->name, $category->getUrl(), $options);
+                    $result .= Html::tag('span',$category->name, $options);
                 }
                 return $result;
             }
