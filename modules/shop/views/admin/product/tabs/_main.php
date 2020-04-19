@@ -4,7 +4,6 @@ use yii\helpers\ArrayHelper;
 use yii\caching\DbDependency;
 use core\modules\shop\models\Manufacturer;
 use core\modules\shop\models\Category;
-use panix\ext\tinymce\TinyMce;
 
 /**
  * @var panix\engine\bootstrap\ActiveForm $form
@@ -13,10 +12,9 @@ use panix\ext\tinymce\TinyMce;
 ?>
 
 
-<?php if (!$model->auto) { ?>
+
     <?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
-    <?= $form->field($model, 'slug')->textInput(['maxlength' => 255]) ?>
-<?php } ?>
+
 <?= $form->field($model, 'sku')->textInput(['maxlength' => 255]) ?>
 
 
@@ -43,8 +41,6 @@ $form->field($model, 'main_category_id')->dropDownList(Category::flatTree(), [
 ?>
 <?=
 
-$form->field($model, 'full_description')->widget(TinyMce::class, [
-    'options' => ['rows' => 6],
-]);
+$form->field($model, 'full_description')->textarea();
 
 ?>

@@ -28,7 +28,6 @@ use panix\engine\db\ActiveRecord;
  * @property integer $currency_id Currency
  * @property Currency $currency
  * @property integer $use_configurations
- * @property string $slug
  * @property string $name Product name
  * @property float $price Price
  * @property float $max_price Max price
@@ -50,7 +49,6 @@ use panix\engine\db\ActiveRecord;
  * @property Manufacturer[] $manufacturer
  * @property Supplier[] $supplier
  * @property string $discount Discount
- * @property string $video Youtube video URL
  * @property boolean $hasDiscount See [[\panix\mod\discounts\components\DiscountBehavior]] //Discount
  * @property float $originalPrice See [[\panix\mod\discounts\components\DiscountBehavior]]
  * @property float $discountPrice See [[\panix\mod\discounts\components\DiscountBehavior]]
@@ -230,11 +228,6 @@ class Product extends ActiveRecord
         return '{{%shop__product}}';
     }
 
-    public function getUrl()
-    {
-        return ['/shop/product/view', 'slug' => $this->slug];
-    }
-
     /* public function transactions() {
       return [
       self::SCENARIO_DEFAULT => self::OP_INSERT | self::OP_UPDATE,
@@ -259,15 +252,6 @@ class Product extends ActiveRecord
             $this->quantity--;
             $this->save(false);
         }
-    }
-
-    /**
-     * @param string $img default, hqdefault, mqdefault, sddefault, maxresdefault OR 0,1,2,3
-     * @return string
-     */
-    public function getVideoPreview($img = 'default')
-    {
-        return "https://img.youtube.com/vi/" . CMS::parse_yturl($this->video) . "/{$img}.jpg";
     }
 
     public static function labelsList()
@@ -296,32 +280,22 @@ class Product extends ActiveRecord
         }
 
 
-        if (!$auto) {
-            $rules[] = ['slug', '\panix\engine\validators\UrlValidator', 'attributeCompare' => 'name'];
-            $rules[] = ['slug', 'match',
-                'pattern' => '/^([a-z0-9-])+$/i',
-                'message' => Yii::t('app/default', 'PATTERN_URL')
-            ];
-            $rules[] = [['name', 'slug'], 'required'];
-        }
         $rules[] = [['main_category_id', 'price', 'unit'], 'required'];
-        $rules[] = [['slug'], 'unique'];
         $rules[] = ['price', 'commaToDot'];
         $rules[] = [['file'], 'file', 'maxFiles' => Yii::$app->params['plan'][Yii::$app->params['plan_id']]['product_upload_files']];
         $rules[] = [['file'], 'validateLimit'];
-        $rules[] = [['name', 'slug', 'video'], 'string', 'max' => 255];
-        $rules[] = ['video', 'url'];
+        $rules[] = [['name'], 'string', 'max' => 255];
         $rules[] = [['image'], 'image'];
 
-        $rules[] = [['name', 'slug'], 'trim'];
+        $rules[] = [['name'], 'trim'];
         $rules[] = [['full_description'], 'string'];
         $rules[] = ['use_configurations', 'boolean', 'on' => self::SCENARIO_INSERT];
         $rules[] = ['enable_comments', 'boolean'];
 		$rules[] = [['unit'], 'default', 'value' => 1];
-        $rules[] = [['sku', 'full_description', 'video', 'price_purchase', 'label', 'discount'], 'default']; // установим ... как NULL, если они пустые
+        $rules[] = [['sku', 'full_description', 'price_purchase', 'label', 'discount'], 'default']; // установим ... как NULL, если они пустые
         $rules[] = [['price', 'price_purchase'], 'double'];
         $rules[] = [['manufacturer_id', 'type_id', 'quantity', 'views', 'availability', 'added_to_cart_count', 'ordern', 'category_id', 'currency_id', 'supplier_id', 'label'], 'integer'];
-        $rules[] = [['name', 'slug', 'full_description', 'use_configurations'], 'safe'];
+        $rules[] = [['name', 'full_description', 'use_configurations'], 'safe'];
 
         return $rules;
     }
@@ -593,11 +567,6 @@ class Product extends ActiveRecord
             }
         }
 
-        if ($this->auto) {
-            $this->name = $this->replaceName();
-            $this->slug = CMS::slug($this->name);
-        }
-
         parent::afterSave($insert, $changedAttributes);
     }
 
@@ -787,11 +756,6 @@ class Product extends ActiveRecord
         $a['imagesBehavior'] = [
             'class' => '\panix\mod\images\behaviors\ImageBehavior',
             'path' => '@uploads/store/product'
-        ];
-        $a['slug'] = [
-            'class' => '\yii\behaviors\SluggableBehavior',
-            'attribute' => 'name',
-            'slugAttribute' => 'slug',
         ];
         $a['eav'] = [
             'class' => '\core\modules\shop\components\EavBehavior',

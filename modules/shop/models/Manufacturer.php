@@ -11,7 +11,6 @@ use core\modules\shop\models\query\ManufacturerQuery;
 /**
  * Class Manufacturer
  * @property integer $id
- * @property string $slug
  * @property string $name ManufacturerTranslate
  * @property string $description
  * @property Product[] $productsCount
@@ -84,10 +83,6 @@ class Manufacturer extends ActiveRecord
         ]);
     }
 
-    public function getUrl()
-    {
-        return ['/shop/manufacturer/view', 'slug' => $this->slug];
-    }
 
     /**
      * @inheritdoc
@@ -113,18 +108,13 @@ class Manufacturer extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'slug'], 'required'],
-            [['name', 'slug'], 'trim'],
-            ['slug', 'match',
-                'pattern' => '/^([a-z0-9-])+$/i',
-                'message' => Yii::t('app/default', 'PATTERN_URL')
-            ],
-            ['slug', '\panix\engine\validators\UrlValidator', 'attributeCompare' => 'name'],
+            [['name'], 'required'],
+            [['name'], 'trim'],
             [['description'], 'string'],
             [['description', 'image'], 'default'],
-            [['name', 'slug'], 'string', 'max' => 255],
+            [['name'], 'string', 'max' => 255],
             [['ordern'], 'integer'],
-            [['name', 'slug'], 'safe'],
+            [['name'], 'safe'],
             [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
         ];
     }

@@ -20,7 +20,6 @@ use panix\engine\behaviors\UploadFileBehavior;
  * @property integer $lft
  * @property integer $rgt
  * @property integer $depth
- * @property string $slug
  * @property string $image
  * @property string $name
  * @property string $description
@@ -53,13 +52,7 @@ class Category extends ActiveRecord
         return new CategoryQuery(get_called_class());
     }
 
-    /**
-     * @return array
-     */
-    public function getUrl()
-    {
-        return ['/shop/catalog/view', 'slug' => $this->full_path];
-    }
+
 
     /**
      * @inheritdoc
@@ -68,14 +61,8 @@ class Category extends ActiveRecord
     {
         return [
             [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => ['png', 'jpg', 'jpeg']],
-            ['slug', '\core\modules\shop\components\CategoryUrlValidator', 'attributeCompare' => 'name'],
-            ['slug', 'fullPathValidator'],
-            ['slug', 'match',
-                'pattern' => '/^([a-z0-9-])+$/i',
-                'message' => Yii::t('app/default', 'PATTERN_URL')
-            ],
-            [['name', 'slug'], 'trim'],
-            [['name', 'slug'], 'required'],
+            [['name'], 'trim'],
+            [['name'], 'required'],
             [['description', 'image'], 'default', 'value' => null],
             [['name'], 'string', 'max' => 255],
             ['description', 'safe']
@@ -155,7 +142,6 @@ class Category extends ActiveRecord
                 $categories[] = [
                     'id' => $child->id,
                     'name' => $child->name,
-                    'slug' => $child->slug,
                     'url' => $child->getUrl(),
                     'productsCount' => $child->countItems,
                     //'child' => $this->test($child)
@@ -179,7 +165,7 @@ class Category extends ActiveRecord
      */
     public function beforeSave($insert)
     {
-        $this->rebuildFullPath();
+        //$this->rebuildFullPath();
         return parent::beforeSave($insert);
     }
 
@@ -193,7 +179,7 @@ class Category extends ActiveRecord
         $childrens = $this->descendants()->all();
         if ($childrens) {
             foreach ($childrens as $children) {
-                $children->full_path = $this->slug . '/' . $children->full_path;
+               // $children->full_path = $this->slug . '/' . $children->full_path;
                 $children->saveNode(false);
             }
         }
@@ -201,7 +187,7 @@ class Category extends ActiveRecord
         return parent::afterSave($insert, $changedAttributes);
     }
 
-    public function rebuildFullPath()
+   /* public function rebuildFullPath()
     {
         // Create category full path.
         $ancestors = $this->ancestors()
@@ -220,7 +206,7 @@ class Category extends ActiveRecord
         }
 
         return $this;
-    }
+    }*/
 
     /**
      * @return string

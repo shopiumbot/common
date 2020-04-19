@@ -113,12 +113,9 @@ class CategoryController extends AdminController
         $parent = Category::findModel(Yii::$app->request->get('parent_id'));
 
         $model->name = $_GET['text'];
-        $model->slug = CMS::slug($model->name);
         if ($model->validate()) {
             $model->appendTo($parent);
             $message = Yii::t('shop/Category', 'CATEGORY_TREE_CREATE');
-        } else {
-            $message = $model->getError('slug');
         }
         Yii::$app->response->format = Response::FORMAT_JSON;
         return [
@@ -140,40 +137,33 @@ class CategoryController extends AdminController
     {
 
         Yii::$app->db->createCommand()->truncateTable(Category::tableName())->execute();
-        Yii::$app->db->createCommand()->truncateTable(CategoryTranslate::tableName())->execute();
-
 
         $model = new Category;
         $model->name = 'Каталог продукции';
         $model->lft = 1;
         $model->rgt = 2;
         $model->depth = 1;
-        $model->slug = 'root';
         $model->full_path = '';
         if ($model->validate()) {
             $model->saveNode();
 
             $model2 = new Category;
             $model2->name = 'Category 1';
-            $model2->slug = CMS::slug($model2->name);
             $model2->appendTo($model);
 
 
             $model2 = new Category;
             $model2->name = 'Category 2';
-            $model2->slug = CMS::slug($model2->name);
             $model2->appendTo($model);
 
 
             $model3 = new Category;
             $model3->name = 'Category 2-1';
-            $model3->slug = CMS::slug($model3->name);
             $model3->appendTo($model2);
 
 
             $model2 = new Category;
             $model2->name = 'Category 3';
-            $model2->slug = CMS::slug($model2->name);
             $model2->appendTo($model);
 
         } else {
