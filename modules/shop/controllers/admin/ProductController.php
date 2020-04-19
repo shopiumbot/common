@@ -174,7 +174,7 @@ class ProductController extends AdminController
                     ];
                 }
 
-                $model->images_data = json_encode($data);
+               // $model->images_data = json_encode($data);
             }else{
                 foreach ($model->images as $image){
                     $data[]=[
@@ -182,7 +182,7 @@ class ProductController extends AdminController
                         'is_main'=>$image->is_main
                     ];
                 }
-                $model->images_data = json_encode($data);
+              //  $model->images_data = json_encode($data);
             }
 
             if ($model->save()) {

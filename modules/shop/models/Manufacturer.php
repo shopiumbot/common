@@ -135,12 +135,6 @@ class Manufacturer extends ActiveRecord
     public function behaviors()
     {
         $a = [];
-        if (Yii::$app->getModule('seo'))
-            $a['seo'] = [
-                'class' => '\panix\mod\seo\components\SeoBehavior',
-                'url' => $this->getUrl()
-            ];
-
         $a['uploadFile'] = [
             'class' => 'panix\engine\behaviors\UploadFileBehavior',
             'files' => [

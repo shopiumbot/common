@@ -98,12 +98,6 @@ class Category extends ActiveRecord
      */
     public function behaviors()
     {
-        if (Yii::$app->getModule('seo'))
-            $a['seo'] = [
-                'class' => '\panix\mod\seo\components\SeoBehavior',
-                'url' => $this->getUrl()
-            ];
-
         $a['uploadFile'] = [
             'class' => UploadFileBehavior::class,
             'files' => [
@@ -113,26 +107,6 @@ class Category extends ActiveRecord
             //    'watermark' => false
             // ]
         ];
-        if (Yii::$app->getModule('sitemap')) {
-            $a['sitemap'] = [
-                'class' => SitemapBehavior::class,
-                //'batchSize' => 100,
-                'scope' => function ($model) {
-                    /** @var \yii\db\ActiveQuery $model */
-                    $model->select(['full_path', 'updated_at']);
-                    $model->andWhere(['switch' => 1]);
-                },
-                'dataClosure' => function ($model) {
-                    /** @var self $model */
-                    return [
-                        'loc' => $model->getUrl(),
-                        'lastmod' => $model->updated_at,
-                        'changefreq' => SitemapBehavior::CHANGEFREQ_DAILY,
-                        'priority' => 0.8
-                    ];
-                }
-            ];
-        }
         $a['tree'] = [
             'class' => NestedSetsBehavior::class,
             'hasManyRoots' => false

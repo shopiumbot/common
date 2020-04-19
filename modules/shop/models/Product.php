@@ -895,26 +895,6 @@ class Product extends ActiveRecord
     public function behaviors()
     {
         $a = [];
-        if (Yii::$app->getModule('sitemap')) {
-            $a['sitemap'] = [
-                'class' => SitemapBehavior::class,
-                //'batchSize' => 100,
-                'scope' => function ($model) {
-                    /** @var \yii\db\ActiveQuery $model */
-                    $model->select(['slug', 'updated_at']);
-                    $model->where(['switch' => 1]);
-                },
-                'dataClosure' => function ($model) {
-                    /** @var self $model */
-                    return [
-                        'loc' => $model->getUrl(),
-                        'lastmod' => $model->updated_at,
-                        'changefreq' => SitemapBehavior::CHANGEFREQ_DAILY,
-                        'priority' => 0.9
-                    ];
-                }
-            ];
-        }
         // if (Yii::$app->getModule('images'))
         $a['imagesBehavior'] = [
             'class' => '\panix\mod\images\behaviors\ImageBehavior',
@@ -929,19 +909,7 @@ class Product extends ActiveRecord
             'class' => '\core\modules\shop\components\EavBehavior',
             'tableName' => '{{%shop__product_attribute_eav}}'
         ];
-        if (Yii::$app->getModule('seo'))
-            $a['seo'] = [
-                'class' => '\panix\mod\seo\components\SeoBehavior',
-                'url' => $this->getUrl()
-            ];
 
-        if (Yii::$app->getModule('comments')) {
-            $a['comments'] = [
-                'class' => '\panix\mod\comments\components\CommentBehavior',
-                //'handlerClass' => static::class,
-                'owner_title' => 'name', // Attribute name to present comment owner in admin panel
-            ];
-        }
         if (Yii::$app->getModule('discounts') && Yii::$app->id !== 'console')
             $a['discounts'] = [
                 'class' => '\panix\mod\discounts\components\DiscountBehavior'
