@@ -10,7 +10,6 @@ namespace core\modules\shop\migrations;
  */
 
 use core\modules\shop\models\Product;
-use core\modules\shop\models\translate\ProductTranslate;
 use panix\engine\db\Migration;
 
 class m180917_193213_shop_product extends Migration

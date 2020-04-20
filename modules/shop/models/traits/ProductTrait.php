@@ -278,18 +278,10 @@ trait ProductTrait
         ];
 
 
-        /*$query2 = Attribute::find()
-            ->cache(3600)
-            ->displayOnFront()
-            ->sort()
-            //->where(['IN', 'name', array_keys($this->_attributes)])
-            ->all();*/
-
 
         $db = Attribute::getDb();
         $query = $db->cache(function () {
             return Attribute::find()
-                ->displayOnFront()
                 ->sort()
                 ->all();
         }, 3600);
@@ -407,7 +399,6 @@ trait ProductTrait
         // $query = Attribute::getDb()->cache(function () {
         $query = Attribute::find()
             ->where(['name'=>array_keys($attributes)])
-            ->displayOnFront()
             ->sort()
             ->all();
         // }, 3600);
@@ -423,15 +414,6 @@ trait ProductTrait
 
             $value = $model->renderValue($attributes[$model->name]) . $abbr;
 
-            if ($model->group_id && Yii::$app->settings->get('shop', 'group_attribute')) {
-                $groups[$model->group->name][] = [
-                    'id' => $model->id,
-                    'name' => $model->title,
-                    'hint' => $model->hint,
-                    'value' => $value
-                ];
-
-            }
             // $data[$model->title] = $value;
             $data[$model->name]['name'] = $model->title;
             $data[$model->name]['value'] = $value;

@@ -137,39 +137,33 @@ class ProductController extends AdminController
         $this->breadcrumbs[] = $title;
 
 
-        // Set configurable attributes on new record
-        if ($isNew) {
-            if ($model->use_configurations && isset($_GET['Product']['configurable_attributes']))
-                $model->configurable_attributes = $_GET['Product']['configurable_attributes'];
-        }
-
         if ($model->load($post) && $model->validate() && $this->validateAttributes($model) && $this->validatePrices($model)) {
 
-            $model->file = \yii\web\UploadedFile::getInstances($model, 'file');
-            $data=[];
-            if ($model->file) {
 
-                foreach ($model->file as $file) {
-                    $image= $model->attachImage($file);
-                    $data[]=[
-                        'filePath'=>$image->filePath,
-                        'is_main'=>$image->is_main
-                    ];
-                }
-
-               // $model->images_data = json_encode($data);
-            }else{
-                foreach ($model->images as $image){
-                    $data[]=[
-                        'filePath'=>$image->filePath,
-                        'is_main'=>$image->is_main
-                    ];
-                }
-              //  $model->images_data = json_encode($data);
-            }
 
             if ($model->save()) {
+                $model->file = \yii\web\UploadedFile::getInstances($model, 'file');
+                $data=[];
+                if ($model->file) {
 
+                    foreach ($model->file as $file) {
+                        $image= $model->attachImage($file);
+                        $data[]=[
+                            'filePath'=>$image->filePath,
+                            'is_main'=>$image->is_main
+                        ];
+                    }
+
+                    // $model->images_data = json_encode($data);
+                }else{
+                    foreach ($model->images as $image){
+                        $data[]=[
+                            'filePath'=>$image->filePath,
+                            'is_main'=>$image->is_main
+                        ];
+                    }
+                    //  $model->images_data = json_encode($data);
+                }
                 $mainCategoryId = 1;
                 if (isset(Yii::$app->request->post('Product')['main_category_id']))
                     $mainCategoryId = Yii::$app->request->post('Product')['main_category_id'];
@@ -200,8 +194,7 @@ class ProductController extends AdminController
                     $model->processPrices(Yii::$app->request->post('Product')['prices']);
                 }
                 $this->processAttributes($model);
-                // Process variants
-                $this->processConfigurations($model);
+
             }
 
 
@@ -262,17 +255,6 @@ class ProductController extends AdminController
         ];
     }
 
-    public function actionRenderVariantTable()
-    {
-        $attribute = Attribute::findOne($_GET['attr_id']);
-
-        if (!$attribute)
-            $this->error404(Yii::t('shop/admin', 'ERR_LOAD_ATTR'));
-
-        return $this->renderPartial('tabs/variants/_table', array(
-            'attribute' => $attribute
-        ));
-    }
 
     /**
      * Validate required shop attributes
@@ -349,24 +331,6 @@ class ProductController extends AdminController
             throw new ForbiddenHttpException();
         }
 
-    }
-
-    protected function processConfigurations(Product $model)
-    {
-        $productPks = Yii::$app->request->post('ConfigurationsProductGrid_c0', array());
-
-        // Clear relations
-        Yii::$app->db->createCommand()->delete('{{%shop__product_configurations}}', 'product_id=:id', [':id' => $model->id])->execute();
-
-        if (!sizeof($productPks))
-            return;
-
-        foreach ($productPks as $pk) {
-            Yii::$app->db->createCommand()->insert('{{%shop__product_configurations}}', [
-                'product_id' => $model->id,
-                'configurable_id' => $pk
-            ])->execute();
-        }
     }
 
     protected function processAttributes(Product $model)

@@ -286,33 +286,5 @@ class AttributeController extends AdminController
         }
     }
 
-    public function getAddonsMenu()
-    {
-        return [
-            [
-                'label' => Yii::t('shop/admin', 'ATTRIBUTE_GROUP'),
-                'url' => ['/admin/shop/attribute-group'],
-                'visible' => true
-            ],
-            /*[
-                'label' => Yii::t('shop/admin', 'ATTRIBUTE_GROUP'),
-                //'url' => ['/admin/shop/attribute-group'],
-                'visible' => true,
-                'items' => [
-                    [
-                        'label' => Yii::t('shop/admin', 'ATTRIBUTE_GROUP'),
-                        'url' => ['/admin/shop/attribute-group'],
-                        'visible' => true
-                    ],
-                    [
-                        'label' => Yii::t('shop/admin', 'ATTRIBUTE_GROUP'),
-                        'url' => ['/admin/shop/attribute-group'],
-                        'visible' => true
-                    ],
-                ]
-
-            ],*/
-        ];
-    }
 
 }

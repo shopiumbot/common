@@ -53,11 +53,9 @@ echo \panix\engine\barcode\BarcodeGenerator::widget([
         } else {
 
             foreach ($attributes as $a) {
-                if ($a->group_id) {
-                    $result[$a->group->name][] = $a;
-                } else {
+
                     $result['Без группы'][] = $a;
-                }
+
 
             }
 

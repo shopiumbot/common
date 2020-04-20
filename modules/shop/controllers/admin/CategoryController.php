@@ -20,7 +20,7 @@ class CategoryController extends AdminController
     {
         return [
             'rename-node' => [
-                'class' => 'panix\engine\behaviors\nestedsets\actions\RenameNodeAction',
+                'class' => 'core\modules\shop\behaviors\nestedsets\actions\RenameNodeAction',
                 'modelClass' => Category::class,
                 'successMessage' => Category::t('NODE_RENAME_SUCCESS'),
                 'errorMessage' => Category::t('NODE_RENAME_ERROR')

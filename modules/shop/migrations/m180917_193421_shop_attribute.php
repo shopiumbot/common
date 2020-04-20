@@ -23,7 +23,6 @@ class m180917_193421_shop_attribute extends Migration
 
         $this->createTable(Attribute::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
-            'group_id' => $this->integer(11)->null()->unsigned(),
             'type' => $this->string(10)->notNull(),
             'title' => $this->string(255)->notNull(),
             'abbreviation' => $this->string(25)->null(),

@@ -19,7 +19,7 @@ class AttributeSearch extends Attribute {
      */
     public function rules() {
         return [
-            [['id','group_id'], 'integer'],
+            [['id'], 'integer'],
             [['name', 'sku', 'price'], 'safe'],
         ];
     }
@@ -67,7 +67,7 @@ class AttributeSearch extends Attribute {
         }
 
         $query->andFilterWhere(['like', 'title', $this->title]);
-        $query->andFilterWhere(['like', 'group_id', $this->group_id]);
+
 
 
         return $dataProvider;

@@ -52,16 +52,7 @@ class AttributesRender extends Widget
 
             $value = $model->renderValue($this->_attributes[$model->name]) . $abbr;
 
-            if (Yii::$app->settings->get('shop', 'group_attribute')) {
-                if ($model->group_id) {
-                    $groups[$model->group->name][] = [
-                        'id' => $model->id,
-                        'name' => $model->title,
-                        'hint' => $model->hint,
-                        'value' => $value
-                    ];
-                }
-            }
+
             $data[$model->title] = $value;
         }
 

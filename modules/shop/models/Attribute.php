@@ -21,16 +21,11 @@ use panix\engine\db\ActiveRecord;
  * @property string $hint
  * @property string $title
  * @property integer $type
- * @property boolean $display_on_front
- * @property boolean $display_on_list
  * @property integer $ordern
  * @property boolean $required
- * @property boolean $use_in_compare
  * @property string $abbreviation
  * @property AttributeOption[] $options
  * @property TypeAttribute[] $types
- * @property boolean $use_in_filter Display attribute options as filter on front
- * @property boolean $use_in_variants Use attribute and its options to configure products
  * @property boolean $select_many Allow to filter products on front by more than one option value.
  * @method Category useInFilter()
  */
@@ -63,13 +58,7 @@ class Attribute extends ActiveRecord
                 'attribute' => 'title',
                 'contentOptions' => ['class' => 'text-left'],
             ],
-            'group_id' => [
-                'attribute' => 'group_id',
-                'filterInputOptions' => ['class' => 'custom-select d-inline', 'id' => null, 'prompt' => Yii::t('app/default', 'ALL')],
-                'filter' => ArrayHelper::map(AttributeGroup::find()->all(), 'id', 'name'),
-                'value' => 'group.name',
-                'contentOptions' => ['class' => 'text-center'],
-            ],
+
             'DEFAULT_CONTROL' => [
                 'class' => 'panix\engine\grid\columns\ActionColumn',
             ],
@@ -115,16 +104,6 @@ class Attribute extends ActiveRecord
         return $this->hasMany(AttributeOption::class, ['attribute_id' => 'id'])->asArray();//->cache(3600, $dependency);
     }
 
-    public function getGroups()
-    {
-        return $this->hasMany(AttributeGroup::class, ['id' => 'group_id']);
-    }
-
-    public function getGroup()
-    {
-        return $this->hasOne(AttributeGroup::class, ['id' => 'group_id']);
-    }
-
     public function getTypes()
     {
         return $this->hasMany(TypeAttribute::class, ['attribute_id' => 'id']);
@@ -141,19 +120,11 @@ class Attribute extends ActiveRecord
             [['title', 'abbreviation'], 'string', 'max' => 255],
             [[
                 'required',
-                'use_in_compare',
-                'use_in_filter',
                 'select_many',
-                'display_on_front',
-                'display_on_list',
-                'display_on_grid',
-                'display_on_cart',
-                'display_on_pdf',
-                'use_in_variants'
             ], 'boolean'],
             [['sort'], 'default', 'value' => null],
             [['hint', 'abbreviation'], 'string'],
-            [['id', 'group_id', 'sort', 'type'], 'integer'],
+            [['id', 'sort', 'type'], 'integer'],
             [['id', 'title', 'type'], 'safe'],
         ];
     }
@@ -371,7 +342,6 @@ class Attribute extends ActiveRecord
     public function beforeSave($insert)
     {
         if (!in_array($this->type, [self::TYPE_DROPDOWN, self::TYPE_RADIO_LIST, self::TYPE_CHECKBOX_LIST, self::TYPE_SELECT_MANY, self::TYPE_COLOR])) {
-            $this->use_in_filter = false;
             $this->select_many = false;
         }
         return parent::beforeSave($insert);

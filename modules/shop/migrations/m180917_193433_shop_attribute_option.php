@@ -22,12 +22,10 @@ class m180917_193433_shop_attribute_option extends Migration
             'data' => $this->text()->null(),
             'value' => $this->string(255)->notNull(),
             'ordern' => $this->integer()->unsigned(),
-
         ]);
 
         $this->createIndex('attribute_id', AttributeOption::tableName(), 'attribute_id');
         $this->createIndex('ordern', AttributeOption::tableName(), 'ordern', 0);
-
     }
 
     public function down()
