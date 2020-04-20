@@ -40,9 +40,7 @@ class AttributeSearch extends Attribute {
      * @return ActiveDataProvider
      */
     public function search($params) {
-        $query = Attribute::find();
-        //$query->joinWith('attrtranslate');
-
+        $query = Attribute::find()->sort();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => self::getSort()

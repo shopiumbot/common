@@ -23,9 +23,6 @@ $(document).ready(function () {
 
 $sideBar = (method_exists($this->context->module, 'getAdminSidebar')) ? true : false;
 
-//CREATE user to role
-//Yii::$app->getAuthManager()->assign(Yii::$app->getAuthManager()->getRole('admin'),6);
-
 ?>
 <?php $this->beginPage(); ?>
     <!DOCTYPE html>
@@ -133,27 +130,9 @@ $sideBar = (method_exists($this->context->module, 'getAdminSidebar')) ? true : f
                             <?= $this->render('partials/_breadcrumbs', ['breadcrumbs' => $this->context->breadcrumbs]); ?>
                             <?= $this->render('partials/_addonsMenu'); ?>
                         </div>
-
-
-                        <a href="#" onclick="changeCSS('<?= $asset->baseUrl;?>/css/dark.css');">dark</a>
-                        <a href="#" onclick="changeCSS('<?= $asset->baseUrl;?>/css/light.css');">light</a>
                         <div class="col-12">
 
                             <?php
-
-                           // echo '\\'.get_class(new \panix\mod\shop\models\Product);
-                            /*$images = \panix\mod\images\models\Image::find()->all();
-                            foreach ($images as $img){
-                                $img->path = '@uploads/store/product';
-                                $img->filePath = str_replace('Products/'.$img->object_id.'/','',$img->filePath);
-                                $img->handler_class = '\\panix\\mod\\shop\\models\\Product';
-                                $img->handler_hash = (new $img->handler_class)->getHash();
-                                $img->save();
-                            }*/
-
-
-
-
 
 
 
@@ -172,11 +151,7 @@ $sideBar = (method_exists($this->context->module, 'getAdminSidebar')) ? true : f
 
                                 <?php } ?>
                             <?php } ?>
-                            <?php
 
-                            echo Yii::getAlias('@vendor');
-
-                            ?>
                             <?= $content ?>
                         </div>
                     </div>
