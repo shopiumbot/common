@@ -206,7 +206,7 @@ class Attribute extends ActiveRecord
     public function renderField($value = null, $inputClass = '')
     {
 
-        $name = 'Attribute[' . $this->type . '][' . $this->name . ']';//@todo added $this->type[' . $this->type . ']
+        $name = 'Attribute[' . $this->type . '][' . $this->id . ']';//@todo added $this->type[' . $this->type . ']
         switch ($this->type) {
             case self::TYPE_TEXT:
                 return Html::textInput($name, $value, ['class' => 'form-control ' . $inputClass]);

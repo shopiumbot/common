@@ -306,6 +306,7 @@ class EavBehavior extends \yii\base\Behavior
 
 
         foreach ($attributes as $attribute) {
+
             // Skip if null attributes.
             $attr = (isset($this->attributes[$attribute])) ? $this->attributes[$attribute] : NULL;
             if (!is_null($values = $attr)) {

@@ -373,6 +373,7 @@ class ProductController extends AdminController
             }
         }
 
+
         return $model->setEavAttributes($reAttributes, true);
     }
 

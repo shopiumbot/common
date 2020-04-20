@@ -59,16 +59,17 @@ echo \panix\engine\barcode\BarcodeGenerator::widget([
 
             }
 
-            foreach ($result as $group_name => $attributes) {
-                echo '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4"><h3 class="text-center mt-3">' . $group_name . '</h3>';
+
+
                 foreach ($attributes as $a) {
+                    echo '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4"><h3 class="text-center mt-3">' . $a->title . '</h3>';
                     /** @var Attribute|\core\modules\shop\components\EavBehavior $a */
                     // Repopulate data from POST if exists
-                    if (isset($_POST['Attribute'][$a->name])) {
-                        $value = $_POST['Attribute'][$a->name];
+                    if (isset($_POST['Attribute'][$a->id])) {
+                        $value = $_POST['Attribute'][$a->id];
                     } else {
 
-                            $value = $model->getEavAttribute($a->name);
+                            $value = $model->getEavAttribute($a->id);
                         // die('zz');
                     }
 
@@ -91,13 +92,13 @@ echo \panix\engine\barcode\BarcodeGenerator::widget([
                     $error = '';
                     $inputClass = '';
 
-                    if ($a->required && array_key_exists($a->name, $model->getErrors())) {
+                    if ($a->required && array_key_exists($a->id, $model->getErrors())) {
                         $inputClass = 'is-invalid';
-                        $error = Html::error($a, $a->name);
+                        $error = Html::error($a, $a->id);
                     }
                     ?>
                     <div class="form-group row <?= ($a->required ? 'required' : ''); ?>">
-                        <?= Html::label($a->title, $a->name, ['class' => 'col-sm-4 col-form-label']); ?>
+                        <?= Html::label($a->title, $a->id, ['class' => 'col-sm-4 col-form-label']); ?>
                         <div class="col-sm-8 rowInput eavInput">
                             <div class="input-group<?= ($a->type == Attribute::TYPE_CHECKBOX_LIST) ? '1' : ''; ?>">
                                 <?= $a->renderField($value, $inputClass); ?>
@@ -124,10 +125,10 @@ echo \panix\engine\barcode\BarcodeGenerator::widget([
 
 //. $error . $addOptionLink
                     //echo Html::endTag('div');
-
+                    echo '</div>';
                 } // . Html::error($a, 'name', ['class' => 'text-danger'])
-                echo '</div>';
-            }
+
+
 
 
         }
