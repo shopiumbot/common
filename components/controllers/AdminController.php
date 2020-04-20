@@ -1,6 +1,6 @@
 <?php
 
-namespace core\components\controllers;
+namespace panix\engine\controllers;
 
 
 use Yii;

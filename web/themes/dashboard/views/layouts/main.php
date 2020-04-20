@@ -172,7 +172,11 @@ $sideBar = (method_exists($this->context->module, 'getAdminSidebar')) ? true : f
 
                                 <?php } ?>
                             <?php } ?>
+                            <?php
 
+                            echo Yii::getAlias('@vendor');
+
+                            ?>
                             <?= $content ?>
                         </div>
                     </div>
