@@ -5,7 +5,7 @@ namespace core\modules\shop\controllers\admin;
 use Yii;
 use core\modules\shop\models\Currency;
 use core\modules\shop\models\search\CurrencySearch;
-use panix\engine\controllers\AdminController;
+use core\components\controllers\AdminController;
 
 class CurrencyController extends AdminController
 {

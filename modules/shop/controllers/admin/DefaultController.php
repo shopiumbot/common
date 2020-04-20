@@ -3,11 +3,8 @@
 namespace core\modules\shop\controllers\admin;
 
 use Yii;
-use yii\helpers\ArrayHelper;
-use panix\engine\controllers\AdminController;
-use core\modules\shop\models\ProductType;
+use core\components\controllers\AdminController;
 use core\modules\shop\models\search\ProductTypeSearch;
-use core\modules\shop\models\Attribute;
 
 class DefaultController extends AdminController {
 

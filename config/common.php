@@ -13,23 +13,21 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
-        '@uploads' => '@app/web/uploads',
     ],
     //'sourceLanguage'=>'ru',
     // 'runtimePath' => '@app/backend/runtime',
-    'controllerNamespace' => 'panix\engine\controllers',
+    'controllerNamespace' => 'core\components\controllers',
     //'defaultRoute' => 'site/index',
     'bootstrap' => [
         'log',
-        'maintenanceMode',
         'panix\engine\BootstrapModule'
     ],
     'controllerMap' => [
-        'site' => 'panix\engine\controllers\WebController',
-        'badmin' => 'panix\engine\controllers\AdminController',
+        'site' => 'core\components\controllers\WebController',
+        'badmin' => 'core\components\controllers\AdminController',
     ],
     'modules' => [
-        'admin' => ['class' => 'panix\mod\admin\Module'],
+        'admin' => ['class' => 'shopium\mod\admin\Module'],
         'plugins' => [
             'class' => 'panix\mod\plugins\Module',
             'pluginsDir' => [
@@ -42,24 +40,18 @@ $config = [
             //    'class' => panix\mod\rbac\filters\AccessControl::class
             //],
         ],
-        'telegram' => ['class' => 'panix\mod\telegram\Module'],
+        'telegram' => ['class' => 'shopium\mod\telegram\Module'],
         'user' => ['class' => 'panix\mod\user\Module'],
-        'shop' => ['class' => 'app\modules\shop\Module'],
+        'shop' => ['class' => 'core\modules\shop\Module'],
         'contacts' => ['class' => 'panix\mod\contacts\Module'],
         'seo' => ['class' => 'panix\mod\seo\Module'],
         'discounts' => ['class' => 'panix\mod\discounts\Module'],
-       // 'comments' => ['class' => 'panix\mod\comments\Module'],
-       // 'wishlist' => ['class' => 'panix\mod\wishlist\Module'],
-        //'exchange1c' => ['class' => 'panix\mod\exchange1c\Module'],
         'csv' => ['class' => 'panix\mod\csv\Module'],
-        //'yandexmarket' => ['class' => 'panix\mod\yandexmarket\Module'],
-       // 'delivery' => ['class' => 'panix\mod\delivery\Module'],
         'images' => ['class' => 'panix\mod\images\Module'],
-        //'forum' => ['class' => 'panix\mod\forum\Module'],
         'cart' => ['class' => 'panix\mod\cart\Module'],
-        //'pages' => ['class' => 'panix\mod\pages\Module'],
     ],
     'components' => [
+		'telegram' => ['class' => 'shopium\mod\telegram\components\Telegram'],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
             'defaultRoles' => ['guest', 'user'],
@@ -71,79 +63,8 @@ $config = [
             'class' => 'understeam\fcm\Client',
             'apiKey' => 'AIzaSyAbeTCpxK7OGu_lXZDSnJjV1ItkUwPOBbc', // Server API Key (you can get it here: https://firebase.google.com/docs/server/setup#prerequisites)
         ],*/
-        'sitemap' => [
-            'class' => 'app\modules\sitemap\Sitemap',
-            'models' => [
-                // your models
-                'app\modules\news\models\News',
-                // or configuration for creating a behavior
-                [
-                    'class' => 'app\modules\news\models\News',
-                    'behaviors' => [
-                        'sitemap' => [
-                            'class' => '\app\modules\sitemap\behaviors\SitemapBehavior',
-                            'scope' => function ($model) {
-                                /** @var \yii\db\ActiveQuery $model */
-                                $model->select(['url', 'lastmod']);
-                                $model->andWhere(['is_deleted' => 0]);
-                            },
-                            'dataClosure' => function ($model) {
-                                /** @var self $model */
-                                return [
-                                    'loc' => \yii\helpers\Url::to($model->url, true),
-                                    'lastmod' => strtotime($model->lastmod),
-                                    'changefreq' => \panix\mod\sitemap\Module::DAILY,
-                                    'priority' => 0.8
-                                ];
-                            }
-                        ],
-                    ],
-                ],
-            ],
-            'urls' => [
-                // your additional urls
-                [
-                    'loc' => ['/news/default/index'],
-                    //'changefreq' => \app\modules\sitemap\Sitemap::DAILY,
-                    'priority' => 0.8,
-                    'news' => [
-                        'publication' => [
-                            'name' => 'Example Blog',
-                            'language' => 'en',
-                        ],
-                        'access' => 'Subscription',
-                        'genres' => 'Blog, UserGenerated',
-                        'publication_date' => 'YYYY-MM-DDThh:mm:ssTZD',
-                        'title' => 'Example Title',
-                        'keywords' => 'example, keywords, comma-separated',
-                        'stock_tickers' => 'NASDAQ:A, NASDAQ:B',
-                    ],
-                    'images' => [
-                        [
-                            'loc' => 'http://example.com/image.jpg',
-                            'caption' => 'This is an example of a caption of an image',
-                            'geo_location' => 'City, State',
-                            'title' => 'Example image',
-                            'license' => 'http://example.com/license',
-                        ],
-                    ],
-                ],
-            ],
-            'enableGzip' => true, // default is false
-            'cacheExpire' => 1, // 1 second. Default is 24 hours,
-            'sortByPriority' => true, // default is false
-        ],
         'geoip' => ['class' => 'panix\engine\components\geoip\GeoIP'],
         'formatter' => ['class' => 'panix\engine\i18n\Formatter'],
-        'maintenanceMode' => [
-            'class' => 'panix\engine\maintenance\MaintenanceMode',
-            // Allowed roles
-            //'roles' => [
-            //    'admin',
-            //],
-            //Retry-After header
-            // 'retryAfter' => 120 //or Wed, 21 Oct 2015 07:28:00 GMT for example
-        ],
         'assetManager' => [
             'forceCopy' => YII_DEBUG,
             'appendTimestamp' => true
@@ -195,88 +116,10 @@ $config = [
             'htmlLayout' => 'layouts/html'
             //  'class' => 'yii\swiftmailer\Mailer',
         ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'flushInterval' => 1000 * 10,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                    'categories' => ['yii\db\*', 'panix\engine\db\*'],
-                    'logVars' => [],
-                    'logFile' => '@runtime/logs/' . $logDate . '/db_error.log',
-                ],
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error'],
-                    'logVars' => [],
-                    'logFile' => '@runtime/logs/' . $logDate . '/error.log',
-                ],
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['warning'],
-                    'logVars' => [],
-                    'logFile' => '@runtime/logs/' . $logDate . '/warning.log',
-                ],
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['info'],
-                    'logVars' => [],
-                    'logFile' => '@runtime/logs/' . $logDate . '/info.log',
-                ],
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'categories' => ['panix\engine\db\*'],
-                    'levels' => ['info', 'trace'],
-                    'logVars' => [],
-                    'logFile' => '@runtime/logs/' . $logDate . '/trace_core_db.log',
-                ],
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['profile'],
-                    'logVars' => [],
-                    'logFile' => '@runtime/logs/' . $logDate . '/profile.log',
-                ],
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['trace'],
-                    'logVars' => [],
-                    'logFile' => '@runtime/logs/' . date('Y-m-d') . '/trace.log',
-                ],
-                [
-                    'class' => 'panix\engine\log\EmailTarget',
-                    'levels' => ['error', 'warning'],
-                    'enabled' => false,//YII_DEBUG,
-                    'categories' => ['yii\base\*'],
-                    'except' => [
-                        'yii\web\HttpException:404',
-                        'yii\web\HttpException:403',
-                        'yii\web\HttpException:400',
-                        'yii\i18n\PhpMessageSource::loadMessages'
-                    ],
-                    /*'message' => [
-                        'from' => ['log@pixelion.com.ua'],
-                        'to' => ['dev@pixelion.com.ua'],
-                        'subject' => 'Ошибки базы данных на сайте app',
-                    ],*/
-                ],
-                [
-                    'class' => 'yii\log\DbTarget',
-                    'levels' => ['error', 'warning'],
-                    'logTable' => '{{%log_error}}',
-                    'except' => [
-                        'yii\web\HttpException:404',
-                        'yii\web\HttpException:403',
-                        'yii\web\HttpException:400',
-                        'yii\i18n\PhpMessageSource::loadMessages'
-                    ],
-                ],
-            ],
-        ],
-        'languageManager' => ['class' => 'panix\engine\ManagerLanguage'],
+        'log' => ['class' => 'panix\engine\log\Dispatcher'],
         'settings' => ['class' => 'panix\engine\components\Settings'],
         'urlManager' => [
-            'class' => 'panix\engine\ManagerUrl',
+            //'class' => 'panix\engine\ManagerUrl',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'enableStrictParsing' => true,

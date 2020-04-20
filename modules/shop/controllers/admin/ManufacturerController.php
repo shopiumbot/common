@@ -5,7 +5,7 @@ namespace core\modules\shop\controllers\admin;
 use Yii;
 use core\modules\shop\models\Manufacturer;
 use core\modules\shop\models\search\ManufacturerSearch;
-use panix\engine\controllers\AdminController;
+use core\components\controllers\AdminController;
 
 class ManufacturerController extends AdminController
 {

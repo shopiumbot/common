@@ -7,10 +7,7 @@ $config = [
     //'basePath' => APP_PATH,
    // 'defaultRoute' => 'badmin/index',
     'components' => [
-       // 'aliases' => [
-          //  '@app' => dirname(__DIR__).'/web/test',
-           // '@common' => dirname(__DIR__).'/../common',
-       // ],
+
         'assetManager' => [
             'baseUrl' => 'https://common.shopiumbot.com/assets',
             'basePath' => dirname(__DIR__) . '/assets',

@@ -2,20 +2,17 @@
 
 namespace core\modules\shop\controllers\admin;
 
-use panix\engine\CMS;
 use core\modules\shop\components\EavBehavior;
 use core\modules\shop\models\Category;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use yii\helpers\Json;
 use core\modules\shop\models\Product;
 use core\modules\shop\models\search\ProductSearch;
-use panix\engine\controllers\AdminController;
+use core\components\controllers\AdminController;
 use core\modules\shop\models\ProductType;
 use core\modules\shop\models\Attribute;
 use core\modules\shop\models\AttributeOption;
-use yii\helpers\StringHelper;
 use yii\web\ForbiddenHttpException;
 use yii\web\HttpException;
 use yii\web\Response;

@@ -16,10 +16,10 @@ $config = [
         'geoip' => ['class' => 'panix\engine\components\geoip\GeoIP'],
         //'webcontrol' => ['class' => 'panix\engine\widgets\webcontrol\WebInlineControl'],
         'view' => [
-            'class' => 'panix\mod\plugins\components\View',
-            'as Layout' => [
-                'class' => 'panix\engine\behaviors\LayoutBehavior',
-            ],
+           // 'class' => 'panix\mod\plugins\components\View',
+           // 'as Layout' => [
+           //     'class' => 'panix\engine\behaviors\LayoutBehavior',
+           // ],
             'renderers' => [
                 'tpl' => [
                     'class' => 'yii\smarty\ViewRenderer',
@@ -31,7 +31,7 @@ $config = [
             ],
         ],
         'request' => [
-            'class' => 'panix\engine\WebRequest',
+           // 'class' => 'panix\engine\WebRequest',
             'baseUrl' => '',
         ],
         'errorHandler' => [
