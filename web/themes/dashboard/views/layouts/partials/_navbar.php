@@ -1,9 +1,9 @@
 <?php
 use panix\engine\Html;
-use \panix\mod\admin\widgets\sidebar\BackendNav;
+use \shopium\mod\admin\widgets\sidebar\BackendNav;
 //use panix\engine\widgets\langSwitcher\LangSwitcher;
 use panix\engine\CMS;
-use panix\mod\admin\models\Notification;
+use shopium\mod\admin\models\Notification;
 
 /**
  * @var \yii\web\View $this
@@ -28,30 +28,6 @@ use panix\mod\admin\models\Notification;
 
 
     <?php
-
-
-    $langManager = Yii::$app->languageManager;
-    $languages = $langManager->getLanguages();
-    $currentDataArray = [];
-    foreach ($languages as $l) {
-        $currentDataArray[$l->code] = $l->name;
-    }
-
-    $current = $currentDataArray[Yii::$app->language];
-
-    $langItems = [];
-    if (count($languages) > 0) {
-        foreach ($languages as $lang) {
-
-            $link = ($lang->is_default) ? CMS::currentUrl() : '/' . $lang->code . CMS::currentUrl();
-
-            $langItems[] = [
-                'label' => Html::img($lang->getFlagUrl(), ['alt' => $lang->name]) . ' ' . $lang->name,
-                'url' => $link,
-                'options' => ['class' => ($langManager->active->id == $lang->id) ? 'active' : '']
-            ];
-        }
-    }
 
     /*foreach ($languages as $lang) {
 
@@ -115,12 +91,6 @@ use panix\mod\admin\models\Notification;
                 'label' => Html::icon('logout'),
                 'url' => ['/user/logout'],
                 'options' => ['data-method' => "post"]
-            ],
-            [
-                'label' => Html::img('/uploads/language/' . $langManager->active->code . '.png', ['alt' => '']),
-                'url' => '#',
-                'items' => $langItems,
-
             ],
         ],
         'options' => ['class' => 'navbar-right'],
