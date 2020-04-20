@@ -24,7 +24,8 @@
         "panix/mod-discounts": "dev-master",
         "panix/mod-contacts": "dev-master",
         "panix/mod-user": "dev-master",
-        "panix/mod-shop": "dev-master",
+        "panix/mod-cart": "dev-master",
+        "panix/mod-csv": "dev-master",
         "panix/mod-images": "dev-master",
         "panix/mod-rbac": "dev-master",
         "shopium/mod-telegram": "dev-master"
