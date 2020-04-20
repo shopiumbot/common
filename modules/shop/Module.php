@@ -5,7 +5,7 @@ namespace core\modules\shop;
 use Yii;
 use panix\engine\WebModule;
 use yii\base\BootstrapInterface;
-use shopium\mod\admin\widgets\sidebar\BackendNav;
+use panix\mod\admin\widgets\sidebar\BackendNav;
 
 class Module extends WebModule implements BootstrapInterface
 {
@@ -97,7 +97,8 @@ class Module extends WebModule implements BootstrapInterface
                     [
                         'label' => Yii::t('shop/admin', 'NOTIFIER'),
                         "url" => ['/admin/shop/notify'],
-                        'icon' => 'envelope'
+                        'icon' => 'envelope',
+                        'visible' => false,
                     ],
                     [
                         'label' => Yii::t('shop/admin', 'CURRENCY'),

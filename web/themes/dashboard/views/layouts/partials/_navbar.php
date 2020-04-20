@@ -1,6 +1,6 @@
 <?php
 use panix\engine\Html;
-use \shopium\mod\admin\widgets\sidebar\BackendNav;
+use \panix\mod\admin\widgets\sidebar\BackendNav;
 //use panix\engine\widgets\langSwitcher\LangSwitcher;
 use panix\engine\CMS;
 use shopium\mod\admin\models\Notification;
