@@ -27,7 +27,7 @@
         "panix/mod-shop": "dev-master",
         "panix/mod-images": "dev-master",
         "panix/mod-rbac": "dev-master",
-        "shopium/mod-telegram": "^0.0"
+        "shopium/mod-telegram": "dev-master"
     },
     "config": {
         "process-timeout": 1800
