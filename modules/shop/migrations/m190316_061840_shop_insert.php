@@ -261,10 +261,6 @@ class m190316_061840_shop_insert extends Migration
                         $attribute->title = $attribute_name;
                         $attribute->name = CMS::slug($attribute->title);
                         $attribute->type = (isset($attribute_value['type'])) ? $attribute_value['type'] : Attribute::TYPE_DROPDOWN;
-                        $attribute->display_on_front = (isset($attribute_value['display_on_front'])) ? $attribute_value['display_on_front'] : true;
-                        $attribute->use_in_filter = (isset($attribute_value['use_in_filter'])) ? $attribute_value['use_in_filter'] : true;
-                        $attribute->use_in_variants = (isset($attribute_value['use_in_variants'])) ? $attribute_value['use_in_variants'] : true;
-                        $attribute->use_in_compare = (isset($attribute_value['use_in_compare'])) ? $attribute_value['use_in_compare'] : true;
                         $attribute->select_many = (isset($attribute_value['select_many'])) ? $attribute_value['select_many'] : true;
                         $attribute->required = (isset($attribute_value['required'])) ? $attribute_value['required'] : false;
                         $attribute->abbreviation = (isset($attribute_value['abbreviation'])) ? $attribute_value['abbreviation'] : null;
@@ -306,23 +302,14 @@ class m190316_061840_shop_insert extends Migration
 
     public function down()
     {
-        /*$this->dropTable(Attribute::tableName());
-        $this->dropTable(AttributeOption::tableName());
-        $this->dropTable(AttributeOptionTranslate::tableName());
-        $this->dropTable(AttributeGroup::tableName());
-        $this->dropTable(AttributeGroupTranslate::tableName());*/
         $this->truncateTable(Attribute::tableName());
         $this->truncateTable(AttributeOption::tableName());
         $this->truncateTable(AttributeGroup::tableName());
-
-
         $this->truncateTable(Product::tableName());
-
         $this->truncateTable(Category::tableName());
         $this->truncateTable(ProductType::tableName());
         $this->truncateTable(ProductCategoryRef::tableName());
         $this->truncateTable(ProductAttributesEav::tableName());
-
         $this->truncateTable(Image::tableName());
 
     }
