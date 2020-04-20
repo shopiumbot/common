@@ -5,15 +5,6 @@ use panix\engine\widgets\Breadcrumbs;
 
 
 \core\web\themes\basic\ThemeAsset::register($this);
-
-/*$c = Yii::$app->settings->get('shop');
-
-
-$this->registerJs("
-        var price_penny = " . $c->price_penny . ";
-        var price_thousand = " . $c->price_thousand . ";
-        var price_decimal = " . $c->price_decimal . ";
-     ", yii\web\View::POS_HEAD, 'numberformat');*/
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
