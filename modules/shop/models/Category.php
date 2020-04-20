@@ -115,7 +115,6 @@ class Category extends ActiveRecord
         $childrens = $this->descendants()->all();
         if ($childrens) {
             foreach ($childrens as $children) {
-               // $children->full_path = $this->slug . '/' . $children->full_path;
                 $children->saveNode(false);
             }
         }

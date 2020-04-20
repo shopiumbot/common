@@ -76,7 +76,6 @@ class ProductsDuplicator extends \yii\base\Component
             $product->{$attr} = $model->{$attr};
 
         $product->name .= $this->getSuffix();
-        $product->slug .= CMS::slug($this->getSuffix()) . '-' . time();
         $product->main_category_id = $model->mainCategory->id;
         $product->views = 0;
         $product->added_to_cart_count = 0;

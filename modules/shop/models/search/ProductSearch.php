@@ -27,7 +27,7 @@ class ProductSearch extends Product
         return [
             [['price_min', 'price_max', 'supplier_id', 'manufacturer_id', 'main_category_id'], 'integer'],
             // [['image'],'boolean'],
-            [['slug', 'sku', 'price', 'id'], 'safe'], //commentsCount
+            [['sku', 'price', 'id'], 'safe'], //commentsCount
             [['name'], 'string'],
             [['created_at', 'updated_at'], 'date', 'format' => 'php:Y-m-d']
         ];

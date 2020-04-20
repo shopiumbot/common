@@ -20,7 +20,7 @@ class ProductTypeSearch extends ProductType {
     public function rules() {
         return [
             [['id'], 'integer'],
-            [['name', 'slug', 'sku', 'price'], 'safe'],
+            [['name', 'sku', 'price'], 'safe'],
         ];
     }
 

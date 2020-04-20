@@ -4,7 +4,7 @@ namespace core\modules\shop\controllers\admin;
 
 use panix\engine\CMS;
 use Yii;
-use core\components\controllers\AdminController;
+use panix\engine\controllers\AdminController;
 use core\modules\shop\models\Category;
 use yii\web\Response;
 

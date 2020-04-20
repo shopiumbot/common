@@ -37,7 +37,6 @@ class m180917_193213_shop_product extends Migration
             'name' => $this->string(255)->notNull(),
             'short_description' => $this->text()->null(),
             'full_description' => $this->text()->null(),
-            'slug' => $this->string(255)->notNull(),
             'price' => $this->money(10, 2),
             'unit' => $this->tinyInteger(1)->unsigned()->defaultValue(1),
             'max_price' => $this->money(10, 2),
@@ -74,7 +73,6 @@ class m180917_193213_shop_product extends Migration
         $this->createIndex('type_id', Product::tableName(), 'type_id');
         $this->createIndex('supplier_id', Product::tableName(), 'supplier_id');
         $this->createIndex('currency_id', Product::tableName(), 'currency_id');
-        $this->createIndex('slug', Product::tableName(), 'slug');
         $this->createIndex('price', Product::tableName(), 'price');
         $this->createIndex('max_price', Product::tableName(), 'max_price');
         $this->createIndex('switch', Product::tableName(), 'switch');

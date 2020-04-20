@@ -5,7 +5,7 @@ namespace core\modules\shop\controllers\admin;
 use Yii;
 use core\modules\shop\models\AttributeGroup;
 use core\modules\shop\models\search\AttributeGroupSearch;
-use core\components\controllers\AdminController;
+use panix\engine\controllers\AdminController;
 
 class AttributeGroupController extends AdminController {
 

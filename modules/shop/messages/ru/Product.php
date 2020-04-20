@@ -8,7 +8,6 @@ return [
     'LABEL_TOP_SALE' => 'Топ продаж',
     'NOT_AVAILABLE' => 'Нет в наличии',
     'NAME' => 'Название товара',
-    'SLUG' => 'URL-адрес',
     'IMAGE' => 'Изображение',
     'CREATED_AT' => 'Дата создания',
     'UPDATED_AT' => 'Дата обновления',

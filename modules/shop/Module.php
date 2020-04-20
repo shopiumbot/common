@@ -17,20 +17,6 @@ class Module extends WebModule implements BootstrapInterface
      */
     public function bootstrap($app)
     {
-        $rules['catalog'] = 'shop/default/index';
-        $rules['search/ajax'] = 'shop/search/ajax';
-        $rules['shop/notify'] = 'shop/notify/index';
-        $rules['shop/ajax/currency/<id:\d+>'] = 'shop/ajax/currency';
-        $rules['manufacturer'] = 'shop/manufacturer/index';
-        //$rules['manufacturer/<slug:[0-9a-zA-Z_\-]+>'] =  'shop/manufacturer/view';
-        $rules['product/<slug:[0-9a-zA-Z\-]+>'] = 'shop/product/view';
-        $rules['product/<id:\d+>/<action:[0-9a-zA-Z_\-]+>'] = 'shop/product/<action>';
-
-
-        $app->urlManager->addRules(
-            $rules,
-            false
-        );
         $app->setComponents([
             'currency' => ['class' => 'core\modules\shop\components\CurrencyManager'],
         ]);

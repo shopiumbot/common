@@ -22,11 +22,8 @@ class m180917_193531_shop_manufacturer extends Migration
         $this->createTable(Manufacturer::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
             'cat_id' => $this->integer()->null(),
-           // 'image' => $this->string()->null()->defaultValue(null),
             'name' => $this->string(255)->notNull(),
-            //'slug' => $this->string(255)->notNull()->defaultValue(null),
             'switch' => $this->boolean()->defaultValue(1),
-            //'productsCount' => $this->integer(11)->defaultValue(0),
             'ordern' => $this->integer()->unsigned(),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
@@ -35,7 +32,6 @@ class m180917_193531_shop_manufacturer extends Migration
 
         $this->createIndex('switch', Manufacturer::tableName(), 'switch');
         $this->createIndex('ordern', Manufacturer::tableName(), 'ordern');
-       // $this->createIndex('slug', Manufacturer::tableName(), 'slug');
         $this->createIndex('cat_id', Manufacturer::tableName(), 'cat_id');
 
         $brands = [
