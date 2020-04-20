@@ -53,7 +53,7 @@ $sideBar = (method_exists($this->context->module, 'getAdminSidebar')) ? true : f
             <?php if ($sideBar) { ?>
                 <div id="sidebar-wrapper">
                     <?php
-                    echo \panix\mod\admin\widgets\sidebar\SiderbarNav::widget([
+                    echo \shopium\mod\admin\widgets\sidebar\SiderbarNav::widget([
                         'encodeLabels' => false,
                         'items' => \yii\helpers\ArrayHelper::merge([
                             [

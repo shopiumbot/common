@@ -5,7 +5,7 @@ namespace core\modules\shop;
 use Yii;
 use panix\engine\WebModule;
 use yii\base\BootstrapInterface;
-use panix\mod\admin\widgets\sidebar\BackendNav;
+use shopium\mod\admin\widgets\sidebar\BackendNav;
 
 class Module extends WebModule implements BootstrapInterface
 {

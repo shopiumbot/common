@@ -118,9 +118,6 @@ class m190316_061840_shop_insert extends Migration
                 ],
                 'images' => [
                     'https://i1.foxtrot.com.ua/product/MediumImages/6404192_0.jpg',
-                    'https://i1.foxtrot.com.ua/product/MediumImages/6404192_1.jpg',
-                    'https://i1.foxtrot.com.ua/product/MediumImages/6404192_2.jpg',
-                    'https://i1.foxtrot.com.ua/product/MediumImages/6404192_4.jpg',
                 ]
             ],
             [
@@ -134,7 +131,6 @@ class m190316_061840_shop_insert extends Migration
                     'https://i.citrus.ua/uploads/shop/c/2/c27e2c410abf6f7b4221980e5dc4e4d3.jpg',
                     'https://i.citrus.ua/uploads/shop/2/2/224f8ae519e350c1d62ff57b4c7f8470.jpg',
                     'https://i.citrus.ua/uploads/shop/9/5/95056e20cc0632bf9cbd99e2e75fea89.jpg',
-                    'https://i.citrus.ua/uploads/shop/9/e/9e4441f8560518753466b115d85c64b3.jpg',
                 ],
                 'attributes' => [
                     'Диагональ экрана' => '15.6" (1920x1080) Full HD',
@@ -162,7 +158,6 @@ class m190316_061840_shop_insert extends Migration
                 'images' => [
                     'https://i.citrus.ua/uploads/shop/7/9/79e1105ecd90d96b37e65f1cd72e88fd.jpg',
                     'https://i.citrus.ua/uploads/shop/e/6/e6ed6b3552243283fb510a3967e3c547.jpg',
-                    'https://i.citrus.ua/uploads/shop/f/6/f6b03cf06d2b86b72337bb5f50914c2c.jpg',
                     'https://i.citrus.ua/uploads/shop/e/c/ec5e66a1363235b95aac89bd6577f554.jpg',
                 ],
                 'attributes' => [
@@ -202,7 +197,6 @@ class m190316_061840_shop_insert extends Migration
                 'discount' => '5%',
                 'images' => [
                     'https://i.citrus.ua/uploads/shop/c/c/cc9baa280332c8033813803a79be2b32.jpg',
-                    'https://i.citrus.ua/uploads/shop/8/3/83656813626aa2d51fef71a1d0425c93.jpg',
                     'https://i.citrus.ua/uploads/shop/f/1/f1a32cc47114d0a368accfe4d5ac17fb.jpg',
                     'https://i.citrus.ua/uploads/shop/d/3/d3213e330652ed680735de55e8c51ca8.jpg',
                 ],
