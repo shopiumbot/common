@@ -23,11 +23,11 @@
         "panix/mod-admin": "dev-master",
         "panix/mod-discounts": "dev-master",
         "panix/mod-contacts": "dev-master",
-        "shopium/mod-telegram": "dev-master",
         "panix/mod-user": "dev-master",
         "panix/mod-shop": "dev-master",
         "panix/mod-images": "dev-master",
-        "panix/mod-rbac": "dev-master"
+        "panix/mod-rbac": "dev-master",
+        "shopium/mod-telegram": "^0.0"
     },
     "config": {
         "process-timeout": 1800
