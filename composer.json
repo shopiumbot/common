@@ -29,7 +29,7 @@
         "panix/mod-csv": "dev-master",
         "panix/mod-images": "dev-master",
         "panix/mod-rbac": "dev-master",
-        "shopium/mod-telegram": "dev-master"
+        "shopium/mod-telegram": "~0.1"
     },
     "config": {
         "process-timeout": 1800
