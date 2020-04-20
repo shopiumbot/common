@@ -26,7 +26,7 @@ class CategoryController extends AdminController
                 'errorMessage' => Category::t('NODE_RENAME_ERROR')
             ],
             'move-node' => [
-                'class' => 'panix\engine\behaviors\nestedsets\actions\MoveNodeAction',
+                'class' => 'core\modules\shop\behaviors\nestedsets\actions\MoveNodeAction',
                 'modelClass' => Category::class,
             ],
             'switch-node' => [
