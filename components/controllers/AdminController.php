@@ -60,7 +60,7 @@ class AdminController extends CommonController
 
     public function beforeAction($action)
     {
-        if (Yii::$app->user->isGuest && get_class($this) !== 'panix\mod\admin\controllers\AuthController') {
+        if (Yii::$app->user->isGuest && get_class($this) !== 'shopium\mod\admin\controllers\AuthController') {
             return Yii::$app->response->redirect(['/admin/auth']);
         }
 

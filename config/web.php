@@ -7,8 +7,6 @@ $config = [
     'basePath' => dirname(__DIR__),
     'defaultRoute' => 'site/index',
     'bootstrap' => [
-        'plugins',
-        'panix\engine\plugins\goaway\GoAway',
         //'webcontrol'
     ],
     'components' => [

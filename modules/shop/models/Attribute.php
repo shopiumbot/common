@@ -63,10 +63,6 @@ class Attribute extends ActiveRecord
                 'attribute' => 'title',
                 'contentOptions' => ['class' => 'text-left'],
             ],
-            'name' => [
-                'attribute' => 'name',
-                'contentOptions' => ['class' => 'text-left'],
-            ],
             'group_id' => [
                 'attribute' => 'group_id',
                 'filterInputOptions' => ['class' => 'custom-select d-inline', 'id' => null, 'prompt' => Yii::t('app/default', 'ALL')],
@@ -140,14 +136,9 @@ class Attribute extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'title', 'type'], 'required'],
-            [['name', 'title'], 'trim'],
-            ['name', '\panix\engine\validators\UrlValidator',
-                'attributeCompare' => 'title',
-                'attributeSlug' => 'name',
-                'message' => self::t('ID_BUSY')
-            ],
-            [['name', 'title', 'abbreviation'], 'string', 'max' => 255],
+            [['title', 'type'], 'required'],
+            [['title'], 'trim'],
+            [['title', 'abbreviation'], 'string', 'max' => 255],
             [[
                 'required',
                 'use_in_compare',
@@ -160,27 +151,13 @@ class Attribute extends ActiveRecord
                 'display_on_pdf',
                 'use_in_variants'
             ], 'boolean'],
-            ['name', 'match',
-                'pattern' => '/^([a-z0-9-])+$/i',
-                'message' => Yii::t('app/default', 'PATTERN_URL')
-            ],
             [['sort'], 'default', 'value' => null],
             [['hint', 'abbreviation'], 'string'],
             [['id', 'group_id', 'sort', 'type'], 'integer'],
-            [['id', 'name', 'title', 'type'], 'safe'],
+            [['id', 'title', 'type'], 'safe'],
         ];
     }
 
-    public function behaviors()
-    {
-        return ArrayHelper::merge([
-            'slug' => [
-                'class' => \yii\behaviors\SluggableBehavior::class,
-                'attribute' => 'title',
-                'slugAttribute' => 'name',
-            ],
-        ], parent::behaviors());
-    }
 
     /**
      * Get types as key value list

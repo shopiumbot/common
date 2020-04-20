@@ -144,17 +144,18 @@ class AttributeController extends AdminController
                     } else {
                         $attributeOption->data = NULL;
                     }
+                    $attributeOption->value = $data[$index];
                     $attributeOption->save(false);
 
 
-                    foreach (Yii::$app->languageManager->languages as $lang) {
+                  //  foreach (Yii::$app->languageManager->languages as $lang) {
                         /*$attributeLangOption = AttributeOption::find()
                             ->translate($lang->id)
                             ->where([AttributeOption::tableName() . '.id' => $attributeOption->id])
                             ->one();*/
 
 
-                        $attributeLangOption = AttributeOptionTranslate::find()
+                       /* $attributeLangOption = AttributeOptionTranslate::find()
                             ->where(['object_id' => $attributeOption->id, 'language_id' => $lang->id])
                             ->one();
 
@@ -167,10 +168,10 @@ class AttributeController extends AdminController
 
 
                         $attributeLangOption->value = $data[$index];
-                        $attributeLangOption->save(false);
+                        $attributeLangOption->save(false);*/
 
                         ++$index;
-                    }
+                   // }
                     array_push($dontDelete, $attributeOption->id);
                 }
             }

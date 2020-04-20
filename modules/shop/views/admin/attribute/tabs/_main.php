@@ -12,7 +12,7 @@ use panix\engine\Html;
  */
 ?>
 <?= $form->field($model, 'title')->textInput(['maxlength' => 255]); ?>
-<?= $form->field($model, 'name')->textInput(['maxlength' => 255])->hint($model::t('HINT_NAME')); ?>
+
 <?= $form->field($model, 'abbreviation')->textInput(['maxlength' => 255]); ?>
 <?= $form->field($model, 'required')->checkbox(); ?>
 <?php if ($model->type == Attribute::TYPE_COLOR) {

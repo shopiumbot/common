@@ -23,17 +23,11 @@ $config = [
         'panix\engine\BootstrapModule'
     ],
     'controllerMap' => [
-        'site' => 'core\components\controllers\WebController',
-        'badmin' => 'core\components\controllers\AdminController',
+        'site' => 'panix\engine\controllers\WebController',
+        'badmin' => 'panix\engine\controllers\AdminController',
     ],
     'modules' => [
         'admin' => ['class' => 'shopium\mod\admin\Module'],
-        'plugins' => [
-            'class' => 'panix\mod\plugins\Module',
-            'pluginsDir' => [
-                '@panix/engine/plugins',
-            ]
-        ],
         'rbac' => [
             'class' => 'panix\mod\rbac\Module',
             //'as access' => [
@@ -44,7 +38,6 @@ $config = [
         'user' => ['class' => 'panix\mod\user\Module'],
         'shop' => ['class' => 'core\modules\shop\Module'],
         'contacts' => ['class' => 'panix\mod\contacts\Module'],
-        'seo' => ['class' => 'panix\mod\seo\Module'],
         'discounts' => ['class' => 'panix\mod\discounts\Module'],
         'csv' => ['class' => 'panix\mod\csv\Module'],
         'images' => ['class' => 'panix\mod\images\Module'],
@@ -59,26 +52,11 @@ $config = [
         'img' => [
             'class' => 'panix\engine\components\ImageHandler',
         ],
-        /*'fcm' => [
-            'class' => 'understeam\fcm\Client',
-            'apiKey' => 'AIzaSyAbeTCpxK7OGu_lXZDSnJjV1ItkUwPOBbc', // Server API Key (you can get it here: https://firebase.google.com/docs/server/setup#prerequisites)
-        ],*/
         'geoip' => ['class' => 'panix\engine\components\geoip\GeoIP'],
         'formatter' => ['class' => 'panix\engine\i18n\Formatter'],
         'assetManager' => [
             'forceCopy' => YII_DEBUG,
             'appendTimestamp' => true
-        ],
-        'plugins' => [
-            'class' => panix\mod\plugins\components\PluginsManager::class,
-            'appId' => panix\mod\plugins\BasePlugin::APP_BACKEND,
-            // by default
-            'enablePlugins' => true,
-            'shortcodesParse' => true,
-            'shortcodesIgnoreBlocks' => [
-                '<pre[^>]*>' => '<\/pre>',
-                // '<div class="content[^>]*>' => '<\/div>',
-            ]
         ],
         'i18n' => [
             'translations' => [
@@ -133,7 +111,6 @@ $config = [
                 'placeholder' => 'site/placeholder',
                 //'/admin' => 'admin/admin/default/index',
                 // 'admin/auth' => 'admin/auth/index',
-                ['pattern' => 'like/<type:(up|down)>/<id:\d+>', 'route' => 'site/like'],
                 // ['pattern' => 'admin/app/<controller:\w+>', 'route' => 'admin/admin/<controller>/index'],
                 //['pattern' => 'admin/app/<controller:\w+>/<action:[0-9a-zA-Z_\-]+>', 'route' => 'admin/admin/<controller>/<action>'],
                 //  ['pattern' => 'admin/<module:\w+>/<controller:[0-9a-zA-Z_\-]+>/<action:[0-9a-zA-Z_\-]+>', 'route' => '<module>/admin/<controller>/<action>'],
