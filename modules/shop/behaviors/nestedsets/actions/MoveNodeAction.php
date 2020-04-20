@@ -34,9 +34,6 @@ class MoveNodeAction extends Action
             $node = $this->findModel(Yii::$app->request->get('id'));
             $target = $modelClass::findOne(Yii::$app->request->get('ref'));
 
-            if(!method_exists($modelClass,'rebuildFullPath')){
-                die('no find method rebuildFullPath()');
-            }
             $pos = (int)Yii::$app->request->get('position');
 
             if ($pos == 1) {
