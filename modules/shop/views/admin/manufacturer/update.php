@@ -28,13 +28,6 @@ $form = ActiveForm::begin([
                 'options' => ['class' => 'flex-sm-fill text-center nav-item'],
             ];
 
-            $tabs[] = [
-                'label' => Yii::t('seo/default','TAB_SEO'),
-                'content' => $this->render('@seo/views/admin/default/_module_seo', ['model' => $model]),
-                'options' => ['class' => 'flex-sm-fill text-center nav-item'],
-            ];
-
-
             echo \panix\engine\bootstrap\Tabs::widget([
                 //'encodeLabels'=>true,
                 'options' => [

@@ -9,9 +9,6 @@ use yii\helpers\ArrayHelper;
  * Class ProductType
  *
  * @property integer $id
- * @property string $product_name
- * @property string $product_title
- * @property string $product_description
  * @property string $name
  *
  * @package core\modules\shop\models

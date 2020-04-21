@@ -11,8 +11,7 @@ use core\modules\shop\models\query\ManufacturerQuery;
 /**
  * Class Manufacturer
  * @property integer $id
- * @property string $name ManufacturerTranslate
- * @property string $description
+ * @property string $name
  * @property Product[] $productsCount
  *
  */
@@ -46,7 +45,7 @@ class Manufacturer extends ActiveRecord
                 'format' => 'html',
                 'contentOptions' => ['class' => 'text-left'],
                 'value' => function ($model) {
-                    return Html::a($model->name, $model->getUrl(), ['target' => '_blank']);
+                    return $model->name;
                 }
             ],
             'products' => [
@@ -110,8 +109,6 @@ class Manufacturer extends ActiveRecord
         return [
             [['name'], 'required'],
             [['name'], 'trim'],
-            [['description'], 'string'],
-            [['description', 'image'], 'default'],
             [['name'], 'string', 'max' => 255],
             [['ordern'], 'integer'],
             [['name'], 'safe'],

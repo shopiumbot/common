@@ -271,14 +271,6 @@ class Product extends ActiveRecord
         $rules = [];
 
 
-        $auto = false;
-        if ($this->isNewRecord && isset(Yii::$app->request->get('Product')['type_id'])) {
-            $type = ProductType::findOne(Yii::$app->request->get('Product')['type_id']);
-            if ($type && $type->product_name)
-                $auto = true;
-        }
-
-
         $rules[] = [['main_category_id', 'price', 'unit'], 'required'];
         $rules[] = ['price', 'commaToDot'];
         $rules[] = [['file'], 'file', 'maxFiles' => Yii::$app->params['plan'][Yii::$app->params['plan_id']]['product_upload_files']];
@@ -514,17 +506,6 @@ class Product extends ActiveRecord
 
     public $auto = false;
 
-    public function init()
-    {
-        if (Yii::$app->id != 'console') {
-            if ($this->isNewRecord && isset(Yii::$app->request->get('Product')['type_id'])) {
-                $type = ProductType::findOne(Yii::$app->request->get('Product')['type_id']);
-                if ($type && $type->product_name)
-                    $this->auto = true;
-            }
-        }
-        parent::init();
-    }
 
     public function afterSave($insert, $changedAttributes)
     {

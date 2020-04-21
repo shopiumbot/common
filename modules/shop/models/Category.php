@@ -132,14 +132,6 @@ class Category extends ActiveRecord
         return $value;
     }
 
-    public function replaceMeta($text, $parentCategory)
-    {
-        $replace = [
-            "{category_name}" => $this->name,
-            "{sub_category_name}" => ($parentCategory->name == 'root') ? '' : $parentCategory->name,
-            "{currency.symbol}" => Yii::$app->currency->active['symbol'],
-        ];
-        return CMS::textReplace($text, $replace);
-    }
+
 
 }
