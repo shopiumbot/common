@@ -9,7 +9,7 @@
  * Class m000007_114919_notifications
  */
 use panix\engine\db\Migration;
-use panix\mod\admin\models\Notification;
+use shopium\mod\admin\models\Notification;
 
 class m000007_114919_notifications extends Migration
 {

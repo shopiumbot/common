@@ -10,7 +10,7 @@
  */
 
 use panix\engine\db\Migration;
-use panix\mod\admin\models\SettingsForm;
+use shopium\mod\admin\models\SettingsForm;
 use panix\engine\components\Settings;
 
 class m000002_202400_settings extends Migration

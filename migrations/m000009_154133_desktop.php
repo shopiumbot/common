@@ -9,8 +9,8 @@
  */
 
 use panix\engine\db\Migration;
-use panix\mod\admin\models\Desktop;
-use panix\mod\admin\models\DesktopWidgets;
+use shopium\mod\admin\models\Desktop;
+use shopium\mod\admin\models\DesktopWidgets;
 
 class m000009_154133_desktop extends Migration
 {

@@ -18,16 +18,14 @@
         "yiisoft/yii2-bootstrap4": "^2.0.0",
         "yiisoft/yii2-debug": "~2",
         "panix/engine": "dev-master",
-        "shopium/mod-admin": "dev-master",
-        "panix/mod-discounts": "dev-master",
         "panix/mod-contacts": "dev-master",
         "panix/mod-user": "dev-master",
-        "panix/mod-cart": "dev-master",
-        "panix/mod-shop": "dev-master",
-        "panix/mod-csv": "dev-master",
         "panix/mod-images": "dev-master",
         "panix/mod-rbac": "dev-master",
-        "shopium/mod-telegram": "~0.1"
+        "shopium/mod-telegram": "~0.1",
+        "shopium/mod-admin": "dev-master",
+        "shopium/mod-discounts": "dev-master",
+        "panix/wgt-fancybox": "dev-master"
     },
     "config": {
         "process-timeout": 1800

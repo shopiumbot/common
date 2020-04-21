@@ -98,7 +98,7 @@ class Module extends WebModule implements BootstrapInterface
                         'label' => Yii::t('shop/admin', 'NOTIFIER'),
                         "url" => ['/admin/shop/notify'],
                         'icon' => 'envelope',
-                        'visible' => false,
+                        'visible' => true,
                     ],
                     [
                         'label' => Yii::t('shop/admin', 'CURRENCY'),
