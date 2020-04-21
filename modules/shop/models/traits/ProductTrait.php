@@ -277,37 +277,6 @@ trait ProductTrait
             'class' => 'panix\engine\grid\columns\jui\DatepickerColumn',
         ];
 
-
-
-        $db = Attribute::getDb();
-        $query = $db->cache(function () {
-            return Attribute::find()
-                ->sort()
-                ->all();
-        }, 3600);
-
-
-        $get = Yii::$app->request->get('ProductSearch');
-        foreach ($query as $m) {
-
-            $columns['' . $m->name] = [
-                //'class' => 'core\modules\shop\components\EavColumn',
-                'attribute' => 'eav_' . $m->name,
-                'header' => $m->title,
-                'filter' => Html::dropDownList(
-                    'ProductSearch[eav][' . $m->name . ']',
-                    (isset($get['eav'][$m->name])) ? $get['eav'][$m->name] : null,
-                    ArrayHelper::map($m->options, 'id', 'value'),
-                    ['class' => 'custom-select w-auto', 'prompt' => html_entity_decode('&mdash; ' . $m->title . ' &mdash;')]
-                ),
-                //'filter'=>true,
-                'contentOptions' => ['class' => 'text-center'],
-                'filterOptions' => ['class' => 'text-center'],
-
-            ];
-        }
-
-
         $columns['DEFAULT_CONTROL'] = [
             'class' => 'panix\engine\grid\columns\ActionColumn',
         ];
