@@ -3,14 +3,13 @@
 namespace core\modules\shop\models;
 
 
-use panix\mod\discounts\components\DiscountBehavior;
+use shopium\mod\discounts\components\DiscountBehavior;
 use panix\mod\images\models\Image;
 use panix\mod\sitemap\behaviors\SitemapBehavior;
 use panix\mod\user\models\User;
 use Yii;
 use panix\engine\CMS;
 use core\modules\shop\models\query\ProductQuery;
-use core\modules\shop\models\translate\ProductTranslate;
 use yii\caching\DbDependency;
 use yii\caching\TagDependency;
 use yii\db\Query;
@@ -49,9 +48,9 @@ use panix\engine\db\ActiveRecord;
  * @property Manufacturer[] $manufacturer
  * @property Supplier[] $supplier
  * @property string $discount Discount
- * @property boolean $hasDiscount See [[\panix\mod\discounts\components\DiscountBehavior]] //Discount
- * @property float $originalPrice See [[\panix\mod\discounts\components\DiscountBehavior]]
- * @property float $discountPrice See [[\panix\mod\discounts\components\DiscountBehavior]]
+ * @property boolean $hasDiscount See [[\shopium\mod\discounts\components\DiscountBehavior]] //Discount
+ * @property float $originalPrice See [[\shopium\mod\discounts\components\DiscountBehavior]]
+ * @property float $discountPrice See [[\shopium\mod\discounts\components\DiscountBehavior]]
  * @property integer $ordern
  * @property boolean $isAvailable
  * @property Category $categories
@@ -764,7 +763,7 @@ class Product extends ActiveRecord
 
         if (Yii::$app->getModule('discounts') && Yii::$app->id !== 'console')
             $a['discounts'] = [
-                'class' => '\panix\mod\discounts\components\DiscountBehavior'
+                'class' => '\shopium\mod\discounts\components\DiscountBehavior'
             ];
 
         return ArrayHelper::merge($a, parent::behaviors());
