@@ -33,13 +33,6 @@ class Manufacturer extends ActiveRecord
     public function getGridColumns()
     {
         return [
-            'image' => [
-                'class' => 'panix\engine\grid\columns\ImageColumn',
-                'attribute' => 'image',
-                'value' => function ($model) {
-                    return Html::a(Html::img($model->getImageUrl('image', '50x50'), ['alt' => $model->name, 'class' => 'img-thumbnail_']), $model->getImageUrl('image'), ['title' => $model->name, 'data-fancybox' => 'gallery']);
-                }
-            ],
             'name' => [
                 'attribute' => 'name',
                 'format' => 'html',
@@ -112,27 +105,9 @@ class Manufacturer extends ActiveRecord
             [['name'], 'string', 'max' => 255],
             [['ordern'], 'integer'],
             [['name'], 'safe'],
-            [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        $a = [];
-        $a['uploadFile'] = [
-            'class' => 'panix\engine\behaviors\UploadFileBehavior',
-            'files' => [
-                'image' => '@uploads/manufacturer',
-            ],
-            'options' => [
-                'watermark' => false
-            ]
-        ];
 
-        return ArrayHelper::merge($a, parent::behaviors());
-    }
 
 }

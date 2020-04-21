@@ -271,7 +271,7 @@ class Product extends ActiveRecord
         $rules = [];
 
 
-        $rules[] = [['main_category_id', 'price', 'unit'], 'required'];
+        $rules[] = [['main_category_id', 'price', 'unit','name'], 'required'];
         $rules[] = ['price', 'commaToDot'];
         $rules[] = [['file'], 'file', 'maxFiles' => Yii::$app->params['plan'][Yii::$app->params['plan_id']]['product_upload_files']];
         $rules[] = [['file'], 'validateLimit'];
