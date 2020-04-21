@@ -39,7 +39,6 @@ class m180917_193213_shop_product extends Migration
             'price' => $this->money(10, 2),
             'unit' => $this->tinyInteger(1)->unsigned()->defaultValue(1),
             'max_price' => $this->money(10, 2),
-            'price_purchase' => $this->money(10, 2)->comment('Цена закупки'),
             'label' => $this->tinyInteger(1)->null(),
             'sku' => $this->string(50),
             'weight' => $this->decimal(15, 4),

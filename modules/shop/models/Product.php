@@ -17,6 +17,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use panix\engine\db\ActiveRecord;
+use yii\web\NotFoundHttpException;
 
 /**
  * Class Product
@@ -30,7 +31,6 @@ use panix\engine\db\ActiveRecord;
  * @property string $name Product name
  * @property float $price Price
  * @property float $max_price Max price
- * @property float $price_purchase
  * @property boolean $unit Unit
  * @property boolean $sku Product article
  * @property integer $quantity
@@ -291,8 +291,8 @@ class Product extends ActiveRecord
         $rules[] = ['use_configurations', 'boolean', 'on' => self::SCENARIO_INSERT];
         $rules[] = ['enable_comments', 'boolean'];
 		$rules[] = [['unit'], 'default', 'value' => 1];
-        $rules[] = [['sku', 'full_description', 'price_purchase', 'label', 'discount'], 'default']; // установим ... как NULL, если они пустые
-        $rules[] = [['price', 'price_purchase'], 'double'];
+        $rules[] = [['sku', 'full_description', 'label', 'discount'], 'default']; // установим ... как NULL, если они пустые
+        $rules[] = [['price'], 'double'];
         $rules[] = [['manufacturer_id', 'type_id', 'quantity', 'views', 'availability', 'added_to_cart_count', 'ordern', 'category_id', 'currency_id', 'supplier_id', 'label'], 'integer'];
         $rules[] = [['name', 'full_description', 'use_configurations'], 'safe'];
 

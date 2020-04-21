@@ -12,7 +12,7 @@
 
 use core\modules\shop\models\Category;
 use yii\web\View;
-
+\core\modules\shop\bundles\AdminAsset::register($this);
 echo \panix\ext\jstree\JsTree::widget([
     'id' => 'CategoryTree',
     'allOpen' => true,

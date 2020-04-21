@@ -10,10 +10,8 @@ use core\modules\shop\models\Currency;
 ?>
 
 <?php
-echo $form->field($model, 'price_purchase')->hint('Данная цена не где не отображается, она нужна только для статистики');
-if ($model->use_configurations) {
-    echo $form->field($model, 'price')->hiddenInput()->label(false);
-} else {
+
+
     echo $form->field($model, 'price', [
         'parts' => [
             '{label_unit}' => Html::activeLabel($model, 'unit'),
@@ -31,7 +29,7 @@ if ($model->use_configurations) {
 <span class="input-group-text">{label_unit}</span>
 {unit}<span class="input-group-text">{label_currency}</span>{currency}{hint}{error}</div>',
     ])->textInput(['maxlength' => 10]);
-}
+
 
 ?>
 
