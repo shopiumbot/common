@@ -60,7 +60,6 @@ class ProductType extends ActiveRecord
             [['name'], 'trim'],
             [['name'], 'required'],
             [['name'], 'string', 'max' => 255],
-            [['product_description', 'product_title', 'product_name'], 'string'],
             [['name', 'categories_preset'], 'safe'],
         ];
     }
