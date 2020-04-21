@@ -78,7 +78,7 @@ echo \panix\engine\barcode\BarcodeGenerator::widget([
                     if ($a->type == Attribute::TYPE_DROPDOWN) {
                         $addOptionLink = Html::a(Html::icon('add'), '#', [
                             'rel' => $a->id,
-                            'data-name' => $a->getIdByName(), //$a->getIdByName()
+                            'data-name' => $a->getIdBy(), //$a->getIdByName()
                             //'data-name' => Html::getInputName($a, $a->name),
                             'onclick' => 'js: return addNewOption($(this));',
                             'class' => 'btn btn-success', // btn-sm mt-2 float-right
