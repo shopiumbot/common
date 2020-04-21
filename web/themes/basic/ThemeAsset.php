@@ -35,8 +35,6 @@ class ThemeAsset extends AssetBundle
         'panix\engine\assets\JqueryCookieAsset',
         'panix\engine\assets\TouchPunchAsset',
         'panix\engine\assets\CommonAsset',
-        'panix\mod\shop\bundles\WebAsset',
-        'panix\mod\cart\CartAsset',
     ];
 
 }

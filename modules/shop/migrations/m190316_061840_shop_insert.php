@@ -259,7 +259,6 @@ class m190316_061840_shop_insert extends Migration
                     if (!$attribute) {
                         $attribute = new Attribute;
                         $attribute->title = $attribute_name;
-                        $attribute->name = CMS::slug($attribute->title);
                         $attribute->type = (isset($attribute_value['type'])) ? $attribute_value['type'] : Attribute::TYPE_DROPDOWN;
                         $attribute->select_many = (isset($attribute_value['select_many'])) ? $attribute_value['select_many'] : true;
                         $attribute->required = (isset($attribute_value['required'])) ? $attribute_value['required'] : false;
@@ -274,20 +273,20 @@ class m190316_061840_shop_insert extends Migration
                                     $attributes = [];
                                     $attributeOption = $this->writeAttribute($attribute->id, $item);
 
-                                    $attributes[CMS::slug($attribute_name)] = $attributeOption->id;
+                                    $attributes[$attribute->id] = $attributeOption->id;
                                     $model->setEavAttributes($attributes, true);
                                 }
                             } elseif ($attribute_value['value']) {
                                 $attributes = [];
                                 $attributeOption = $this->writeAttribute($attribute->id, (isset($attribute_value['value'])) ? $attribute_value['value'] : $attribute_value);
-                                $attributes[CMS::slug($attribute_name)] = $attributeOption->id;
+                                $attributes[$attribute->id] = $attributeOption->id;
                                 $model->setEavAttributes($attributes, true);
                             }
                         } else {
                             $attributes = [];
                             $attributeOption = $this->writeAttribute($attribute->id, (isset($attribute_value['value'])) ? $attribute_value['value'] : $attribute_value);
 
-                            $attributes[CMS::slug($attribute_name)] = $attributeOption->id;
+                            $attributes[$attribute->id] = $attributeOption->id;
                             $model->setEavAttributes($attributes, true);
                         }
 

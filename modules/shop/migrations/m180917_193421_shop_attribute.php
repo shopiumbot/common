@@ -36,7 +36,6 @@ class m180917_193421_shop_attribute extends Migration
             'ordern' => $this->integer(11)->unsigned(),
         ]);
 
-        $this->createIndex('name', Attribute::tableName(), 'name');
         $this->createIndex('ordern', Attribute::tableName(), 'ordern');
 
 

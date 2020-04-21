@@ -16,7 +16,7 @@ $config = [
     ],
     //'sourceLanguage'=>'ru',
     // 'runtimePath' => '@app/backend/runtime',
-    'controllerNamespace' => 'core\components\controllers',
+    'controllerNamespace' => 'panix\engine\controllers',
     //'defaultRoute' => 'site/index',
     'bootstrap' => [
         'log',
