@@ -24,7 +24,6 @@ use yii\web\NotFoundHttpException;
  * @property integer $id Product id
  * @property integer $manufacturer_id Manufacturer
  * @property integer $type_id Type
- * @property integer $supplier_id Supplier
  * @property integer $currency_id Currency
  * @property Currency $currency
  * @property integer $use_configurations
@@ -277,7 +276,7 @@ class Product extends ActiveRecord
         $rules[] = [['file'], 'validateLimit'];
         $rules[] = [['name'], 'string', 'max' => 255];
         $rules[] = [['image'], 'image'];
-
+        $rules[] = [['name'], 'unique'];
         $rules[] = [['name'], 'trim'];
         $rules[] = [['full_description'], 'string'];
         $rules[] = ['use_configurations', 'boolean', 'on' => self::SCENARIO_INSERT];
@@ -285,7 +284,7 @@ class Product extends ActiveRecord
 		$rules[] = [['unit'], 'default', 'value' => 1];
         $rules[] = [['sku', 'full_description', 'label', 'discount'], 'default']; // установим ... как NULL, если они пустые
         $rules[] = [['price'], 'double'];
-        $rules[] = [['manufacturer_id', 'type_id', 'quantity', 'views', 'availability', 'added_to_cart_count', 'ordern', 'category_id', 'currency_id', 'supplier_id', 'label'], 'integer'];
+        $rules[] = [['manufacturer_id', 'type_id', 'quantity', 'views', 'availability', 'added_to_cart_count', 'ordern', 'category_id', 'currency_id', 'label'], 'integer'];
         $rules[] = [['name', 'full_description', 'use_configurations'], 'safe'];
 
         return $rules;
@@ -344,11 +343,6 @@ class Product extends ActiveRecord
             //->cache(3200, new DbDependency(['sql' => 'SELECT MAX(`updated_at`) FROM ' . Manufacturer::tableName()]));
     }
 
-    public function getSupplier()
-    {
-        return $this->hasOne(Supplier::class, ['id' => 'supplier_id']);
-           // ->cache(3200, new DbDependency(['sql' => 'SELECT MAX(`updated_at`) FROM ' . Supplier::tableName()]));
-    }
 
     public function getType()
     {

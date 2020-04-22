@@ -31,7 +31,6 @@ return [
     'SELECT_CURRENCY' => '{currency} (по умолчанию)',
     'TEXT' => 'Описание товара',
     'UNIT' => 'Ед. измерения',
-    'SUPPLIER_ID' => 'Поставщик',
     'MANUFACTURER_ID' => 'Производитель',
     'MAIN_CATEGORY_ID' => 'Категория',
     'DISCOUNT' => 'Скидка',
@@ -61,7 +60,6 @@ return [
     'UNIT_THING' => 'шт.',
     'UNIT_METER' => 'метр.',
     'UNIT_BOX' => 'ящик.',
-    'SELECT_SUPPLIER_ID' => '&mdash; Выбрать поставщика &mdash;',
     'SELECT_MANUFACTURER_ID' => '&mdash; Выбрать производителя &mdash;',
     'SELECT_MAIN_CATEGORY_ID' => '&mdash; Выбрать категорию &mdash;',
 ];

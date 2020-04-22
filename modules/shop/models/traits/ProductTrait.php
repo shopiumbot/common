@@ -209,17 +209,7 @@ trait ProductTrait
                 return implode('<br>',$data);
             }
         ];
-        $columns['supplier_id'] = [
-            'attribute' => 'supplier_id',
-            'filter' => ArrayHelper::map(Supplier::find()
-                ->cache(3200, new DbDependency(['sql' => 'SELECT MAX(`updated_at`) FROM ' . Supplier::tableName()]))
-                ->addOrderBy(['name'=>SORT_ASC])
-                ->all(), 'id', 'name'),
-            'filterInputOptions' => ['class' => 'form-control', 'prompt' => html_entity_decode('&mdash; выберите поставщика &mdash;')],
-            'value' => function ($model) {
-                return ($model->supplier) ? $model->supplier->name : NULL;
-            }
-        ];
+
         $columns['manufacturer_id'] = [
             'attribute' => 'manufacturer_id',
             'filter' => ArrayHelper::map(Manufacturer::find()

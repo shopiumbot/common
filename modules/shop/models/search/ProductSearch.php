@@ -25,7 +25,7 @@ class ProductSearch extends Product
     public function rules()
     {
         return [
-            [['price_min', 'price_max', 'supplier_id', 'manufacturer_id', 'main_category_id'], 'integer'],
+            [['price_min', 'price_max', 'manufacturer_id', 'main_category_id'], 'integer'],
             // [['image'],'boolean'],
             [['sku', 'price', 'id'], 'safe'], //commentsCount
             [['name'], 'string'],
@@ -150,7 +150,6 @@ class ProductSearch extends Product
 
 
         $query->andFilterWhere(['like', 'sku', $this->sku]);
-        $query->andFilterWhere(['supplier_id' => $this->supplier_id]);
         $query->andFilterWhere(['manufacturer_id' => $this->manufacturer_id]);
         if ($this->main_category_id)
             $query->andFilterWhere(['categories.category'=>$this->main_category_id]);

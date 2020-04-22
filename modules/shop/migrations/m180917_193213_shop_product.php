@@ -28,7 +28,6 @@ class m180917_193213_shop_product extends Migration
             'category_id' => $this->integer()->unsigned(),
             'main_category_id' => $this->integer()->unsigned(),
             'type_id' => $this->smallInteger()->unsigned(),
-            'supplier_id' => $this->integer()->unsigned(),
             'currency_id' => $this->smallInteger()->unsigned(),
             'weight_class_id' => $this->integer(),
             'length_class_id' => $this->integer(),
@@ -69,7 +68,6 @@ class m180917_193213_shop_product extends Migration
         $this->createIndex('manufacturer_id', Product::tableName(), 'manufacturer_id');
         $this->createIndex('category_id', Product::tableName(), 'category_id');
         $this->createIndex('type_id', Product::tableName(), 'type_id');
-        $this->createIndex('supplier_id', Product::tableName(), 'supplier_id');
         $this->createIndex('currency_id', Product::tableName(), 'currency_id');
         $this->createIndex('price', Product::tableName(), 'price');
         $this->createIndex('max_price', Product::tableName(), 'max_price');

@@ -46,24 +46,6 @@ class ProductQuery extends ActiveQuery
     }
 
     /**
-     * @param $suppliers array|int
-     * @return $this
-     */
-    public function applySuppliers($suppliers)
-    {
-        if (!is_array($suppliers))
-            $suppliers = [$suppliers];
-
-        if (empty($suppliers))
-            return $this;
-
-        sort($suppliers);
-
-        $this->andWhere(['supplier_id' => $suppliers]);
-        return $this;
-    }
-
-    /**
      * @param $categories array|int|object
      * @return $this
      */
