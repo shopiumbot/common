@@ -32,34 +32,6 @@ $('#CategoryTree').bind('changed.jstree', function (e, data) {
     };
 })(jQuery);
 
-// On change `use configurations` select - load available attributes
-$('#product-use_configurations, #product-type_id').change(function () {
-    var attrs_block = $('#availableAttributes');
-    var type_id = $('#product-type_id').val();
-    attrs_block.html('');
-
-    if ($('#product-use_configurations').val() == '0')
-        return;
-
-    $.getJSON(common.url('/admin/shop/product/load-configurable-options?type_id=' + type_id), function (data) {
-        var items = [];
-        if (data.success) {
-            $.each(data.response, function (key, option) {
-                items.push('<li><label class="control-label"><input type="checkbox" class="check" name="Product[configurable_attributes][]" value="' + option.id + '" name=""> ' + option.title + '</label></li>');
-            });
-            $('#availableAttributes').removeClass('d-none');
-            $('<ul/>', {
-                'class': 'list-unstyled',
-                'style': 'margin-left:20px',
-                html: items.join('')
-            }).appendTo(attrs_block);
-        } else {
-            $('#availableAttributes').html('<div class="alert alert-danger">' + data.message + '</div>').removeClass('d-none');
-        }
-    });
-});
-
-
 
 var price_id = Math.random();
 

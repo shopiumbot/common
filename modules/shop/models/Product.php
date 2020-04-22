@@ -37,7 +37,6 @@ use yii\web\NotFoundHttpException;
  * @property integer $label
  * @property integer $main_category_id
  * @property integer $auto_decrease_quantity
- * @property integer $views Views product on frontend
  * @property integer $created_at
  * @property integer $updated_at
  * @property boolean $switch
@@ -64,17 +63,6 @@ class Product extends ActiveRecord
     use traits\ProductTrait;
 
     const SCENARIO_INSERT = 'insert';
-
-    /**
-     * @var array of attributes used to configure product
-     */
-    private $_configurable_attributes;
-    private $_configurable_attribute_changed = false;
-
-    /**
-     * @var array
-     */
-    private $_configurations;
     public $file;
 
     const route = '/admin/shop/default';
@@ -149,7 +137,6 @@ class Product extends ActiveRecord
         $html .= Html::hiddenInput('product_id', $this->id);
         $html .= Html::hiddenInput('product_price', $this->price);
         $html .= Html::hiddenInput('use_configurations', $this->use_configurations);
-        $html .= Html::hiddenInput('configurable_id', 0);
         return $html;
     }
 
@@ -283,7 +270,7 @@ class Product extends ActiveRecord
 		$rules[] = [['unit'], 'default', 'value' => 1];
         $rules[] = [['sku', 'full_description', 'label', 'discount'], 'default']; // установим ... как NULL, если они пустые
         $rules[] = [['price'], 'double'];
-        $rules[] = [['manufacturer_id', 'type_id', 'quantity', 'views', 'availability', 'added_to_cart_count', 'ordern', 'category_id', 'currency_id', 'label'], 'integer'];
+        $rules[] = [['manufacturer_id', 'type_id', 'quantity', 'availability', 'added_to_cart_count', 'ordern', 'category_id', 'currency_id', 'label'], 'integer'];
         $rules[] = [['name', 'full_description', 'use_configurations'], 'safe'];
 
         return $rules;
@@ -318,15 +305,6 @@ class Product extends ActiveRecord
             2 => self::t('UNIT_METER'),
             3 => self::t('UNIT_BOX'),
         ];
-    }
-
-    public function beforeValidate()
-    {
-        // For configurable product set 0 price
-        if ($this->use_configurations)
-            $this->price = 0;
-
-        return parent::beforeValidate();
     }
 
     public function getUser()
@@ -499,101 +477,6 @@ class Product extends ActiveRecord
 
     public $auto = false;
 
-
-    public function afterSave($insert, $changedAttributes)
-    {
-
-        // Save configurable attributes
-        if ($this->_configurable_attribute_changed === true) {
-            // Clear
-            Yii::$app->db->createCommand()->delete('{{%shop__product_configurable_attributes}}', 'product_id = :id', array(':id' => $this->id));
-
-            foreach ($this->_configurable_attributes as $attr_id) {
-                Yii::$app->db->createCommand()->insert('{{%shop__product_configurable_attributes}}', array(
-                    'product_id' => $this->id,
-                    'attribute_id' => $attr_id
-                ));
-            }
-        }
-
-        // Process min and max price for configurable product
-        if ($this->use_configurations)
-            $this->updatePrices($this);
-        else {
-            // Check if product is configuration
-
-            $query = (new Query())
-                ->from('{{%shop__product_configurations}} t')
-                ->where(['in', 't.configurable_id', [$this->id]])
-                ->all();
-
-
-            /* $query = Yii::$app->db->createCommand()
-              ->from('{{%shop__product_configurations}} t')
-              ->where(['in', 't.configurable_id', [$this->id]])
-              ->queryAll();
-             */
-            foreach ($query as $row) {
-                $model = Product::findOne($row['product_id']);
-                if ($model)
-                    $this->updatePrices($model);
-            }
-        }
-
-        parent::afterSave($insert, $changedAttributes);
-    }
-
-    /**
-     * Update price and max_price for configurable product
-     * @param Product $model
-     */
-    public function updatePrices(Product $model)
-    {
-        $query = (new Query())
-            ->select('MIN(price) as min_price, MAX(price) as max_price')
-            ->from(self::tableName())
-            ->where(['in', 'id', $model->getConfigurations(true)])
-            ->one();
-        /*$query = (new Query())
-            ->select('MIN(t.price) as min_price, MAX(t.price) as max_price')
-            ->from('{{%shop__product}} t')
-            ->where(['in', 't.id', $model->getConfigurations(true)])
-            ->one();*/
-
-        // Update
-        Yii::$app->db->createCommand()->update(self::tableName(), [
-            'price' => $query['min_price'],
-            'max_price' => $query['max_price']
-        ], 'id=:id', [':id' => $model->id])->execute();
-    }
-
-    /**
-     * @param boolean $reload
-     * @return array of product ids
-     */
-    public function getConfigurations($reload = false)
-    {
-        if (is_array($this->_configurations) && $reload === false)
-            return $this->_configurations;
-
-
-        $query = (new Query())
-            ->select('t.configurable_id')
-            ->from('{{%shop__product_configurations}} as t')
-            ->where('t.product_id=:id', [':id' => $this->id])
-            ->groupBy('t.configurable_id');
-        // ->one();
-        $this->_configurations = $query->createCommand()->queryColumn();
-        /* $this->_configurations = Yii::$app->db->createCommand()
-          ->select('t.configurable_id')
-          ->from('{{%shop__product_configurations}} t')
-          ->where('product_id=:id', array(':id' => $this->id))
-          ->group('t.configurable_id')
-          ->queryColumn(); */
-
-        return $this->_configurations;
-    }
-
     public function getFrontPrice()
     {
         $currency = Yii::$app->currency;
@@ -623,60 +506,9 @@ class Product extends ActiveRecord
             'product' => $this->id
         ]);
 
-
-        // Clear configurable attributes
-        Yii::$app->db->createCommand()->delete('{{%shop__product_configurable_attributes}}', ['product_id' => $this->id])->execute();
-        // Delete configurations
-        Yii::$app->db->createCommand()->delete('{{%shop__product_configurations}}', ['product_id' => $this->id])->execute();
-        Yii::$app->db->createCommand()->delete('{{%shop__product_configurations}}', ['configurable_id' => $this->id])->execute();
-        /* if (Yii::app()->hasModule('wishlist')) {
-          Yii::import('mod.wishlist.models.WishlistProducts');
-          $wishlistProduct = WishlistProducts::model()->findByAttributes(array('product_id' => $this->id));
-          if ($wishlistProduct)
-          $wishlistProduct->delete();
-          }
-          // Delete from comapre if install module "comapre"
-          if (Yii::app()->hasModule('comapre')) {
-          Yii::import('mod.comapre.components.CompareProducts');
-          $comapreProduct = new CompareProducts;
-          $comapreProduct->remove($this->id);
-          } */
-
         parent::afterDelete();
     }
 
-    public function setConfigurable_attributes(array $ids)
-    {
-        $this->_configurable_attributes = $ids;
-        $this->_configurable_attribute_changed = true;
-    }
-
-    /**
-     * @return array
-     */
-    public function getConfigurable_attributes()
-    {
-        if ($this->_configurable_attribute_changed === true)
-            return $this->_configurable_attributes;
-
-        if ($this->_configurable_attributes === null) {
-
-            $query = new Query;
-            $query->select('attribute_id')
-                ->from('{{%shop__product_configurable_attributes}}')
-                ->where(['product_id' => $this->id])
-                ->groupBy('attribute_id');
-            $this->_configurable_attributes = $query->createCommand()->queryColumn();
-            /*    $this->_configurable_attributes = Yii::app()->db->createCommand()
-              ->select('t.attribute_id')
-              ->from('{{shop__product_configurable_attributes}} t')
-              ->where('t.product_id=:id', array(':id' => $this->id))
-              ->group('t.attribute_id')
-              ->queryColumn(); */
-        }
-
-        return $this->_configurable_attributes;
-    }
 
     /**
      * @inheritdoc
@@ -702,7 +534,7 @@ class Product extends ActiveRecord
             else
                 return null;
 
-
+            /** @var Attribute $attributeModel */
             $attributeModel = Attribute::getDb()->cache(function ($db) use ($attribute) {
                 $q = Attribute::find()->where(['name' => $attribute]);
 

@@ -77,13 +77,6 @@ class ProductType extends ActiveRecord
             ->via('attributeRelation');
     }
 
-    public function getShopConfigurableAttributes()
-    {
-        return $this->hasMany(Attribute::class, ['id' => 'attribute_id'])
-            ->andWhere('use_in_variants=1')
-            ->via('attributeRelation');
-    }
-
 
     /**
      * Clear and set type attributes

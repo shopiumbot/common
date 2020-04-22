@@ -8,19 +8,7 @@ use core\modules\shop\models\ProductType;
 
 ?>
 <?php if (!$model->isNewRecord) { ?>
-    <div class="row">
-        <div class="col-sm-4">
 
-        </div>
-        <div class="col-sm-4">
-
-            <span class="badge badge-secondary"><?= $model->views; ?> просмотров</span>
-        </div>
-        <div class="col-sm-4">
-            <?php var_dump($model->switch); ?>
-            <span class="badge badge-secondary">Товар скрыт</span>
-        </div>
-    </div>
 <?php } ?>
     <div class="card">
         <div class="card-header">
@@ -37,7 +25,7 @@ use core\modules\shop\models\ProductType;
         $typesList = ProductType::find()->all();
         if (count($typesList) > 0) {
             // If selected `configurable` product without attributes display error
-            if ($model->isNewRecord && $model->use_configurations == true && empty($model->configurable_attributes))
+            if ($model->isNewRecord)
                 $attributeError = true;
             else
                 $attributeError = false;
@@ -125,16 +113,6 @@ use core\modules\shop\models\ProductType;
                         'options' => ['class' => 'flex-sm-fill text-center nav-item'],
                     ];
 
-
-                    if ($model->use_configurations) {
-                        $tabs[] = [
-                            'label' => 'UPDATE_PRODUCT_TAB_CONF',
-                            'content' => $this->render('tabs/_configurations', ['product' => $model]),
-                            'headerOptions' => [],
-                            'itemOptions' => ['class' => 'flex-sm-fill text-center nav-item'],
-                            'visible' => false,
-                        ];
-                    }
 
                     echo \panix\engine\bootstrap\Tabs::widget([
                         //'encodeLabels'=>true,

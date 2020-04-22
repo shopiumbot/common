@@ -77,7 +77,6 @@ class ProductsDuplicator extends \yii\base\Component
 
         $product->name .= $this->getSuffix();
         $product->main_category_id = $model->mainCategory->id;
-        $product->views = 0;
         $product->added_to_cart_count = 0;
         $product->scenario = 'duplicate';
         if ($product->validate()) {

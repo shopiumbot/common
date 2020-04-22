@@ -282,57 +282,6 @@ class ProductController extends AdminController
         return !$errors;
     }
 
-    /**
-     * Load attributes relative to type and available for product configurations.
-     * Used on creating new product.
-     *
-     * @return array
-     * @throws ForbiddenHttpException
-     */
-    public function actionLoadConfigurableOptions()
-    {
-        $data = [];
-        $data['success'] = false;
-        if (Yii::$app->request->isAjax) {
-
-
-            Yii::$app->response->format = Response::FORMAT_JSON;
-
-            // For configurations that  are available only dropdown and radio lists.
-            // $cr = new CDbCriteria;
-            //$cr->addInCondition('type', array(ShopAttribute::TYPE_DROPDOWN, ShopAttribute::TYPE_RADIO_LIST));
-            //$type = ProductType::model()->with(array('shopAttributes'))->findByPk($_GET['type_id'], $cr);
-
-            $type = ProductType::find()
-                ->joinWith('shopAttributes')
-                ->where([
-                    'type_id' => Yii::$app->request->get('type_id'),
-                    Attribute::tableName() . '.type' => [Attribute::TYPE_DROPDOWN, Attribute::TYPE_RADIO_LIST]
-                ])
-                ->one();
-
-            //print_r($type);die;
-//echo($type->prepare(Yii::$app->db->queryBuilder)->createCommand()->rawSql);die;
-            if ($type) {
-                if ($type->shopAttributes) {
-                    $data['success'] = true;
-                    foreach ($type->shopAttributes as $attr) {
-                        $data['response'][] = [
-                            'id' => $attr->id,
-                            'title' => $attr->title,
-                        ];
-                    }
-                } else {
-                    $data['message'] = 'Ошибка не найден не один атрибут';
-                }
-            }
-            return $data;
-        } else {
-            throw new ForbiddenHttpException();
-        }
-
-    }
-
     protected function processAttributes(Product $model)
     {
         $attributes = Yii::$app->request->post('Attribute', []);
@@ -568,30 +517,5 @@ class ProductController extends AdminController
         }
     }
 
-    /**
-     * @return array
-     * @throws ForbiddenHttpException
-     */
-    public function actionUpdateViews()
-    {
-
-        if (Yii::$app->request->isAjax) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            $ids = Yii::$app->request->post('id');
-            $models = Product::find()->where(['id' => $ids])->all();
-            foreach ($models as $product) {
-                /** @var Product $product */
-                if ($product->views > 0) {
-                    $product->views = 0;
-                    $product->save(false);
-                }
-            }
-
-            return ['message' => Product::t('SUCCESS_UPDATE_VIEWS')];
-
-        } else {
-            throw new ForbiddenHttpException();
-        }
-    }
 
 }

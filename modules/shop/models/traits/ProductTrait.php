@@ -55,9 +55,6 @@ trait ProductTrait
                 /** @var $model Product */
                 if ($model->name) {
                     $html = $model->name;
-                    if ($model->views > 0) {
-                        $html .= " <small>(" . Yii::t('app/default', 'VIEWS', ['n' => $model->views]) . ")</small>";
-                    }
                     if (true) {
                         $labels = [];
                         foreach ($model->labels() as $label) {
@@ -327,16 +324,6 @@ trait ProductTrait
                             'data-pjax' => 0
                         ],
                     ],
-                    [
-                        'label' => self::t('GRID_OPTION_UPDATE_VIEWS'),
-                        'url' => '#',
-                        'icon' => 'refresh',
-                        'linkOptions' => [
-                            'onClick' => 'return updateProductsViews(this);',
-                            'data-confirm' => self::t('CONFIRM_UPDATE_VIEWS'),
-                            'data-pjax' => 0
-                        ],
-                    ]
                 ]
             ]
         ];

@@ -59,40 +59,6 @@ function setProductsStatus(status_id, el) {
     return false;
 }
 
-function updateProductsViews(el) {
-    if (grid.yiiGridView('getSelectedRows').length > 0) {
-        $.ajax(common.url('/admin/shop/product/update-views'), {
-            type: "post",
-            dataType: "json",
-            data: {id: grid.yiiGridView('getSelectedRows')},
-            success: function (data) {
-                common.notify(data.message, 'success');
-                //grid.yiiGridView('applyFilter');
-            },
-            error: function (XHR, textStatus, errorThrown) {
-                var err = '';
-                switch (textStatus) {
-                    case 'timeout':
-                        err = 'The request timed out!';
-                        break;
-                    case 'parsererror':
-                        err = 'Parser error!';
-                        break;
-                    case 'error':
-                        if (XHR.status && !/^\s*$/.test(XHR.status))
-                            err = 'Error ' + XHR.status;
-                        else
-                            err = 'Error';
-                        if (XHR.responseText && !/^\s*$/.test(XHR.responseText))
-                            err = err + ': ' + XHR.responseText;
-                        break;
-                }
-                common.notify(err, 'error');
-            }
-        });
-    }
-    return false;
-}
 function showCategoryAssignWindow2(el_clicked) {
     var modalContainer = $('#exampleModal');
     var modalBody = modalContainer.find('.modal-body');
