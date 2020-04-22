@@ -38,10 +38,10 @@ $config = [
         'user' => ['class' => 'panix\mod\user\Module'],
         'shop' => ['class' => 'core\modules\shop\Module'],
         'contacts' => ['class' => 'panix\mod\contacts\Module'],
-        'discounts' => ['class' => 'panix\mod\discounts\Module'],
-        'csv' => ['class' => 'panix\mod\csv\Module'],
+        'discounts' => ['class' => 'shopium\mod\discounts\Module'],
+        'csv' => ['class' => 'shopium\mod\csv\Module'],
         'images' => ['class' => 'panix\mod\images\Module'],
-        'cart' => ['class' => 'panix\mod\cart\Module'],
+        'cart' => ['class' => 'shopium\mod\cart\Module'],
     ],
     'components' => [
 		'telegram' => ['class' => 'shopium\mod\telegram\components\Telegram'],
