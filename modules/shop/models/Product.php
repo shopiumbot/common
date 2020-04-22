@@ -280,7 +280,6 @@ class Product extends ActiveRecord
         $rules[] = [['name'], 'trim'];
         $rules[] = [['full_description'], 'string'];
         $rules[] = ['use_configurations', 'boolean', 'on' => self::SCENARIO_INSERT];
-        $rules[] = ['enable_comments', 'boolean'];
 		$rules[] = [['unit'], 'default', 'value' => 1];
         $rules[] = [['sku', 'full_description', 'label', 'discount'], 'default']; // установим ... как NULL, если они пустые
         $rules[] = [['price'], 'double'];

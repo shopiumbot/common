@@ -55,7 +55,6 @@ class m180917_193213_shop_product extends Migration
             'discount' => $this->string(5),
             'markup' => $this->string(50),
             'video' => $this->text(),
-            'enable_comments' => $this->tinyInteger(1)->defaultValue(1)->unsigned(),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
             'switch' => $this->boolean()->defaultValue(1)->notNull(),
