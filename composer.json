@@ -25,7 +25,8 @@
         "shopium/mod-telegram": "~0.1",
         "shopium/mod-admin": "dev-master",
         "shopium/mod-discounts": "dev-master",
-        "panix/wgt-fancybox": "dev-master"
+        "panix/wgt-fancybox": "dev-master",
+        "shopium/mod-csv": "dev-master"
     },
     "config": {
         "process-timeout": 1800
