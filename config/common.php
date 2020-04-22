@@ -7,7 +7,7 @@ use yii\web\UrlNormalizer;
 
 
 $config = [
-    'name' => 'Shopium24',
+    'name' => 'ShopiumBot',
     'basePath' => dirname(__DIR__) . '/../',
     'language' => 'ru',
     'aliases' => [
