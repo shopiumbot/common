@@ -17,13 +17,11 @@ class m170622_111540_create_image_table extends Migration
             'product_id' => $this->integer(),
             'is_main' => $this->boolean()->defaultValue(0),
             'name' => $this->string(80),
-            'alt_title' => $this->string(80),
-            'modelName' => $this->string(150)->notNull(),
             'urlAlias' => $this->string(400)->notNull(),
             'ordern' => $this->integer()->unsigned(),
         ]);
         $this->createIndex('ordern', Image::tableName(), 'ordern');
-        $this->createIndex('product_id', Image::tableName(), 'object_id');
+        $this->createIndex('product_id', Image::tableName(), 'product_id');
         $this->createIndex('is_main', Image::tableName(), 'is_main');
     }
 

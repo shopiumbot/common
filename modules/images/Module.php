@@ -112,13 +112,11 @@ class Module extends WebModule implements BootstrapInterface
         }
         $image = $imageQuery
             ->where([
-                'modelName' => $model,
-                'object_id' => $object_id,
+                'product_id' => $object_id,
                 'urlAlias' => $alias
             ])
             /*     ->where('modelName = :modelName AND object_id = :object_id AND urlAlias = :alias',
               [
-              ':modelName' => $modelName,
               ':object_id' => $object_id,
               ':alias' => $alias
               ]) */
@@ -138,25 +136,6 @@ class Module extends WebModule implements BootstrapInterface
     public function getCachePath()
     {
         return Yii::getAlias($this->imagesCachePath);
-    }
-
-    public function getModelSubDir($model)
-    {
-
-        $modelName = $this->getShortClass($model);
-        $modelDir = \yii\helpers\Inflector::pluralize($modelName) . '/' . $model->id;
-        return $modelDir;
-    }
-
-    public function getShortClass($obj)
-    {
-        $className = get_class($obj);
-
-        if (preg_match('@\\\\([\w]+)$@', $className, $matches)) {
-            $className = $matches[1];
-        }
-
-        return $className;
     }
 
     /**

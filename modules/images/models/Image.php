@@ -19,8 +19,6 @@ use panix\engine\db\ActiveRecord;
  * @property string $urlAlias
  * @property string $path
  * @property string $alt_title
- * @property string $handler_class
- * @property string $handler_hash
  */
 class Image extends ActiveRecord
 {
@@ -65,11 +63,11 @@ class Image extends ActiveRecord
         //$filePath = $base . DIRECTORY_SEPARATOR .
         //    $sub . DIRECTORY_SEPARATOR . $this->urlAlias . $urlSize . '.' . pathinfo($origin, PATHINFO_EXTENSION);
 
-        //echo Yii::getAlias($this->path).DIRECTORY_SEPARATOR.$this->object_id.DIRECTORY_SEPARATOR.$this->filePath;
+        //echo Yii::getAlias($this->path).DIRECTORY_SEPARATOR.$this->product_id.DIRECTORY_SEPARATOR.$this->filePath;
         //echo '<br>';
         //echo $filePath;
 
-        $filePath = Yii::getAlias($this->path) . DIRECTORY_SEPARATOR . $this->object_id . DIRECTORY_SEPARATOR . $this->filePath;
+        $filePath = Yii::getAlias($this->path) . DIRECTORY_SEPARATOR . $this->product_id . DIRECTORY_SEPARATOR . $this->filePath;
 
         if (!file_exists($filePath)) {
             $filePath = Yii::getAlias('@uploads') . DIRECTORY_SEPARATOR . 'no-image.png';
@@ -95,7 +93,7 @@ class Image extends ActiveRecord
     public function getPathToOrigin()
     {
         //$base = Yii::$app->getModule('images')->getStorePath();
-        $filePath = Yii::getAlias($this->path) . DIRECTORY_SEPARATOR . $this->object_id . DIRECTORY_SEPARATOR . $this->filePath;
+        $filePath = Yii::getAlias($this->path) . DIRECTORY_SEPARATOR . $this->product_id . DIRECTORY_SEPARATOR . $this->filePath;
         if (!file_exists($filePath)) {
             $filePath = Yii::getAlias('@uploads') . DIRECTORY_SEPARATOR . 'no-image.png';
         }
@@ -104,7 +102,7 @@ class Image extends ActiveRecord
 
     public function getUrlToOrigin()
     {
-        $base = '/uploads/store/product/'.$this->object_id.'/' . $this->filePath;
+        $base = '/uploads/store/product/'.$this->product_id.'/' . $this->filePath;
         $filePath = $base;
         return $filePath;
     }
@@ -233,11 +231,10 @@ class Image extends ActiveRecord
     public function rules()
     {
         return [
-            [['filePath', 'object_id', 'urlAlias', 'handler_hash', 'handler_class'], 'required'],
-            [['object_id', 'is_main'], 'integer'],
+            [['filePath', 'product_id', 'urlAlias'], 'required'],
+            [['product_id', 'is_main'], 'integer'],
             [['alt_title'], 'string', 'max' => 80],
             [['filePath', 'urlAlias'], 'string', 'max' => 400],
-            [['handler_class', 'handler_hash'], 'string', 'max' => 150]
         ];
     }
 

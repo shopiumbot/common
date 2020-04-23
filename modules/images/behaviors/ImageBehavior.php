@@ -104,10 +104,8 @@ class ImageBehavior extends Behavior
 
 
         $image = new Image;
-        $image->object_id = $this->owner->primaryKey;
+        $image->product_id = $this->owner->primaryKey;
         $image->filePath = $pictureFileName;
-        $image->handler_class = '\\' . get_class($this->owner);
-        $image->handler_hash = $this->owner->getHash();
         $image->path = $this->path;
         $image->alt_title = $alt;
         $image->urlAlias = $this->getAlias($image);
@@ -156,7 +154,7 @@ class ImageBehavior extends Behavior
     public function setMainImage($img)
     {
 
-        if ($this->owner->primaryKey != $img->object_id) {
+        if ($this->owner->primaryKey != $img->product_id) {
             throw new \Exception('Image must belong to this model');
         }
         $counter = 1;
@@ -180,28 +178,8 @@ class ImageBehavior extends Behavior
             $allImg->save();
         }
 
-        $this->owner->clearImagesCache();
-    }
+   }
 
-    /**
-     * Clear all images cache (and resized copies)
-     * @return bool
-     */
-    public function clearImagesCache()
-    {
-        $cachePath = Yii::$app->getModule('images')->getCachePath();
-        $subdir = Yii::$app->getModule('images')->getModelSubDir($this->owner);
-
-        $dirToRemove = $cachePath . '/' . $subdir;
-
-        if (preg_match('/' . preg_quote($cachePath, '/') . '/', $dirToRemove)) {
-            BaseFileHelper::removeDirectory($dirToRemove);
-            //exec('rm -rf ' . $dirToRemove);
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     /**
      * Returns model images
@@ -237,8 +215,7 @@ class ImageBehavior extends Behavior
      */
     public function getImage($main = 1)
     {
-        $wheres['object_id'] = $this->owner->primaryKey;
-        $wheres['handler_hash'] = $this->owner->getHash();
+        $wheres['product_id'] = $this->owner->primaryKey;
         if ($main)
             $wheres['is_main'] = 1;
         $query = Image::find()->where($wheres);
@@ -261,8 +238,7 @@ class ImageBehavior extends Behavior
     public function getImageByName($name)
     {
         $query = Image::find()->where([
-            'object_id' => $this->owner->primaryKey,
-            'handler_hash' => $this->owner->getHash()
+            'product_id' => $this->owner->primaryKey,
         ]);
         $query->andWhere(['name' => $name]);
         //    $imageQuery = Image::find();
@@ -322,8 +298,7 @@ class ImageBehavior extends Behavior
     private function getImagesFinder($additionWhere = false)
     {
         $base = [
-            'object_id' => $this->owner->primaryKey,
-            'handler_hash' => $this->owner->getHash()
+            'product_id' => $this->owner->primaryKey,
         ];
 
         if ($additionWhere) {
@@ -369,7 +344,7 @@ class ImageBehavior extends Behavior
         $post = Yii::$app->request->post('AttachmentsMainId');
         if ($post) {
 
-            Image::updateAll(['is_main' => 0], 'object_id=:pid AND handler_hash=:hash', ['hash' => $this->owner->getHash(), 'pid' => $this->owner->primaryKey]);
+            Image::updateAll(['is_main' => 0], 'product_id=:pid', ['pid' => $this->owner->primaryKey]);
 
             $customer = Image::findOne($post);
             if ($customer) {

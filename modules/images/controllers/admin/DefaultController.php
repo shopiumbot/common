@@ -50,7 +50,6 @@ class DefaultController extends WebController {
     public function actionDelete() {
         $json = [];
 
-        $modelName = (new \ReflectionClass(Yii::$app->request->post('model')))->getShortName();
         $entry = Image::find()
                 ->where(['id' => Yii::$app->request->post('id')])
                 ->all();
@@ -64,7 +63,7 @@ class DefaultController extends WebController {
                     if ($page->is_main) {
                         // Get first image and set it as main
                         $model = Image::find()
-                                ->where(['object_id' => Yii::$app->request->post('object_id'), 'modelName' => $modelName])
+                                ->where(['product_id' => Yii::$app->request->post('product_id')])
                                 ->one();
 
                         if ($model) {

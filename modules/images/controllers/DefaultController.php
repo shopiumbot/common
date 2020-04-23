@@ -74,45 +74,10 @@ class DefaultController extends Controller
     }
 
 
-    public function actionGetFile__OLD($item = '', $m = '', $dirtyAlias)
-    {
-
-
-        //if(file_exists(\Yii::$app->getModule('images')->imagesCachePath).DIRECTORY_SEPARATOR.$item.DIRECTORY_SEPARATOR.$m.DIRECTORY_SEPARATOR.$dirtyAlias)){
-
-        //}
-
-
-        $dotParts = explode('.', $dirtyAlias);
-        if (!isset($dotParts[1])) {
-            throw new HttpException(404, 'Image must have extension');
-        }
-        $dirtyAlias = $dotParts[0];
-
-        $size = isset(explode('_', $dirtyAlias)[1]) ? explode('_', $dirtyAlias)[1] : false;
-        $alias = isset(explode('_', $dirtyAlias)[0]) ? explode('_', $dirtyAlias)[0] : false;
-
-
-        /** @var $image Image */
-        $image = \Yii::$app->getModule('images')->getImage($item, $m, $alias);
-
-
-        if ($image && $image->getExtension() != $dotParts[1]) {
-            throw new HttpException(404, 'Image not found (extension)');
-        }
-
-        if ($image) {
-            $image->getContent($size);
-        } else {
-            throw new HttpException(404, 'There is no images');
-        }
-    }
-
     public function actionDelete()
     {
         $json = [];
 
-        $modelName = (new \ReflectionClass(Yii::$app->request->post('model')))->getShortName();
         $entry = Image::find()
             ->where(['id' => Yii::$app->request->post('id')])
             ->all();
@@ -123,11 +88,10 @@ class DefaultController extends Controller
 
                     $page->delete();
 
-
                     if ($page->is_main) {
                         // Get first image and set it as main
                         $model = Image::find()
-                            ->where(['object_id' => Yii::$app->request->post('object_id'), 'modelName' => $modelName])
+                            ->where(['product_id' => Yii::$app->request->post('product_id')])
                             ->one();
 
                         if ($model) {
