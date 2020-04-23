@@ -19,38 +19,6 @@ echo \panix\engine\bootstrap\Alert::widget([
 ]);
 
 
-if ($model->isNewRecord && !$model->type) {
-
-    echo Html::beginForm('', 'GET');
-
-    ?>
-    <div class="card">
-        <div class="card-header">
-            <h5><?= Html::encode($this->context->pageName) ?></h5>
-        </div>
-        <div class="card-body">
-            <div class="form-group row">
-                <div class="col-sm-4"><?= Html::activeLabel($model, 'type', ['class' => 'control-label']); ?></div>
-                <div class="col-sm-8">
-                    <?= Html::activeDropDownList($model, 'type', [1 => 'Стандартный', /*8 => 'Слайдер',*/ 9 => 'Цвет'], ['class' => 'form-control']); ?>
-                </div>
-            </div>
-
-
-        </div>
-        <div class="card-footer text-center">
-            <?= Html::submitButton(Yii::t('app/default', 'CREATE', 0), ['name' => false, 'class' => 'btn btn-success']); ?>
-        </div>
-    </div>
-    <?php
-    echo Html::endForm();
-
-} else {
-
-    ?>
-
-    <?php
-
     $form = ActiveForm::begin();
     ?>
     <div class="card">
@@ -103,4 +71,3 @@ if ($model->isNewRecord && !$model->type) {
     </div>
     <?php ActiveForm::end();
 
-} ?>

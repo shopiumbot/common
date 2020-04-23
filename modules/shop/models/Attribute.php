@@ -344,6 +344,7 @@ class Attribute extends ActiveRecord
         if (!in_array($this->type, [self::TYPE_DROPDOWN, self::TYPE_RADIO_LIST, self::TYPE_CHECKBOX_LIST, self::TYPE_SELECT_MANY, self::TYPE_COLOR])) {
             $this->select_many = false;
         }
+        $this->name = CMS::slug($this->title);
         return parent::beforeSave($insert);
     }
 
