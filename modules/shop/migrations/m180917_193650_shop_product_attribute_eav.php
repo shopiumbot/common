@@ -21,7 +21,7 @@ class m180917_193650_shop_product_attribute_eav extends Migration
     {
         $this->createTable(ProductAttributesEav::tableName(), [
             'entity' => $this->integer()->unsigned(),
-            'attribute' => $this->integer()->unsigned(),
+            'attribute' => $this->string(255)->null(),
             'value' => $this->text(),
         ]);
 
@@ -29,7 +29,7 @@ class m180917_193650_shop_product_attribute_eav extends Migration
         $this->createIndex('attribute', ProductAttributesEav::tableName(), 'attribute');
 		
         if ($this->db->driverName != "sqlite") {
-            $this->addForeignKey('{{%fk_product_attribute_eav_attribute}}', ProductAttributesEav::tableName(), 'attribute', Attribute::tableName(), 'id', "CASCADE", "CASCADE");
+            $this->addForeignKey('{{%fk_product_attribute_eav_attribute}}', ProductAttributesEav::tableName(), 'attribute', Attribute::tableName(), 'name', "CASCADE", "CASCADE");
             $this->addForeignKey('{{%fk_product_attribute_eav_entity}}', ProductAttributesEav::tableName(), 'entity', Product::tableName(), 'id', "CASCADE", "CASCADE");
         }
     }

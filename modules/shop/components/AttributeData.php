@@ -24,7 +24,6 @@ class AttributeData {
 
         $query = Attribute::find()
             ->where(['IN', 'name', array_keys($this->attributes)])
-            ->displayOnFront()
             ->sort()
             ->all();
 

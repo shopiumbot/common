@@ -106,7 +106,6 @@ class AttributesRender extends Widget
         // $query = Attribute::getDb()->cache(function () {
         $query = Attribute::find()
             ->where(['IN', 'name', array_keys($this->_attributes)])
-            ->displayOnFront()
             ->sort()
             ->all();
         // }, 3600);
@@ -128,13 +127,11 @@ class AttributesRender extends Widget
         //$cr->addInCondition('t.name', array_keys($this->_attributes));
         /*$query = Attribute::find(['IN', 'name', array_keys($this->_attributes)])
                 //->language($lang)
-                ->displayOnFront()
                 ->sort()
                 ->all();*/
         $query = Attribute::getDb()->cache(function () {
             return Attribute::find()
                 ->where(['IN', 'name', array_keys($this->_attributes)])
-                ->displayOnFront()
                 ->sort()
                 ->all();
         }, 3600);

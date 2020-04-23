@@ -3,6 +3,7 @@
 namespace core\modules\shop\components;
 
 use core\modules\shop\models\AttributeOption;
+use panix\engine\CMS;
 use Yii;
 use yii\base\Exception;
 use yii\db\ActiveRecord;
@@ -306,9 +307,9 @@ class EavBehavior extends \yii\base\Behavior
 
 
         foreach ($attributes as $attribute) {
-
             // Skip if null attributes.
             $attr = (isset($this->attributes[$attribute])) ? $this->attributes[$attribute] : NULL;
+
             if (!is_null($values = $attr)) {
                 // Create array of values for convenience.
                 if (!is_array($values)) {
@@ -413,7 +414,7 @@ class EavBehavior extends \yii\base\Behavior
      */
     public function setEavAttributes($attributes, $save = false)
     {
-        // CMS::dump($this->attributes);die;
+
         foreach ($attributes as $attribute => $value) {
             $this->attributes[$attribute] = $value;
             $this->changedAttributes[] = $attribute;
@@ -578,7 +579,6 @@ class EavBehavior extends \yii\base\Behavior
         }
         //$this->distinct(true);
         $owner::find()->groupBy("{$pk}");
-        // echo $this->createCommand()->getRawSql();die;
         return $owner::find();
     }
 
@@ -590,15 +590,14 @@ class EavBehavior extends \yii\base\Behavior
      */
     protected function getSaveEavAttributeCommand($attribute, $value)
     {
-        $data = [
-            $this->entityField => $this->getModelId(),
-            $this->attributeField => $attribute,
-            $this->valueField => $value,
-        ];
-        return Yii::$app->db->createCommand()->insert($this->tableName, $data);
-        /* return $this->owner
-          ->getCommandBuilder()
-          ->createInsertCommand($this->tableName, $data); */
+        if ($value && $attribute) {
+            $data = [
+                $this->entityField => $this->getModelId(),
+                $this->attributeField => $attribute,
+                $this->valueField => $value,
+            ];
+            return Yii::$app->db->createCommand()->insert($this->tableName, $data);
+        }
     }
 
     /**
@@ -613,7 +612,6 @@ class EavBehavior extends \yii\base\Behavior
         if (!empty($attributes)) {
             $query->andWhere(['IN', $this->attributeField, $attributes]);
         }
-        //echo $query->createCommand()->rawSql;die;
         return $query;
     }
 
@@ -625,7 +623,6 @@ class EavBehavior extends \yii\base\Behavior
         if (!empty($attributes)) {
             $query->andWhere(['IN', $this->attributeField, $attributes]);
         }
-        //echo $query->createCommand()->rawSql;die;
         return $query;
     }
 

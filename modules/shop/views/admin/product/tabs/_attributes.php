@@ -8,7 +8,7 @@ $attributes = (isset($model->type->shopAttributes)) ? $model->type->shopAttribut
 
 
 echo \panix\engine\barcode\BarcodeGenerator::widget([
-        'elementId'=> 'showBarcode',
+    'elementId'=> 'showBarcode',
     'value'=> '4797111018719',
     'type'=>'ean8'
 ]);
@@ -59,17 +59,16 @@ echo \panix\engine\barcode\BarcodeGenerator::widget([
 
             }
 
-
-
+            foreach ($result as $group_name => $attributes) {
+                echo '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4"><h3 class="text-center mt-3">' . $group_name . '</h3>';
                 foreach ($attributes as $a) {
-                    echo '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4"><h3 class="text-center mt-3">' . $a->title . '</h3>';
-                    /** @var Attribute|\core\modules\shop\components\EavBehavior $a */
+                    /** @var Attribute|\panix\mod\shop\components\EavBehavior $a */
                     // Repopulate data from POST if exists
-                    if (isset($_POST['Attribute'][$a->id])) {
-                        $value = $_POST['Attribute'][$a->id];
+                    if (isset($_POST['Attribute'][$a->name])) {
+                        $value = $_POST['Attribute'][$a->name];
                     } else {
 
-                            $value = $model->getEavAttribute($a->id);
+                        $value = $model->getEavAttribute($a->name);
                         // die('zz');
                     }
 
@@ -78,7 +77,7 @@ echo \panix\engine\barcode\BarcodeGenerator::widget([
                     if ($a->type == Attribute::TYPE_DROPDOWN) {
                         $addOptionLink = Html::a(Html::icon('add'), '#', [
                             'rel' => $a->id,
-                            'data-name' => $a->getIdBy(), //$a->getIdByName()
+                            'data-name' => $a->getIdByName(), //$a->getIdByName()
                             //'data-name' => Html::getInputName($a, $a->name),
                             'onclick' => 'js: return addNewOption($(this));',
                             'class' => 'btn btn-success', // btn-sm mt-2 float-right
@@ -92,13 +91,13 @@ echo \panix\engine\barcode\BarcodeGenerator::widget([
                     $error = '';
                     $inputClass = '';
 
-                    if ($a->required && array_key_exists($a->id, $model->getErrors())) {
+                    if ($a->required && array_key_exists($a->name, $model->getErrors())) {
                         $inputClass = 'is-invalid';
-                        $error = Html::error($a, $a->id);
+                        $error = Html::error($a, $a->name);
                     }
                     ?>
                     <div class="form-group row <?= ($a->required ? 'required' : ''); ?>">
-                        <?= Html::label($a->title, $a->id, ['class' => 'col-sm-4 col-form-label']); ?>
+                        <?= Html::label($a->title, $a->name, ['class' => 'col-sm-4 col-form-label']); ?>
                         <div class="col-sm-8 rowInput eavInput">
                             <div class="input-group<?= ($a->type == Attribute::TYPE_CHECKBOX_LIST) ? '1' : ''; ?>">
                                 <?= $a->renderField($value, $inputClass); ?>
@@ -125,10 +124,10 @@ echo \panix\engine\barcode\BarcodeGenerator::widget([
 
 //. $error . $addOptionLink
                     //echo Html::endTag('div');
-                    echo '</div>';
+
                 } // . Html::error($a, 'name', ['class' => 'text-danger'])
-
-
+                echo '</div>';
+            }
 
 
         }

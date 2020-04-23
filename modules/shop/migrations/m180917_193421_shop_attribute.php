@@ -23,6 +23,7 @@ class m180917_193421_shop_attribute extends Migration
 
         $this->createTable(Attribute::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
+            'name' => $this->string(255)->notNull(),
             'type' => $this->string(10)->notNull(),
             'title' => $this->string(255)->notNull(),
             'abbreviation' => $this->string(25)->null(),
@@ -35,7 +36,7 @@ class m180917_193421_shop_attribute extends Migration
             'switch' => $this->boolean()->defaultValue(1)->notNull(),
             'ordern' => $this->integer(11)->unsigned(),
         ]);
-
+        $this->createIndex('name', Attribute::tableName(), 'name');
         $this->createIndex('ordern', Attribute::tableName(), 'ordern');
 
 

@@ -242,8 +242,8 @@ class Attribute extends ActiveRecord
                     'tag' => false,
                     'item' => function ($index, $label, $name, $checked, $value) {
                         return '<div class="custom-control custom-checkbox">
-' . Html::checkbox($name, $checked, ['value' => $value, 'class' => 'custom-control-input', 'id' => $this->getIdBy() . $index]) . '
-' . Html::label($label, $this->getIdBy() . $index, ['class' => 'custom-control-label']) . '
+' . Html::checkbox($name, $checked, ['value' => $value, 'class' => 'custom-control-input', 'id' => $this->getIdByName() . $index]) . '
+' . Html::label($label, $this->getIdByName() . $index, ['class' => 'custom-control-label']) . '
 </div>';
                     }
                 ]);
@@ -316,10 +316,10 @@ class Attribute extends ActiveRecord
     /**
      * @return string html id based on name
      */
-    public function getIdBy()
+    public function getIdByName()
     {
         // echo $this->formName();die;
-        $name = $this->formName() . '-' . $this->id;
+        $name = $this->formName() . '-' . $this->name;
         //return Html::getInputId($this, $this->name);
         return mb_strtolower($name);
     }
