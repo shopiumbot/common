@@ -14,11 +14,10 @@ use panix\engine\db\ActiveRecord;
  *
  * @property integer $id
  * @property string $filePath
- * @property integer $object_id
+ * @property integer $product_id
  * @property integer $is_main
  * @property string $urlAlias
  * @property string $path
- * @property string $alt_title
  */
 class Image extends ActiveRecord
 {
@@ -47,7 +46,7 @@ class Image extends ActiveRecord
     {
         return new \yii\data\Sort([
             'attributes' => [
-                'alt_title',
+
             ],
         ]);
     }
@@ -55,10 +54,6 @@ class Image extends ActiveRecord
     public function getPath($size = false)
     {
         $urlSize = ($size) ? '_' . $size : '';
-        //$base = Yii::$app->getModule('images')->getCachePath();
-        //$sub = $this->getSubDur();
-
-
 
         //$filePath = $base . DIRECTORY_SEPARATOR .
         //    $sub . DIRECTORY_SEPARATOR . $this->urlAlias . $urlSize . '.' . pathinfo($origin, PATHINFO_EXTENSION);
@@ -233,7 +228,6 @@ class Image extends ActiveRecord
         return [
             [['filePath', 'product_id', 'urlAlias'], 'required'],
             [['product_id', 'is_main'], 'integer'],
-            [['alt_title'], 'string', 'max' => 80],
             [['filePath', 'urlAlias'], 'string', 'max' => 400],
         ];
     }

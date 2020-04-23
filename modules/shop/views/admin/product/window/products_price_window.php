@@ -2,7 +2,7 @@
 
 use panix\engine\bootstrap\ActiveForm;
 use panix\engine\bootstrap\Alert;
-\app\web\themes\dashboard\AdminAsset::register($this);
+\core\web\themes\dashboard\AdminAsset::register($this);
 //\panix\engine\widgets\PjaxAsset::register($this);
 $form = ActiveForm::begin();
 ?>

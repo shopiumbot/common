@@ -2,7 +2,7 @@
 
 use panix\engine\Html;
 use panix\ext\fancybox\Fancybox;
-use panix\mod\images\models\ImageSearch;
+use core\modules\images\models\ImageSearch;
 use panix\engine\widgets\Pjax;
 use panix\engine\bootstrap\Modal;
 
@@ -88,7 +88,7 @@ Modal::end();
 
 
 $searchModel = new ImageSearch();
-$dataProvider = $searchModel->search(Yii::$app->request->getQueryParams(), ['model' => $model, 'object_id' => $model->primaryKey]);
+$dataProvider = $searchModel->search(Yii::$app->request->getQueryParams(), ['model' => $model, 'product_id' => $model->primaryKey]);
 
 
 Pjax::begin([
@@ -129,14 +129,6 @@ echo panix\engine\grid\GridView::widget([
                     'title' => Yii::t('app/default', 'IS_MAIN'),
                     'id' => 'main_image_' . $model->id
                 ]);
-            },
-        ],
-        [
-            'attribute' => 'alt_title',
-            'format' => 'raw',
-            'contentOptions' => ['class' => 'text-center'],
-            'value' => function ($model) {
-                return Html::textInput('attachment_image_titles[' . $model->id . ']', $model->alt_title, array('class' => 'form-control'));
             },
         ],
         [

@@ -38,6 +38,7 @@ class m180917_193421_shop_attribute extends Migration
         ]);
         $this->createIndex('name', Attribute::tableName(), 'name');
         $this->createIndex('ordern', Attribute::tableName(), 'ordern');
+        $this->createIndex('switch', Attribute::tableName(), 'switch');
 
 
     }

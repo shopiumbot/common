@@ -4,6 +4,7 @@ namespace core\modules\shop\controllers\admin;
 
 use core\modules\shop\components\EavBehavior;
 use core\modules\shop\models\Category;
+use panix\engine\CMS;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -82,7 +83,7 @@ class ProductController extends AdminController
 
     public function actionUpdate($id = false)
     {
-        /** @var Product|\panix\mod\images\behaviors\ImageBehavior $model */
+        /** @var Product|\core\modules\images\behaviors\ImageBehavior $model */
         $model = Product::findModel($id);
         $isNew = $model->isNewRecord;
         $this->pageName = Yii::t('shop/default', 'MODULE_NAME');
@@ -90,7 +91,6 @@ class ProductController extends AdminController
         $post = Yii::$app->request->post();
 
 
-        // Apply use_configurations, configurable_attributes, type_id
         if (Yii::$app->request->get('Product'))
             $model->attributes = Yii::$app->request->get('Product');
 
@@ -265,7 +265,7 @@ class ProductController extends AdminController
     {
         $attributes = $model->type->shopAttributes;
 
-        if (empty($attributes) || $model->use_configurations) {
+        if (empty($attributes)) {
             return true;
         }
 
@@ -321,6 +321,7 @@ class ProductController extends AdminController
                 }
             }
         }
+
 
 
         return $model->setEavAttributes($reAttributes, true);

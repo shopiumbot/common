@@ -17,17 +17,8 @@ class Module extends WebModule implements BootstrapInterface
 
 
     public $imagesStorePath = '@uploads/store';
-    public $imagesCachePath = '@uploads/cache';
     public $graphicsLibrary = 'GD';
-    //public $controllerNamespace = 'core\modules\images\controllers';
-    //public $waterMark = false;
-    public $waterMark = '@uploads/watermark-color.png';
     public $className;
-    public $imageCompressionQuality = 100;
-    //public $routes = [
-    //    'getImage/<item>/<dirtyAlias>' => 'images/default/imageByItemAndAlias',
-    //];
-
 
     public function bootstrap($app)
     {
@@ -35,30 +26,17 @@ class Module extends WebModule implements BootstrapInterface
         $groupUrlRule = new GroupUrlRule([
             'prefix' => $this->id,
             'rules' => [
-                //'<controller:(admin|copy|auth)>' => '<controller>',
                 '<action:(logo)>' => 'default/<action>',
-               // 'logo' => 'default/logo',
                 '<action:[0-9a-zA-Z_\-]+>/<dirtyAlias:\w.+>' => 'default/<action>',
-               // '<action:[0-9a-zA-Z_\-]+>/<item:\d+>/<m:\w+>/<dirtyAlias:\w.+>' => 'default/<action>',
             ],
         ]);
         $app->getUrlManager()->addRules($groupUrlRule->rules, true);
 
-        /*$app->urlManager->addRules(
-            [
-                '/images/<action:[0-9a-zA-Z_\-]+>/<item:\w+>/<m:\w+>/<dirtyAlias:\w.+>' => 'images/default/<action>',
-                '/images/crop' => 'images/default/crop',
-                '/images/delete/<id>' => 'images/default/delete',
-                '/images/sortable' => 'images/default/sortable',
-
-            ],
-            false
-        );*/
     }
+
     public function getImage($dirtyAlias)
     {
         //Get params
-
 
         $params = $data = $this->parseImageAlias($dirtyAlias);
 
@@ -86,10 +64,6 @@ class Module extends WebModule implements BootstrapInterface
         return Yii::getAlias($this->imagesStorePath);
     }
 
-    public function getCachePath()
-    {
-        return Yii::getAlias($this->imagesCachePath);
-    }
 
     /**
      *
@@ -154,19 +128,6 @@ class Module extends WebModule implements BootstrapInterface
         return ['alias' => $alias, 'size' => $size];
     }
 
-    public function init()
-    {
-        parent::init();
-        if (!$this->imagesStorePath
-            or !$this->imagesCachePath
-            or
-            $this->imagesStorePath == '@app'
-            or
-            $this->imagesCachePath == '@app'
-        )
-            throw new \Exception('Setup imagesStorePath and imagesCachePath images module properties!!!');
-        // custom initialization code goes here
-    }
 
 
 }

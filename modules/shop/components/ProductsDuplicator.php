@@ -3,7 +3,7 @@
 namespace core\modules\shop\components;
 
 
-use panix\mod\images\models\Image;
+use core\modules\images\models\Image;
 use Yii;
 use core\modules\shop\models\Product;
 use panix\engine\CMS;
@@ -134,13 +134,10 @@ class ProductsDuplicator extends \yii\base\Component
 
                 $image_copy = new Image();
 
-                $image_copy->object_id = $copy->id;
-                $image_copy->alt_title = $image->alt_title;
+                $image_copy->product_id = $copy->id;
                 $image_copy->is_main = $image->is_main;
                 $image_copy->filePath = $pictureFileName;
                 $image_copy->path = $image->path;
-                $image_copy->handler_class = '\\' . get_class($copy);
-                $image_copy->handler_hash = $copy->getHash();
                 $image_copy->urlAlias = $copy->getAlias();
 
                 if ($image_copy->validate()) {

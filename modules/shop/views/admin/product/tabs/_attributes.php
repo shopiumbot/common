@@ -51,18 +51,9 @@ echo \panix\engine\barcode\BarcodeGenerator::widget([
             ]);
 
         } else {
-
-            foreach ($attributes as $a) {
-
-                    $result['Без группы'][] = $a;
-
-
-            }
-
-            foreach ($result as $group_name => $attributes) {
-                echo '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4"><h3 class="text-center mt-3">' . $group_name . '</h3>';
                 foreach ($attributes as $a) {
-                    /** @var Attribute|\panix\mod\shop\components\EavBehavior $a */
+                    echo '<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">';
+                    /** @var Attribute|\core\modules\shop\components\EavBehavior $a */
                     // Repopulate data from POST if exists
                     if (isset($_POST['Attribute'][$a->name])) {
                         $value = $_POST['Attribute'][$a->name];
@@ -124,10 +115,10 @@ echo \panix\engine\barcode\BarcodeGenerator::widget([
 
 //. $error . $addOptionLink
                     //echo Html::endTag('div');
-
+                    echo '</div>';
                 } // . Html::error($a, 'name', ['class' => 'text-danger'])
-                echo '</div>';
-            }
+
+
 
 
         }

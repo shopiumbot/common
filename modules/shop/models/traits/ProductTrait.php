@@ -245,16 +245,6 @@ trait ProductTrait
                 return $result;
             }
         ];
-        $columns['commentsCount'] = [
-            'header' => static::t('COMMENTS_COUNT'),
-            'attribute' => 'commentsCount',
-            'format' => 'html',
-            'filter' => true,
-            'value' => function ($model) {
-                $options['data-pjax'] = 0;
-                return Html::a($model->commentsCount, ['/admin/comments/default/index', 'CommentsSearch[object_id]' => $model->primaryKey], $options);
-            }
-        ];
         $columns['created_at'] = [
             'attribute' => 'created_at',
             'class' => 'panix\engine\grid\columns\jui\DatepickerColumn',

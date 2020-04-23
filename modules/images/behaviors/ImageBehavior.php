@@ -107,7 +107,6 @@ class ImageBehavior extends Behavior
         $image->product_id = $this->owner->primaryKey;
         $image->filePath = $pictureFileName;
         $image->path = $this->path;
-        $image->alt_title = $alt;
         $image->urlAlias = $this->getAlias($image);
 
         if (!$image->save()) {
@@ -205,7 +204,10 @@ class ImageBehavior extends Behavior
 
         return $imageRecords;
     }
-
+    public function getImagesCount()
+    {
+        return Image::find()->where(['product_id' => $this->owner->primaryKey])->count();
+    }
     /**
      * returns main model image
      * @param $main
@@ -358,7 +360,6 @@ class ImageBehavior extends Behavior
                 if (!empty($title)) {
                     $customer = Image::findOne($id);
                     if ($customer) {
-                        $customer->alt_title = $title;
                         $customer->update();
                     }
                 }

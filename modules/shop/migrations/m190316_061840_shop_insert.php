@@ -19,8 +19,7 @@ use core\modules\shop\models\AttributeOption;
 use core\modules\shop\models\ProductType;
 use core\modules\shop\models\Category;
 use core\modules\shop\models\Product;
-use panix\mod\images\models\Image;
-use core\modules\shop\models\AttributeGroup;
+use core\modules\images\models\Image;
 use core\modules\shop\models\ProductAttributesEav;
 use core\modules\shop\models\ProductCategoryRef;
 
@@ -231,7 +230,7 @@ class m190316_061840_shop_insert extends Migration
 
 
         foreach ($products as $product_key => $product) {
-            /** @var Product|\panix\mod\images\behaviors\ImageBehavior $model */
+            /** @var Product|\core\modules\images\behaviors\ImageBehavior $model */
             $model = new Product;
             $model->id = $product['id'];
             $model->type_id = $product['type_id'];

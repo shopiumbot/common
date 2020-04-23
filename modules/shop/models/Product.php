@@ -4,7 +4,7 @@ namespace core\modules\shop\models;
 
 
 use shopium\mod\discounts\components\DiscountBehavior;
-use panix\mod\images\models\Image;
+use core\modules\images\models\Image;
 use panix\mod\sitemap\behaviors\SitemapBehavior;
 use panix\mod\user\models\User;
 use Yii;
@@ -26,7 +26,6 @@ use yii\web\NotFoundHttpException;
  * @property integer $type_id Type
  * @property integer $currency_id Currency
  * @property Currency $currency
- * @property integer $use_configurations
  * @property string $name Product name
  * @property float $price Price
  * @property float $max_price Max price
@@ -44,7 +43,6 @@ use yii\web\NotFoundHttpException;
  * @property integer $votes
  * @property integer $rating
  * @property Manufacturer[] $manufacturer
- * @property Supplier[] $supplier
  * @property string $discount Discount
  * @property boolean $hasDiscount See [[\shopium\mod\discounts\components\DiscountBehavior]] //Discount
  * @property float $originalPrice See [[\shopium\mod\discounts\components\DiscountBehavior]]
@@ -53,7 +51,6 @@ use yii\web\NotFoundHttpException;
  * @property boolean $isAvailable
  * @property Category $categories
  * @property array $eavAttributes
- * @property \panix\mod\comments\models\Comments $commentsCount
  * @property ProductPrices[] $prices
  * @property ProductType $type
  */
@@ -130,21 +127,6 @@ class Product extends ActiveRecord
         return $this->availability == 1;
     }
 
-    public function beginCartForm()
-    {
-        $html = '';
-        $html .= Html::beginForm(['/cart/add'], 'post', ['id' => 'form-add-cart-' . $this->id]);
-        $html .= Html::hiddenInput('product_id', $this->id);
-        $html .= Html::hiddenInput('product_price', $this->price);
-        $html .= Html::hiddenInput('use_configurations', $this->use_configurations);
-        return $html;
-    }
-
-    public function endCartForm()
-    {
-        return Html::endForm();
-    }
-
     public static function getSort()
     {
         return new \yii\data\Sort([
@@ -171,7 +153,6 @@ class Product extends ActiveRecord
                     'asc' => ['translation.name' => SORT_ASC],
                     'desc' => ['translation.name' => SORT_DESC],
                 ],
-                'commentsCount',
             ],
         ]);
     }
@@ -179,12 +160,12 @@ class Product extends ActiveRecord
 
     public function getMainImage($size = false)
     {
-        /** @var $image \panix\mod\images\behaviors\ImageBehavior|\panix\mod\images\models\Image */
+        /** @var $image \core\modules\images\behaviors\ImageBehavior|\core\modules\images\models\Image */
         $image = $this->getImage();
         $result = [];
         if ($image) {
             $result['url'] = $image->getUrl($size);
-            $result['title'] = ($image->alt_title) ? $image->alt_title : $this->name;
+            $result['title'] = $this->name;
         } else {
             $result['url'] = CMS::placeholderUrl(['size' => $size]);
             $result['title'] = $this->name;
@@ -223,7 +204,6 @@ class Product extends ActiveRecord
     public function scenarios()
     {
         $scenarios = parent::scenarios();
-        $scenarios[self::SCENARIO_INSERT] = ['use_configurations'];
         $scenarios['duplicate'] = [];
         return $scenarios;
     }
@@ -266,12 +246,11 @@ class Product extends ActiveRecord
         $rules[] = [['name'], 'unique'];
         $rules[] = [['name'], 'trim'];
         $rules[] = [['full_description'], 'string'];
-        $rules[] = ['use_configurations', 'boolean', 'on' => self::SCENARIO_INSERT];
 		$rules[] = [['unit'], 'default', 'value' => 1];
         $rules[] = [['sku', 'full_description', 'label', 'discount'], 'default']; // установим ... как NULL, если они пустые
         $rules[] = [['price'], 'double'];
         $rules[] = [['manufacturer_id', 'type_id', 'quantity', 'availability', 'added_to_cart_count', 'ordern', 'category_id', 'currency_id', 'label'], 'integer'];
-        $rules[] = [['name', 'full_description', 'use_configurations'], 'safe'];
+        $rules[] = [['name', 'full_description'], 'safe'];
 
         return $rules;
     }
@@ -493,7 +472,7 @@ class Product extends ActiveRecord
         $price = $this->getFrontPrice();
         $max_price = Yii::$app->currency->convert($this->max_price);
 
-        if ($this->use_configurations && $max_price > 0)
+        if ($max_price > 0)
             return Yii::$app->currency->number_format($price) . ' - ' . Yii::$app->currency->number_format($max_price);
 
         return Yii::$app->currency->number_format($price);
@@ -549,17 +528,13 @@ class Product extends ActiveRecord
         return parent::__get($name);
     }
 
-    public function getEavList()
-    {
-
-    }
 
     public function behaviors()
     {
         $a = [];
         // if (Yii::$app->getModule('images'))
         $a['imagesBehavior'] = [
-            'class' => '\panix\mod\images\behaviors\ImageBehavior',
+            'class' => '\core\modules\images\behaviors\ImageBehavior',
             'path' => '@uploads/store/product'
         ];
         $a['eav'] = [

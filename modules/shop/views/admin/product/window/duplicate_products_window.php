@@ -1,6 +1,6 @@
 <?php
 use panix\engine\Html;
-\app\web\themes\dashboard\AdminAsset::register($this);
+\core\web\themes\dashboard\AdminAsset::register($this);
 \panix\engine\widgets\PjaxAsset::register($this);
 $this->registerJs("
     function checkAllDuplicateAttributes(el){

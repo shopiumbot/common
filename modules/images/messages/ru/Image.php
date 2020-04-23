@@ -6,5 +6,4 @@ return [
     'URLALIAS' => 'Url Alias',
     'IS_MAIN' => 'Обложка',
     'IMAGE' => 'Изображение',
-    'ALT_TITLE' => 'Alt+Title'
 ];

@@ -27,7 +27,7 @@ class ProductIndex extends AssetBundle
         'yii\web\YiiAsset',
         'yii\jui\JuiAsset',
         'yii\grid\GridViewAsset',
-        'app\web\themes\dashboard\AdminAsset',
+        'core\web\themes\dashboard\AdminAsset',
         //'app\web\themes\dashboard\ThemeCssAsset'
 
     ];

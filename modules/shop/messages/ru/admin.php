@@ -20,7 +20,6 @@ return [
     'PRODUCT_LIST' => 'Список товаров',
     'MANUFACTURER' => 'Производители',
     'ATTRIBUTE_GROUP' => 'Группы атрибутов',
-    'SELECT_ATTRIBUTE_PRODUCT' => 'Выберите атрибуты для конфигурации продуктов.',
     'SELECT_TYPE_PRODUCT' => 'Для начало необходимо создать Тип товара',
     'FIEND_REQUIRED' => 'Поле {field} обязательно для заполнения',
     'ADD_OPTION' => 'Добавить опцию',

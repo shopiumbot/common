@@ -1,7 +1,7 @@
 <?php
 return [
-    'SELECT_LABEL'=>'&mdash; Выбрать лейбл &mdash;',
-    'LABEL'=>'Лейбл товарв',
+    'SELECT_LABEL' => '&mdash; Выбрать лейбл &mdash;',
+    'LABEL' => 'Лейбл товарв',
     'LABEL_NEW' => 'Новинка',
     'LABEL_SALE' => 'Распродажа',
     'LABEL_DISCOUNT' => 'Скидка',
@@ -56,4 +56,7 @@ return [
     'UNIT_BOX' => 'ящик.',
     'SELECT_MANUFACTURER_ID' => '&mdash; Выбрать производителя &mdash;',
     'SELECT_MAIN_CATEGORY_ID' => '&mdash; Выбрать категорию &mdash;',
+    'WIDTH' => 'Ширина',
+    'HEIGHT' => 'Высота',
+    'LENGTH' => 'Длина',
 ];

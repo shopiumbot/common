@@ -21,7 +21,6 @@ class ImageSearch extends Image
     {
         return [
             [['id'], 'integer'],
-            [['alt_title'], 'safe'],
         ];
     }
 
@@ -73,7 +72,6 @@ class ImageSearch extends Image
             //}
         }
 
-        $query->andFilterWhere(['like', 'alt_title', $this->alt_title]);
 
        // echo $query->createCommand()->rawSql;die;
         return $dataProvider;

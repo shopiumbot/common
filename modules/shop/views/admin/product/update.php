@@ -25,20 +25,12 @@ use core\modules\shop\models\ProductType;
         $typesList = ProductType::find()->all();
         if (count($typesList) > 0) {
             // If selected `configurable` product without attributes display error
-            if ($model->isNewRecord)
-                $attributeError = true;
-            else
-                $attributeError = false;
-
-            if ($model->isNewRecord && !$model->type_id || $attributeError === true) {
+            if ($model->isNewRecord && !$model->type_id) {
 
 
                 echo Html::beginForm('', 'GET');
                 core\modules\shop\bundles\admin\ProductAsset::register($this);
 
-                if ($attributeError) {
-                    echo '<div class="alert alert-danger">' . Yii::t('shop/admin', 'SELECT_ATTRIBUTE_PRODUCT') . '</div>';
-                }
                 ?>
                 <div class="card-body">
                     <div class="form-group row">
@@ -47,16 +39,6 @@ use core\modules\shop\models\ProductType;
                             <?php echo Html::activeDropDownList($model, 'type_id', ArrayHelper::map($typesList, 'id', 'name'), ['class' => 'form-control']); ?>
                         </div>
                     </div>
-                    <?php if (false) { ?>
-                        <div class="form-group row">
-                            <div class="col-sm-4"><?= Html::activeLabel($model, 'use_configurations', ['class' => 'control-label']); ?></div>
-                            <div class="col-sm-8">
-                                <?php echo Html::activeDropDownList($model, 'use_configurations', [0 => Yii::t('app/default', 'NO'), 1 => Yii::t('app/default', 'YES')], ['class' => 'form-control']); ?>
-                            </div>
-                        </div>
-
-                        <div id="availableAttributes" class="form-group d-none"></div>
-                    <?php } ?>
 
                 </div>
                 <div class="card-footer text-center">

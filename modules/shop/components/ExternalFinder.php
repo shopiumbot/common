@@ -9,7 +9,7 @@ namespace core\modules\shop\components;
 
 use Yii;
 use yii\db\Query;
-use panix\mod\images\models\Image;
+use core\modules\images\models\Image;
 use core\modules\shop\models\Attribute;
 use core\modules\shop\models\AttributeOption;
 use core\modules\shop\models\Category;
