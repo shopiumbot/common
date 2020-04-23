@@ -202,9 +202,7 @@ class ImageBehavior extends Behavior
         $imageQuery->orderBy(['ordern' => SORT_DESC]);
 
         $imageRecords = $imageQuery->all();
-        //if (!$imageRecords && Yii::$app->getModule('images')->placeHolderPath) {
-        //    return [Yii::$app->getModule('images')->getPlaceHolder()];
-        //}
+
         return $imageRecords;
     }
 
@@ -250,7 +248,6 @@ class ImageBehavior extends Behavior
 
         $img = $query->one();
         if (!$img) {
-            // return Yii::$app->getModule('images')->getPlaceHolder();
             return NULL;
         }
 
