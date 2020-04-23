@@ -1,6 +1,6 @@
 <?php
 
-namespace app\web\themes\dashboard;
+namespace core\web\themes\dashboard;
 
 use panix\engine\web\AssetBundle;
 
@@ -27,7 +27,7 @@ class AdminAsset extends AssetBundle
         'panix\ext\fancybox\FancyboxAsset',
         'panix\engine\assets\CommonAsset',
         'panix\engine\assets\ClipboardAsset',
-        'app\web\themes\dashboard\AdminCountersAsset',
+        'core\web\themes\dashboard\AdminCountersAsset',
     ];
 
     public $cssOptions = ['data-theme' => 1];

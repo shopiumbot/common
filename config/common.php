@@ -40,7 +40,7 @@ $config = [
         'contacts' => ['class' => 'panix\mod\contacts\Module'],
         'discounts' => ['class' => 'shopium\mod\discounts\Module'],
         'csv' => ['class' => 'shopium\mod\csv\Module'],
-        'images' => ['class' => 'panix\mod\images\Module'],
+        'images' => ['class' => 'core\modules\images\Module'],
         'cart' => ['class' => 'shopium\mod\cart\Module'],
     ],
     'components' => [
@@ -109,10 +109,10 @@ $config = [
             'showScriptName' => false,
             'enableStrictParsing' => true,
             'baseUrl' => '',
-            //'normalizer' => [
-            //    'class' => 'yii\web\UrlNormalizer',
-            //    'action' => UrlNormalizer::ACTION_REDIRECT_TEMPORARY,
-            //],
+            'normalizer' => [
+                'class' => 'yii\web\UrlNormalizer',
+                'action' => UrlNormalizer::ACTION_REDIRECT_TEMPORARY,
+            ],
             'rules' => [
                 '' => 'site/index',
                 'placeholder' => 'site/placeholder',
@@ -127,6 +127,7 @@ $config = [
                // 'http://demo.shopium24.loc/admin' => 'admin/admin/default/index',
                 ['pattern' => 'admin/auth', 'route' => 'admin/auth/index'],
                 ['pattern' => 'admin', 'route' => 'admin/admin/default/index'],
+
 
                 ['pattern' => 'admin/app/<controller:[0-9a-zA-Z_\-]+>', 'route' => 'admin/admin/<controller>/index'],
                 ['pattern' => 'admin/app/<controller:[0-9a-zA-Z_\-]+>/<action:[0-9a-zA-Z_\-]+>', 'route' => 'admin/admin/<controller>/<action>'],

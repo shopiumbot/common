@@ -1,7 +1,7 @@
 <?php
 
 use panix\engine\Html;
-use app\web\themes\dashboard\AdminAsset;
+use core\web\themes\dashboard\AdminAsset;
 
 $asset = AdminAsset::register($this);
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\web\themes\dashboard;
+namespace core\web\themes\dashboard;
 
 use yii\web\AssetBundle;
 
