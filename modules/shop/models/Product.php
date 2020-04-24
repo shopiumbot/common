@@ -259,8 +259,7 @@ class Product extends ActiveRecord
     {
         $planCount = Yii::$app->params['plan'][Yii::$app->params['plan_id']]['product_upload_files'];
         $imageCount = Image::find()->where([
-            'object_id' => $this->primaryKey,
-            'handler_hash' => $this->getHash()
+            'product_id' => $this->primaryKey,
         ])->count();
 
 
@@ -342,12 +341,6 @@ class Product extends ActiveRecord
             });
     }
 
-    public function getVariants()
-    {
-        return $this->hasMany(ProductVariant::class, ['product_id' => 'id'])
-            ->joinWith(['productAttribute', 'option'])
-            ->orderBy(AttributeOption::tableName() . '.ordern');
-    }
 
 //'variants' => array(self::HAS_MANY, 'ProductVariant', array('product_id'), 'with' => array('attribute', 'option'), 'order' => 'option.ordern'),
 
@@ -576,23 +569,16 @@ class Product extends ActiveRecord
 
     /**
      * @param $product Product
-     * @param array $variants
-     * @param $configuration
      * @param int $quantity
      * @return float|int|mixed|null
      */
-    public static function calculatePrices($product, array $variants, $configuration, $quantity = 1)
+    public static function calculatePrices($product, $quantity = 1)
     {
         // print_r($product);die;
         if (($product instanceof Product) === false)
             $product = Product::findOne($product);
 
-        if (($configuration instanceof Product) === false && $configuration > 0)
-            $configuration = Product::findOne($configuration);
 
-        if ($configuration instanceof Product) {
-            $result = $configuration->price;
-        } else {
 
             // if ($quantity > 1 && ($pr = $product->getPriceByQuantity($quantity))) {
             if ($product->prices && $quantity > 1) {
@@ -612,19 +598,8 @@ class Product extends ActiveRecord
                 }
 
             }
-        }
 
-        // if $variants contains not models
-        if (!empty($variants) && ($variants[0] instanceof ProductVariant) === false)
-            $variants = ProductVariant::findAll($variants);
 
-        foreach ($variants as $variant) {
-            // Price is percent
-            if ($variant->price_type == 1)
-                $result += ($result / 100 * $variant->price);
-            else
-                $result += $variant->price;
-        }
 
         return $result;
     }

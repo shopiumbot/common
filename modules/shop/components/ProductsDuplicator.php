@@ -37,7 +37,7 @@ class ProductsDuplicator extends \yii\base\Component
      * Creates copy of many products.
      *
      * @param array $ids of products to make copy
-     * @param array $duplicate list of product parts to copy: images, variants, etc...
+     * @param array $duplicate list of product parts to copy: images, etc...
      * @return array of new product ids
      */
     public function createCopy(array $ids, array $duplicate = [])

@@ -23,8 +23,6 @@ return [
     'SELECT_TYPE_PRODUCT' => 'Для начало необходимо создать Тип товара',
     'FIEND_REQUIRED' => 'Поле {field} обязательно для заполнения',
     'ADD_OPTION' => 'Добавить опцию',
-    'VARIANTS_PRICE_FIX' => 'Фиксированная',
-    'VARIANTS_PRICE_PERCENT' => 'Процент',
     'EMPTY_ATTRIBUTES_LIST' => 'Список свойств пустой',
     'PRODUCT_COUNT' => 'Товаров',
     'NO_FOUND_TYPE_PRODUCT' => 'Тип товара не найдет',
