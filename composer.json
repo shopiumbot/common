@@ -22,12 +22,12 @@
         "panix/mod-user": "dev-master",
         "panix/mod-images": "dev-master",
         "panix/mod-rbac": "dev-master",
+        "shopium/mod-telegram": "~0.1",
         "shopium/mod-admin": "dev-master",
         "shopium/mod-discounts": "dev-master",
-        "shopium/mod-cart": "dev-master",
         "panix/wgt-fancybox": "dev-master",
         "shopium/mod-csv": "dev-master",
-        "shopium/mod-telegram": "dev-master"
+        "shopium/mod-cart": "dev-master"
     },
     "config": {
         "process-timeout": 1800

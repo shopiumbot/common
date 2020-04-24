@@ -37,7 +37,7 @@ $config = [
         'telegram' => ['class' => 'shopium\mod\telegram\Module'],
         'user' => ['class' => 'panix\mod\user\Module'],
         'shop' => ['class' => 'core\modules\shop\Module'],
-        'contacts' => ['class' => 'panix\mod\contacts\Module'],
+        'contacts' => ['class' => 'core\modules\contacts\Module'],
         'discounts' => ['class' => 'shopium\mod\discounts\Module'],
         'csv' => ['class' => 'shopium\mod\csv\Module'],
         'images' => ['class' => 'core\modules\images\Module'],
@@ -125,9 +125,9 @@ $config = [
                 //['pattern' => 'admin/<module:\w+>/<controller:[0-9a-zA-Z_\-]+>', 'route' => '<module>/admin/<controller>/index'],
                 //['pattern' => 'admin/<module:\w+>/<controller:[0-9a-zA-Z_\-]+>/<action:[0-9a-zA-Z_\-]+>/<page:\d+>', 'route' => '<module>/admin/<controller>/<action>'],
                // 'http://demo.shopium24.loc/admin' => 'admin/admin/default/index',
+
                 ['pattern' => 'admin/auth', 'route' => 'admin/auth/index'],
                 ['pattern' => 'admin', 'route' => 'admin/admin/default/index'],
-
 
                 ['pattern' => 'admin/app/<controller:[0-9a-zA-Z_\-]+>', 'route' => 'admin/admin/<controller>/index'],
                 ['pattern' => 'admin/app/<controller:[0-9a-zA-Z_\-]+>/<action:[0-9a-zA-Z_\-]+>', 'route' => 'admin/admin/<controller>/<action>'],

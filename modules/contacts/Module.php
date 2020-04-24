@@ -12,11 +12,12 @@ class Module extends WebModule
     public $icon = 'phone';
 
 
+
     public function getPhones()
     {
         $cfg = Yii::$app->settings->get($this->id);
-        if ($cfg['phone']) {
-            return explode(',', $cfg['phone']);
+        if ($cfg->phone) {
+            return $cfg->phone;
         } else {
             return false;
         }
@@ -25,8 +26,8 @@ class Module extends WebModule
     public function getEmails()
     {
         $cfg = Yii::$app->settings->get($this->id);
-        if ($cfg['email']) {
-            return explode(',', $cfg['email']);
+        if ($cfg->email) {
+            return explode(',', $cfg->email);
         } else {
             return false;
         }
@@ -35,8 +36,8 @@ class Module extends WebModule
     public function getAddress()
     {
         $cfg = Yii::$app->settings->get($this->id);
-        if ($cfg['address']) {
-            return $cfg['address'];
+        if ($cfg->address) {
+            return $cfg->address;
         } else {
             return false;
         }

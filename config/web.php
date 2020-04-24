@@ -14,10 +14,6 @@ $config = [
         'geoip' => ['class' => 'panix\engine\components\geoip\GeoIP'],
         //'webcontrol' => ['class' => 'panix\engine\widgets\webcontrol\WebInlineControl'],
         'view' => [
-           // 'class' => 'panix\mod\plugins\components\View',
-           // 'as Layout' => [
-           //     'class' => 'panix\engine\behaviors\LayoutBehavior',
-           // ],
             'renderers' => [
                 'tpl' => [
                     'class' => 'yii\smarty\ViewRenderer',
@@ -25,7 +21,9 @@ $config = [
                 ],
             ],
             'theme' => [
-                'class' => 'panix\engine\base\Theme'
+                'class' => 'panix\engine\base\Theme',
+				'basePath'=>'@core/web/themes',
+                'name' => 'basic'
             ],
         ],
         'request' => [

@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use app\web\themes\dashboard\AdminLoginAsset;
+use core\web\themes\dashboard\AdminLoginAsset;
 AdminLoginAsset::register($this);
 
 

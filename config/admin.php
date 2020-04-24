@@ -9,7 +9,7 @@ $config = [
     'components' => [
 
         'assetManager' => [
-            'baseUrl' => 'https://common.shopiumbot.com/assets',
+            'baseUrl' => 'https://common-dev.shopiumbot.com/assets',
             'basePath' => dirname(__DIR__) . '/assets',
         ],
         'view' => [
