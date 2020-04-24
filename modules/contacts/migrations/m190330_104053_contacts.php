@@ -20,6 +20,10 @@ class m190330_104053_contacts extends Migration
 
     public function up()
     {
+        $this->createTable(Feedback::tableName(), [
+            'id' => $this->primaryKey()->unsigned(),
+            'ordern' => $this->integer()->unsigned(),
+        ]);
         $this->loadSettings();
     }
 
