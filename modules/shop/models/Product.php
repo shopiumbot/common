@@ -59,7 +59,7 @@ class Product extends ActiveRecord
 
     use traits\ProductTrait;
 
-    const SCENARIO_INSERT = 'insert';
+
     public $file;
 
     const route = '/admin/shop/default';
@@ -245,12 +245,12 @@ class Product extends ActiveRecord
         $rules[] = [['image'], 'image'];
         $rules[] = [['name'], 'unique'];
         $rules[] = [['name'], 'trim'];
-        $rules[] = [['full_description'], 'string'];
+        $rules[] = [['description'], 'string'];
 		$rules[] = [['unit'], 'default', 'value' => 1];
-        $rules[] = [['sku', 'full_description', 'label', 'discount'], 'default']; // установим ... как NULL, если они пустые
+        $rules[] = [['sku', 'description', 'label', 'discount'], 'default']; // установим ... как NULL, если они пустые
         $rules[] = [['price'], 'double'];
         $rules[] = [['manufacturer_id', 'type_id', 'quantity', 'availability', 'added_to_cart_count', 'ordern', 'category_id', 'currency_id', 'label'], 'integer'];
-        $rules[] = [['name', 'full_description'], 'safe'];
+        $rules[] = [['name', 'description'], 'safe'];
 
         return $rules;
     }
@@ -542,7 +542,7 @@ class Product extends ActiveRecord
             'tableName' => '{{%shop__product_attribute_eav}}'
         ];
 
-        if (Yii::$app->getModule('discounts') && Yii::$app->id !== 'console')
+        if (Yii::$app->getModule('discounts'))
             $a['discounts'] = [
                 'class' => '\shopium\mod\discounts\components\DiscountBehavior'
             ];
