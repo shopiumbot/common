@@ -19,8 +19,6 @@ class SettingsForm extends SettingsModel
     public $email;
     public $phone;
     public $address;
-    public $feedback_tpl_body;
-    public $feedback_captcha;
     public $schedule;
 
 
@@ -29,9 +27,8 @@ class SettingsForm extends SettingsModel
         return [
             ['schedule', 'validateSchedule', 'skipOnEmpty' => true],
             ['address', 'validateLang', 'skipOnEmpty' => true],
-            [['email', 'feedback_captcha'], "required"],
+            [['email'], "required"],
             ['phone', 'validatePhones2', 'skipOnEmpty' => false],
-            [['feedback_tpl_body'], 'string'],
         ];
     }
 
@@ -140,8 +137,6 @@ class SettingsForm extends SettingsModel
             'feedback_captcha' => true,
             'email' => 'me-email@example.com',
             'address' => '',
-            'feedback_tpl_body' => '',
-            'captcha_class' => '\yii\captcha\Captcha',
             'map_api_key' => ''
         ];
     }

@@ -14,12 +14,7 @@ $form->field($model, 'email')
     ->widget(\panix\ext\taginput\TagInput::class, ['placeholder' => 'E-mail'])
     ->hint('Введите E-mail и нажмите Enter');
 ?>
-<?php //echo $form->field($model, 'address'); ?>
-<?= $form->field($model, 'feedback_captcha')->checkbox() ?>
-<?=
-$form->field($model, 'feedback_tpl_body')->widget(\panix\ext\tinymce\TinyMce::class, [
-    'options' => ['rows' => 6],
-]);
+<?php
 
 echo $form->field($model, 'phone')->widget(MultipleInput::class, [
     'max' => 5,
@@ -55,11 +50,11 @@ echo $form->field($model, 'phone')->widget(MultipleInput::class, [
 ]);
 
 echo $form->field($model, 'address')->widget(MultipleInput::class, [
-    'max' => count(Yii::$app->languageManager->languages),
-    'min' => count(Yii::$app->languageManager->languages),
+    'max' => 5,
+    'min' => 1,
     'allowEmptyList' => false,
 
-    'rendererClass' => \panix\ext\multipleinput\renderers\TableLanguageRenderer::class,
+
     'columns' => [
         [
             'name' => 'address',

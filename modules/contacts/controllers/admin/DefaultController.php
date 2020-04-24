@@ -2,9 +2,8 @@
 
 namespace core\modules\contacts\controllers\admin;
 
+use core\modules\contacts\models\SettingsForm;
 use Yii;
-use core\modules\contacts\models\Pages;
-use core\modules\contacts\models\PagesSearch;
 use panix\engine\controllers\AdminController;
 
 /**
@@ -17,17 +16,24 @@ class DefaultController extends AdminController
 
     public function actionIndex()
     {
-        $this->pageName = Yii::t('contacts/default', 'MODULE_NAME');
+        $this->pageName = Yii::t('app/default', 'SETTINGS');
         $this->breadcrumbs = [
+            [
+                'label' => $this->module->info['label'],
+                'url' => $this->module->info['url'],
+            ],
             $this->pageName
         ];
-
-        // $searchModel = new PagesSearch();
-        // $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
-
+        $model = new SettingsForm();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validate()) {
+                $model->save();
+                Yii::$app->session->setFlash("success", Yii::t('app/default', 'SUCCESS_UPDATE'));
+            }
+            return $this->refresh();
+        }
         return $this->render('index', [
-            //      'dataProvider' => $dataProvider,
-            //     'searchModel' => $searchModel,
+            'model' => $model
         ]);
     }
 

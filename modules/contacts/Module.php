@@ -62,27 +62,12 @@ class Module extends WebModule
                 'items' => [
                     [
                         'label' => Yii::t('contacts/default', 'MODULE_NAME'),
-                        //'url' => ['/admin/contacts'],
+                        'url' => ['/admin/contacts'],
                         'icon' => $this->icon,
-                        'items' => [
-                            [
-                                'label' => Yii::t('app/default', 'SETTINGS'),
-                                "url" => ['/admin/contacts/settings'],
-                                'icon' => 'settings'
-                            ]
-                        ]
                     ],
                 ],
             ],
         ];
-    }
-
-    public function getAdminSidebar()
-    {
-        $menu = $this->getAdminMenu();
-        //  $mod = new \panix\engine\bootstrap\Nav;
-        //   $items = $mod->findMenu($this->id);
-        return \yii\helpers\ArrayHelper::merge($menu['modules']['items'], $menu['modules']['items'][0]['items']);
     }
 
     public function getInfo()

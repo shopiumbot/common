@@ -41,6 +41,6 @@ $form->field($model, 'main_category_id')->dropDownList(Category::flatTree(), [
 ?>
 <?=
 
-$form->field($model, 'full_description')->textarea();
+$form->field($model, 'description')->textarea();
 
 ?>
