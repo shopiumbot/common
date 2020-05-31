@@ -43,8 +43,7 @@ $this->registerJs('
                  class="animated <?php if (!Yii::$app->session->hasFlash('error')) { ?>bounceInDown<?php } ?> col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-lg-4 offset-lg-4">
 
                 <div class="text-center auth-logo animated zoomInDown2 ">
-                    <a href="//pixelion.com.ua" target="_blank">PIXELION</a>
-                    <div class="auth-logo-hint"><?= Yii::t('app/admin', 'CMS') ?></div>
+                    <a href="//shopiumbot.com" target="_blank"></a>
                 </div>
                 <div class="card bg-light">
                     <div class="card-header">

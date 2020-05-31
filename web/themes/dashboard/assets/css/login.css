@@ -26,24 +26,13 @@ body {
     line-height: 65px;
     margin-bottom: 20px;
     text-decoration: none;
+    background-image: url(../images/logo-dark.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
 }
-.auth-logo a:after{
-    font-family: Pixelion;
-    position: absolute;
-    content:"\f001";
-    left:0;
-    top:0;
-    font-size:60px;
-    line-height: 65px;
-}
-.auth-logo .auth-logo-hint{
-    position: absolute;
-    bottom:5px;
-    right:0;
-    color:#999;
-    font-size:11px;
-    text-transform: lowercase;
-}
+
+
 input[type="radio"], input[type="checkbox"]{
     margin-top: 0;
 }
