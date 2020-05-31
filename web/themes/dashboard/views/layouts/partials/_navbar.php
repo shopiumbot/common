@@ -11,7 +11,7 @@ use shopium\mod\admin\models\Notification;
 ?>
 <nav class="navbar navbar-expand-lg fixed-top bg-dark">
 
-    <?= Html::a('<span class="d-none d-md-block">PIXELION</span>', ['/admin'], ['class' => 'navbar-brand']); ?>
+    <?= Html::a('', ['/admin'], ['class' => 'navbar-brand']); ?>
 
     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar">
         <span></span>
