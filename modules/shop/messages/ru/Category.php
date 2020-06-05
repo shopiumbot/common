@@ -17,4 +17,5 @@ return [
     'CURRENT_CURRENCY' => 'Текущая валюта ({symbol}).',
     'PRODUCT_NAME' => 'Название товара',
     'PRODUCT_PRICE' => 'Цена товара',
+    'ICON' => 'Иконка (emoji)',
 ];
