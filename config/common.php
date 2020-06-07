@@ -35,7 +35,7 @@ $config = [
             //],
         ],
         'telegram' => ['class' => 'shopium\mod\telegram\Module'],
-        'user' => ['class' => 'panix\mod\user\Module'],
+        //'user' => ['class' => 'panix\mod\user\Module'],
         'shop' => ['class' => 'core\modules\shop\Module'],
         'contacts' => ['class' => 'core\modules\contacts\Module'],
         'discounts' => ['class' => 'shopium\mod\discounts\Module'],
@@ -94,7 +94,8 @@ $config = [
         ],
         'user' => [
             'class' => 'panix\mod\user\components\WebUser',
-            // 'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+            'identityClass' => 'core\components\User',
+             'identityCookie' => ['name' => '_identity', 'httpOnly' => false],
         ],
         'mailer' => [
             'class' => 'panix\engine\Mailer',
@@ -116,6 +117,7 @@ $config = [
             'rules' => [
                 '' => 'site/index',
                 'placeholder' => 'site/placeholder',
+				'logout' => 'site/logout',
                 //'/admin' => 'admin/admin/default/index',
                 // 'admin/auth' => 'admin/auth/index',
                 // ['pattern' => 'admin/app/<controller:\w+>', 'route' => 'admin/admin/<controller>/index'],
@@ -138,6 +140,22 @@ $config = [
 
             ],
         ],
+		
+		'serverDb'=>[
+            'class' => 'panix\engine\db\Connection',
+            'charset' => 'utf8', //utf8 на utf8mb4. FOR Emoji
+            'serverStatusCache' => YII_DEBUG ? 0 : 3600,
+            'schemaCacheDuration' => YII_DEBUG ? 0 : 3600 * 24,
+            'enableSchemaCache' => true,
+            'schemaCache' => 'cache',
+
+                'dsn' => 'mysql:host=corner.mysql.tools;dbname=corner_shopiumbot',
+                'username' => 'corner_shopiumbot',
+                'password' => 'Bhg!583gN)',
+                'tablePrefix' => 'm90f_',
+
+        ],
+		
         'db' => [
             'class' => 'panix\engine\db\Connection',
             'charset' => 'utf8', //utf8 на utf8mb4. FOR Emoji

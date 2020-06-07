@@ -4,7 +4,8 @@ namespace panix\engine\controllers;
 
 
 use Yii;
-use panix\mod\rbac\filters\AccessControl;
+//use panix\mod\rbac\filters\AccessControl;
+use yii\filters\AccessControl;
 
 
 /**
@@ -24,10 +25,24 @@ class AdminController extends CommonController
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'allowActions' => [
+                //'allowActions' => [
                     // 'index',
                     // The actions listed here will be allowed to everyone including guests.
-                ]
+               // ]
+
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->id === Yii::$app->params['client_id'];
+                        },
+                    ],
+                ],
             ],
         ];
     }

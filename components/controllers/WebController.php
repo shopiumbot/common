@@ -63,6 +63,7 @@ class WebController extends CommonController
     }
 
 
+
     public function actionIndex()
     {
         $this->layout = "main";
@@ -87,7 +88,7 @@ class WebController extends CommonController
         $config = Yii::$app->settings->get('app');
         $timeZone = $config->timezone;
         Yii::$app->timeZone = $timeZone;
-       // Yii::setAlias('@theme', Yii::getAlias("@app/web/themes/{$config->theme}"));
+        // Yii::setAlias('@theme', Yii::getAlias("@app/web/themes/{$config->theme}"));
         Yii::setAlias('@theme', Yii::$app->view->theme->basePath);
         if (true && Yii::$app->id != 'console') {
 

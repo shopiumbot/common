@@ -85,4 +85,46 @@ class CommonController extends Controller
             //Yii::$app->end();
         }
     }
+	
+	
+	    /**
+     * Display login page
+     *
+     * @return string|Response
+     */
+    public function actionLogin()
+    {
+        $config = Yii::$app->settings->get('user');
+        if (Yii::$app->user->isGuest) {
+            $this->pageName = Yii::t('user/default', 'LOGIN');
+            $this->breadcrumbs = [
+                $this->pageName
+            ];
+
+            // load post data and login
+            $model = new LoginForm();
+
+            if ($model->load(Yii::$app->request->post()) && $model->login($config->login_duration * 86400)) {
+                return $this->goBack(Yii::$app->getModule("user")->loginRedirect);
+            }
+
+            // render
+            return $this->render('login', [
+                'model' => $model,
+            ]);
+        } else {
+            return $this->redirect(['/']);
+        }
+    }
+
+    /**
+     * Log user out and redirect
+     */
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+
+        return $this->goHome();
+
+    }
 }
