@@ -89,7 +89,7 @@ use shopium\mod\admin\models\Notification;
             ],
             [
                 'label' => Html::icon('logout'),
-                'url' => ['/user/logout'],
+                'url' => ['/site/logout'],
                 'options' => ['data-method' => "post"]
             ],
         ],
