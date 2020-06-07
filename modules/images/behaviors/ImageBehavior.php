@@ -320,6 +320,7 @@ class ImageBehavior extends Behavior
             } else {
                 return $string;
             }
+
         } else {
             return substr(md5(microtime()), 0, 10);
         }
