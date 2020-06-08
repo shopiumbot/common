@@ -1,10 +1,8 @@
 <?php
 
-namespace panix\engine\controllers;
+namespace core\components\controllers;
 
 use Yii;
-use yii\base\Exception;
-use yii\filters\AccessControl;
 use yii\web\Response;
 use panix\engine\CMS;
 
@@ -24,43 +22,6 @@ class WebController extends CommonController
             ],
         ];
     }
-
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => \panix\mod\rbac\filters\AccessControl::class,
-                'allowActions' => [
-                    '*',
-                    // The actions listed here will be allowed to everyone including guests.
-                ]
-            ],
-        ];
-    }
-
-    public function behaviors2()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::class,
-                'only' => ['logout'],
-                'rules' => [
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => \yii\filters\VerbFilter::class,
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
-
 
 
     public function actionIndex()

@@ -1,10 +1,9 @@
 <?php
 
-namespace panix\engine\controllers;
+namespace core\components\controllers;
 
 
 use Yii;
-//use panix\mod\rbac\filters\AccessControl;
 use yii\filters\AccessControl;
 
 
@@ -20,35 +19,7 @@ class AdminController extends CommonController
     public $dashboard = true;
 
 
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::class,
-                //'allowActions' => [
-                    // 'index',
-                    // The actions listed here will be allowed to everyone including guests.
-               // ]
 
-                'rules' => [
-                    [
-                        'allow' => false,
-                        'roles' => ['?'],
-                        'matchCallback' => function ($rule, $action) {
-                            return false;
-                        },
-                    ],
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                        'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->id === Yii::$app->params['client_id'];
-                        },
-                    ],
-                ],
-            ],
-        ];
-    }
 
     /**
      * @param boolean $isNewRecord
