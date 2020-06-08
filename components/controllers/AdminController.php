@@ -19,7 +19,32 @@ class AdminController extends CommonController
     public $dashboard = true;
 
 
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                //'allowActions' => [
+                // 'index',
+                // The actions listed here will be allowed to everyone including guests.
+                // ]
 
+                'rules' => [
+                    [
+                        'allow' => false,
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->id === Yii::$app->params['client_id'];
+                        },
+                    ],
+                ],
+            ],
+        ];
+    }
 
     /**
      * @param boolean $isNewRecord
@@ -62,21 +87,8 @@ class AdminController extends CommonController
     public function init()
     {
 
-        // echo get_class($this);die;
-
-        //panix\mod\admin\controllers\admin\DefaultController
-
-        /*if (!empty(Yii::$app->user)
-            && !Yii::$app->user->can("admin")
-            && get_class($this) !== 'panix\mod\admin\controllers\AuthController'
-            && get_class($this) !== 'panix\mod\admin\controllers\DefaultController'
-        ) {
-            throw new ForbiddenHttpException(Yii::t('app/default', 'ACCESS_DENIED'));
-        }*/
-
         Yii::setAlias('@theme', Yii::getAlias("@core/web/themes/dashboard"));
         Yii::setAlias('@web_theme', Yii::getAlias("@app/web/themes/" . Yii::$app->settings->get('app', 'theme')));
-
 
         parent::init();
     }
