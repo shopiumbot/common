@@ -117,7 +117,7 @@
     <!-- ============================================================== -->
     <!-- Comment -->
     <!-- ============================================================== -->
-    <li class="nav-item dropdown border-right">
+    <li class="nav-item dropdown border-right  d-none">
         <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
             <i class="icon-notification-outline"></i>
@@ -216,7 +216,8 @@
                 </div>
                 <div class="ml-2">
                     <h5 class="mb-0"><?= Yii::$app->user->getDisplayName(); ?></h5>
-                    <p class="mb-0"><a href="/cdn-cgi/l/email-protection" class="__cf_email__">[email&#160;protected]</a>
+                    <p class="mb-0"><a href="/cdn-cgi/l/email-protection"
+                                       class="__cf_email__">[email&#160;protected]</a>
                     </p>
                 </div>
             </div>

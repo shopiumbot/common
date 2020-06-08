@@ -18,7 +18,7 @@ use panix\engine\Html;
             <?= Html::a(Html::icon('discount').'<span class="hide-menu">Скидки</span>', ['/discounts/admin/default/index'], ['class' => 'sidebar-link']); ?>
         </li>
         <li class="sidebar-item d-none">
-            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+            <a class="sidebar-link has-arrow" href="javascript:void(0)"
                aria-expanded="false">
                 <i class="icon-puzzle"></i>
                 <span class="hide-menu">Интеграция</span>
@@ -53,15 +53,15 @@ use panix\engine\Html;
             <?= Html::a(Html::icon('settings').'<span class="hide-menu">Настройки</span>', ['/admin/shop/settings'], ['class' => 'sidebar-link']); ?>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+            <a class="sidebar-link has-arrow" href="javascript:void(0)"
                aria-expanded="false">
                 <i class="icon-cart"></i>
                 <span class="hide-menu">Заказы</span>
-                <span class="badge badge-pill badge-success ml-auto mr-3">3</span>
+                <span class="badge badge-pill badge-success ml-auto mr-3"><?= Yii::$app->getModule('cart')->count['num']; ?></span>
             </a>
             <ul aria-expanded="false" class="collapse first-level">
                 <li class="sidebar-item">
-                    <?= Html::a(Html::icon('list').'<span class="hide-menu">Список заказов</span>', ['/admin/cart/default/index'], ['class' => 'sidebar-link']); ?>
+                    <?= Html::a(Html::icon('cart').'<span class="hide-menu">Список заказов</span>', ['/admin/cart/default/index'], ['class' => 'sidebar-link']); ?>
                 </li>
                 <li class="sidebar-item">
                     <?= Html::a(Html::icon('delivery').'<span class="hide-menu">Доставка</span>', ['/admin/cart/delivery/index'], ['class' => 'sidebar-link']); ?>
@@ -75,7 +75,7 @@ use panix\engine\Html;
 
 
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+            <a class="sidebar-link has-arrow" href="javascript:void(0)"
                aria-expanded="false">
                 <i class="icon-telegram-outline"></i>
                 <span class="hide-menu">Telegram</span>
@@ -95,7 +95,7 @@ use panix\engine\Html;
             <span class="hide-menu">Интеграция</span>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+            <a class="sidebar-link has-arrow " href="javascript:void(0)"
                aria-expanded="false">
                 <i class="icon-upload"></i>
                 <span class="hide-menu">Импорт</span>
@@ -107,7 +107,7 @@ use panix\engine\Html;
             </ul>
         </li>
         <li class="sidebar-item">
-            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
+            <a class="sidebar-link has-arrow" href="javascript:void(0)"
                aria-expanded="false">
                 <i class="icon-download"></i>
                 <span class="hide-menu">Экспорт</span>
