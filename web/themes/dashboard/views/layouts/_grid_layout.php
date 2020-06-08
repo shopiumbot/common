@@ -33,7 +33,7 @@ use panix\engine\Html;
 
 
     </div>
-    <div class="card-body">
+    <div class="card-body p-0">
         <div class="table-responsive">{items}</div>
 
     </div>

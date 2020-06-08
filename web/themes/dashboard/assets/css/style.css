@@ -181,7 +181,9 @@ code {
     vertical-align: bottom;
     border-bottom: 2px solid rgba(0, 0, 0, .1)
 }
-
+.table td{
+    vertical-align: middle;
+}
 .table tbody + tbody {
     border-top: 2px solid rgba(0, 0, 0, .1)
 }
@@ -1819,7 +1821,7 @@ a.badge-secondary:focus, a.badge-secondary:hover {
     background-color: #545b62
 }
 
-a.badge-secondary.focus, a.badge-secondary:focus {\
+a.badge-secondary.focus, a.badge-secondary:focus {
     box-shadow: 0 0 0 .2rem rgba(108, 117, 125, .5)
 }
 
@@ -7887,23 +7889,6 @@ label {
     position: relative
 }
 
-.error-box {
-    height: 100%;
-    position: fixed;
-    background: url(../../../../assets/images/background/error-bg.jpg) no-repeat center center #fff;
-    width: 100%
-}
-
-.error-box .error-body {
-    padding-top: 5%
-}
-
-.error-box .error-title {
-    font-size: 210px;
-    font-weight: 900;
-    text-shadow: 4px 4px 0 #fff, 6px 6px 0 #343a40;
-    line-height: 210px
-}
 
 .price-label {
     position: absolute;
@@ -7922,15 +7907,6 @@ label {
     margin-left: -10px
 }
 
-.gaugejs-box {
-    position: relative;
-    margin: 0 auto
-}
-
-.gaugejs-box canvas.gaugejs {
-    width: 100% !important;
-    height: auto !important
-}
 
 .user-progress-bg {
     background-color: rgba(0, 0, 0, .1)
