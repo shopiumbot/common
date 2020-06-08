@@ -2,7 +2,7 @@
 
 namespace core\modules\shop\models;
 
-use \panix\engine\db\ActiveRecord;
+use core\components\ActiveRecord;
 
 /**
  * Class Currency

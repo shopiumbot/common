@@ -44,7 +44,7 @@ class DefaultController extends Controller
             'password' => $db->password,
             'database' => Yii::$app->getModule('telegram')->getDsnAttribute('dbname'),
         ];
-        $admins = ArrayHelper::merge([812367093],[]);
+
         try {
 
             // Create Telegram API object
@@ -55,7 +55,7 @@ class DefaultController extends Controller
                 realpath($basePath . '/commands') . '/AdminCommands',
                 realpath($basePath . '/commands') . '/UserCommands',
             ];
-            $telegram->enableAdmins($admins);
+
             $telegram->enableMySql($mysql_credentials, $db->tablePrefix . 'telegram__');
             $telegram->addCommandsPaths($commands_paths);
 

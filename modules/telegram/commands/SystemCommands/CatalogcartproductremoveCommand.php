@@ -15,8 +15,8 @@ use Longman\TelegramBot\Entities\InlineKeyboard;
 use Longman\TelegramBot\Entities\InlineKeyboardButton;
 use Longman\TelegramBot\Request;
 use core\modules\telegram\components\SystemCommand;
-use app\modules\cart\models\Order;
-use app\modules\cart\models\OrderProduct;
+use shopium\mod\cart\models\Order;
+use shopium\mod\cart\models\OrderProduct;
 use Yii;
 /**
  *

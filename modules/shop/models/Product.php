@@ -5,7 +5,6 @@ namespace core\modules\shop\models;
 
 use shopium\mod\discounts\components\DiscountBehavior;
 use core\modules\images\models\Image;
-use panix\mod\sitemap\behaviors\SitemapBehavior;
 use panix\mod\user\models\User;
 use Yii;
 use panix\engine\CMS;
@@ -16,7 +15,7 @@ use yii\db\Query;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use panix\engine\db\ActiveRecord;
+use core\components\ActiveRecord;
 use yii\web\NotFoundHttpException;
 
 /**

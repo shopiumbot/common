@@ -5,7 +5,7 @@ namespace core\modules\shop\models;
 use panix\engine\Html;
 use Yii;
 use yii\helpers\ArrayHelper;
-use panix\engine\db\ActiveRecord;
+use core\components\ActiveRecord;
 use core\modules\shop\models\query\ManufacturerQuery;
 
 /**

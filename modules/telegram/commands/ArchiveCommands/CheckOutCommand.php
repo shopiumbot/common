@@ -17,10 +17,10 @@ use Longman\TelegramBot\Entities\InlineKeyboardButton;
 use Longman\TelegramBot\Entities\Keyboard;
 use Longman\TelegramBot\Entities\KeyboardButton;
 use Longman\TelegramBot\Request;
-use panix\mod\cart\models\Delivery;
-use panix\mod\cart\models\Payment;
+use shopium\mod\cart\models\Delivery;
+use shopium\mod\cart\models\Payment;
 use core\modules\telegram\components\SystemCommand;
-use app\modules\cart\models\Order;
+use shopium\mod\cart\models\Order;
 use Yii;
 
 /**

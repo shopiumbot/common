@@ -4,10 +4,8 @@
 namespace core\modules\images\models;
 
 use Yii;
-use yii\base\Exception;
 use yii\helpers\Url;
-use yii\helpers\BaseFileHelper;
-use panix\engine\db\ActiveRecord;
+use core\components\ActiveRecord;
 
 /**
  * This is the model class for table "image".

@@ -8,7 +8,7 @@ use yii\helpers\ArrayHelper;
 use panix\engine\behaviors\nestedsets\NestedSetsBehavior;
 use core\modules\shop\models\query\CategoryQuery;
 use panix\engine\CMS;
-use panix\engine\db\ActiveRecord;
+use core\components\ActiveRecord;
 use panix\engine\behaviors\UploadFileBehavior;
 
 /**

@@ -13,7 +13,7 @@ namespace core\modules\telegram\commands\SystemCommands;
 
 use Longman\TelegramBot\Request;
 use core\modules\telegram\components\SystemCommand;
-use app\modules\cart\models\OrderProduct;
+use shopium\mod\cart\models\OrderProduct;
 use Yii;
 /**
  *

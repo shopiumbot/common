@@ -6,9 +6,8 @@ use Yii;
 use yii\caching\DbDependency;
 use yii\db\Exception;
 use yii\helpers\ArrayHelper;
-use core\modules\shop\models\translate\AttributeOptionTranslate;
 use core\modules\shop\models\query\AttributeOptionsQuery;
-use panix\engine\db\ActiveRecord;
+use core\components\ActiveRecord;
 
 /**
  * Shop options for dropdown and multiple select

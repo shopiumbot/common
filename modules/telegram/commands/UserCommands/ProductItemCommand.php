@@ -163,7 +163,6 @@ class ProductItemCommand extends SystemCommand
                 $keyboards[] = $pagerPhotos->buttons;
 
 
-
         }
 
 
@@ -201,7 +200,11 @@ class ProductItemCommand extends SystemCommand
             $imageData = $images[$this->photo_index];
             if ($imageData) {
                 if ($imageData->telegram_file_id) {
-                    $image = $imageData->telegram_file_id;
+                    list($bot_id, $file_id) = explode(':', $imageData->telegram_file_id);
+                    if($file_id == $this->getTelegram()->getBotId()){
+                        //todo check to bots ids
+                    }
+                    $image = $file_id;
                 } else {
                     $image = $imageData->getPathToOrigin();
                 }
@@ -216,10 +219,10 @@ class ProductItemCommand extends SystemCommand
 
         $test = [
 
-           // 'text' => json_encode($images),
+            // 'text' => json_encode($images),
             'chat_id' => $chat_id,
         ];
-     //  Request::sendMessage($test);
+        //  Request::sendMessage($test);
 
 
         if ($callbackData == 'changeProductImage') {
@@ -247,7 +250,8 @@ class ProductItemCommand extends SystemCommand
                 if (isset($imageData)) {
                     if (!$imageData->telegram_file_id) {
                         //todo: добавить проверку на бота, ИД или токен, еще не ясно
-                        $imageData->telegram_file_id = $reqMedia->getResult()->photo[0]['file_id'];
+
+                        $imageData->telegram_file_id = $this->getTelegram()->getBotId() . ':' . $reqMedia->getResult()->photo[0]['file_id'];
                         $imageData->save(false);
                     }
                 }
@@ -294,7 +298,7 @@ class ProductItemCommand extends SystemCommand
 
                 if (isset($imageData)) {
                     if (!$imageData->telegram_file_id) {
-                        $imageData->telegram_file_id = $reqPhoto->getResult()->photo[0]['file_id'];
+                        $imageData->telegram_file_id = $this->getTelegram()->getBotId() . ':' . $reqPhoto->getResult()->photo[0]['file_id'];
                         $imageData->save(false);
                     }
                 }

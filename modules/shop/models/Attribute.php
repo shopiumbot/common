@@ -7,10 +7,9 @@ use Yii;
 use yii\caching\DbDependency;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use core\modules\shop\models\translate\AttributeTranslate;
 use core\modules\shop\models\AttributeOption;
 use core\modules\shop\models\query\AttributeQuery;
-use panix\engine\db\ActiveRecord;
+use core\components\ActiveRecord;
 
 /**
  * This is the model class for table "Attribute".
