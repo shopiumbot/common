@@ -136,36 +136,15 @@ class CategoryController extends AdminController
     public function actionCreateRoot()
     {
 
-        Yii::$app->db->createCommand()->truncateTable(Category::tableName())->execute();
+        Category::getDb()->createCommand()->truncateTable(Category::tableName())->execute();
 
         $model = new Category;
         $model->name = 'Каталог продукции';
         $model->lft = 1;
         $model->rgt = 2;
         $model->depth = 1;
-        $model->full_path = '';
         if ($model->validate()) {
             $model->saveNode();
-
-            $model2 = new Category;
-            $model2->name = 'Category 1';
-            $model2->appendTo($model);
-
-
-            $model2 = new Category;
-            $model2->name = 'Category 2';
-            $model2->appendTo($model);
-
-
-            $model3 = new Category;
-            $model3->name = 'Category 2-1';
-            $model3->appendTo($model2);
-
-
-            $model2 = new Category;
-            $model2->name = 'Category 3';
-            $model2->appendTo($model);
-
         } else {
             print_r($model->getErrors());
             die;

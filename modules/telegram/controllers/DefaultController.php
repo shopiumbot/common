@@ -89,7 +89,8 @@ class DefaultController extends Controller
             }
 
             // Set webhook
-            $result = $telegram->setWebHook('https://bot.shopiumbot.com/telegram/default/hook');
+
+            $result = $telegram->setWebHook('https://'.Yii::$app->request->serverName.'/telegram/default/hook');
             if ($result->isOk()) {
                 return $result->getDescription();
             }

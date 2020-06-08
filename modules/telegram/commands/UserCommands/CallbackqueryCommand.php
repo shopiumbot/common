@@ -504,14 +504,7 @@ class CallbackqueryCommand extends SystemCommand
             $order = Order::findOne(['user_id' => $user_id, 'checkout' => 0]);
 
             parse_str($callback_data, $params);
-            $data = [
-                'chat_id' => $user_id,
-                'text' => 'Это демо версия!',
-                // 'show_alert' => true,
 
-            ];
-
-            $ssss=Request::sendMessage($data);
 
             if (isset($params['category_id'])) {
 
