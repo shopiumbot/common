@@ -16,24 +16,17 @@ $config = [
     ],
     //'sourceLanguage'=>'ru',
     // 'runtimePath' => '@app/backend/runtime',
-    'controllerNamespace' => 'panix\engine\controllers',
+    'controllerNamespace' => 'core\components\controllers',
     //'defaultRoute' => 'site/index',
     'bootstrap' => [
         'log',
         'panix\engine\BootstrapModule'
     ],
     'controllerMap' => [
-        'site' => 'panix\engine\controllers\WebController',
-        'badmin' => 'panix\engine\controllers\AdminController',
+        'site' => 'core\components\controllers\WebController',
     ],
     'modules' => [
         'admin' => ['class' => 'shopium\mod\admin\Module'],
-        'rbac' => [
-            'class' => 'panix\mod\rbac\Module',
-            //'as access' => [
-            //    'class' => panix\mod\rbac\filters\AccessControl::class
-            //],
-        ],
         'telegram' => ['class' => 'shopium\mod\telegram\Module'],
         //'user' => ['class' => 'panix\mod\user\Module'],
         'shop' => ['class' => 'core\modules\shop\Module'],
@@ -93,9 +86,10 @@ $config = [
             'class' => 'yii\caching\FileCache', //DummyCache
         ],
         'user' => [
-            'class' => 'panix\mod\user\components\WebUser',
+            //'class' => 'panix\mod\user\components\WebUser',
+			'class' => 'core\components\WebUser',
             'identityClass' => 'core\components\User',
-             'identityCookie' => ['name' => '_identity', 'httpOnly' => false],
+            'identityCookie' => ['name' => '_identity', 'httpOnly' => true],
         ],
         'mailer' => [
             'class' => 'panix\engine\Mailer',
