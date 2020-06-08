@@ -15,7 +15,6 @@ use core\modules\shop\models\AttributeOption;
 use core\modules\shop\models\Category;
 use core\modules\shop\models\Manufacturer;
 use core\modules\shop\models\Product;
-use core\modules\shop\models\Supplier;
 
 class ExternalFinder
 {
@@ -27,10 +26,15 @@ class ExternalFinder
     const OBJECT_MANUFACTURER = 4;
     const OBJECT_ATTRIBUTE_OPTION = 5;
     const OBJECT_IMAGE = 6;
-    const OBJECT_SUPPLIER = 7;
-    const OBJECT_MAIN_CATEGORY = 8;
+    const OBJECT_MAIN_CATEGORY = 7;
     public $cacheData;
-    public $table = '{{%exchange}}';
+    public $table;
+
+    public function __construct($table = '{{%exchange}}')
+    {
+        $this->table = $table;
+
+    }
 
     /**
      * @param $type
@@ -107,11 +111,6 @@ class ExternalFinder
 
                 case self::OBJECT_ATTRIBUTE_OPTION:
                     $data = AttributeOption::findOne($query['object_id']);
-                    return $data;
-                    break;
-
-                case self::OBJECT_SUPPLIER:
-                    $data = Supplier::findOne($query['object_id']);
                     return $data;
                     break;
 
