@@ -1,176 +1,246 @@
 <?php
 
 use panix\engine\Html;
-use core\web\themes\dashboard\AdminAsset;
+use yii\widgets\Breadcrumbs;
 
-$asset = AdminAsset::register($this);
-
-$this->registerJs('
-$(document).ready(function () {
-
-    $(".panel-heading .grid-toggle").click(function (e) {
-        e.preventDefault();
-        $(this).find(\'i\').toggleClass("fa-chevron-down");
-    });
-    
-    //$.widget.bridge(\'uibutton\', $.ui.button);
-    //$.widget.bridge(\'uitooltip\', $.ui.tooltip);
-    $(\'.fadeOut-time\').delay(2000).fadeOut(2000);
-    $(\'.bootstrap-tooltip\').tooltip();
-});
-', \yii\web\View::POS_END);
-
-
-$sideBar = (method_exists($this->context->module, 'getAdminSidebar')) ? true : false;
-
+$asset = \core\web\themes\dashboard\AdminAsset::register($this);
+//echo Yii::$app->security->generatePasswordHash('');
+// LWS199812204510
+// my_brand_shoes_18
 ?>
-<?php $this->beginPage(); ?>
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=<?php echo \Yii::$app->charset; ?>"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-        <title><?= Yii::t('app/admin', 'ADMIN_PANEL'); ?></title>
-        <?= Html::csrfMetaTags() ?>
-        <?php $this->head() ?>
-    </head>
-    <body class="no-radius1">
-    <?php $this->beginBody() ?>
-    <div id="wrapper-tpl">
-        <?= $this->render('partials/_navbar'); ?>
-        <?php
-        $class = '';
-        $class .= (!$sideBar) ? ' full-page' : '';
-        if (isset($_COOKIE['wrapper'])) {
-            $class .= ($_COOKIE['wrapper'] == 'true') ? ' active' : '';
-        }
-        ?>
-        <div id="wrapper" class="<?= $class ?>">
+<?php $this->beginPage() ?>
+<!DOCTYPE html>
+<html lang="<?= Yii::$app->language ?>">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=<?php echo \Yii::$app->charset; ?>"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <title><?= Yii::t('app/admin', 'ADMIN_PANEL'); ?></title>
+    <?= Html::csrfMetaTags() ?>
+    <?php $this->head() ?>
+</head>
+<body>
+<?php $this->beginBody() ?>
 
-            <?php if ($sideBar) { ?>
-                <div id="sidebar-wrapper">
-                    <?php
-                    echo \shopium\mod\admin\widgets\sidebar\SiderbarNav::widget([
-                        'encodeLabels' => false,
-                        'items' => \yii\helpers\ArrayHelper::merge([
-                            [
-                                'label' => Html::icon('menu'),
-                                'url' => '#',
-                                // 'encode'=>false,
-                                'linkOptions' => ['class' => 'sidebar-nav', 'id' => 'menu-toggle'],
-                            ]
-                        ], $this->context->module->getAdminSidebar()),
-                        'options' => ['class' => 'flex-column'],
-                    ]);
-                    ?>
+
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<div class="preloader">
+    <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+     data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+    <!-- ============================================================== -->
+    <!-- Topbar header - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <header class="topbar" data-navbarbg="skin6">
+        <nav class="navbar top-navbar navbar-expand-md navbar-light">
+            <div class="navbar-header" data-logobg="skin5">
+                <!-- This is for the sidebar toggle which is visible on mobile only -->
+                <a class="nav-toggler d-block d-md-none" href="javascript:void(0)">
+                    <i class="icon-menu"></i>
+                </a>
+                <div class="navbar-brand">
+                    <a href="/user" class="logo">
+                        <!-- Logo icon -->
+                        <b class="logo-icon">
+                            <img src="<?= $asset->baseUrl; ?>/images/logo.svg" alt="homepage"
+                                 class="light-logo"/>
+                        </b>
+                    </a>
+                    <a class="sidebartoggler d-none d-md-block" href="javascript:void(0)"
+                       data-sidebartype="mini-sidebar">
+                        <i class="icon-menu"></i>
+                    </a>
                 </div>
-            <?php } ?>
+                <a class="topbartoggler d-block d-md-none" href="javascript:void(0)"
+                   data-toggle="collapse" data-target="#navbarSupportedContent"
+                   aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="icon-menu"></i>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin6">
+                <?= $this->render('partials/_navbar',['asset'=>$asset]); ?>
+            </div>
+        </nav>
+    </header>
 
-            <!-- Page Content -->
-            <div id="page-content-wrapper">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12 clearfix module-header">
-                            <div class="float-left">
-                                <h1 class="d-none d-md-block d-sm-block d-lg-block">
-                                    <?php
-                                    if (isset($this->context->icon)) {
-                                        echo Html::icon($this->context->icon);
-                                    } else {
-                                        if (isset($this->context->module->info)) {
-                                            echo Html::icon($this->context->module->info['icon']);
-                                        }
+    <aside class="left-sidebar" data-sidebarbg="skin5">
+        <div class="scroll-sidebar ps-container ps-theme-default ps-active-y">
+            <?= $this->render('partials/_sidebar'); ?>
+        </div>
+    </aside>
+    <div class="page-wrapper">
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-5 align-self-center">
+                    <h4 class="page-title"><?= $this->context->pageName; ?></h4>
+                </div>
+                <div class="col-7 align-self-center">
+                    <div class="d-flex align-items-center justify-content-end">
+                        <?php
+                        if (!isset($this->context->buttons)) {
+                            if (method_exists($this->context, 'actionCreate')) {
+                                echo Html::a(Yii::t('app', 'CREATE'), ['create'], ['title' => Yii::t('app', 'CREATE'), 'class' => 'btn btn-success']);
+                            }
+                        } else {
+                            if ($this->context->buttons == true) {
+                                if (is_array($this->context->buttons)) {
+
+                                    if (count($this->context->buttons) > 1) {
+                                        echo Html::beginTag('div', ['class' => 'btn-group']);
                                     }
-                                    ?>
-                                    <?= Html::encode($this->context->pageName) ?>
-                                </h1>
-                            </div>
-
-                            <div class="float-right">
-                                <?php
-                                if (!isset($this->context->buttons)) {
-                                    if (method_exists($this->context, 'actionCreate')) {
-                                        echo Html::a(Yii::t('app', 'CREATE'), ['create'], ['title' => Yii::t('app', 'CREATE'), 'class' => 'btn btn-success']);
-                                    }
-                                } else {
-                                    if ($this->context->buttons == true) {
-                                        if (is_array($this->context->buttons)) {
-
-                                            if (count($this->context->buttons) > 1) {
-                                                echo Html::beginTag('div', ['class' => 'btn-group']);
-                                            }
-                                            foreach ($this->context->buttons as $button) {
-                                                if (isset($button['icon'])) {
-                                                    $icon = Html::icon($button['icon']) . ' ';
-                                                } else {
-                                                    $icon = '';
-                                                }
-                                                if (!isset($button['options']['class'])) {
-                                                    $button['options']['class'] = ['btn btn-secondary'];
-                                                }
-                                                if (!empty($icon))
-                                                    $button['label'] = '<span class="d-none d-sm-inline">' . $button['label'] . '</span>';
-
-                                                if (empty($icon))
-                                                    $button['options']['title'] = $button['label'];
-
-                                                echo Html::a($icon . $button['label'], $button['url'], $button['options']);
-                                            }
-                                            if (count($this->context->buttons) > 1) {
-                                                echo Html::endTag('div');
-                                            }
+                                    foreach ($this->context->buttons as $button) {
+                                        if (isset($button['icon'])) {
+                                            $icon = Html::icon($button['icon']) . ' ';
+                                        } else {
+                                            $icon = '';
                                         }
+                                        if (!isset($button['options']['class'])) {
+                                            $button['options']['class'] = ['btn btn-secondary'];
+                                        }
+                                        if (!empty($icon))
+                                            $button['label'] = '<span class="d-none d-sm-inline">' . $button['label'] . '</span>';
+
+                                        if (empty($icon))
+                                            $button['options']['title'] = $button['label'];
+
+                                        echo Html::a($icon . $button['label'], $button['url'], $button['options']);
+                                    }
+                                    if (count($this->context->buttons) > 1) {
+                                        echo Html::endTag('div');
                                     }
                                 }
-                                ?>
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="card-group d-none">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="d-flex no-block align-items-center">
+                                    <div>
+                                        <i class="mdi mdi-emoticon font-20 text-muted"></i>
+                                        <p class="font-16 m-b-5">New Clients</p>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <h1 class="font-light text-right">23</h1>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div id="container-breadcrumbs">
-                            <?= $this->render('partials/_breadcrumbs', ['breadcrumbs' => $this->context->breadcrumbs]); ?>
-                            <?= $this->render('partials/_addonsMenu'); ?>
-                        </div>
-                        <div class="col-12">
-
-                            <?php
-
-
-
-
-                            if (Yii::$app->session->allFlashes) { ?>
-                                <?php foreach (Yii::$app->session->allFlashes as $key => $message) {
-                                    $key = ($key == 'error') ? 'danger' : $key;
-                                    ?>
-                                    <?php if (is_array($message)) { ?>
-                                        <?php foreach ($message as $msg) { ?>
-                                            <div class="alert alert-<?= $key ?> fadeOut2-time"><?= $msg ?></div>
-                                        <?php } ?>
-                                    <?php } else { ?>
-                                        <div class="alert alert-<?= $key ?> fadeOut2-time"><?= $message ?></div>
-                                    <?php } ?>
-
-                                <?php } ?>
-                            <?php } ?>
-
-                            <?= $content ?>
+                            <div class="col-12">
+                                <div class="progress">
+                                    <div class="progress-bar bg-info" role="progressbar"
+                                         style="width: 75%; height: 6px;" aria-valuenow="25" aria-valuemin="0"
+                                         aria-valuemax="100"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
+                <!-- Column -->
+                <!-- Column -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="d-flex no-block align-items-center">
+                                    <div>
+                                        <i class="mdi mdi-image font-20  text-muted"></i>
+                                        <p class="font-16 m-b-5">New Projects</p>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <h1 class="font-light text-right">169</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar"
+                                         style="width: 60%; height: 6px;" aria-valuenow="25" aria-valuemin="0"
+                                         aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="d-flex no-block align-items-center">
+                                    <div>
+                                        <i class="mdi mdi-currency-eur font-20 text-muted"></i>
+                                        <p class="font-16 m-b-5">New Invoices</p>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <h1 class="font-light text-right">157</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="progress">
+                                    <div class="progress-bar bg-purple" role="progressbar"
+                                         style="width: 65%; height: 6px;" aria-valuenow="25" aria-valuemin="0"
+                                         aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="d-flex no-block align-items-center">
+                                    <div>
+                                        <i class="mdi mdi-poll font-20 text-muted"></i>
+                                        <p class="font-16 m-b-5">New Sales</p>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <h1 class="font-light text-right">236</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="progress">
+                                    <div class="progress-bar bg-danger" role="progressbar"
+                                         style="width: 70%; height: 6px;" aria-valuenow="25" aria-valuemin="0"
+                                         aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
+            <?= $content; ?>
 
         </div>
-        <footer class="footer">
 
-            <div class="col-md-12 text-center">
-                <?= Yii::$app->powered() ?> &mdash; <?= Yii::$app->version ?>
-            </div>
+        <footer class="footer text-center">
+            &copy; 2019-2020 &laquo;<?= Html::a('ShopiumBot',['/']); ?>&raquo;
         </footer>
-        <?php echo \panix\engine\widgets\scrollTop\ScrollTop::widget(); ?>
+
     </div>
 
-    <?php $this->endBody() ?>
-    </body>
-    </html>
+</div>
+
+
+<?php $this->endBody() ?>
+</body>
+</html>
 <?php $this->endPage() ?>

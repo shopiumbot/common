@@ -1,151 +1,239 @@
-<?php
-use panix\engine\Html;
-use \panix\mod\admin\widgets\sidebar\BackendNav;
-//use panix\engine\widgets\langSwitcher\LangSwitcher;
-use panix\engine\CMS;
-use shopium\mod\admin\models\Notification;
-
-/**
- * @var \yii\web\View $this
- */
-?>
-<nav class="navbar navbar-expand-lg fixed-top bg-dark">
-
-    <?= Html::a('', ['/admin'], ['class' => 'navbar-brand']); ?>
-
-    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
-    <div id="navbar" class="collapse navbar-collapse mr-auto">
-        <?=
-        BackendNav::widget([
-            'options' => ['class' => 'nav navbar-nav mr-auto'],
-        ]);
-        ?>
-    </div>
-
-
-    <?php
-
-    /*foreach ($languages as $lang) {
-
-        $link = ($lang->is_default) ? CMS::currentUrl() : '/' . $lang->code . CMS::currentUrl();
-        $class = ($langManager->active->id == $lang->id) ? 'active' : '';
-        $temp = [];
-        $temp['label'] = $lang->name;
-        $temp['url'] = $link;
-        $temp['options']=['class'=>$class];
-        array_push($items, $temp);
-    }*/
-
-
-    // print_r($langItems);die;
-
-
-    $notifications = Notification::find()->limit(5)->orderBy(['id'=>SORT_DESC])->all();
-
-    $notificationsCount = Notification::find()
-        ->read([Notification::STATUS_NO_READ, Notification::STATUS_NOTIFY])
-        ->count();
-
-
-    $notificationItems = [];
-    foreach ($notifications as $notification) {
-        $notificationItems[] = [
-            'label' => $notification->text,
-            'url' => ($notification->url) ? $notification->url : null,
-            'dropdownOptions' => ['test' => 'adsdsa'],
-        ];
-    }
-    echo BackendNav::widget([
-        'enableDefaultItems' => false,
-        'encodeLabels' => false,
-        'dropdownOptions' => [
-            'options' => [
-                'class' => 'dropdown-menu dropdown-menu-right',
-            ]
-        ],
-        'items' => [
-            [
-                'label' => Html::icon('user-outline') . ' ' . Yii::$app->user->displayName,
-                'url' => ['/site/index']
-            ],
-            [
-                'label' => Html::icon('notification-outline'),
-                'url' => '#',
-                'options'=>['id'=>'dropdown-notification'],
-                'badgeOptions' => ['class' => 'navbar-badge-notifications badge badge-success badge-pulse-success'],
-                'badge' => $notificationsCount,
-                //'items' => $notificationItems,
-                'items' => '<div id="dropdown-notification-container" class="dropdown-menu dropdown-menu-right">' . $this->render('@admin/views/admin/notification/_notifications', ['notifications' => $notifications]) . '</div>',
-                'dropdownOptions' => ['id' => 'dropdown-notification-container']
-            ],
-            [
-                'label' => Html::icon('home'),
-                'url' => ['/'],
-                'options' => ['class' => "d-none d-md-block"]
-            ],
-            [
-                'label' => Html::icon('logout'),
-                'url' => ['/site/logout'],
-                'options' => ['data-method' => "post"]
-            ],
-        ],
-        'options' => ['class' => 'navbar-right'],
-    ]);
-    ?>
-
-
-    <!--<ul class="navbar-right nav">
-        <li class="nav-item">
-            <?= Html::a(Html::icon('user-outline') . ' ' . Yii::$app->user->displayName, '/', ['class' => 'nav-link']); ?>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" aria-haspopup="true"
-               aria-expanded="false" data-toggle="dropdown">
-                <i class="icon-notification"></i><span id="navbar-badge-notifications" class="badge badge-success"><?= $notificationsCount; ?></span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
-                dasdsadas
+<ul class="navbar-nav float-left mr-auto">
+    <!-- <li class="nav-item d-none d-md-block">
+        <a class="nav-link sidebartoggler" href="javascript:void(0)" data-sidebartype="mini-sidebar">
+            <i class="mdi mdi-menu font-24"></i>
+        </a>
+    </li> -->
+    <!-- ============================================================== -->
+    <!-- Search -->
+    <!-- ============================================================== -->
+    <li class="nav-item search-box d-none">
+        <a class="nav-link" href="javascript:void(0)">
+            <div class="d-flex align-items-center">
+                <i class="icon-search font-20 mr-1"></i>
+                <div class="ml-1 d-none d-sm-block">
+                    <span>Search</span>
+                </div>
             </div>
-        </li>
-        <li class="d-none d-md-block nav-item">
-            <a class="nav-link" href="/">
-                <i class="icon-home"></i><span class="badge badge-success"></span>
+        </a>
+        <form class="app-search position-absolute">
+            <input type="text" class="form-control" placeholder="Search &amp; enter">
+            <a class="srh-btn">
+                <i class="icon-delete"></i>
             </a>
-        </li>
-        <li class="nav-item" data-method="post">
-            <a class="nav-link" href="/user/logout" aria-haspopup="true"
-               aria-expanded="false"><i class="icon-locked"></i><span
-                        class="badge badge-success"></span>
-            </a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" aria-haspopup="true"
-               aria-expanded="false" data-toggle="dropdown">
-                <img src="/uploads/language/ru.png" alt=""><span class="badge badge-success"></span></a>
-            <ul id="w8" class="dropdown-menu">
-                <li class="active">
-                    <a class="nav-link" href="/admin/app/mail-template" tabindex="-1"><img
-                                src="/uploads/language/ru.png" alt="Русский"> Русский</a>
+        </form>
+    </li>
+</ul>
+<ul class="navbar-nav float-right">
+    <!-- ============================================================== -->
+    <!-- Messages -->
+    <!-- ============================================================== -->
+    <li class="nav-item dropdown d-none">
+        <a class="nav-link dropdown-toggle" href="" id="2"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="icon-comments"></i>
+
+        </a>
+        <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown"
+             aria-labelledby="2">
+                                <span class="with-arrow">
+                                    <span class="bg-danger"></span>
+                                </span>
+            <ul class="list-style-none">
+                <li>
+                    <div class="drop-title text-white bg-danger">
+                        <h4 class="m-b-0 m-t-5">5 New</h4>
+                        <span class="font-light">Messages</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="message-center message-body">
+                        <!-- Message -->
+                        <a href="javascript:void(0)" class="message-item">
+                                                <span class="user-img">
+                                                    <img src="<?= $asset->baseUrl; ?>/images/2.jpg" alt="user"
+                                                         class="rounded-circle">
+                                                    <span class="profile-status online pull-right"></span>
+                                                </span>
+                            <div class="mail-contnet">
+                                <h5 class="message-title">Pavan kumar</h5>
+                                <span class="mail-desc">Just see the my admin!</span>
+                                <span class="time">9:30 AM</span>
+                            </div>
+                        </a>
+                        <!-- Message -->
+                        <a href="javascript:void(0)" class="message-item">
+                                                <span class="user-img">
+                                                    <img src="<?= $asset->baseUrl; ?>/images/2.jpg" alt="user"
+                                                         class="rounded-circle">
+                                                    <span class="profile-status busy pull-right"></span>
+                                                </span>
+                            <div class="mail-contnet">
+                                <h5 class="message-title">Sonu Nigam</h5>
+                                <span class="mail-desc">I've sung a song! See you at</span>
+                                <span class="time">9:10 AM</span>
+                            </div>
+                        </a>
+                        <!-- Message -->
+                        <a href="javascript:void(0)" class="message-item">
+                                                <span class="user-img">
+                                                    <img src="<?= $asset->baseUrl; ?>/images/3.jpg" alt="user"
+                                                         class="rounded-circle">
+                                                    <span class="profile-status away pull-right"></span>
+                                                </span>
+                            <div class="mail-contnet">
+                                <h5 class="message-title">Arijit Sinh</h5>
+                                <span class="mail-desc">I am a singer!</span>
+                                <span class="time">9:08 AM</span>
+                            </div>
+                        </a>
+                        <!-- Message -->
+                        <a href="javascript:void(0)" class="message-item">
+                                                <span class="user-img">
+                                                    <img src="<?= $asset->baseUrl; ?>/images/3.jpg" alt="user"
+                                                         class="rounded-circle">
+                                                    <span class="profile-status offline pull-right"></span>
+                                                </span>
+                            <div class="mail-contnet">
+                                <h5 class="message-title">Pavan kumar</h5>
+                                <span class="mail-desc">Just see the my admin!</span>
+                                <span class="time">9:02 AM</span>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <a class="nav-link text-center link text-dark" href="javascript:void(0);">
+                        <b>See all e-Mails</b>
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                 </li>
             </ul>
-        </li>
-    </ul>-->
-
-</nav>
-
-<?php
-$this->registerJs("
-$('#dropdown-notification').on('show.bs.dropdown', function () {
-    $.ajax({
-        url:'/admin/app/notification/read',
-        type:'POST',
-        success:function(){
-        
-        }
-    });
-})
-");
+        </div>
+    </li>
+    <!-- ============================================================== -->
+    <!-- End Messages -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Comment -->
+    <!-- ============================================================== -->
+    <li class="nav-item dropdown border-right">
+        <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+            <i class="icon-notification-outline"></i>
+            <span class="badge badge-pill badge-info">3</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown">
+                                <span class="with-arrow">
+                                    <span class="bg-primary"></span>
+                                </span>
+            <ul class="list-style-none">
+                <li>
+                    <div class="drop-title bg-primary text-white">
+                        <h4 class="m-b-0 m-t-5">4 New</h4>
+                        <span class="font-light">Notifications</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="message-center notifications">
+                        <!-- Message -->
+                        <a href="javascript:void(0)" class="message-item">
+                                                <span class="btn btn-danger btn-circle">
+                                                    <i class="icon-external-link"></i>
+                                                </span>
+                            <div class="mail-contnet">
+                                <h5 class="message-title">Luanch Admin</h5>
+                                <span class="mail-desc">Just see the my new admin!</span>
+                                <span class="time">9:30 AM</span>
+                            </div>
+                        </a>
+                        <!-- Message -->
+                        <a href="javascript:void(0)" class="message-item">
+                                                <span class="btn btn-success btn-circle">
+                                                    <i class="icon-calendar"></i>
+                                                </span>
+                            <div class="mail-contnet">
+                                <h5 class="message-title">Event today</h5>
+                                <span class="mail-desc">Just a reminder that you have event</span>
+                                <span class="time">9:10 AM</span>
+                            </div>
+                        </a>
+                        <!-- Message -->
+                        <a href="javascript:void(0)" class="message-item">
+                                                <span class="btn btn-info btn-circle">
+                                                    <i class="icon-settings"></i>
+                                                </span>
+                            <div class="mail-contnet">
+                                <h5 class="message-title">Settings</h5>
+                                <span class="mail-desc">You can customize this template as you want</span>
+                                <span class="time">9:08 AM</span>
+                            </div>
+                        </a>
+                        <!-- Message -->
+                        <a href="javascript:void(0)" class="message-item">
+                                                <span class="btn btn-primary btn-circle">
+                                                    <i class="icon-user"></i>
+                                                </span>
+                            <div class="mail-contnet">
+                                <h5 class="message-title">Pavan kumar</h5>
+                                <span class="mail-desc">Just see the my admin!</span>
+                                <span class="time">9:02 AM</span>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <a class="nav-link text-center m-b-5 text-dark" href="javascript:void(0);">
+                        <strong>Check all notifications</strong>
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>
+    <!-- ============================================================== -->
+    <!-- End Comment -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- User profile and search -->
+    <!-- ============================================================== -->
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle pro-pic" href=""
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="<?= $asset->baseUrl; ?>/images/2.jpg" alt="user" class="rounded-circle"
+                 width="40">
+            <span class="m-l-5 font-medium d-none d-sm-inline-block"><?= Yii::$app->user->getDisplayName(); ?> <i
+                        class="icon-arrow-down"></i></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+                                <span class="with-arrow">
+                                    <span class="bg-primary"></span>
+                                </span>
+            <div class="d-flex no-block align-items-center p-2 bg-primary text-white mb-3">
+                <div class="">
+                    <img src="<?= $asset->baseUrl; ?>/images/2.jpg" alt="user" class="rounded-circle"
+                         width="60">
+                </div>
+                <div class="ml-2">
+                    <h5 class="mb-0"><?= Yii::$app->user->getDisplayName(); ?></h5>
+                    <p class="mb-0"><a href="/cdn-cgi/l/email-protection" class="__cf_email__">[email&#160;protected]</a>
+                    </p>
+                </div>
+            </div>
+            <div class="profile-dis scrollable">
+                <a class="dropdown-item" href="/user/profile">
+                    <i class="icon-user-outline mr-1 ml-1"></i> Аккаунт</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/logout">
+                    <i class="icon-logout mr-1 ml-1"></i> Выход</a>
+                <div class="dropdown-divider"></div>
+            </div>
+            <div class="pl-3 p-2">
+                <a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a>
+            </div>
+        </div>
+    </li>
+    <!-- ============================================================== -->
+    <!-- User profile and search -->
+    <!-- ============================================================== -->
+</ul>
