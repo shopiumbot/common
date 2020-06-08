@@ -37,7 +37,7 @@ $config = [
         'cart' => ['class' => 'shopium\mod\cart\Module'],
     ],
     'components' => [
-		'telegram' => ['class' => 'shopium\mod\telegram\components\Telegram'],
+        'telegram' => ['class' => 'shopium\mod\telegram\components\Telegram'],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
             'defaultRoles' => ['guest', 'user'],
@@ -87,9 +87,11 @@ $config = [
         ],
         'user' => [
             //'class' => 'panix\mod\user\components\WebUser',
-			'class' => 'core\components\WebUser',
+
+            'class' => 'core\components\WebUser',
             'identityClass' => 'core\components\User',
             'identityCookie' => ['name' => '_identity', 'httpOnly' => true],
+            'loginUrl' => ["/admin/auth"]
         ],
         'mailer' => [
             'class' => 'panix\engine\Mailer',
@@ -111,7 +113,7 @@ $config = [
             'rules' => [
                 '' => 'site/index',
                 'placeholder' => 'site/placeholder',
-				'logout' => 'site/logout',
+                'logout' => 'site/logout',
                 //'/admin' => 'admin/admin/default/index',
                 // 'admin/auth' => 'admin/auth/index',
                 // ['pattern' => 'admin/app/<controller:\w+>', 'route' => 'admin/admin/<controller>/index'],
@@ -120,7 +122,7 @@ $config = [
                 //['pattern' => 'admin/<module:\w+>', 'route' => '<module>/admin/default/index'],
                 //['pattern' => 'admin/<module:\w+>/<controller:[0-9a-zA-Z_\-]+>', 'route' => '<module>/admin/<controller>/index'],
                 //['pattern' => 'admin/<module:\w+>/<controller:[0-9a-zA-Z_\-]+>/<action:[0-9a-zA-Z_\-]+>/<page:\d+>', 'route' => '<module>/admin/<controller>/<action>'],
-               // 'http://demo.shopium24.loc/admin' => 'admin/admin/default/index',
+                // 'http://demo.shopium24.loc/admin' => 'admin/admin/default/index',
 
                 ['pattern' => 'admin/auth', 'route' => 'admin/auth/index'],
                 ['pattern' => 'admin', 'route' => 'admin/admin/default/index'],
@@ -134,8 +136,8 @@ $config = [
 
             ],
         ],
-		
-		'serverDb'=>[
+
+        'serverDb' => [
             'class' => 'panix\engine\db\Connection',
             'charset' => 'utf8', //utf8 на utf8mb4. FOR Emoji
             'serverStatusCache' => YII_DEBUG ? 0 : 3600,
@@ -143,13 +145,13 @@ $config = [
             'enableSchemaCache' => true,
             'schemaCache' => 'cache',
 
-                'dsn' => 'mysql:host=corner.mysql.tools;dbname=corner_shopiumbot',
-                'username' => 'corner_shopiumbot',
-                'password' => 'Bhg!583gN)',
-                'tablePrefix' => 'm90f_',
+            'dsn' => 'mysql:host=corner.mysql.tools;dbname=corner_shopiumbot',
+            'username' => 'corner_shopiumbot',
+            'password' => 'Bhg!583gN)',
+            'tablePrefix' => 'm90f_',
 
         ],
-		
+
         'db' => [
             'class' => 'panix\engine\db\Connection',
             'charset' => 'utf8', //utf8 на utf8mb4. FOR Emoji
