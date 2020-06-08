@@ -99,9 +99,10 @@ use core\modules\shop\models\ProductType;
                     echo \panix\engine\bootstrap\Tabs::widget([
                         //'encodeLabels'=>true,
                         'options' => [
-                            'class' => 'nav-pills flex-column flex-sm-row nav-tabs-static'
+                            'class' => 'nav-pills2 flex-column flex-sm-row nav-tabs-static'
                         ],
                         'items' => $tabs,
+                        'tabContentOptions'=>['class'=>'mt-3'],
                     ]);
 
                     ?>

@@ -3,7 +3,7 @@
 namespace core\modules\shop\controllers\admin;
 
 use Yii;
-use panix\engine\controllers\AdminController;
+use core\components\controllers\AdminController;
 use core\modules\shop\models\Attribute;
 use core\modules\shop\models\search\AttributeSearch;
 use core\modules\shop\models\AttributeOption;

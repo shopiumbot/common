@@ -10,7 +10,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use core\modules\shop\models\Product;
 use core\modules\shop\models\search\ProductSearch;
-use panix\engine\controllers\AdminController;
+use core\components\controllers\AdminController;
 use core\modules\shop\models\ProductType;
 use core\modules\shop\models\Attribute;
 use core\modules\shop\models\AttributeOption;

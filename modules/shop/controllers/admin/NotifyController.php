@@ -5,7 +5,7 @@ namespace core\modules\shop\controllers\admin;
 use Yii;
 use core\modules\shop\models\ProductNotifications;
 use core\modules\shop\models\search\ProductNotificationsSearch;
-use panix\engine\controllers\AdminController;
+use core\components\controllers\AdminController;
 
 class NotifyController extends AdminController
 {

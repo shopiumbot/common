@@ -4,7 +4,7 @@ namespace core\modules\contacts\controllers\admin;
 
 use core\modules\contacts\models\SettingsForm;
 use Yii;
-use panix\engine\controllers\AdminController;
+use core\components\controllers\AdminController;
 
 /**
  * Class DefaultController
