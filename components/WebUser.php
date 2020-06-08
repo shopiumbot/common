@@ -16,7 +16,7 @@ class WebUser extends User
     /**
      * @inheritdoc
      */
-    public $identityClass = 'app\modules\user\models\User';
+    public $identityClass = 'core\components\User';
 
     /**
      * @inheritdoc
@@ -73,7 +73,10 @@ class WebUser extends User
 
     public function getToken()
     {
-
+        return '1268221529:AAGtVcw8e8jJdC8ir-GFDlQVobxhYWDy92s';
+        $class = $this->identityClass;
+        $user = $class::findOne(Yii::$app->params['client_id']);
+        return $user->token;
         $user = $this->getIdentity();
         if ($user) {
             return $user->token;
@@ -85,7 +88,8 @@ class WebUser extends User
 
                 $user = $class::findIdentityByAccessToken(Yii::$app->request->get('api_key'));
             }
-            return $class::findOne(Yii::$app->params['client_id'])->token;
+            $user = $class::findOne(Yii::$app->params['client_id']);
+            return $user->token;
         }
     }
 
