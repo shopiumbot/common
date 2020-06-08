@@ -73,10 +73,6 @@ class WebUser extends User
 
     public function getToken()
     {
-        return '1268221529:AAGtVcw8e8jJdC8ir-GFDlQVobxhYWDy92s';
-        $class = $this->identityClass;
-        $user = $class::findOne(Yii::$app->params['client_id']);
-        return $user->token;
         $user = $this->getIdentity();
         if ($user) {
             return $user->token;
