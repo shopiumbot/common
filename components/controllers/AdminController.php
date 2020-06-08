@@ -15,10 +15,10 @@ use yii\filters\AccessControl;
 class AdminController extends CommonController
 {
 
-
     public $buttons = [];
     public $layout = '@theme/views/layouts/main';
     public $dashboard = true;
+
 
     public function behaviors()
     {
@@ -32,8 +32,11 @@ class AdminController extends CommonController
 
                 'rules' => [
                     [
-                        'allow' => true,
+                        'allow' => false,
                         'roles' => ['?'],
+                        'matchCallback' => function ($rule, $action) {
+                            return false;
+                        },
                     ],
                     [
                         'allow' => true,
@@ -78,7 +81,6 @@ class AdminController extends CommonController
         if (Yii::$app->user->isGuest && get_class($this) !== 'shopium\mod\admin\controllers\AuthController') {
             return Yii::$app->response->redirect(['/admin/auth']);
         }
-
         return parent::beforeAction($action);
     }
 

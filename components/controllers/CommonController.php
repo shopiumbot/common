@@ -27,6 +27,7 @@ class CommonController extends Controller
     public $enableStatistic=true;
 
 
+
     public function beforeAction($action)
     {
 

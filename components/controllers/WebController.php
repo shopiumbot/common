@@ -15,7 +15,6 @@ use panix\engine\CMS;
 class WebController extends CommonController
 {
 
-
     public function actions()
     {
         return [

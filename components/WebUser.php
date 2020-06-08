@@ -70,6 +70,7 @@ class WebUser extends User
         $user = $this->getIdentity();
         return $user ? $user->bot_admins : [];
     }
+
     public function getToken()
     {
 
@@ -84,7 +85,25 @@ class WebUser extends User
 
                 $user = $class::findIdentityByAccessToken(Yii::$app->request->get('api_key'));
             }
-			return $class::findOne(Yii::$app->params['client_id'])->token;
+            return $class::findOne(Yii::$app->params['client_id'])->token;
+        }
+    }
+
+    public function getToken222()
+    {
+
+        $user = $this->getIdentity();
+        if ($user) {
+            return $user->token;
+        } else {
+            $class = $this->identityClass;
+            if (Yii::$app->request->get('webhook')) {
+                $user = $class::findByHook(Yii::$app->request->get('webhook'));
+            } elseif (Yii::$app->request->get('api_key')) {
+
+                $user = $class::findIdentityByAccessToken(Yii::$app->request->get('api_key'));
+            }
+            return $class::findOne(Yii::$app->params['client_id'])->token;
         }
     }
 
