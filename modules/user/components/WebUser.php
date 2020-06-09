@@ -157,7 +157,7 @@ class WebUser extends User
     }
     public function getWebhookUrl()
     {
-        return 'https://shopiumbot.com/user/webhook/'.$this->getWebhook();
+        return 'https://'.Yii::$app->request->serverName.'/telegram/default/hook';
     }
 
     public function getDb_name()
