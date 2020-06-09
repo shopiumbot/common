@@ -1,3 +1,6 @@
+<?php
+use panix\engine\Html;
+?>
 <ul class="navbar-nav float-left mr-auto">
     <!-- <li class="nav-item d-none d-md-block">
         <a class="nav-link sidebartoggler" href="javascript:void(0)" data-sidebartype="mini-sidebar">
@@ -25,98 +28,58 @@
     </li>
 </ul>
 <ul class="navbar-nav float-right">
-    <!-- ============================================================== -->
-    <!-- Messages -->
-    <!-- ============================================================== -->
-    <li class="nav-item dropdown d-none">
-        <a class="nav-link dropdown-toggle" href="" id="2"
-           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="icon-comments"></i>
 
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="icon-cart"></i>
+            <span class="badge badge-pill badge-success"><?= Yii::$app->getModule('cart')->count['num']; ?></span>
         </a>
-        <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown"
-             aria-labelledby="2">
+        <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
                                 <span class="with-arrow">
                                     <span class="bg-danger"></span>
                                 </span>
             <ul class="list-style-none">
                 <li>
                     <div class="drop-title text-white bg-danger">
-                        <h4 class="m-b-0 m-t-5">5 New</h4>
-                        <span class="font-light">Messages</span>
+                        <h4 class="m-b-0 m-t-5"><?= Yii::$app->getModule('cart')->count['num']; ?> Заказов</h4>
+                        <span class="font-light"></span>
                     </div>
                 </li>
                 <li>
                     <div class="message-center message-body">
                         <!-- Message -->
-                        <a href="javascript:void(0)" class="message-item">
+                        <?php
+                        $s = new \shopium\mod\telegram\components\Api;
+                        $orders = \shopium\mod\cart\models\Order::find()->where('status_id')->all();
+                        foreach ($orders as $order){
+
+            //                \panix\engine\CMS::dump($order->user->getPhoto());
+                        ?>
+                            <a href="javascript:void(0)" class="message-item">
                                                 <span class="user-img">
-                                                    <img src="<?= $asset->baseUrl; ?>/images/2.jpg" alt="user"
+                                                    <img src="<?= $order->user->getPhoto(); ?>" alt="user"
                                                          class="rounded-circle">
                                                     <span class="profile-status online pull-right"></span>
                                                 </span>
-                            <div class="mail-contnet">
-                                <h5 class="message-title">Pavan kumar</h5>
-                                <span class="mail-desc">Just see the my admin!</span>
-                                <span class="time">9:30 AM</span>
-                            </div>
-                        </a>
-                        <!-- Message -->
-                        <a href="javascript:void(0)" class="message-item">
-                                                <span class="user-img">
-                                                    <img src="<?= $asset->baseUrl; ?>/images/2.jpg" alt="user"
-                                                         class="rounded-circle">
-                                                    <span class="profile-status busy pull-right"></span>
-                                                </span>
-                            <div class="mail-contnet">
-                                <h5 class="message-title">Sonu Nigam</h5>
-                                <span class="mail-desc">I've sung a song! See you at</span>
-                                <span class="time">9:10 AM</span>
-                            </div>
-                        </a>
-                        <!-- Message -->
-                        <a href="javascript:void(0)" class="message-item">
-                                                <span class="user-img">
-                                                    <img src="<?= $asset->baseUrl; ?>/images/3.jpg" alt="user"
-                                                         class="rounded-circle">
-                                                    <span class="profile-status away pull-right"></span>
-                                                </span>
-                            <div class="mail-contnet">
-                                <h5 class="message-title">Arijit Sinh</h5>
-                                <span class="mail-desc">I am a singer!</span>
-                                <span class="time">9:08 AM</span>
-                            </div>
-                        </a>
-                        <!-- Message -->
-                        <a href="javascript:void(0)" class="message-item">
-                                                <span class="user-img">
-                                                    <img src="<?= $asset->baseUrl; ?>/images/3.jpg" alt="user"
-                                                         class="rounded-circle">
-                                                    <span class="profile-status offline pull-right"></span>
-                                                </span>
-                            <div class="mail-contnet">
-                                <h5 class="message-title">Pavan kumar</h5>
-                                <span class="mail-desc">Just see the my admin!</span>
-                                <span class="time">9:02 AM</span>
-                            </div>
-                        </a>
+                                <div class="mail-contnet">
+                                    <h5 class="message-title"><?= $order->firstname; ?><?= $order->lastname; ?></h5>
+                                    <span class="mail-desc"><?= $order->productsCount;?> товара</span>
+                                    <span class="time"><?= $order->total_price; ?> грн</span>
+                                </div>
+                            </a>
+                        <?php } ?>
+
+
                     </div>
                 </li>
                 <li>
-                    <a class="nav-link text-center link text-dark" href="javascript:void(0);">
-                        <b>See all e-Mails</b>
-                        <i class="fa fa-angle-right"></i>
-                    </a>
+                    <?= Html::a(Html::icon('arrow-right').' <string>Все заказы</string>',['/admin/cart'],['class'=>'nav-link text-center link text-dark']); ?>
                 </li>
             </ul>
         </div>
     </li>
-    <!-- ============================================================== -->
-    <!-- End Messages -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Comment -->
-    <!-- ============================================================== -->
+
     <li class="nav-item dropdown border-right  d-none">
         <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
