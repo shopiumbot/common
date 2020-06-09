@@ -41,6 +41,6 @@ $form->field($model, 'main_category_id')->dropDownList(Category::flatTree(), [
 ?>
 <?=
 
-$form->field($model, 'description')->textarea();
+$form->field($model, 'description')->widget(\core\components\TinyMceMarkdown::class);
 
 ?>
