@@ -17,7 +17,7 @@ class AdminController extends CommonController
     public $buttons = [];
     public $layout = '@theme/views/layouts/main';
     public $dashboard = true;
-
+    public $api;
 
     public function behaviors()
     {
@@ -89,7 +89,7 @@ class AdminController extends CommonController
 
         Yii::setAlias('@theme', Yii::getAlias("@core/web/themes/dashboard"));
         Yii::setAlias('@web_theme', Yii::getAlias("@app/web/themes/" . Yii::$app->settings->get('app', 'theme')));
-
+        $this->api = new \shopium\mod\telegram\components\Api(Yii::$app->user->token);
         parent::init();
     }
 
