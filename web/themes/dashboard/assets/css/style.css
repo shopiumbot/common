@@ -1,7 +1,10 @@
 .search-box .app-search .form-control, .topbar .mega-dropdown .dropdown-menu {
     border-radius: 0
 }
-
+form div.required label:after {
+    content: " * ";
+    color: #fa6557;
+}
 .topbar .dropdown-menu .with-arrow > span {
     transform: rotate(45deg);
     -ms-transform: rotate(45deg);
