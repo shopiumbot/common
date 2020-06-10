@@ -82,10 +82,10 @@ use panix\engine\Html;
             </a>
             <ul aria-expanded="false" class="collapse first-level">
                 <li class="sidebar-item">
-                    <?= Html::a(Html::icon('comments').'<span class="hide-menu">Сообщения</span>', ['/admin/telegram/message'], ['class' => 'sidebar-link']); ?>
+                    <?= Html::a(Html::icon('comments').'<span class="hide-menu">Сообщения</span>', ['/telegram/message'], ['class' => 'sidebar-link']); ?>
                 </li>
                 <li class="sidebar-item">
-                    <?= Html::a(Html::icon('user-outline').'<span class="hide-menu">Пользователи</span>', ['/admin/telegram/users'], ['class' => 'sidebar-link']); ?>
+                    <?= Html::a(Html::icon('user-outline').'<span class="hide-menu">Пользователи</span>', ['/telegram/users'], ['class' => 'sidebar-link']); ?>
                 </li>
             </ul>
         </li>

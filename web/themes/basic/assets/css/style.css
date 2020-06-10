@@ -1809,13 +1809,13 @@ footer ul.footer-payments > li {
 }
 */
 .navbar-brand {
-  background-image: url(../images/logo-dark.svg);
+  background-image: url(../images/logo2.svg);
   background-repeat: no-repeat;
   background-position: center center;
   position: relative;
   display: block;
-  height: 70px;
-  width: 220px;
+  height: 75px;
+  width: 210px;
 }
 @media (min-width: 992px) {
   .navbar-brand {

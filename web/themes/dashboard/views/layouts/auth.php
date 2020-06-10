@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use core\web\themes\dashboard\AdminLoginAsset;
+
 AdminLoginAsset::register($this);
 
 
@@ -45,17 +46,17 @@ $this->registerJs('
                 <div class="text-center auth-logo animated zoomInDown2 ">
                     <a href="//shopiumbot.com" target="_blank"></a>
                 </div>
-                <div class="card bg-light">
+                <div class="card">
                     <div class="card-header">
                         <h5 class="text-center"><?= Yii::t('app/admin', 'LOGIN_ADMIN_PANEL') ?></h5>
                     </div>     
-                    <div style="padding-top:15px" class="card-body">
+                    <div class="card-body">
 
                         <?= $content ?>
 
                     </div>                       
                 </div> 
-                <div class="text-center copyright"><?= Yii::$app->powered() ?></div>
+                <div class="text-center copyright">&copy; 2019-2020</div>
             </div>
         </div>
         </div>

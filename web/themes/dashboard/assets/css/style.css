@@ -2918,11 +2918,13 @@ html[dir=ltr] body .p-l-0 {
     padding-left: 0
 }
 
-#main-wrapper[data-layout=horizontal] .topbar .top-navbar .navbar-header[data-logobg=skin1], #main-wrapper[data-layout=vertical] .topbar .top-navbar .navbar-header[data-logobg=skin1] {
+#main-wrapper[data-layout=horizontal] .topbar .top-navbar .navbar-header[data-logobg=skin1],
+#main-wrapper[data-layout=vertical] .topbar .top-navbar .navbar-header[data-logobg=skin1] {
     background: #2962ff
 }
 
-#main-wrapper[data-layout=horizontal] .topbar .top-navbar .navbar-header[data-logobg=skin2], #main-wrapper[data-layout=vertical] .topbar .top-navbar .navbar-header[data-logobg=skin2] {
+#main-wrapper[data-layout=horizontal] .topbar .top-navbar .navbar-header[data-logobg=skin2],
+#main-wrapper[data-layout=vertical] .topbar .top-navbar .navbar-header[data-logobg=skin2] {
     background: #fe5419
 }
 

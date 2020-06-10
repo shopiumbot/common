@@ -20,12 +20,12 @@ class AdminLoginAsset extends AssetBundle {
         'position' => \yii\web\View::POS_END
     );
     public $css = [
-        'css/dashboard.css',
         'css/login.css',
     ];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\web\JqueryAsset',
+        'core\web\themes\dashboard\AdminAsset',
         'yii\bootstrap4\BootstrapPluginAsset',
         'panix\engine\assets\CommonAsset'
     ];

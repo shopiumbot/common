@@ -186,7 +186,7 @@ $botImage = $bot->getPhoto();
                 </div>
             </div>
             <div class="profile-dis scrollable">
-                <a class="dropdown-item d-none" href="/profile">
+                <a class="dropdown-item" href="/user/index">
                     <i class="icon-user-outline mr-1 ml-1"></i> Аккаунт</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/logout">

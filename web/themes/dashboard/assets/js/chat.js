@@ -106,12 +106,13 @@ $('.app-chat .chat-user ').on('click', function(event) {
 
 
         $.ajax({
-            url:'/admin/telegram/message/load-chat',
+            url:'/telegram/message/load-chat',
             type:'GET',
             data:{user_id:findChat},
             success:function (data) {
                 console.log(data);
-                $('.chat-box').append(data);
+                $('.chat-box').html(data);
+                $('#sendmessageform-user_id').val(findChat);
             }
         });
 
