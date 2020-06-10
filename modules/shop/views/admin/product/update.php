@@ -36,7 +36,7 @@ use core\modules\shop\models\ProductType;
                     <div class="form-group row">
                         <div class="col-sm-4"><?= Html::activeLabel($model, 'type_id', ['class' => 'control-label']); ?></div>
                         <div class="col-sm-8">
-                            <?php echo Html::activeDropDownList($model, 'type_id', ArrayHelper::map($typesList, 'id', 'name'), ['class' => 'form-control']); ?>
+                            <?php echo Html::activeDropDownList($model, 'type_id', ArrayHelper::map($typesList, 'id', 'name'), ['class' => 'custom-select']); ?>
                         </div>
                     </div>
 

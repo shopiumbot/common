@@ -54,7 +54,7 @@ class ProductSearch extends Product
         $query = Product::find();
         $query->sort();
 
-        $query->joinWith(['categorization categories']); //, 'commentsCount'
+        //$query->joinWith(['categorization categories']); //, 'commentsCount'
         $className = substr(strrchr(__CLASS__, "\\"), 1);
 
 
