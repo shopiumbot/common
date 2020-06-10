@@ -3,7 +3,7 @@
 namespace core\components;
 
 use panix\engine\CMS;
-use panix\engine\controllers\AdminController;
+use core\components\controllers\AdminController;
 use Yii;
 use yii\base\Exception;
 use yii\behaviors\TimestampBehavior;
@@ -12,8 +12,6 @@ use panix\engine\Html;
 use panix\engine\widgets\LinkPager;
 use yii\web\NotFoundHttpException;
 use yii\console\Application as ConsoleApplication;
-use yii\web\Response;
-use yii\widgets\ActiveForm;
 
 /**
  * Class ActiveRecord
