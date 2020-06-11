@@ -19,6 +19,7 @@ class m170622_111540_create_image_table extends Migration
             'name' => $this->string(80),
             'urlAlias' => $this->string(400)->notNull(),
             'ordern' => $this->integer()->unsigned(),
+            'telegram_file_id'=>$this->string(255)->null()
         ]);
         $this->createIndex('ordern', Image::tableName(), 'ordern');
         $this->createIndex('product_id', Image::tableName(), 'product_id');
