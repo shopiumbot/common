@@ -1,9 +1,20 @@
 .search-box .app-search .form-control, .topbar .mega-dropdown .dropdown-menu {
     border-radius: 0
 }
+.has-error .help-block{
+    color: #fa6557;
+    text-align: left;
+    font-size: 80%;
+}
+.has-error .form-control{
+    border-color:#fa6557;
+}
 form div.required label:after {
     content: " * ";
     color: #fa6557;
+}
+.tab-content > .tab-pane{
+    padding-top: 1rem;
 }
 .topbar .dropdown-menu .with-arrow > span {
     transform: rotate(45deg);
@@ -3540,7 +3551,9 @@ ul.list-style-none li a:hover {
 }
 
 .card {
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    border: 0 solid transparent;
+    border-radius: 0;
 }
 
 .card .card-subtitle {

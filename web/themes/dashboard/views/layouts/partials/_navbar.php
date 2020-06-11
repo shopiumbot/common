@@ -3,9 +3,8 @@ use panix\engine\Html;
 use yii\helpers\Url;
 use panix\engine\CMS;
 
-$api = new \shopium\mod\telegram\components\Api;
-$bot = \shopium\mod\telegram\models\User::find()->where(['id'=>$api->getBotId()])->one();
-$botImage = $bot->getPhoto();
+
+
 
 ?>
 <ul class="navbar-nav float-left mr-auto">
@@ -165,7 +164,7 @@ $botImage = $bot->getPhoto();
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle pro-pic" href=""
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="<?= $botImage; ?>" alt="<?= $bot->username; ?>" class="rounded-circle"
+            <img src="<?= $this->context->botPhoto; ?>" alt="<?= $this->context->api->getBotUsername(); ?>" class="rounded-circle"
                  width="40">
             <span class="m-l-5 font-medium d-none d-sm-inline-block"><?= Yii::$app->user->getDisplayName(); ?> <i
                         class="icon-arrow-down"></i></span>
@@ -176,12 +175,12 @@ $botImage = $bot->getPhoto();
                                 </span>
             <div class="d-flex no-block align-items-center p-2 bg-primary text-white mb-3">
                 <div class="">
-                    <img src="<?= $botImage; ?>" alt="<?= $bot->username; ?>" class="rounded-circle"
+                    <img src="<?= $this->context->botPhoto; ?>" alt="<?= $this->context->api->getBotUsername(); ?>" class="rounded-circle"
                          width="60">
                 </div>
                 <div class="ml-2">
                     <h5 class="mb-0"><?= Yii::$app->user->getDisplayName(); ?></h5>
-                    <p class="mb-0"><?= $bot->username; ?></a>
+                    <p class="mb-0"><?= $this->context->api->getBotUsername(); ?></a>
                     </p>
                 </div>
             </div>

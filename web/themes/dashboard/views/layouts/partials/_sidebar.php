@@ -50,9 +50,6 @@ use panix\engine\Html;
         </li>
 
         <li class="sidebar-item">
-            <?= Html::a(Html::icon('settings').'<span class="hide-menu">Настройки</span>', ['/admin/shop/settings'], ['class' => 'sidebar-link']); ?>
-        </li>
-        <li class="sidebar-item">
             <a class="sidebar-link has-arrow" href="javascript:void(0)"
                aria-expanded="false">
                 <i class="icon-cart"></i>
@@ -122,11 +119,17 @@ use panix\engine\Html;
 
 
 
-        <li class="nav-small-cap d-none">
+        <li class="nav-small-cap">
             <i class="icon-books"></i>
             <span class="hide-menu">Дополнительный</span>
         </li>
 
+        <li class="sidebar-item">
+            <?= Html::a(Html::icon('settings').'<span class="hide-menu">Настройки</span>', ['/admin/app/settings'], ['class' => 'sidebar-link']); ?>
+        </li>
+        <li class="sidebar-item">
+            <?= Html::a(Html::icon('phone-outline').'<span class="hide-menu">Контакты</span>', ['/contacts'], ['class' => 'sidebar-link']); ?>
+        </li>
         <li class="sidebar-item d-none">
             <?= Html::a(Html::icon('info').'<span class="hide-menu">Документация</span>', ['/documentation'], ['class' => 'sidebar-link']); ?>
         </li>
