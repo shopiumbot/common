@@ -19,8 +19,7 @@ class AdminController extends CommonController
     public $buttons = [];
     public $layout = '@theme/views/layouts/main';
     public $dashboard = true;
-    public $api;
-    public $botPhoto;
+
     public function behaviors()
     {
         return [
