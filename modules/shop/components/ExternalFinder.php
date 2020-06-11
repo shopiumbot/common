@@ -125,46 +125,31 @@ class ExternalFinder
         return $query['object_id'];
     }
 
-    public function removeObject($type, $external_id, $loadModel = true)
+    public function removeByExternal($type, $external_id)
     {
 
-        Yii::$app->db->createCommand()->delete(
+
+        $query = Yii::$app->db->createCommand()->delete(
             $this->table,
             'object_type=:type AND external_id=:external_id',
-            array(
+            [
                 ':type' => $type,
                 ':external_id' => $external_id
-
-            )
-        );
-
-        $img = self::getObject($type, $external_id, $loadModel);
-        if ($img)
-            $img->delete();
+            ]
+        )->execute();
     }
 
-    public function removeObjectByPk($type, $obj_id)
+    public function removeByObject($type, $object_id)
     {
         $query = Yii::$app->db->createCommand()->delete(
             $this->table,
             'object_type=:type AND object_id=:object_id',
-            array(
+            [
                 ':type' => $type,
-                ':object_id' => $obj_id
-            )
-        );
+                ':object_id' => $object_id
+            ]
+        )->execute();
 
-    }
-
-    public function removeObjectByPk__Old($type, $obj_id)
-    {
-        $query = Yii::$app->db->createCommand()
-            ->from($this->table)
-            ->where('object_type=:type AND object_id=:obj_id', array(
-                ':type' => $type,
-                ':obj_id' => $obj_id
-            ))
-            ->delete();
     }
 
     /**

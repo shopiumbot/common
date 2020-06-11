@@ -3,6 +3,7 @@
 
 namespace core\modules\images\models;
 
+use core\modules\shop\components\ExternalFinder;
 use Yii;
 use yii\helpers\Url;
 use core\components\ActiveRecord;
@@ -238,7 +239,8 @@ class Image extends ActiveRecord
         if (preg_match('@\.@', $fileToRemove) and is_file($fileToRemove)) {
             unlink($fileToRemove);
         }
-
+        $external = new ExternalFinder('{{%csv}}');
+        $external->removeByObject(ExternalFinder::OBJECT_IMAGE, $this->id);
         parent::afterDelete();
     }
 

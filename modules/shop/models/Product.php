@@ -3,6 +3,7 @@
 namespace core\modules\shop\models;
 
 
+use core\modules\shop\components\ExternalFinder;
 use shopium\mod\discounts\components\DiscountBehavior;
 use core\modules\images\models\Image;
 use panix\mod\user\models\User;
@@ -236,7 +237,7 @@ class Product extends ActiveRecord
         $rules = [];
 
 
-        $rules[] = [['main_category_id', 'price', 'unit','name'], 'required'];
+        $rules[] = [['main_category_id', 'price', 'unit', 'name'], 'required'];
         $rules[] = ['price', 'commaToDot'];
         $rules[] = [['file'], 'file', 'maxFiles' => Yii::$app->params['plan'][Yii::$app->params['plan_id']]['product_upload_files']];
         $rules[] = [['file'], 'validateLimit'];
@@ -245,7 +246,7 @@ class Product extends ActiveRecord
         $rules[] = [['name'], 'unique'];
         $rules[] = [['name'], 'trim'];
         $rules[] = [['description'], 'string'];
-		$rules[] = [['unit'], 'default', 'value' => 1];
+        $rules[] = [['unit'], 'default', 'value' => 1];
         $rules[] = [['sku', 'description', 'label', 'discount'], 'default']; // установим ... как NULL, если они пустые
         $rules[] = [['price'], 'double'];
         $rules[] = [['manufacturer_id', 'type_id', 'quantity', 'availability', 'added_to_cart_count', 'ordern', 'category_id', 'currency_id', 'label'], 'integer'];
@@ -290,11 +291,10 @@ class Product extends ActiveRecord
     }
 
 
-
     public function getManufacturer()
     {
         return $this->hasOne(Manufacturer::class, ['id' => 'manufacturer_id']);
-            //->cache(3200, new DbDependency(['sql' => 'SELECT MAX(`updated_at`) FROM ' . Manufacturer::tableName()]));
+        //->cache(3200, new DbDependency(['sql' => 'SELECT MAX(`updated_at`) FROM ' . Manufacturer::tableName()]));
     }
 
 
@@ -474,6 +474,8 @@ class Product extends ActiveRecord
             'product' => $this->id
         ]);
 
+        $external = new ExternalFinder('{{%csv}}');
+        $external->removeByObject(ExternalFinder::OBJECT_PRODUCT, $this->id);
         parent::afterDelete();
     }
 
@@ -512,7 +514,7 @@ class Product extends ActiveRecord
 
 
             //$attributeModel = Attribute::find()->where(['name' => $attribute])->cache(3600 * 24, $dependency)->one();
-            return ['name'=>$attributeModel->title,'value'=>$attributeModel->renderValue($value)];
+            return ['name' => $attributeModel->title, 'value' => $attributeModel->renderValue($value)];
         }
         return parent::__get($name);
     }
@@ -575,26 +577,24 @@ class Product extends ActiveRecord
             $product = Product::findOne($product);
 
 
-
-            // if ($quantity > 1 && ($pr = $product->getPriceByQuantity($quantity))) {
-            if ($product->prices && $quantity > 1) {
-                $pr = $product->getPriceByQuantity($quantity);
-                $result = $pr->value;
-                // if ($product->currency_id) {
-                //$result = Yii::$app->currency->convert($pr->value, $product->currency_id);
-                //} else {
-                //     $result = $pr->value;
-                //}
+        // if ($quantity > 1 && ($pr = $product->getPriceByQuantity($quantity))) {
+        if ($product->prices && $quantity > 1) {
+            $pr = $product->getPriceByQuantity($quantity);
+            $result = $pr->value;
+            // if ($product->currency_id) {
+            //$result = Yii::$app->currency->convert($pr->value, $product->currency_id);
+            //} else {
+            //     $result = $pr->value;
+            //}
+        } else {
+            if ($product->currency_id) {
+                $result = Yii::$app->currency->convert($product->hasDiscount ? $product->discountPrice : $product->price, $product->currency_id);
             } else {
-                if ($product->currency_id) {
-                    $result = Yii::$app->currency->convert($product->hasDiscount ? $product->discountPrice : $product->price, $product->currency_id);
-                } else {
-                    $result = Yii::$app->currency->convert($product->hasDiscount ? $product->discountPrice : $product->price, $product->currency_id);
-                    //$result = ($product->hasDiscount) ? $product->discountPrice : $product->price;
-                }
-
+                $result = Yii::$app->currency->convert($product->hasDiscount ? $product->discountPrice : $product->price, $product->currency_id);
+                //$result = ($product->hasDiscount) ? $product->discountPrice : $product->price;
             }
 
+        }
 
 
         return $result;
