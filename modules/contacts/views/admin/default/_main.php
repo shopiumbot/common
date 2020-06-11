@@ -51,17 +51,17 @@ echo $form->field($model, 'phone')->widget(MultipleInput::class, [
 
 echo $form->field($model, 'address')->widget(MultipleInput::class, [
     'max' => 5,
-    'min' => 1,
+   // 'min' => 0,
     'allowEmptyList' => false,
 
 
     'columns' => [
         [
             'name' => 'address',
-            //'enableError' => true,
+            'enableError' => true,
             'type' => \panix\ext\multipleinput\MultipleInputColumn::TYPE_TEXT_INPUT,
             'options' => [
-                'class' => 'input-lang',
+                //'class' => 'input-lang',
                 'placeholder' => 'Адрес',
 
             ],

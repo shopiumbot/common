@@ -5,6 +5,11 @@ use panix\engine\bootstrap\ActiveForm;
 
 $form = ActiveForm::begin();
 ?>
+<?php if ($flash = Yii::$app->session->getFlash("success")) { ?>
+    <div class="alert alert-success">
+        <?= $flash ?>
+    </div>
+<?php } ?>
     <div class="card">
         <div class="card-header">
             <h5><?= $this->context->pageName ?></h5>

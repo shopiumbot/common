@@ -91,7 +91,7 @@ class Product extends ActiveRecord
         ];
 
         $result = [];
-        $new = Yii::$app->settings->get('shop', 'label_expire_new');
+        $new = Yii::$app->settings->get('app', 'label_expire_new');
         if ($this->label == 1) {
             $result['new'] = $labelsList['new'];
         } elseif ($this->label == 2) {

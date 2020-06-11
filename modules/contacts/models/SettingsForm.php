@@ -26,7 +26,7 @@ class SettingsForm extends SettingsModel
     {
         return [
             ['schedule', 'validateSchedule', 'skipOnEmpty' => true],
-            ['address', 'validateLang', 'skipOnEmpty' => true],
+            ['address', 'validateAddress', 'skipOnEmpty' => true],
             [['email'], "required"],
             ['phone', 'validatePhones2', 'skipOnEmpty' => false],
         ];
@@ -59,7 +59,7 @@ class SettingsForm extends SettingsModel
         }
     }
 
-    public function validateLang($attribute)
+    public function validateRequiredLang($attribute)
     {
         $requiredValidator = new RequiredValidator();
         // $attributes = Json::decode($this->$attribute);
@@ -69,6 +69,24 @@ class SettingsForm extends SettingsModel
             $value = isset($row) ? $row : null;
 
             $requiredValidator->validate($value, $error);
+            if (!empty($error)) {
+                $key = $attribute . '[' . $index . ']';
+
+                $this->addError($key, $error);
+            }
+        }
+    }
+
+    public function validateAddress($attribute)
+    {
+
+        // $attributes = Json::decode($this->$attribute);
+        $attributes = $this->$attribute;
+        foreach ($attributes as $index => $row) {
+            $error = null;
+            $value = isset($row) ? $row : null;
+
+
             if (!empty($error)) {
                 $key = $attribute . '[' . $index . ']';
 
@@ -134,10 +152,8 @@ class SettingsForm extends SettingsModel
     public static function defaultSettings()
     {
         return [
-            'feedback_captcha' => true,
             'email' => 'me-email@example.com',
             'address' => '',
-            'map_api_key' => ''
         ];
     }
 }
