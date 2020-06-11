@@ -32,4 +32,7 @@ return [
     'SUNDAY' => 'Вс',
     'TAB_GENERAL' => 'Общие',
     'TAB_SCHEDULE' => 'График работы',
+
+    'LATITUDE'=>'Широта (lat)',
+    'LONGITUDE'=>'Долгота (lon)'
 ];

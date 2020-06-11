@@ -1,6 +1,6 @@
 <?php
 
-namespace core\modules\contacts\controllers\admin;
+namespace core\modules\contacts\controllers;
 
 use Yii;
 use core\components\controllers\AdminController;

@@ -3,15 +3,31 @@
 namespace core\modules\contacts;
 
 use Yii;
-use panix\engine\WebModule;
+use core\components\WebModule;
 use yii\base\BootstrapInterface;
+use yii\web\GroupUrlRule;
 
-class Module extends WebModule
+class Module extends WebModule implements BootstrapInterface
 {
 
     public $icon = 'phone';
 
+    public function bootstrap($app)
+    {
 
+
+        $groupUrlRule = new GroupUrlRule([
+            'prefix' => $this->id,
+            'rules' => [
+                '<controller:[0-9a-zA-Z_\-]+>/<action:[0-9a-zA-Z_\-]+>' => '<controller>/<action>',
+                '<controller:[0-9a-zA-Z_\-]+>' => '<controller>/index',
+                '<action:[0-9a-zA-Z_\-]+>' => 'default/<action>',
+                '' => 'default/index',
+            ],
+        ]);
+        $app->getUrlManager()->addRules($groupUrlRule->rules, false);
+
+    }
 
     public function getPhones()
     {

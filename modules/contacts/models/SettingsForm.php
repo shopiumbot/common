@@ -20,7 +20,8 @@ class SettingsForm extends SettingsModel
     public $phone;
     public $address;
     public $schedule;
-
+    public $latitude;
+    public $longitude;
 
     public function rules()
     {
@@ -28,6 +29,13 @@ class SettingsForm extends SettingsModel
             ['schedule', 'validateSchedule', 'skipOnEmpty' => true],
             ['address', 'validateAddress', 'skipOnEmpty' => true],
             [['email'], "required"],
+
+            [['latitude','longitude'], "double"],
+            [['latitude','longitude'], "trim"],
+
+            //[['address'], 'default','value'=>'[]'],
+
+
             ['phone', 'validatePhones2', 'skipOnEmpty' => false],
         ];
     }
