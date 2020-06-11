@@ -12,7 +12,7 @@ namespace core\modules\contacts\migrations;
  */
 
 use panix\engine\db\Migration;
-use core\modules\contacts\models\Maps;
+use core\modules\contacts\models\Feedback;
 
 class m190330_104053_contacts extends Migration
 {

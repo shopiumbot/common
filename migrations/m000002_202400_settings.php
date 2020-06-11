@@ -23,7 +23,7 @@ class m000002_202400_settings extends Migration
             'category' => $this->string(255)->notNull(),
             'param' => $this->string(255),
             'value' => $this->text(),
-        ]);
+        ],'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE=InnoDB');
 
         $this->createIndex('param', Settings::tableName(), 'param');
         $this->createIndex('category', Settings::tableName(), 'category');

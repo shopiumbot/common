@@ -14,7 +14,7 @@ use panix\engine\db\Migration;
 
 class m180917_193213_shop_product extends Migration
 {
-    public $settingsForm = 'core\modules\shop\models\forms\SettingsForm';
+
 
     /**
      * {@inheritdoc}
@@ -71,7 +71,7 @@ class m180917_193213_shop_product extends Migration
         $this->createIndex('ordern', Product::tableName(), 'ordern');
         $this->createIndex('main_category_id', Product::tableName(), 'main_category_id');
 
-        $this->loadSettings();
+
         $this->loadColumns('grid-product', Product::class, ['image', 'name', 'price', 'created_at']);
     }
 
