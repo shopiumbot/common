@@ -1,0 +1,42 @@
+<?php
+use yii\helpers\Html;
+use panix\engine\bootstrap\ActiveForm;
+
+
+$form = ActiveForm::begin();
+?>
+<div class="card">
+    <div class="card-header">
+        <h5><?= Html::encode($this->context->pageName) ?></h5>
+    </div>
+    <div class="card-body">
+
+        <?php
+
+        $tabs = [];
+
+
+        $tabs[] = [
+            'label' => $model::t('TAB_MAIN'),
+            'content' => $this->render('_main', ['form' => $form, 'model' => $model]),
+            'active' => true,
+            'options' => ['class' => 'flex-sm-fill text-center nav-item'],
+        ];
+
+
+        echo \panix\engine\bootstrap\Tabs::widget([
+            //'encodeLabels'=>true,
+            'options' => [
+                'class' => 'nav-pills2 flex-column flex-sm-row nav-tabs-static'
+            ],
+            'items' => $tabs,
+        ]);
+
+        ?>
+
+    </div>
+    <div class="card-footer text-center">
+        <?= $model->submitButton(); ?>
+    </div>
+</div>
+<?php ActiveForm::end(); ?>
