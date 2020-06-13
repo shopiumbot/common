@@ -5,6 +5,7 @@ namespace core\modules\pages;
 use Yii;
 use panix\engine\WebModule;
 use yii\base\BootstrapInterface;
+use yii\web\GroupUrlRule;
 
 class Module extends WebModule implements BootstrapInterface
 {
@@ -13,7 +14,20 @@ class Module extends WebModule implements BootstrapInterface
 
     public function bootstrap($app)
     {
-        $app->urlManager->addRules(
+
+
+        $groupUrlRule = new GroupUrlRule([
+            'prefix' => $this->id,
+            'rules' => [
+                '<controller:[0-9a-zA-Z_\-]+>' => '<controller>/index',
+                '<controller:[0-9a-zA-Z_\-]+>/<action:[0-9a-zA-Z_\-]+>' => '<controller>/<action>',
+                //'<action:\w+>' => 'default/<action>',
+
+            ],
+        ]);
+        $app->getUrlManager()->addRules($groupUrlRule->rules, false);
+
+        /*$app->urlManager->addRules(
             [
                 'page/<slug:[0-9a-zA-Z_\-]+>/page/<page:\d+>/per-page/<per-page:\d+>' => 'pages/default/view',
                 'page/<slug:[0-9a-zA-Z_\-]+>/page/<page:\d+>' => 'pages/default/view',
@@ -21,7 +35,7 @@ class Module extends WebModule implements BootstrapInterface
 
             ],
             true
-        );
+        );*/
     }
 
     public function getAdminMenu()

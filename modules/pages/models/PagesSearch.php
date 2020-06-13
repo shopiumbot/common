@@ -18,7 +18,7 @@ class PagesSearch extends Pages {
     public function rules() {
         return [
             [['id','views'], 'integer'],
-            [['name','slug','created_at'], 'safe'],
+            [['name','created_at'], 'safe'],
         ];
     }
 
