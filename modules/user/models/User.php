@@ -82,7 +82,7 @@ class User extends ActiveRecord implements IdentityInterface
             [['email'], 'unique'],
             [['email'], 'filter', 'filter' => 'trim'],
             [['email'], 'email'],
-            [['token'], 'required'],
+            [['token','phone'], 'required'],
             ['token', 'validateBotToken'],
             ['new_password', 'string', 'min' => 3, 'on' => ['reset']],
             [['new_password'], 'required', 'on' => ['reset']],
