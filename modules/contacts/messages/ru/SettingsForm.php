@@ -32,7 +32,7 @@ return [
     'SUNDAY' => 'Вс',
     'TAB_GENERAL' => 'Общие',
     'TAB_SCHEDULE' => 'График работы',
-
+    'ENABLE_SCHEDULE' => 'Активировать график работы',
     'LATITUDE'=>'Широта (lat)',
     'LONGITUDE'=>'Долгота (lon)'
 ];

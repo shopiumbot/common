@@ -32,7 +32,7 @@ class DefaultController extends AdminController
         $user = User::findModel(Yii::$app->user->id);
 
       //  if ($user->isNewRecord) {
-            $user->setScenario('admin');
+          //  $user->setScenario('admin');
        // }
 
         $this->pageName = Yii::t('user/default', 'MODULE_NAME');

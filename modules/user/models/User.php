@@ -78,7 +78,7 @@ class User extends ActiveRecord implements IdentityInterface
         // set initial rules
         $rules = [
             // general email and username rules
-            [['email', 'phone'], 'string', 'max' => 255],
+            [['email', 'phone','bot_admins'], 'string', 'max' => 255],
             [['email'], 'unique'],
             [['email'], 'filter', 'filter' => 'trim'],
             [['email'], 'email'],
@@ -88,7 +88,6 @@ class User extends ActiveRecord implements IdentityInterface
             [['new_password'], 'required', 'on' => ['reset']],
 
             [['gender'], 'integer'],
-
             ['phone', 'panix\ext\telinput\PhoneInputValidator'],
         ];
 

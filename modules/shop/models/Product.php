@@ -476,6 +476,9 @@ class Product extends ActiveRecord
 
         $external = new ExternalFinder('{{%csv}}');
         $external->removeByObject(ExternalFinder::OBJECT_PRODUCT, $this->id);
+
+
+
         parent::afterDelete();
     }
 
