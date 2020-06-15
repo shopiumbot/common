@@ -60,6 +60,17 @@ class User extends ActiveRecord implements IdentityInterface
     public $password_confirm;
     public $new_password;
 
+    public function init()
+    {
+
+       // $this->bot_admins = explode(',',$this->bot_admins);
+
+        parent::init();
+
+    }
+   // public function getBot_admins(){
+       // return explode(',',$this->bot_admins);
+   // }
     /**
      * @inheritdoc
      */
@@ -78,7 +89,7 @@ class User extends ActiveRecord implements IdentityInterface
         // set initial rules
         $rules = [
             // general email and username rules
-            [['email', 'phone','bot_admins'], 'string', 'max' => 255],
+            [['email', 'phone'], 'string', 'max' => 255],
             [['email'], 'unique'],
             [['email'], 'filter', 'filter' => 'trim'],
             [['email'], 'email'],
@@ -86,6 +97,8 @@ class User extends ActiveRecord implements IdentityInterface
             ['token', 'validateBotToken'],
             ['new_password', 'string', 'min' => 3, 'on' => ['reset']],
             [['new_password'], 'required', 'on' => ['reset']],
+
+            ['bot_admins', 'each', 'rule' => ['integer']],
 
             [['gender'], 'integer'],
             ['phone', 'panix\ext\telinput\PhoneInputValidator'],
@@ -220,6 +233,7 @@ class User extends ActiveRecord implements IdentityInterface
         return Yii::$app->security->validatePassword($password, $this->password);
     }
 
+
     /**
      * @inheritdoc
      */
@@ -235,6 +249,9 @@ class User extends ActiveRecord implements IdentityInterface
             if($this->new_password){
                 $this->password = Yii::$app->security->generatePasswordHash($this->new_password);
             }
+        }
+        if($this->bot_admins){
+            $this->bot_admins = implode(',',$this->bot_admins);
         }
 
         // ensure fields are null so they won't get set as empty string

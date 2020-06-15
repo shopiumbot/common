@@ -31,8 +31,20 @@ use panix\engine\helpers\TimeZoneHelper;
 <div class="row">
     <div class="col-md-7 col-lg-6 col-xl-7">
         <?php
-
-        $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]);
+        $model->bot_admins = explode(',', $model->bot_admins);
+        $form = ActiveForm::begin([
+            'options' => [],
+            'fieldConfig' => [
+                'template' => "<div class=\"col-sm-5 col-md-5 col-lg-4 col-xl-3\">{label}</div>\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
+                'horizontalCssClasses' => [
+                    'label' => 'col-form-label',
+                    'offset' => 'offset-sm-5 offset-lg-4 offset-xl-3',
+                    'wrapper' => 'col-sm-7 col-md-7 col-lg-8 col-xl-9',
+                    'error' => '',
+                    'hint' => '',
+                ],
+            ]
+        ]);
         ?>
         <div class="card">
             <div class="card-header">
@@ -46,11 +58,17 @@ use panix\engine\helpers\TimeZoneHelper;
                 <?= $form->field($model, 'phone')->widget(\panix\ext\telinput\PhoneInput::class); ?>
                 <?= $form->field($model, 'gender')->dropDownList([0 => $model::t('FEMALE'), 1 => $model::t('MALE')], ['prompt' => 'Не указано']); ?>
                 <?= $form->field($model, 'timezone')->dropDownList(TimeZoneHelper::getTimeZoneData(), ['prompt' => 'Не указано']); ?>
-                <?= $form->field($model, 'bot_admins')
+                <?php /*echo $form->field($model, 'bot_admins')
                     ->widget(\panix\ext\taginput\TagInput::class, ['placeholder' => 'ID'])
-                    ->hint('Введите ID и нажмите Enter');
+                    ->hint('Введите ID и нажмите Enter');*/
                 ?>
 
+                <?= $form->field($model, 'bot_admins')
+                    ->widget(\panix\ext\bootstrapselect\BootstrapSelect::class, [
+                        'items' => \shopium\mod\telegram\models\User::dropdown(),
+                        'options' => ['multiple' => true]
+                    ]);
+                ?>
                 <?php if ($model->isNewRecord) { ?>
                     <?= $form->field($model, 'new_password')->passwordInput(); ?>
                     <?= $form->field($model, 'password_confirm')->passwordInput(); ?>
@@ -140,7 +158,6 @@ use panix\engine\helpers\TimeZoneHelper;
         </div>
         <?php ActiveForm::end(); ?>
     </div>
-
 
 
     <div class="col-md-5 col-lg-6 col-xl-5">
