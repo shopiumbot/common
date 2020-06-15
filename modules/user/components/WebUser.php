@@ -5,6 +5,7 @@ namespace core\modules\user\components;
 use panix\engine\CMS;
 use Yii;
 use yii\db\Connection;
+use yii\web\IdentityInterface;
 use yii\web\User;
 
 /**
@@ -71,6 +72,30 @@ class WebUser extends User
         $user = $this->getIdentity();
         return $user ? explode(',', $user->bot_admins) : [];
     }
+    public function getByToken(){
+        /** @var \core\modules\user\models\User $class */
+        $class = $this->identityClass;
+        if (Yii::$app->request->get('webhook')) {
+            $user = $class::findByHook(Yii::$app->request->get('webhook'));
+        } elseif (Yii::$app->request->get('api_key')) {
+            $user = $class::findIdentityByAccessToken(Yii::$app->request->get('api_key'));
+        }
+        $user = $class::findOne(Yii::$app->params['client_id']);
+        return $user;
+    }
+
+
+    public function loginById($id)
+    {
+        /* @var $class IdentityInterface */
+        $class = $this->identityClass;
+        $identity = $class::findOne($id);
+        if ($identity && $this->login($identity)) {
+            return $identity;
+        }
+
+        return null;
+    }
 
     public function getToken()
     {
@@ -78,7 +103,8 @@ class WebUser extends User
         if ($user) {
             return $user->token;
         } else {
-            $class = $this->identityClass;
+            return null;
+            /*$class = $this->identityClass;
             if (Yii::$app->request->get('webhook')) {
                 $user = $class::findByHook(Yii::$app->request->get('webhook'));
             } elseif (Yii::$app->request->get('api_key')) {
@@ -86,27 +112,10 @@ class WebUser extends User
                 $user = $class::findIdentityByAccessToken(Yii::$app->request->get('api_key'));
             }
             $user = $class::findOne(Yii::$app->params['client_id']);
-            return $user->token;
+            return $user->token;*/
         }
     }
 
-    public function getToken222()
-    {
-
-        $user = $this->getIdentity();
-        if ($user) {
-            return $user->token;
-        } else {
-            $class = $this->identityClass;
-            if (Yii::$app->request->get('webhook')) {
-                $user = $class::findByHook(Yii::$app->request->get('webhook'));
-            } elseif (Yii::$app->request->get('api_key')) {
-
-                $user = $class::findIdentityByAccessToken(Yii::$app->request->get('api_key'));
-            }
-            return $class::findOne(Yii::$app->params['client_id'])->token;
-        }
-    }
 
     public function getClientDb()
     {

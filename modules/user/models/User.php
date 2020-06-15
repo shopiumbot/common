@@ -250,7 +250,7 @@ class User extends ActiveRecord implements IdentityInterface
                 $this->password = Yii::$app->security->generatePasswordHash($this->new_password);
             }
         }
-        if($this->bot_admins){
+        if(is_array($this->bot_admins)){
             $this->bot_admins = implode(',',$this->bot_admins);
         }
 
