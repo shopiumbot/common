@@ -11,7 +11,7 @@ use panix\engine\helpers\TimeZoneHelper;
  * @var core\modules\user\models\User $model
  * @var yii\widgets\ActiveForm $form
  */
-
+$api = Yii::$app->telegram;
 ?>
 
 
@@ -122,11 +122,11 @@ use panix\engine\helpers\TimeZoneHelper;
 
                 echo $formCommand->field($command, 'data')->widget(\panix\ext\multipleinput\MultipleInput::class, [
                     'max' => 10,
-                    'min' => 1,
+                    'min' => 0,
                     'allowEmptyList' => false,
                     //'enableGuessTitle' => true,
                     'sortable' => true,
-                    'addButtonPosition' => \panix\ext\multipleinput\MultipleInput::POS_ROW, // show add button in the header
+                    'addButtonPosition' => \panix\ext\multipleinput\MultipleInput::POS_HEADER, // show add button in the header
                     'columns' => [
                         [
                             'name' => 'command',

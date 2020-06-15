@@ -65,10 +65,11 @@ class WebUser extends User
         $user = $this->getIdentity();
         return $user ? $user->language : "";
     }
+
     public function getBotAdmins()
     {
         $user = $this->getIdentity();
-        return $user ? $user->bot_admins : [];
+        return $user ? explode(',', $user->bot_admins) : [];
     }
 
     public function getToken()
@@ -155,9 +156,10 @@ class WebUser extends User
         $user = $this->getIdentity();
         return $user ? $user->webhook : Yii::$app->request->get('webhook');
     }
+
     public function getWebhookUrl()
     {
-        return 'https://'.Yii::$app->request->serverName.'/telegram/default/hook';
+        return 'https://' . Yii::$app->request->serverName . '/telegram/default/hook';
     }
 
     public function getDb_name()
@@ -171,11 +173,13 @@ class WebUser extends User
         $user = $this->getIdentity();
         return $user ? $user->db_host : null;
     }
+
     public function getDb_user()
     {
         $user = $this->getIdentity();
         return $user ? $user->db_user : null;
     }
+
     public function getDb_password()
     {
         $user = $this->getIdentity();
