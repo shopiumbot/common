@@ -63,7 +63,86 @@ use panix\engine\helpers\TimeZoneHelper;
             </div>
         </div>
         <?php ActiveForm::end(); ?>
+
+
+        <?php
+        $formCommand = ActiveForm::begin([
+            'options' => [],
+            'fieldConfig' => [
+                'template' => "{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
+                'horizontalCssClasses' => [
+                    'label' => 'col-form-label',
+                    'offset' => '',
+                    'wrapper' => 'col-sm-12 col-md-12 col-lg-12 col-xl-12',
+                    'error' => '',
+                    'hint' => '',
+                ],
+            ]
+        ]);
+        ?>
+        <div class="card">
+            <div class="card-header">
+                <h5>Команды бота</h5>
+            </div>
+            <div class="card-body p-0">
+                <?php
+
+                $command = new \shopium\mod\telegram\models\forms\CommandsForm();
+
+
+                if ($command->load(Yii::$app->request->post())) {
+                    if ($command->validate()) {
+                        $command->save();
+                        Yii::$app->session->setFlash("success", Yii::t('app/default', 'Команды бота успешно сохранены'));
+                        return Yii::$app->response->refresh();
+                    } else {
+                        // print_r($model->errors);die;
+                    }
+
+                }
+
+
+                echo $formCommand->field($command, 'data')->widget(\panix\ext\multipleinput\MultipleInput::class, [
+                    'max' => 10,
+                    'min' => 1,
+                    'allowEmptyList' => false,
+                    //'enableGuessTitle' => true,
+                    'sortable' => true,
+                    'addButtonPosition' => \panix\ext\multipleinput\MultipleInput::POS_ROW, // show add button in the header
+                    'columns' => [
+                        [
+                            'name' => 'command',
+                            'enableError' => false,
+                            'title' => 'Команда',
+                            'options' => [
+                                'placeholder' => 'Например: /start',
+                            ],
+                            'headerOptions' => [
+                                'style' => 'width: 250px;',
+                            ],
+                        ],
+                        [
+                            'name' => 'description',
+                            'enableError' => false,
+                            'title' => 'Описание',
+                            'options' => [
+                                'placeholder' => 'Например: Старт',
+                            ],
+                        ],
+                    ]
+                ])->label(false);
+                ?>
+
+            </div>
+            <div class="card-footer text-center">
+                <?= Html::submitButton(Yii::t('app/default', $model->isNewRecord ? 'CREATE' : 'SAVE'), ['class' => 'btn btn-success']); ?>
+            </div>
+        </div>
+        <?php ActiveForm::end(); ?>
     </div>
+
+
+
     <div class="col-md-5 col-lg-6 col-xl-5">
 
 

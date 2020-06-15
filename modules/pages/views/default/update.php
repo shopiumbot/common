@@ -13,7 +13,9 @@ $form = ActiveForm::begin();
 
         <?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
         <?=
-        $form->field($model, 'text')->textarea();
+        $form->field($model, 'text')->widget(\shopium\mod\telegram\widgets\editor\EditorInput::class,[
+
+            ]);
         ?>
 
     </div>
