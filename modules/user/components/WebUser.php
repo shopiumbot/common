@@ -66,7 +66,11 @@ class WebUser extends User
         $user = $this->getIdentity();
         return $user ? $user->language : "";
     }
-
+    public function getPlanId()
+    {
+        $user = $this->getIdentity();
+        return $user ? $user->plan_id : null;
+    }
     public function getBotAdmins()
     {
         $user = $this->getIdentity();
