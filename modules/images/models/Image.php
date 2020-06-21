@@ -104,15 +104,11 @@ class Image extends ActiveRecord
 
     public function getSizes()
     {
-        $sizes = false;
-        if (Yii::$app->getModule('images')->graphicsLibrary == 'Imagick') {
+
+
             $image = new \Imagick($this->getPathToOrigin());
             $sizes = $image->getImageGeometry();
-        } else {
-            $image = new \claviska\SimpleImage($this->getPathToOrigin());
-            $sizes['width'] = $image->getWidth();
-            $sizes['height'] = $image->getHeight();
-        }
+
 
         return $sizes;
     }
@@ -146,8 +142,10 @@ class Image extends ActiveRecord
 
     public function createVersion($imagePath, $sizeString = false)
     {
+        $filePath = Yii::getAlias($this->path) . DIRECTORY_SEPARATOR . $this->product_id . DIRECTORY_SEPARATOR . $this->filePath;
+if($filePath){
 
-
+}
         $sizes = explode('x', $sizeString);
 
         /** @var $img \panix\engine\components\ImageHandler */
@@ -194,7 +192,9 @@ class Image extends ActiveRecord
 
             }
         }
-        return $img;
+
+
+        return $img->show();
     }
 
     public function setMain($is_main = true)

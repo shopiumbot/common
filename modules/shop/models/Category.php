@@ -49,7 +49,6 @@ class Category extends ActiveRecord
     }
 
 
-
     /**
      * @inheritdoc
      */
@@ -57,8 +56,9 @@ class Category extends ActiveRecord
     {
         return [
             [['name'], 'trim'],
-            [['name'], 'required'],
-            [['name','icon'], 'string', 'max' => 255],
+            [['name','chunk'], 'required'],
+            [['chunk'], 'integer','min'=>1,'max'=>3],
+            [['name', 'icon'], 'string', 'max' => 255],
             [['icon'], 'default'],
         ];
     }
@@ -105,6 +105,32 @@ class Category extends ActiveRecord
         return $result;
     }
 
+    public function beforeSave($insert)
+    {
+        $this->rebuildFullPath();
+        return parent::beforeSave($insert);
+    }
+
+    public function rebuildFullPath()
+    {
+        // Create category full path.
+        $ancestors = $this->ancestors()
+            //->orderBy('depth')
+            ->all();
+        if ($ancestors) {
+            // Remove root category from path
+            unset($ancestors[0]);
+
+            $parts = [];
+            foreach ($ancestors as $ancestor)
+                $parts[] = $ancestor->name;
+
+            $parts[] = $this->name;
+            $this->path_hash = md5(implode('/', array_filter($parts)));
+        }
+
+        return $this;
+    }
 
     /**
      * @inheritdoc
@@ -132,7 +158,6 @@ class Category extends ActiveRecord
         $value = $this->name;
         return $value;
     }
-
 
 
 }

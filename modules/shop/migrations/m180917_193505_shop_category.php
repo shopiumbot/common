@@ -23,15 +23,16 @@ class m180917_193505_shop_category extends Migration {
             'rgt' => $this->integer()->unsigned()->notNull(),
             'depth' => $this->smallInteger(5)->unsigned()->notNull(),
             'name' => $this->string(255)->null(),
+            'chunk'=>$this->tinyInteger(1)->defaultValue(1),
             'icon' => $this->char(1)->null(),
-            'image' => $this->string(50)->null(),
+            'path_hash' => $this->string(32)->null(),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
             'switch' => $this->boolean()->defaultValue(1)->notNull(),
         ]);
 
 
-
+        $this->createIndex('path_hash', Category::tableName(), 'path_hash');
         $this->createIndex('lft', Category::tableName(), 'lft');
         $this->createIndex('rgt', Category::tableName(), 'rgt');
         $this->createIndex('depth', Category::tableName(), 'depth');

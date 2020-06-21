@@ -22,6 +22,8 @@ class ProductController extends AdminController
 {
 
     public $tab_errors = [];
+    public $count;
+    public $limit = false;
 
     public function actions()
     {
@@ -44,10 +46,17 @@ class ProductController extends AdminController
 
     public function beforeAction($action)
     {
+
+        $this->count = Product::find()->count();
+        if ($this->count >= Yii::$app->params['plan'][Yii::$app->user->planId]['product_limit']) {
+            $this->limit = true;
+        }
+
+
         if (in_array($action->id, ['create', 'update'])) {
-            $count = Product::find()->count();
-            if ($count >= Yii::$app->params['plan'][Yii::$app->params['plan_id']]['product_limit']) {
-                throw new HttpException(403, Yii::t('app/default', 'Достигнут лимит товаров {count} шт.', ['count' => $count]));
+            $this->count = Product::find()->count();
+            if (!$this->limit) {
+                throw new HttpException(403, Yii::t('shop/default', 'PRODUCT_LIMIT', $this->count));
             }
         }
 
@@ -61,14 +70,16 @@ class ProductController extends AdminController
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
 
         $this->pageName = Yii::t('shop/admin', 'PRODUCTS');
-        $this->buttons = [
-            [
-                'icon' => 'add',
-                'label' => Yii::t('shop/admin', 'CREATE_PRODUCT'),
-                'url' => ['create'],
-                'options' => ['class' => 'btn btn-success']
-            ]
-        ];
+        if (!$this->limit) {
+            $this->buttons = [
+                [
+                    'icon' => 'add',
+                    'label' => Yii::t('shop/admin', 'CREATE_PRODUCT'),
+                    'url' => ['create'],
+                    'options' => ['class' => 'btn btn-success']
+                ]
+            ];
+        }
         $this->breadcrumbs[] = [
             'label' => $this->module->info['label'],
             'url' => $this->module->info['url'],
@@ -140,26 +151,25 @@ class ProductController extends AdminController
         if ($model->load($post) && $model->validate() && $this->validateAttributes($model) && $this->validatePrices($model)) {
 
 
-
             if ($model->save()) {
                 $model->file = \yii\web\UploadedFile::getInstances($model, 'file');
-                $data=[];
+                $data = [];
                 if ($model->file) {
 
                     foreach ($model->file as $file) {
-                        $image= $model->attachImage($file);
-                        $data[]=[
-                            'filePath'=>$image->filePath,
-                            'is_main'=>$image->is_main
+                        $image = $model->attachImage($file);
+                        $data[] = [
+                            'filePath' => $image->filePath,
+                            'is_main' => $image->is_main
                         ];
                     }
 
                     // $model->images_data = json_encode($data);
-                }else{
-                    foreach ($model->images as $image){
-                        $data[]=[
-                            'filePath'=>$image->filePath,
-                            'is_main'=>$image->is_main
+                } else {
+                    foreach ($model->images as $image) {
+                        $data[] = [
+                            'filePath' => $image->filePath,
+                            'is_main' => $image->is_main
                         ];
                     }
                     //  $model->images_data = json_encode($data);
@@ -180,14 +190,13 @@ class ProductController extends AdminController
                         }
 
                     }
-                    $categories = ArrayHelper::merge($categories,Yii::$app->request->post('categories', []));
+                    $categories = ArrayHelper::merge($categories, Yii::$app->request->post('categories', []));
                 } else {
 
                     $categories = Yii::$app->request->post('categories', []);
                 }
 
                 $model->setCategories($categories, $mainCategoryId);
-
 
 
                 if (isset(Yii::$app->request->post('Product')['prices']) && !empty(Yii::$app->request->post('Product')['prices'])) {
@@ -323,7 +332,6 @@ class ProductController extends AdminController
         }
 
 
-
         return $model->setEavAttributes($reAttributes, true);
     }
 
@@ -406,10 +414,10 @@ class ProductController extends AdminController
 
             $duplicator = new \core\modules\shop\components\ProductsDuplicator;
             $ids = $duplicator->createCopy($product_ids, $duplicates['copy']);
-            if($ids){
+            if ($ids) {
                 $result['success'] = true;
                 $result['message'] = 'Копия упешно создана';
-            }else{
+            } else {
                 $result['message'] = 'Ошибка копирование.';
             }
             //return $this->redirect('/admin/shop/product/?Product[id]=' . implode(',', $ids));

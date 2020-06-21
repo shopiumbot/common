@@ -17,7 +17,7 @@ if (Yii::$app->request->get('parent_id')) {
     ]);
 }
 ?>
-
+<?= $form->field($model, 'chunk')->dropDownList([1 => 1, 2 => 2, 3 => 3]) ?>
 <?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
 <?= $form->field($model, 'icon')->textInput(['maxlength' => 5])->hint('Пример: 📂') ?>
 

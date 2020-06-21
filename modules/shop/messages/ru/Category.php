@@ -10,12 +10,7 @@ return [
     'NODE_DELETE_SUCCESS' => 'Категория успешно удалена',
     'UPDATE_TITLE' => 'Редактирование {name}',
     'CREATE_TITLE' => 'Добавление',
-    'IMAGE' => 'Изображение',
-    'SEO_PRODUCT_TITLE' => 'Шаблон Title для товара',
-    'SEO_PRODUCT_DESCRIPTION' => 'Шаблон Description для товара',
+    'CHUNK' => 'Группировать под-категории',
     'TAB_MAIN' => 'Основные',
-    'CURRENT_CURRENCY' => 'Текущая валюта ({symbol}).',
-    'PRODUCT_NAME' => 'Название товара',
-    'PRODUCT_PRICE' => 'Цена товара',
     'ICON' => 'Иконка (emoji)',
 ];
