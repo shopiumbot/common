@@ -33,6 +33,8 @@ class m180917_193421_shop_attribute extends Migration
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
             'sort' => $this->tinyInteger(1)->defaultValue(NULL),
+            'display_on_pdf'=>$this->tinyInteger(1)->defaultValue(1),
+            'display_on_list'=>$this->tinyInteger(1)->defaultValue(1),
             'switch' => $this->boolean()->defaultValue(1)->notNull(),
             'ordern' => $this->integer(11)->unsigned(),
         ]);

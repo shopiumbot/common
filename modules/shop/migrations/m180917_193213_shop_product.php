@@ -21,8 +21,15 @@ class m180917_193213_shop_product extends Migration
      */
     public function up()
     {
+
+
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE=InnoDB';
+        }
+
         $this->createTable(Product::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
+            'custom_id'=> $this->integer()->unsigned(),
             'user_id' => $this->integer()->unsigned(),
             'manufacturer_id' => $this->integer()->unsigned(),
             'category_id' => $this->integer()->unsigned(),
@@ -55,7 +62,7 @@ class m180917_193213_shop_product extends Migration
             'updated_at' => $this->integer(),
             'switch' => $this->boolean()->defaultValue(1)->notNull(),
             'ordern' => $this->integer()->unsigned(),
-        ]);
+        ],$tableOptions);
 
 
 
@@ -70,6 +77,7 @@ class m180917_193213_shop_product extends Migration
         $this->createIndex('created_at', Product::tableName(), 'created_at');
         $this->createIndex('ordern', Product::tableName(), 'ordern');
         $this->createIndex('main_category_id', Product::tableName(), 'main_category_id');
+        $this->createIndex('custom_id', Product::tableName(), 'custom_id');
 
 
         $this->loadColumns('grid-product', Product::class, ['image', 'name', 'price', 'created_at']);

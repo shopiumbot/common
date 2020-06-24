@@ -143,4 +143,27 @@ class ProductQuery extends ActiveQuery
 
         return $this;
     }
+
+
+    public function int2between($start, $end, $attribute = 'created_at')
+    {
+        $modelClass = $this->modelClass;
+        $tableName = $modelClass::tableName();
+        $this->andWhere(['<=', $tableName . '.' . $attribute, $start]);
+        $this->andWhere(['>=', $tableName . '.' . $attribute, $end]);
+        return $this;
+    }
+
+    /**
+     * @param string $attribute
+     * @return $this
+     */
+    public function isNotEmpty($attribute)
+    {
+        $modelClass = $this->modelClass;
+        $tableName = $modelClass::tableName();
+        $this->andWhere(['IS NOT', $tableName . '.' . $attribute, null]);
+        $this->andWhere(['!=', $tableName . '.' . $attribute, '']);
+        return $this;
+    }
 }

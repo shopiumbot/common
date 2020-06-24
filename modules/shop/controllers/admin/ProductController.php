@@ -23,7 +23,7 @@ class ProductController extends AdminController
 
     public $tab_errors = [];
     public $count;
-    public $limit = false;
+    public $created = true;
 
     public function actions()
     {
@@ -49,13 +49,12 @@ class ProductController extends AdminController
 
         $this->count = Product::find()->count();
         if ($this->count >= Yii::$app->params['plan'][Yii::$app->user->planId]['product_limit']) {
-            $this->limit = true;
+            $this->created = false;
         }
 
 
-        if (in_array($action->id, ['create', 'update'])) {
-            $this->count = Product::find()->count();
-            if (!$this->limit) {
+        if (in_array($action->id, ['create'])) {
+            if (!$this->created) {
                 throw new HttpException(403, Yii::t('shop/default', 'PRODUCT_LIMIT', $this->count));
             }
         }
@@ -70,7 +69,7 @@ class ProductController extends AdminController
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
 
         $this->pageName = Yii::t('shop/admin', 'PRODUCTS');
-        if (!$this->limit) {
+        if ($this->created) {
             $this->buttons = [
                 [
                     'icon' => 'add',

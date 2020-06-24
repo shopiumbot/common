@@ -6,7 +6,7 @@ use core\modules\shop\bundles\admin\ProductIndex;
 
 echo Fancybox::widget(['target' => '.image a']);
 $buttons = [];
-if (!$this->context->limit) {
+if ($this->context->created) {
     $buttons[] =
         [
             'url' => ['create'],

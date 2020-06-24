@@ -56,7 +56,7 @@ class Category extends ActiveRecord
     {
         return [
             [['name'], 'trim'],
-            [['name','chunk'], 'required'],
+            [['name'], 'required'],
             [['chunk'], 'integer','min'=>1,'max'=>3],
             [['name', 'icon'], 'string', 'max' => 255],
             [['icon'], 'default'],

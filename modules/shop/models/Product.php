@@ -4,6 +4,7 @@ namespace core\modules\shop\models;
 
 
 use core\modules\shop\components\ExternalFinder;
+use shopium\mod\cart\models\OrderProduct;
 use shopium\mod\discounts\components\DiscountBehavior;
 use core\modules\images\models\Image;
 use panix\mod\user\models\User;
@@ -477,7 +478,9 @@ class Product extends ActiveRecord
         $external = new ExternalFinder('{{%csv}}');
         $external->removeByObject(ExternalFinder::OBJECT_PRODUCT, $this->id);
 
-
+        OrderProduct::deleteAll([
+            'product_id' => $this->id
+        ]);
 
         parent::afterDelete();
     }

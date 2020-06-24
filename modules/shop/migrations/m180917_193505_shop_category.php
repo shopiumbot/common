@@ -16,6 +16,11 @@ class m180917_193505_shop_category extends Migration {
 
     public function up()
     {
+
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE=InnoDB';
+        }
+
         $this->createTable(Category::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
             'tree' => $this->integer()->unsigned()->null(),
@@ -29,7 +34,7 @@ class m180917_193505_shop_category extends Migration {
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
             'switch' => $this->boolean()->defaultValue(1)->notNull(),
-        ]);
+        ],$tableOptions);
 
 
         $this->createIndex('path_hash', Category::tableName(), 'path_hash');
