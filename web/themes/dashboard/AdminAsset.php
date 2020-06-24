@@ -3,7 +3,7 @@
 namespace core\web\themes\dashboard;
 
 use panix\engine\web\AssetBundle;
-
+use Yii;
 /**
  * Class AdminAsset
  * @package app\web\themes\dashboard

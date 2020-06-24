@@ -1,6 +1,9 @@
 .search-box .app-search .form-control, .topbar .mega-dropdown .dropdown-menu {
     border-radius: 0
 }
+.input-group-text{
+    padding: 0.1rem 0.75rem;
+}
 .has-error .help-block{
     color: #fa6557;
     text-align: left;
@@ -1968,9 +1971,9 @@ a.badge-purple.focus, a.badge-purple:focus {
 }
 
 .alert {
-    border-radius: 2px
+    border-radius: 2px;
+    font-size: 14px;
 }
-
 
 .alert-dismissible {
     padding-right: 3.8125rem
@@ -3090,7 +3093,7 @@ html[dir=ltr] body .p-l-0 {
 
 .right-part {
     width: calc(100% - 260px);
-    height: calc(100vh - 115px);
+    height: calc(100vh - 118px);
     margin-left: 260px
 }
 
@@ -8456,7 +8459,7 @@ html[dir=rtl] .search-box .app-search .srh-btn {
     left: 20px
 }
 
-html[dir=rtl] .mailbox .message-center .message-item .mail-contnet {
+html[dir=rtl] .mailbox .message-center .message-item .mail-content {
     padding-right: 10px;
     padding-left: 0
 }
@@ -9891,26 +9894,23 @@ html[dir=rtl] .dz-hidden-input {
     background: #fa5838
 }
 
-.mailbox .message-center .message-item .user-img .away {
-    background: #ffbc34
-}
 
 .mailbox .message-center .message-item .user-img .offline {
     background: #ffbc34
 }
 
-.mailbox .message-center .message-item .mail-contnet {
+.mailbox .message-center .message-item .mail-content {
     display: inline-block;
     width: 75%;
     padding-left: 10px;
     vertical-align: middle
 }
 
-.mailbox .message-center .message-item .mail-contnet .message-title {
+.mailbox .message-center .message-item .mail-content .message-title {
     margin: 5px 0 0
 }
 
-.mailbox .message-center .message-item .mail-contnet .mail-desc, .mailbox .message-center .message-item .mail-contnet .time {
+.mailbox .message-center .message-item .mail-content .mail-desc, .mailbox .message-center .message-item .mail-content .time {
     font-size: 12px;
     display: block;
     margin: 1px 0;

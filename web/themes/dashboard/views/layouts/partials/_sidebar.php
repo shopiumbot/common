@@ -17,28 +17,6 @@ use panix\engine\Html;
         <li class="sidebar-item">
             <?= Html::a(Html::icon('discount').'<span class="hide-menu">Скидки</span>', ['/discounts/admin/default/index'], ['class' => 'sidebar-link']); ?>
         </li>
-        <li class="sidebar-item d-none">
-            <a class="sidebar-link has-arrow" href="javascript:void(0)"
-               aria-expanded="false">
-                <i class="icon-puzzle"></i>
-                <span class="hide-menu">Интеграция</span>
-                <span class="badge badge-pill badge-info ml-auto m-r-15">3</span>
-            </a>
-            <ul aria-expanded="false" class="collapse  first-level">
-                <li class="sidebar-item">
-                    <a href="index.html" class="sidebar-link">
-                        <i class="icon-arrow-right"></i>
-                        <span class="hide-menu">CSV</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="index2.html" class="sidebar-link">
-                        <i class="icon-arrow-right"></i>
-                        <span class="hide-menu">EXEL</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
         <li class="sidebar-item">
             <?= Html::a(Html::icon('apple').'<span class="hide-menu">Бренды</span>', ['/admin/shop/manufacturer'], ['class' => 'sidebar-link']); ?>
         </li>
@@ -48,7 +26,9 @@ use panix\engine\Html;
         <li class="sidebar-item">
             <?= Html::a(Html::icon('filter').'<span class="hide-menu">Атрибуты</span>', ['/admin/shop/attribute'], ['class' => 'sidebar-link']); ?>
         </li>
-
+        <li class="sidebar-item">
+            <?= Html::a(Html::icon('currencies').'<span class="hide-menu">Валюты</span>', ['/admin/shop/currency'], ['class' => 'sidebar-link']); ?>
+        </li>
         <li class="sidebar-item">
             <a class="sidebar-link has-arrow" href="javascript:void(0)"
                aria-expanded="false">
@@ -84,6 +64,9 @@ use panix\engine\Html;
                 <li class="sidebar-item">
                     <?= Html::a(Html::icon('user-outline').'<span class="hide-menu">Пользователи</span>', ['/telegram/users'], ['class' => 'sidebar-link']); ?>
                 </li>
+                <li class="sidebar-item d-none">
+                    <?= Html::a(Html::icon('comments').'<span class="hide-menu">Рассылка <sup class="badge badge-danger">new</sup></span>', ['#'], ['class' => 'sidebar-link']); ?>
+                </li>
             </ul>
         </li>
 
@@ -91,27 +74,24 @@ use panix\engine\Html;
             <i class="icon-puzzle"></i>
             <span class="hide-menu">Интеграция</span>
         </li>
+        <li class="sidebar-item d-none">
+            <?= Html::a(Html::icon('arrow-right').'<span class="hide-menu">PROM.UA</span>', ['/admin/promua'], ['class' => 'sidebar-link']); ?>
+        </li>
+        <li class="sidebar-item d-none">
+            <?= Html::a(Html::icon('novaposhta').'<span class="hide-menu">Нова Пошта</span>', ['/admin/promua'], ['class' => 'sidebar-link']); ?>
+        </li>
         <li class="sidebar-item">
             <a class="sidebar-link has-arrow " href="javascript:void(0)"
                aria-expanded="false">
                 <i class="icon-upload"></i>
-                <span class="hide-menu">Импорт</span>
+                <span class="hide-menu">CSV - формат</span>
             </a>
             <ul aria-expanded="false" class="collapse first-level">
                 <li class="sidebar-item">
-                    <?= Html::a(Html::icon('file-csv').'<span class="hide-menu">CSV - формат</span>', ['/csv/default/import'], ['class' => 'sidebar-link']); ?>
+                    <?= Html::a(Html::icon('file-csv').'<span class="hide-menu">Импорт</span>', ['/csv/default/import'], ['class' => 'sidebar-link']); ?>
                 </li>
-            </ul>
-        </li>
-        <li class="sidebar-item">
-            <a class="sidebar-link has-arrow" href="javascript:void(0)"
-               aria-expanded="false">
-                <i class="icon-download"></i>
-                <span class="hide-menu">Экспорт</span>
-            </a>
-            <ul aria-expanded="false" class="collapse first-level">
                 <li class="sidebar-item">
-                    <?= Html::a(Html::icon('file-csv').'<span class="hide-menu">CSV - формат</span>', ['/csv/default/export'], ['class' => 'sidebar-link']); ?>
+                    <?= Html::a(Html::icon('file-csv').'<span class="hide-menu">Экспорт</span>', ['/csv/default/export'], ['class' => 'sidebar-link']); ?>
                 </li>
             </ul>
         </li>
@@ -123,7 +103,9 @@ use panix\engine\Html;
             <i class="icon-books"></i>
             <span class="hide-menu">Дополнительный</span>
         </li>
-
+        <li class="sidebar-item">
+            <?= Html::a(Html::icon('edit').'<span class="hide-menu">Меню</span>', ['/pages/default/index'], ['class' => 'sidebar-link']); ?>
+        </li>
         <li class="sidebar-item">
             <?= Html::a(Html::icon('settings').'<span class="hide-menu">Настройки</span>', ['/admin/app/settings'], ['class' => 'sidebar-link']); ?>
         </li>

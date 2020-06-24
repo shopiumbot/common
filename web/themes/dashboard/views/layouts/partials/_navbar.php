@@ -4,7 +4,7 @@ use yii\helpers\Url;
 use panix\engine\CMS;
 
 
-
+$telegram = Yii::$app->telegram;
 
 ?>
 <ul class="navbar-nav float-left mr-auto">
@@ -68,7 +68,7 @@ use panix\engine\CMS;
                                                          class="rounded-circle">
                                                     <span class="profile-status online pull-right"></span>
                                                 </span>
-                                <div class="mail-contnet">
+                                <div class="mail-content">
                                     <h5 class="message-title"><?= $order->firstname; ?> <?= $order->lastname; ?></h5>
                                     <span class="mail-desc"><?= Yii::t('shop/default','PRODUCTS_COUNTER',$order->productsCount);?></span>
                                     <span class="time"><?= Yii::$app->currency->number_format($order->total_price); ?> грн</span>
@@ -164,7 +164,7 @@ use panix\engine\CMS;
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle pro-pic" href=""
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="<?= $this->context->botPhoto; ?>" alt="<?= $this->context->api->getBotUsername(); ?>" class="rounded-circle"
+            <img src="<?= $telegram->getPhoto(); ?>" alt="<?= $telegram->getApi()->getBotUsername(); ?>" class="rounded-circle"
                  width="40">
             <span class="m-l-5 font-medium d-none d-sm-inline-block"><?= Yii::$app->user->getDisplayName(); ?> <i
                         class="icon-arrow-down"></i></span>
@@ -175,12 +175,12 @@ use panix\engine\CMS;
                                 </span>
             <div class="d-flex no-block align-items-center p-2 bg-primary text-white mb-3">
                 <div class="">
-                    <img src="<?= $this->context->botPhoto; ?>" alt="<?= $this->context->api->getBotUsername(); ?>" class="rounded-circle"
+                    <img src="<?= $telegram->getPhoto(); ?>" alt="<?= $telegram->getApi()->getBotUsername(); ?>" class="rounded-circle"
                          width="60">
                 </div>
                 <div class="ml-2">
                     <h5 class="mb-0"><?= Yii::$app->user->getDisplayName(); ?></h5>
-                    <p class="mb-0"><?= $this->context->api->getBotUsername(); ?></a>
+                    <p class="mb-0"><?= $telegram->getApi()->getBotUsername(); ?></a>
                     </p>
                 </div>
             </div>

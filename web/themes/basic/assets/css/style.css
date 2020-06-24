@@ -1809,20 +1809,23 @@ footer ul.footer-payments > li {
 }
 */
 .navbar-brand {
-  background-image: url(../images/logo2.svg);
+  background-image: url(../images/logo-dark.svg);
   background-repeat: no-repeat;
   background-position: center center;
+  background-size: contain;
   position: relative;
   display: block;
   height: 75px;
-  width: 210px;
+  width: 220px;
 }
 @media (min-width: 992px) {
   .navbar-brand {
     margin: 0 0 15px 0;
   }
 }
+.page-error{
 
+}
 /*
 #footer {
   background-color: #f8e07a;

@@ -17,18 +17,8 @@ use panix\engine\widgets\Breadcrumbs;
 </head>
 <body>
 <?php $this->beginBody() ?>
-<div class="wrap page-error">
-    <?= $this->render('partials/_header'); ?>
+<div class="page-error">
     <div class="container">
-        <?php if (isset($this->context->breadcrumbs)) { ?>
-            <?php
-            echo Breadcrumbs::widget([
-                'links' => $this->context->breadcrumbs,
-            ]);
-            ?>
-        <?php } ?>
-
-
         <?php
         echo $content;
         ?>

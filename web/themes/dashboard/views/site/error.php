@@ -4,15 +4,24 @@ use yii\helpers\Html;
  * @var $exception \yii\web\HttpException
  * @var $handler \yii\web\ErrorHandler
  */
+
+//Тестовые API ключи
+//sandbox_i95790717140
+//sandbox_duCF4AhfVRF4l2wpSa21eOLF4nWTwHulxfJnRFH1
+
+
+//API ключи
+//public_key i50530989846
+//private_key LtoClvytIkRP2wRophiuEAIL6XFenIX9WnFlVCNR
 ?>
 
 <div class="row">
     <div class="col-12">
         <div class="text-center">
-            <h1><?= $statusCode; ?></h1>
+            <h1 class="error-logo"><?= $statusCode; ?></h1>
             <h2><?= $exception->getMessage(); ?></h2>
             <p>
-                <?= Html::a(Yii::t('app/default', 'GO_HOME'), ['/'], ['class' => 'btn btn-primary']); ?>
+                <?= Html::a(Yii::t('app/default', 'GO_HOME'), ['/admin'], ['class' => 'btn btn-lg btn-primary mt-5']); ?>
             </p>
         </div>
     </div>
