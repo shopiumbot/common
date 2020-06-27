@@ -55,7 +55,7 @@ class Feedback extends ActiveRecord
 
         $rules[] = [['main_category_id', 'price', 'unit','name'], 'required'];
         $rules[] = ['price', 'commaToDot'];
-        $rules[] = [['file'], 'file', 'maxFiles' => Yii::$app->params['plan'][Yii::$app->params['plan_id']]['product_upload_files']];
+        $rules[] = [['file'], 'file', 'maxFiles' => Yii::$app->params['plan'][Yii::$app->user->planId]['product_upload_files']];
         $rules[] = [['file'], 'validateLimit'];
         $rules[] = [['name'], 'string', 'max' => 255];
         $rules[] = [['image'], 'image'];

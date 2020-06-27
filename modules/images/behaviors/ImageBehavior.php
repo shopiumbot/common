@@ -54,7 +54,7 @@ class ImageBehavior extends Behavior
         /** @var ActiveRecord $owner */
         $owner = $this->owner;
         $owner->file = \yii\web\UploadedFile::getInstances($owner, 'file');
-        if (count($owner->file) > Yii::$app->params['plan'][Yii::$app->params['plan_id']]['product_upload_files']) {
+        if (count($owner->file) > Yii::$app->params['plan'][Yii::$app->user->planId]['product_upload_files']) {
             throw new ForbiddenHttpException();
         }
 
@@ -177,7 +177,7 @@ class ImageBehavior extends Behavior
             $allImg->save();
         }
 
-   }
+    }
 
 
     /**
@@ -197,16 +197,18 @@ class ImageBehavior extends Behavior
             $imageQuery = $class::find();
         }
         $imageQuery->where($finder);
-        $imageQuery->orderBy(['is_main'=>SORT_DESC]);
+        $imageQuery->orderBy(['is_main' => SORT_DESC]);
 //'ordern' => SORT_DESC,
         $imageRecords = $imageQuery->all();
 
         return $imageRecords;
     }
+
     public function getImagesCount()
     {
         return Image::find()->where(['product_id' => $this->owner->primaryKey])->count();
     }
+
     /**
      * returns main model image
      * @param $main

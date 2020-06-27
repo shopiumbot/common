@@ -12,7 +12,10 @@ use panix\engine\helpers\TimeZoneHelper;
  * @var yii\widgets\ActiveForm $form
  */
 $api = Yii::$app->telegram;
-
+$month= strtotime("+1 month");
+//echo $month;
+//echo Yii::$app->security->generateRandomString();
+//echo date("Y-m-d H:i:s", $month)
 ?>
 
 

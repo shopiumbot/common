@@ -30,13 +30,13 @@ class Image extends ActiveRecord
         return $ext;
     }
 
-    public function getUrl($size = false)
+    public function getUrl($size = false,$scheme=false)
     {
         $urlSize = ($size) ? '_' . $size : '';
         $url = Url::toRoute([
             '/images/default/get-file',
             'dirtyAlias' => $this->urlAlias . $urlSize . '.' . $this->getExtension()
-        ]);
+        ],$scheme);
 
         return $url;
     }
@@ -65,9 +65,9 @@ class Image extends ActiveRecord
 
         if (!file_exists($filePath)) {
             $filePath = Yii::getAlias('@uploads') . DIRECTORY_SEPARATOR . 'no-image.png';
-        }else{
+        } else {
             $origin = $this->getPathToOrigin();
-            $filePath= $this->createVersion($origin, $size);
+            $filePath = $this->createVersion($origin, $size);
         }
 
 
@@ -96,7 +96,7 @@ class Image extends ActiveRecord
 
     public function getUrlToOrigin()
     {
-        $base = '/uploads/store/product/'.$this->product_id.'/' . $this->filePath;
+        $base = '/uploads/store/product/' . $this->product_id . '/' . $this->filePath;
         $filePath = $base;
         return $filePath;
     }
@@ -106,8 +106,8 @@ class Image extends ActiveRecord
     {
 
 
-            $image = new \Imagick($this->getPathToOrigin());
-            $sizes = $image->getImageGeometry();
+        $image = new \Imagick($this->getPathToOrigin());
+        $sizes = $image->getImageGeometry();
 
 
         return $sizes;
@@ -143,9 +143,9 @@ class Image extends ActiveRecord
     public function createVersion($imagePath, $sizeString = false)
     {
         $filePath = Yii::getAlias($this->path) . DIRECTORY_SEPARATOR . $this->product_id . DIRECTORY_SEPARATOR . $this->filePath;
-if($filePath){
+        if ($filePath) {
 
-}
+        }
         $sizes = explode('x', $sizeString);
 
         /** @var $img \panix\engine\components\ImageHandler */
