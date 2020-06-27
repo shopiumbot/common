@@ -9,24 +9,24 @@ return [
         ]
     ],
     'maxUploadImageSize' => [
-        'width' => 1200,
-        'height' => 1200
+        'width' => 800,
+        'height' => 800
     ],
     'plan' => [
-        // Basic
         1 => [
-            'product_limit' => 3000,
+            'name'=>'Basic',
+            'product_limit' => 200,
             'product_upload_files' => 1
         ],
-        // Standard
         2 => [
-            'product_limit' => 10000,
+            'name'=>'Standard',
+            'product_limit' => 5000,
             'product_upload_files' => 3
         ],
-        // Premium
         3 => [
-            'product_limit' => 25000,
-            'product_upload_files' => 5
-        ],
+            'name'=>'Premium',
+            'product_limit' => true,
+            'product_upload_files' => true
+        ]
     ]
 ];
