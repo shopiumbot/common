@@ -2,6 +2,12 @@
 
 return [
     'adminEmail' => 'dev@pixelion.com.ua',
+    'payment'=>[
+        'liqpay'=>[
+            'public_key'=>'',
+            'private_key'=>'',
+        ]
+    ],
     'maxUploadImageSize' => [
         'width' => 1200,
         'height' => 1200
