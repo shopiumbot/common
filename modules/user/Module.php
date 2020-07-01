@@ -231,9 +231,9 @@ class Module extends WebModule implements BootstrapInterface
             'prefix' => $this->id,
             'rules' => [
                 '<controller:(admin|copy|auth)>' => '<controller>',
-                '<controller:(admin|copy|auth)>/<action:\w+>' => '<controller>/<action>',
-                '<action:\w+>/authclient/<authclient:[0-9a-zA-Z\-]+>' => 'default/<action>',
-                '<action:\w+>' => 'default/<action>',
+                '<controller:(admin|copy|auth)>/<action:[0-9a-zA-Z_\-]+>' => '<controller>/<action>',
+                '<action:[0-9a-zA-Z_\-]+>/authclient/<authclient:[0-9a-zA-Z\-]+>' => 'default/<action>',
+                '<action:[0-9a-zA-Z_\-]+>' => 'default/<action>',
             ],
         ]);
         $app->getUrlManager()->addRules($groupUrlRule->rules, false);

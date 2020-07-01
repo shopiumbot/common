@@ -30,6 +30,8 @@ use ReflectionClass;
  * @property string $create_time
  * @property string $update_time
  * @property string $language
+ * @property int $expire
+ * @property double $money
  * @property UserKey[] $userKeys
  * @property UserAuth[] $userAuths
  */
@@ -39,6 +41,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return Yii::$app->serverDb;
     }
+
     public $disallow_delete = [1];
     const MODULE_ID = 'user';
     const route = '/admin/user/default';
@@ -63,14 +66,14 @@ class User extends ActiveRecord implements IdentityInterface
     public function init()
     {
 
-       // $this->bot_admins = explode(',',$this->bot_admins);
+        // $this->bot_admins = explode(',',$this->bot_admins);
 
         parent::init();
 
     }
-   // public function getBot_admins(){
-       // return explode(',',$this->bot_admins);
-   // }
+    // public function getBot_admins(){
+    // return explode(',',$this->bot_admins);
+    // }
     /**
      * @inheritdoc
      */
@@ -88,12 +91,13 @@ class User extends ActiveRecord implements IdentityInterface
     {
         // set initial rules
         $rules = [
+            [['money'], 'string', 'max' => 255],
             // general email and username rules
             [['email', 'phone'], 'string', 'max' => 255],
             [['email'], 'unique'],
             [['email'], 'filter', 'filter' => 'trim'],
             [['email'], 'email'],
-            [['token','phone'], 'required'],
+            [['token', 'phone'], 'required'],
             ['token', 'validateBotToken'],
             ['new_password', 'string', 'min' => 3, 'on' => ['reset']],
             [['new_password'], 'required', 'on' => ['reset']],
@@ -115,6 +119,7 @@ class User extends ActiveRecord implements IdentityInterface
 
         return $rules;
     }
+
     public function validateBotToken($attribute)
     {
 
@@ -137,6 +142,7 @@ class User extends ActiveRecord implements IdentityInterface
         }
 
     }
+
     public function scenarios()
     {
         return ArrayHelper::merge(parent::scenarios(), [
@@ -245,13 +251,13 @@ class User extends ActiveRecord implements IdentityInterface
             $this->password = Yii::$app->security->generatePasswordHash($this->password);
         }
 
-        if (in_array($this->scenario,['reset','admin'])) {
-            if($this->new_password){
+        if (in_array($this->scenario, ['reset', 'admin'])) {
+            if ($this->new_password) {
                 $this->password = Yii::$app->security->generatePasswordHash($this->new_password);
             }
         }
-        if(is_array($this->bot_admins)){
-            $this->bot_admins = implode(',',$this->bot_admins);
+        if (is_array($this->bot_admins)) {
+            $this->bot_admins = implode(',', $this->bot_admins);
         }
 
         // ensure fields are null so they won't get set as empty string
@@ -455,6 +461,30 @@ class User extends ActiveRecord implements IdentityInterface
         }
 
         return $dropdown;
+    }
+
+
+    public function extendTariff($month,$text)
+    {
+        $priceByMonth = Yii::$app->params['plan'][$this->plan_id]['prices'][$month]*$month;
+
+        if ($this->money >= $priceByMonth) {
+            $this->expire = strtotime("+{$month} month");
+            $this->money -= $priceByMonth;
+            $this->save(false);
+
+
+            $payment = new Payments();
+            $payment->system = 'rate';
+            $payment->name = $text;
+            $payment->type = 'rate';
+            $payment->money -= $priceByMonth;
+            $payment->status = 'success';
+            $payment->save(false);
+
+            return true;
+        }
+        return false;
     }
 
 

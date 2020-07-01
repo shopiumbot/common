@@ -4,8 +4,12 @@ namespace core\modules\user\controllers;
 
 
 use core\modules\user\models\forms\ChangePasswordForm;
+use core\modules\user\models\Payments;
 use panix\engine\CMS;
 use Yii;
+use yii\helpers\Json;
+use yii\web\ForbiddenHttpException;
+use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use core\modules\user\models\User;
 use core\components\controllers\AdminController;
@@ -31,9 +35,9 @@ class DefaultController extends AdminController
     {
         $user = User::findModel(Yii::$app->user->id);
 
-      //  if ($user->isNewRecord) {
-          //  $user->setScenario('admin');
-       // }
+        //  if ($user->isNewRecord) {
+        //  $user->setScenario('admin');
+        // }
 
         $this->pageName = Yii::t('user/default', 'MODULE_NAME');
 
@@ -82,7 +86,6 @@ class DefaultController extends AdminController
     }
 
 
-
     public function actionResetPassword($id)
     {
         /** @var User $user */
@@ -108,4 +111,124 @@ class DefaultController extends AdminController
         return $this->redirect(['update', 'id' => $user->id]);
     }
 
+
+    public function beforeAction($action)
+    {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
+
+    public function actionPaymentBalance($month)
+    {
+        if (!Yii::$app->user->isGuest) {
+            $user = User::findOne(Yii::$app->user->id);
+            $plan = Yii::$app->params['plan'][$user->plan_id];
+            if (key_exists($month, $plan['prices'])) {
+                if ($month >= 12) {
+                    $text = 'Оплата тарифного плана "' . $plan['name'] . '" на 1 год';
+                } else {
+                    $text = 'Оплата тарифного плана "' . $plan['name'] . '" на 1 месяц';
+                }
+                $extend = $user->extendTariff($month, $text);
+                if ($extend) {
+                    Yii::$app->session->setFlash('success-payment', 'Вы успешно продлили тарифный план');
+                } else {
+                    Yii::$app->session->setFlash('error-payment', 'У Вас не достаточно средств');
+                }
+            } else {
+                Yii::$app->session->setFlash('error-payment', 'Ошибка');
+            }
+            return $this->redirect(['/admin']);
+        }
+    }
+
+    public function actionPaymentSuccess()
+    {
+        $request = Yii::$app->request;
+        Yii::info('server');
+
+        return true;
+    }
+
+    public function actionPaymentResult()
+    {
+
+        $request = Yii::$app->request;
+
+
+        $liqPayConfig = Yii::$app->params['payment']['liqpay'];
+        if ($request->post('data')) {
+
+            $data = json_decode(base64_decode($request->post('data')));
+
+
+            Yii::info(json_encode($data));
+            list($gen, $user_id, $month) = explode('-', $data->order_id);
+
+
+            $user = User::findOne((int)$user_id);
+
+
+            if ($user === false) {
+                throw new NotFoundHttpException('user not found');
+            }
+
+
+            // Create and check signature.
+            $sign = base64_encode(sha1($liqPayConfig['private_key'] . $request->post('data') . $liqPayConfig['private_key'], 1));
+
+            // If ok make order paid.
+            if ($sign !== $request->post('signature')) {
+                Yii::info('signature error');
+                throw new NotFoundHttpException('signature error');
+            }
+
+
+            if ($data->status == 'success') {
+
+                $payment = new Payments();
+                $payment->system = 'liqpay';
+                $payment->name = 'Пополнение баланса';
+                $payment->type = 'balance';
+                $payment->money = $data->amount;
+                $payment->data = json_encode($data);
+                $payment->status = $data->status;
+                $payment->save(false);
+
+
+                $user->money += (Yii::$app->params['plan'][$user->plan_id]['prices'][$month] * $month);
+                $user->save(false);
+
+                $extend = $user->extendTariff($month, $data->description);
+                if ($extend) {
+                    Yii::$app->session->setFlash('success-payment', 'Вы успешно продлили тарифный план');
+                }
+
+                return $this->redirect(['/admin']);
+                // }
+
+            } elseif ($data->status == 'failure') {
+
+
+                $payment = new Payments();
+                $payment->system = 'liqpay';
+                $payment->name = 'Пополнение баланса';
+                $payment->type = 'balance';
+                $payment->money = $data->amount;
+                $payment->data = json_encode($data);
+                $payment->status = $data->status;
+                $payment->save(false);
+
+
+                Yii::$app->session->setFlash('error-payment', 'Платеж отменен');
+                return $this->redirect(['/admin']);
+            }
+        } else {
+            Yii::info('POST data - Not enabled');
+            throw new ForbiddenHttpException('POST data - Not enabled');
+        }
+
+
+        return $user;
+    }
 }

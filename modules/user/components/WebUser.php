@@ -40,7 +40,7 @@ class WebUser extends User
     }
 
     /**
-     * @param \app\modules\user\models\User $identity
+     * @param \core\modules\user\models\User $identity
      * @inheritdoc
      */
     public function afterLogin($identity, $cookieBased, $duration)
@@ -66,17 +66,31 @@ class WebUser extends User
         $user = $this->getIdentity();
         return $user ? $user->language : "";
     }
+
+    public function getExpire()
+    {
+        $user = $this->getIdentity();
+        return $user ? $user->expire : 0;
+    }
+
     public function getPlanId()
     {
         $user = $this->getIdentity();
         return $user ? $user->plan_id : null;
+    }
+    public function getMoney()
+    {
+        $user = $this->getIdentity();
+        return $user ? $user->money : 0.00;
     }
     public function getBotAdmins()
     {
         $user = $this->getIdentity();
         return $user ? explode(',', $user->bot_admins) : [];
     }
-    public function getByToken(){
+
+    public function getByToken()
+    {
         /** @var \core\modules\user\models\User $class */
         $class = $this->identityClass;
         if (Yii::$app->request->get('webhook')) {
