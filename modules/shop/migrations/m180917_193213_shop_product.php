@@ -32,7 +32,6 @@ class m180917_193213_shop_product extends Migration
             'custom_id'=> $this->integer()->unsigned(),
             'user_id' => $this->integer()->unsigned(),
             'manufacturer_id' => $this->integer()->unsigned(),
-            'category_id' => $this->integer()->unsigned(),
             'main_category_id' => $this->integer()->unsigned(),
             'type_id' => $this->smallInteger()->unsigned(),
             'currency_id' => $this->smallInteger()->unsigned(),
