@@ -464,9 +464,9 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
 
-    public function extendTariff($month,$text)
+    public function extendTariff($month, $text)
     {
-        $priceByMonth = Yii::$app->params['plan'][$this->plan_id]['prices'][$month]*$month;
+        $priceByMonth = Yii::$app->params['plan'][$this->plan_id]['prices'][$month] * $month;
 
         if ($this->money >= $priceByMonth) {
             $this->expire = strtotime("+{$month} month");

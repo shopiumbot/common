@@ -190,7 +190,7 @@ class DefaultController extends AdminController
                 $payment->system = 'liqpay';
                 $payment->name = 'Пополнение баланса';
                 $payment->type = 'balance';
-                $payment->money = $data->amount;
+                $payment->money = (Yii::$app->params['plan'][$user->plan_id]['prices'][$month] * $month);
                 $payment->data = json_encode($data);
                 $payment->status = $data->status;
                 $payment->save(false);
@@ -214,7 +214,7 @@ class DefaultController extends AdminController
                 $payment->system = 'liqpay';
                 $payment->name = 'Пополнение баланса';
                 $payment->type = 'balance';
-                $payment->money = $data->amount;
+                $payment->money = (Yii::$app->params['plan'][$user->plan_id]['prices'][$month] * $month);
                 $payment->data = json_encode($data);
                 $payment->status = $data->status;
                 $payment->save(false);

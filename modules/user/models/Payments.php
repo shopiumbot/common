@@ -5,8 +5,6 @@ namespace core\modules\user\models;
 use Yii;
 use core\components\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
-use yii\db\BaseActiveRecord;
-use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "tbl_user_payments".
@@ -79,7 +77,7 @@ class Payments extends ActiveRecord
             'timestamp' => [
                 'class' => TimestampBehavior::class,
                 'attributes' => [
-                    BaseActiveRecord::EVENT_BEFORE_INSERT => ['created_at'],
+                    self::EVENT_BEFORE_INSERT => ['created_at'],
                 ]
             ]
         ];
