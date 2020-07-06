@@ -99,6 +99,7 @@ class Pages extends ActiveRecord
         return [
             [['name', 'text'], 'required'],
             [['name'], 'string', 'max' => 255],
+            [['text'], 'string', 'max' => 4096],
             [['name'], 'trim'],
 
             [['updated_at', 'created_at'], 'safe'],

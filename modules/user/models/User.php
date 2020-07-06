@@ -91,13 +91,19 @@ class User extends ActiveRecord implements IdentityInterface
     {
         // set initial rules
         $rules = [
-            [['money'], 'string', 'max' => 255],
+
+            [['money','expire'], 'required', 'on' => ['extendTariff']],
+
+
+            [['money', 'expire'], 'string', 'max' => 255],
             // general email and username rules
             [['email', 'phone'], 'string', 'max' => 255],
             [['email'], 'unique'],
             [['email'], 'filter', 'filter' => 'trim'],
             [['email'], 'email'],
+
             [['token', 'phone'], 'required'],
+
             ['token', 'validateBotToken'],
             ['new_password', 'string', 'min' => 3, 'on' => ['reset']],
             [['new_password'], 'required', 'on' => ['reset']],
@@ -149,6 +155,7 @@ class User extends ActiveRecord implements IdentityInterface
             'register_fast' => ['email', 'phone'],
             'register' => ['email', 'password', 'password_confirm'],
             'reset' => ['new_password', 'password_confirm'],
+            'extendTariff' => ['expire', 'money'],
         ]);
     }
 
@@ -469,9 +476,16 @@ class User extends ActiveRecord implements IdentityInterface
         $priceByMonth = Yii::$app->params['plan'][$this->plan_id]['prices'][$month] * $month;
 
         if ($this->money >= $priceByMonth) {
-            $this->expire = strtotime("+{$month} month");
+            $this->scenario = 'extendTariff';
+            $this->expire = strtotime("+{$month} month",$this->expire);
             $this->money -= $priceByMonth;
-            $this->save(false);
+            $this->trial = 0;
+            if($this->save(false)){
+               // echo date('Y-m-d',$this->expire);
+               // die('save');
+            }else{
+               // die('no save');
+            }
 
 
             $payment = new Payments();
