@@ -47,18 +47,19 @@ class ProductController extends AdminController
     public function beforeAction($action)
     {
 
-        $this->count = Product::find()->count();
-        if ($this->count >= Yii::$app->params['plan'][Yii::$app->user->planId]['product_limit']) {
-            $this->created = false;
-        }
-
-
-        if (in_array($action->id, ['create'])) {
-            if (!$this->created) {
-                throw new HttpException(403, Yii::t('shop/default', 'PRODUCT_LIMIT', $this->count));
+/*
+            $this->count = Product::find()->count();
+            if ($this->count >= Yii::$app->params['plan'][Yii::$app->user->planId]['product_limit']) {
+                $this->created = false;
             }
-        }
 
+
+            if (in_array($action->id, ['create'])) {
+                if (!$this->created) {
+                    throw new HttpException(403, Yii::t('shop/default', 'PRODUCT_LIMIT', $this->count));
+                }
+            }
+*/
         return parent::beforeAction($action);
     }
 

@@ -72,7 +72,11 @@ class WebUser extends User
         $user = $this->getIdentity();
         return $user ? $user->expire : 0;
     }
-
+    public function getDomain()
+    {
+        $user = $this->getIdentity();
+        return $user ? $user->domain : null;
+    }
     public function getPlanId()
     {
         $user = $this->getIdentity();
