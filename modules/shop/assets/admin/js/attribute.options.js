@@ -15,15 +15,6 @@ $(function () {
         row.find(".value").each(function (i, el) {
             $(el).attr('name', 'options[' + option_name + '][]');
         });
-        $.ajax({
-            type:'GET',
-            url:'/admin/shop/attribute/test',
-            success:function (data) {
-                console.log(row.find('td:nth-child(3)'));
-                //row.find('td:nth-child(3)').html(data);
-            }
-        });
-
         return false;
     });
 

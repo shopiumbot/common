@@ -250,7 +250,7 @@ class Product extends ActiveRecord
         $rules[] = [['unit'], 'default', 'value' => 1];
         $rules[] = [['sku', 'description', 'label', 'discount'], 'default']; // установим ... как NULL, если они пустые
         $rules[] = [['price'], 'double'];
-        $rules[] = [['manufacturer_id', 'type_id', 'quantity', 'availability', 'added_to_cart_count', 'ordern', 'category_id', 'currency_id', 'label'], 'integer'];
+        $rules[] = [['manufacturer_id', 'type_id', 'quantity', 'availability', 'added_to_cart_count', 'ordern', 'currency_id', 'label'], 'integer'];
         $rules[] = [['name', 'description'], 'safe'];
 
         return $rules;

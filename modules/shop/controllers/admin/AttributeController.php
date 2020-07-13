@@ -103,12 +103,6 @@ class AttributeController extends AdminController
         return $this->render('update', ['model' => $model]);
     }
 
-    public function actionTest()
-    {
-        Yii::$app->response->format = Response::FORMAT_RAW;
-        return $this->renderAjax('tabs/__multi_input');
-    }
-
     /**
      * Save attribute options
      * @param Attribute $model
