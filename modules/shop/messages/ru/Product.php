@@ -60,4 +60,5 @@ return [
     'WIDTH' => 'Ширина',
     'HEIGHT' => 'Высота',
     'LENGTH' => 'Длина',
+    'WEIGHT' => 'Вес',
 ];

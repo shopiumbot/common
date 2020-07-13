@@ -33,7 +33,7 @@ use core\modules\shop\models\Currency;
 
 ?>
 
-<?php echo $form->field($model, 'prices')->label(false)->widget(\panix\ext\multipleinput\MultipleInput::class, [
+<?php /*echo $form->field($model, 'prices')->label(false)->widget(\panix\ext\multipleinput\MultipleInput::class, [
     //'model' => $model,
     //'attribute' => 'phone',
     //'max' => 5,
@@ -63,4 +63,4 @@ use core\modules\shop\models\Currency;
             ],
         ],
     ]
-]);
+]);*/
