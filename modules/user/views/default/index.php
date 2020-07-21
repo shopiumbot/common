@@ -35,7 +35,9 @@ $month= strtotime("+1 month");
 <div class="row">
     <div class="col-md-7 col-lg-6 col-xl-7">
         <?php
-        $model->bot_admins = explode(',', $model->bot_admins);
+
+           $model->bot_admins = explode(',', $model->bot_admins);
+
         $form = ActiveForm::begin([
             'options' => [],
             'fieldConfig' => [

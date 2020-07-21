@@ -66,12 +66,12 @@ class User extends ActiveRecord implements IdentityInterface
     public function init()
     {
 
-        // $this->bot_admins = explode(',',$this->bot_admins);
+       //  $this->bot_admins = explode(',',$this->bot_admins);
 
         parent::init();
 
     }
-    // public function getBot_admins(){
+   //  public function getBot_admins(){
     // return explode(',',$this->bot_admins);
     // }
     /**
@@ -156,6 +156,7 @@ class User extends ActiveRecord implements IdentityInterface
             'register' => ['email', 'password', 'password_confirm'],
             'reset' => ['new_password', 'password_confirm'],
             'extendTariff' => ['expire', 'money'],
+            'admin' => ['bot_admins', 'token','email','phone'],
         ]);
     }
 
@@ -263,7 +264,9 @@ class User extends ActiveRecord implements IdentityInterface
                 $this->password = Yii::$app->security->generatePasswordHash($this->new_password);
             }
         }
-        if (is_array($this->bot_admins)) {
+
+
+        if ($this->scenario == 'admin' && is_array($this->bot_admins)) {
             $this->bot_admins = implode(',', $this->bot_admins);
         }
 
@@ -275,6 +278,7 @@ class User extends ActiveRecord implements IdentityInterface
 
         return parent::beforeSave($insert);
     }
+
 
     public function getGenderList()
     {

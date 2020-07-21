@@ -17,11 +17,6 @@ use core\modules\shop\models\ProductType;
 
 
         <?php
-        if (!$model->isNewRecord && Yii::$app->settings->get('shop', 'auto_gen_url')) {
-            echo Yii::t('shop/admin', 'ENABLE_AUTOURL_MODE');
-        }
-
-
         $typesList = ProductType::find()->all();
         if (count($typesList) > 0) {
             // If selected `configurable` product without attributes display error

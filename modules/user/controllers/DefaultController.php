@@ -36,7 +36,7 @@ class DefaultController extends AdminController
         $user = User::findModel(Yii::$app->user->id);
 
         //  if ($user->isNewRecord) {
-        //  $user->setScenario('admin');
+          $user->setScenario('admin');
         // }
 
         $this->pageName = Yii::t('user/default', 'MODULE_NAME');
@@ -62,6 +62,8 @@ class DefaultController extends AdminController
 
             $user->save(false);
             return $this->redirectPage($isNew, $post);
+        }else{
+          //  CMS::dump($user->errors);die;
         }
 
 
