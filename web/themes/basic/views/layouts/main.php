@@ -15,6 +15,8 @@ use yii\widgets\Breadcrumbs;
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <?= Html::csrfMetaTags() ?>
     <?php $this->head() ?>
+    <title><?= Html::encode($this->title ? $this->title ." - ".\Yii::$app->name : \Yii::$app->name) ?></title>
+
 </head>
 <body>
 <?php $this->beginBody() ?>

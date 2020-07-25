@@ -1,6 +1,6 @@
 <?php
 
-use panix\engine\bootstrap\Alert;
+use panix\engine\Html;
 
 /**
  * @var $exception \yii\web\HttpException
@@ -8,17 +8,20 @@ use panix\engine\bootstrap\Alert;
  */
 
 ?>
-<div class="heading-gradient text-center">
-    <h1><?= $exception->statusCode; ?></h1>
-</div>
-<?php
-echo Alert::widget([
-    'options' => ['class' => 'alert-danger'],
-    'body' => $exception->getMessage(),
-    'closeButton' => false
-]);
 
-?>
+
+    <div>
+        <div class="text-center">
+            <div class="heading-gradient text-center">
+                <h1><?= $exception->statusCode; ?></h1>
+            </div>
+            <p class="lead">
+                <strong><?= $exception->getMessage() ?></strong>
+            </p>
+        </div>
+    </div>
+
+
 <?php if (YII_DEBUG) { ?>
     <h2 class="text-center">Trace</h2>
     <?php foreach ($exception->getTrace() as $index => $trace) { ?>

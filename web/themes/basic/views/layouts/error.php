@@ -17,13 +17,17 @@ use panix\engine\widgets\Breadcrumbs;
 </head>
 <body>
 <?php $this->beginBody() ?>
-<div class="page-error">
-    <div class="container">
-        <?php
-        echo $content;
-        ?>
+
+<div class="wrap">
+    <?= $this->render('partials/_header'); ?>
+
+    <div class="page-error">
+        <div class="container">
+            <?= $content ?>
+        </div>
     </div>
 </div>
+
 <?= $this->render('partials/_footer'); ?>
 <?php $this->endBody() ?>
 </body>
