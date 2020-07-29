@@ -164,7 +164,9 @@ class SettingsForm extends SettingsModel
         return [
             'email' => 'me-email@example.com',
             'address' => '',
-            'enable_schedule' => true,
+            'enable_schedule' => false,
+            'latitude'=>'',
+            'longitude'=>'',
         ];
     }
 }
