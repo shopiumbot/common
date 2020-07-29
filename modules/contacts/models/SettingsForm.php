@@ -31,8 +31,8 @@ class SettingsForm extends SettingsModel
             ['address', 'validateAddress', 'skipOnEmpty' => true],
             [['email'], "required"],
 
-            [['latitude','longitude'], "double"],
-            [['latitude','longitude'], "trim"],
+            [['latitude', 'longitude'], "double"],
+            [['latitude', 'longitude'], "trim"],
             [['enable_schedule'], 'boolean'],
 
             //[['address'], 'default','value'=>'[]'],
@@ -107,7 +107,7 @@ class SettingsForm extends SettingsModel
 
     public function validatePhones2($attribute)
     {
-       // $requiredValidator = new RequiredValidator();
+        // $requiredValidator = new RequiredValidator();
         $attributes = Yii::$app->request->post('SettingsForm');
         if (isset($attributes['phone'])) {
             foreach ($attributes['phone'] as $index => $row) {
@@ -115,7 +115,7 @@ class SettingsForm extends SettingsModel
                 foreach (['number'] as $name) { //, 'name'
                     $error = null;
                     $value = isset($row[$name]) ? $row[$name] : null;
-                   // $requiredValidator->validate($value, $error);
+                    // $requiredValidator->validate($value, $error);
                     if (!empty($error)) {
                         $key = $attribute . '[' . $index . '][' . $name . ']';
                         // echo $key;
@@ -165,8 +165,9 @@ class SettingsForm extends SettingsModel
             'email' => 'me-email@example.com',
             'address' => '',
             'enable_schedule' => false,
-            'latitude'=>'',
-            'longitude'=>'',
+            'latitude' => '',
+            'longitude' => '',
+            'phone' => '',
         ];
     }
 }

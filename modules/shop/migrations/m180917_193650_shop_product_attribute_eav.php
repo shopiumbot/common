@@ -19,11 +19,12 @@ class m180917_193650_shop_product_attribute_eav extends Migration
 
     public function up()
     {
+        $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci ENGINE=InnoDB';
         $this->createTable(ProductAttributesEav::tableName(), [
             'entity' => $this->integer()->unsigned(),
             'attribute' => $this->string(255)->null(),
             'value' => $this->text(),
-        ]);
+        ],$tableOptions);
 
         $this->createIndex('entity', ProductAttributesEav::tableName(), 'entity');
         $this->createIndex('attribute', ProductAttributesEav::tableName(), 'attribute');

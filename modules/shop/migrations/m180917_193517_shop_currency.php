@@ -15,6 +15,7 @@ class m180917_193517_shop_currency extends Migration {
 
     public function up()
     {
+        $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci ENGINE=InnoDB';
         $this->createTable(Currency::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
             'name' => $this->string(255)->null(),
@@ -31,7 +32,7 @@ class m180917_193517_shop_currency extends Migration {
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
             'ordern' => $this->integer()->unsigned(),
-        ]);
+        ],$tableOptions);
 
         $this->createIndex('is_main', Currency::tableName(), 'is_main');
         $this->createIndex('is_default', Currency::tableName(), 'is_default');

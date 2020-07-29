@@ -21,6 +21,7 @@ class m180917_194311_shop_product_image extends Migration
      */
     public function up()
     {
+        $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci ENGINE=InnoDB';
         $this->createTable(ProductImage::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
             'user_id' => $this->integer()->unsigned(),
@@ -30,7 +31,7 @@ class m180917_194311_shop_product_image extends Migration
             'created_at' => $this->integer(),
             'switch' => $this->boolean()->defaultValue(1)->notNull(),
             'ordern' => $this->integer()->unsigned(),
-        ]);
+        ],$tableOptions);
 
         $this->createIndex('user_id', ProductImage::tableName(), 'user_id');
         $this->createIndex('ordern', ProductImage::tableName(), 'ordern');

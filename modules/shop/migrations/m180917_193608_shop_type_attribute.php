@@ -17,10 +17,11 @@ class m180917_193608_shop_type_attribute extends Migration
 
     public function up()
     {
+        $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci ENGINE=InnoDB';
         $this->createTable(TypeAttribute::tableName(), [
             'type_id' => $this->smallInteger()->notNull()->unsigned(),
             'attribute_id' => $this->integer()->notNull()->unsigned(),
-        ]);
+        ],$tableOptions);
 
 
         $this->addPrimaryKey('{{%pk_shop__type_attribute}}', TypeAttribute::tableName(), ['type_id', 'attribute_id']);

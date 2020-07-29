@@ -23,9 +23,7 @@ class m180917_193213_shop_product extends Migration
     {
 
 
-        //if ($this->db->driverName === 'mysql') {
-            $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE=InnoDB';
-        //}
+        $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci ENGINE=InnoDB';
 
         $this->createTable(Product::tableName(), [
             'id' => $this->primaryKey()->unsigned(),

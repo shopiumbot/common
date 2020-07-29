@@ -17,13 +17,14 @@ class m180917_193704_shop_product_category_ref extends Migration
 
     public function up()
     {
+        $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci ENGINE=InnoDB';
         $this->createTable(ProductCategoryRef::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
             'product' => $this->integer()->notNull()->unsigned(),
             'category' => $this->integer()->notNull()->unsigned(),
             'is_main' => $this->boolean()->defaultValue(0)->notNull(),
             'switch' => $this->boolean()->defaultValue(1)->notNull(),
-        ]);
+        ],$tableOptions);
 
         $this->createIndex('product', ProductCategoryRef::tableName(), 'product');
         $this->createIndex('category', ProductCategoryRef::tableName(), 'category');

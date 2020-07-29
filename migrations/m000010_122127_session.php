@@ -15,6 +15,9 @@ class m000010_122127_session extends Migration
 
     public function up()
     {
+        if ($this->db->driverName === 'mysql') {
+            $this->tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci ENGINE=InnoDB';
+        }
         $this->createTable('{{%session}}', [
             'id' => \yii\db\Schema::TYPE_CHAR . '(40) NOT NULL',
             'user_id' => $this->integer()->null()->unsigned(),
@@ -26,7 +29,7 @@ class m000010_122127_session extends Migration
             'user_name' => $this->string(100)->null(),
             'user_agent' => $this->string(255)->null(),
             'created_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP')
-        ]);
+        ],$this->tableOptions);
         $this->createIndex('user_id', '{{%session}}', 'user_id');
         $this->addPrimaryKey('id', '{{%session}}', 'id');
     }

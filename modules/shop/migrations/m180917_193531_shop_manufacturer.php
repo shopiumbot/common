@@ -19,6 +19,7 @@ class m180917_193531_shop_manufacturer extends Migration
 
     public function up()
     {
+        $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci ENGINE=InnoDB';
         $this->createTable(Manufacturer::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
             'cat_id' => $this->integer()->null(),
@@ -27,7 +28,7 @@ class m180917_193531_shop_manufacturer extends Migration
             'ordern' => $this->integer()->unsigned(),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
-        ]);
+        ],$tableOptions);
 
 
         $this->createIndex('switch', Manufacturer::tableName(), 'switch');

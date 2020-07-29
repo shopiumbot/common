@@ -20,7 +20,7 @@ class m180917_193421_shop_attribute extends Migration
 
     public function up()
     {
-
+        $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci ENGINE=InnoDB';
         $this->createTable(Attribute::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
             'name' => $this->string(255)->notNull(),
@@ -38,7 +38,7 @@ class m180917_193421_shop_attribute extends Migration
             'display_on_list'=>$this->tinyInteger(1)->defaultValue(1),
             'switch' => $this->boolean()->defaultValue(1)->notNull(),
             'ordern' => $this->integer(11)->unsigned(),
-        ]);
+        ],$tableOptions);
         $this->createIndex('name', Attribute::tableName(), 'name');
         $this->createIndex('ordern', Attribute::tableName(), 'ordern');
         $this->createIndex('switch', Attribute::tableName(), 'switch');

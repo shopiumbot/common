@@ -16,13 +16,14 @@ class m180917_193433_shop_attribute_option extends Migration
 
     public function up()
     {
+        $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci ENGINE=InnoDB';
         $this->createTable(AttributeOption::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
             'attribute_id' => $this->integer()->null(),
             'data' => $this->text()->null(),
             'value' => $this->string(255)->notNull(),
             'ordern' => $this->integer()->unsigned(),
-        ]);
+        ],$tableOptions);
 
         $this->createIndex('attribute_id', AttributeOption::tableName(), 'attribute_id');
         $this->createIndex('ordern', AttributeOption::tableName(), 'ordern', 0);

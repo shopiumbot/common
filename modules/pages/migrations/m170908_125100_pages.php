@@ -17,10 +17,7 @@ class m170908_125100_pages extends Migration
 
     public function up()
     {
-        $tableOptions = null;
-        if ($this->db->driverName === 'mysql') {
-            $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE=InnoDB';
-        }
+        $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci ENGINE=InnoDB';
 
         $this->createTable(Pages::tableName(), [
             'id' => $this->primaryKey()->unsigned(),

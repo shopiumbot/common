@@ -18,12 +18,14 @@ class m000002_202400_settings extends Migration
     public $settingsForm = SettingsForm::class;
     public function up()
     {
+
+        $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci ENGINE=InnoDB';
         $this->createTable(Settings::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
             'category' => $this->string(255)->notNull(),
             'param' => $this->string(255),
             'value' => $this->text(),
-        ],'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE=InnoDB');
+        ],$tableOptions);
 
         $this->createIndex('param', Settings::tableName(), 'param');
         $this->createIndex('category', Settings::tableName(), 'category');

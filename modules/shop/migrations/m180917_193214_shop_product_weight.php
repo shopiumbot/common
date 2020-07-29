@@ -20,12 +20,13 @@ class m180917_193214_shop_product_weight extends Migration
      */
     public function up()
     {
+        $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci ENGINE=InnoDB';
         $this->createTable('{{%shop__product_weight}}', [
             'id' => $this->primaryKey()->unsigned(),
             'value' => $this->decimal(15,4),
             'title' => $this->string(32)->notNull(),
             'unit' => $this->string(4)->notNull(),
-        ]);
+        ],$tableOptions);
 
 
         $list = [

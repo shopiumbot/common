@@ -16,6 +16,9 @@ class m000007_114919_notifications extends Migration
 
     public function up()
     {
+        if ($this->db->driverName === 'mysql') {
+            $this->tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci ENGINE=InnoDB';
+        }
         $this->createTable(Notification::tableName(), [
             'id' => $this->primaryKey(),
             'type' => "ENUM('default', 'info', 'success', 'danger', 'warning')",
@@ -25,7 +28,7 @@ class m000007_114919_notifications extends Migration
             'status' => $this->boolean()->defaultValue(0)->notNull(),
             'user_id_read' => $this->integer(),
             'created_at' => $this->integer(11)->null(),
-        ]);
+        ],$this->tableOptions);
         $this->createIndex('user_id_read', Notification::tableName(), 'user_id_read');
     }
 
