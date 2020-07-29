@@ -89,15 +89,27 @@ use core\modules\shop\models\ProductType;
                         'content' => $this->render('tabs/_attributes', ['form' => $form, 'model' => $model]),
                         'options' => ['class' => 'flex-sm-fill text-center nav-item'],
                     ];
-
-
+                    if (YII_DEBUG) {
+                        $tabs[] = [
+                            'label' => $model::t('TAB_VARIANTS'),
+                            'content' => $this->render('tabs/_variations', ['model' => $model]),
+                            'headerOptions' => [],
+                            'options' => ['class' => 'flex-sm-fill text-center nav-item'],
+                        ];
+                        $tabs[] = [
+                            'label' => $model::t('TAB_REL'),
+                            'content' => $this->render('tabs/_related', ['exclude' => $model->id, 'form' => $form, 'model' => $model]),
+                            'headerOptions' => [],
+                            'options' => ['class' => 'flex-sm-fill text-center nav-item'],
+                        ];
+                    }
                     echo \panix\engine\bootstrap\Tabs::widget([
                         //'encodeLabels'=>true,
                         'options' => [
                             'class' => 'nav-pills2 flex-column flex-sm-row nav-tabs-static'
                         ],
                         'items' => $tabs,
-                        'tabContentOptions'=>['class'=>'mt-3'],
+                        'tabContentOptions' => ['class' => 'mt-3'],
                     ]);
 
                     ?>

@@ -31,6 +31,7 @@ use ReflectionClass;
  * @property string $update_time
  * @property string $language
  * @property int $expire
+ * @property int $trial
  * @property double $money
  * @property UserKey[] $userKeys
  * @property UserAuth[] $userAuths

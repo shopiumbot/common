@@ -20,7 +20,7 @@ class m180917_193214_shop_product_weight extends Migration
      */
     public function up()
     {
-        $this->createTable('{{%shop_product_weight}}', [
+        $this->createTable('{{%shop__product_weight}}', [
             'id' => $this->primaryKey()->unsigned(),
             'value' => $this->decimal(15,4),
             'title' => $this->string(32)->notNull(),
@@ -36,7 +36,7 @@ class m180917_193214_shop_product_weight extends Migration
         ];
         $id=1;
         foreach ($list as $key => $data) {
-            $this->batchInsert('{{%shop_product_weight}}', ['value', 'title', 'unit'], [
+            $this->batchInsert('{{%shop__product_weight}}', ['value', 'title', 'unit'], [
                 [$data['value'], $data['name'], $data['unit']]
             ]);
             $id++;
@@ -49,7 +49,7 @@ class m180917_193214_shop_product_weight extends Migration
      */
     public function down()
     {
-        $this->dropTable('{{%shop_product_weight}}');
+        $this->dropTable('{{%shop__product_weight}}');
     }
 
 }

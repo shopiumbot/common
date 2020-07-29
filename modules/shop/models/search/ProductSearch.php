@@ -54,7 +54,7 @@ class ProductSearch extends Product
         $query = Product::find();
         $query->sort();
 
-        //$query->joinWith(['categorization categories']); //, 'commentsCount'
+       // $query->joinWith(['categorization categories']); //, 'commentsCount'
         $className = substr(strrchr(__CLASS__, "\\"), 1);
 
 
@@ -148,8 +148,11 @@ class ProductSearch extends Product
 
         $query->andFilterWhere(['like', 'sku', $this->sku]);
         $query->andFilterWhere(['manufacturer_id' => $this->manufacturer_id]);
-        if ($this->main_category_id)
+        if ($this->main_category_id){
+            $query->joinWith(['categorization categories']);
             $query->andFilterWhere(['categories.category'=>$this->main_category_id]);
+        }
+
 
 
         //$query->andFilterWhere(['like', 'commentsCount', $this->commentsCount]);

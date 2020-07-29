@@ -110,6 +110,11 @@ class ProductType extends ActiveRecord
         TypeAttribute::deleteAll(['type_id' => $this->id]);
         return parent::afterDelete();
     }
-
+    public function getShopConfigurableAttributes()
+    {
+        return $this->hasMany(Attribute::class, ['id' => 'attribute_id'])
+            ->andWhere('use_in_variants=1')
+            ->via('attributeRelation');
+    }
 
 }

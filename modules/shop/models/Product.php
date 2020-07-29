@@ -62,7 +62,7 @@ class Product extends ActiveRecord
 
 
     public $file;
-
+    private $_related;
     const route = '/admin/shop/default';
     const MODULE_ID = 'shop';
 
@@ -127,7 +127,33 @@ class Product extends ActiveRecord
     {
         return $this->availability == 1;
     }
-
+    public function processVariants()
+    {
+        $result = [];
+        foreach ($this->variants as $v) {
+            //print_r($v);die;
+            $result[$v->productAttribute->id]['attribute'] = $v->productAttribute;
+            $result[$v->productAttribute->id]['options'][] = $v;
+        };
+        return $result;
+    }
+    public function getVariants()
+    {
+        return $this->hasMany(ProductVariant::class, ['product_id' => 'id'])
+            ->joinWith(['productAttribute', 'option'])
+            ->orderBy(AttributeOption::tableName() . '.ordern');
+    }
+    public function setRelatedProducts($ids = [])
+    {
+        $this->_related = $ids;
+    }
+    private function clearRelatedProducts()
+    {
+        RelatedProduct::deleteAll(['product_id' => $this->id]);
+        if (Yii::$app->settings->get('shop', 'product_related_bilateral')) {
+            RelatedProduct::deleteAll(['related_id' => $this->id]);
+        }
+    }
     public static function getSort()
     {
         return new \yii\data\Sort([
@@ -467,9 +493,47 @@ class Product extends ActiveRecord
 
         return Yii::$app->currency->number_format($price);
     }
+    public function getRelatedProducts()
+    {
+        return $this->hasMany(Product::class, ['id' => 'product_id'])
+            ->viaTable(RelatedProduct::tableName(), ['related_id' => 'id']);
+    }
+    public function afterSave($insert, $changedAttributes)
+    {
 
+        // Process related products
+        if ($this->_related !== null) {
+            $this->clearRelatedProducts();
+
+            foreach ($this->_related as $id) {
+                $related = new RelatedProduct;
+                $related->product_id = $this->id;
+                $related->related_id = (int)$id;
+                if ($related->save()) {
+                    //двустороннюю связь между товарами
+                    if (Yii::$app->settings->get('shop', 'product_related_bilateral')) {
+                        $related = new RelatedProduct;
+
+                        $related->product_id = (int)$id;
+                        $related->related_id = $this->id;
+                        if (!$related->save()) {
+                            throw new \yii\base\Exception('Error save product relation');
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        parent::afterSave($insert, $changedAttributes);
+    }
     public function afterDelete()
     {
+
+        $this->clearRelatedProducts();
+        RelatedProduct::deleteAll(['related_id' => $this->id]);
+
         // Delete categorization
         ProductCategoryRef::deleteAll([
             'product' => $this->id

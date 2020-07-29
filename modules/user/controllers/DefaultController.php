@@ -199,6 +199,7 @@ class DefaultController extends AdminController
 
 
                 $user->money += (Yii::$app->params['plan'][$user->plan_id]['prices'][$month] * $month);
+                $user->trial=0;
                 $user->save(false);
 
                 $extend = $user->extendTariff($month, $data->description);

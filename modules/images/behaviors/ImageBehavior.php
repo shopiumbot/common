@@ -78,11 +78,10 @@ class ImageBehavior extends Behavior
      *
      * @param $file |string UploadedFile Or absolute url
      * @param bool $is_main
-     * @param string $alt
      * @return bool|Image
      * @throws \Exception
      */
-    public function attachImage($file, $is_main = false, $alt = '')
+    public function attachImage($file, $is_main = false)
     {
         $uniqueName = \panix\engine\CMS::gen(10);
 
@@ -110,7 +109,6 @@ class ImageBehavior extends Behavior
         $image->urlAlias = $this->getAlias($image);
 
         if (!$image->save()) {
-
             return false;
         }
 

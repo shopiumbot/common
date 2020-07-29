@@ -120,7 +120,9 @@ class Attribute extends ActiveRecord
             [[
                 'required',
                 'select_many',
+                'use_in_variants'
             ], 'boolean'],
+
             [['sort'], 'default', 'value' => null],
             [['hint', 'abbreviation'], 'string'],
             [['id', 'sort', 'type'], 'integer'],

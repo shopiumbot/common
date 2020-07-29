@@ -15,7 +15,6 @@
     ],
     "require": {
         "panix/engine": "*",
-        "panix/mod-rbac": "*",
         "yiisoft/yii2-authclient": "~2"
     },
     "autoload": {

@@ -23,9 +23,9 @@ class m180917_193213_shop_product extends Migration
     {
 
 
-        if ($this->db->driverName === 'mysql') {
+        //if ($this->db->driverName === 'mysql') {
             $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE=InnoDB';
-        }
+        //}
 
         $this->createTable(Product::tableName(), [
             'id' => $this->primaryKey()->unsigned(),
@@ -67,7 +67,6 @@ class m180917_193213_shop_product extends Migration
 
         $this->createIndex('user_id', Product::tableName(), 'user_id');
         $this->createIndex('manufacturer_id', Product::tableName(), 'manufacturer_id');
-        $this->createIndex('category_id', Product::tableName(), 'category_id');
         $this->createIndex('type_id', Product::tableName(), 'type_id');
         $this->createIndex('currency_id', Product::tableName(), 'currency_id');
         $this->createIndex('price', Product::tableName(), 'price');

@@ -64,7 +64,7 @@ class Image extends ActiveRecord
         $filePath = Yii::getAlias($this->path) . DIRECTORY_SEPARATOR . $this->product_id . DIRECTORY_SEPARATOR . $this->filePath;
 
         if (!file_exists($filePath)) {
-            $filePath = Yii::getAlias('@uploads') . DIRECTORY_SEPARATOR . 'no-image.png';
+            $filePath = Yii::getAlias('@uploads') . DIRECTORY_SEPARATOR . 'no-image.jpg';
         } else {
             $origin = $this->getPathToOrigin();
             $filePath = $this->createVersion($origin, $size);
@@ -89,7 +89,7 @@ class Image extends ActiveRecord
         //$base = Yii::$app->getModule('images')->getStorePath();
         $filePath = Yii::getAlias($this->path) . DIRECTORY_SEPARATOR . $this->product_id . DIRECTORY_SEPARATOR . $this->filePath;
         if (!file_exists($filePath)) {
-            $filePath = Yii::getAlias('@uploads') . DIRECTORY_SEPARATOR . 'no-image.png';
+            $filePath = Yii::getAlias('@uploads') . DIRECTORY_SEPARATOR . 'no-image.jpg';
         }
         return $filePath;
     }

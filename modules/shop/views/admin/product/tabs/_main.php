@@ -39,8 +39,9 @@ $form->field($model, 'main_category_id')->dropDownList(Category::flatTree(), [
     'prompt' => html_entity_decode($model::t('SELECT_MAIN_CATEGORY_ID'))
 ]);
 ?>
-<?=
+<?php
 
-$form->field($model, 'description')->widget(\core\components\TinyMceMarkdown::class);
+//echo $form->field($model, 'description')->widget(\core\components\TinyMceMarkdown::class);
+echo $form->field($model, 'description')->textarea();
 
 ?>

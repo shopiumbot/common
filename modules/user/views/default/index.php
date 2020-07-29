@@ -139,7 +139,7 @@ $month= strtotime("+1 month");
                             'enableError' => false,
                             'title' => 'Команда',
                             'options' => [
-                                'placeholder' => 'Например: /start',
+                                'placeholder' => 'Например: start',
                             ],
                             'headerOptions' => [
                                 'style' => 'width: 250px;',
@@ -187,7 +187,7 @@ $month= strtotime("+1 month");
 
         <div class="card">
             <div class="card-header">
-                <?= Yii::t('user/default', 'CHANGE_PASSWORD'); ?>
+                <h5><?= Yii::t('user/default', 'CHANGE_PASSWORD'); ?></h5>
             </div>
             <div class="card-body">
                 <?= $form->field($changePasswordForm, 'current_password')->passwordInput() ?>

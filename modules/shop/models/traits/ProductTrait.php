@@ -27,7 +27,6 @@ trait ProductTrait
             1 => self::t('AVAILABILITY_1'),
             2 => self::t('AVAILABILITY_2'),
             3 => self::t('AVAILABILITY_3'),
-            4 => self::t('AVAILABILITY_4'),
         ];
     }
 

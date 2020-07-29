@@ -9,9 +9,10 @@ use panix\engine\bootstrap\Modal;
 /**
  * @var $form \panix\engine\bootstrap\ActiveForm
  */
+$plan = Yii::$app->params['plan'][Yii::$app->user->planId];
 ?>
 <?= Fancybox::widget(['target' => 'a.fancybox']); ?>
-<?= $form->field($model, 'file[]')->fileInput(['multiple' => true]); ?>
+<?= $form->field($model, 'file[]')->fileInput(['multiple' => true])->hint($model::t('UPLOAD_IMAGE_HINT',['current'=>($plan['product_upload_files'] - count($model->images)),'limit'=>$plan['product_upload_files']])); ?>
 
 
 
@@ -56,36 +57,6 @@ $(document).on('click','.attachment-delete', function(e) {
 });
 JS;
 $this->registerJs($script); //$position
-?>
-<style>
-    .modal .modal-dialog {
-        width: 750px;
-        margin: auto;
-    }
-
-
-</style>
-<?php
-
-Modal::begin([
-    'options' => [
-        'id' => 'cropper-modal',
-        'style' => 'width:100%'
-    ],
-    'title' => '<h2>Cropper</h2>',
-    'toggleButton' => false,
-    'bodyOptions' => ['id' => 'cropper-body', 'style' => 'width:100%']
-]);
-
-echo 'Say hello...';
-
-Modal::end();
-
-?>
-
-
-<?php
-
 
 $searchModel = new ImageSearch();
 $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams(), ['model' => $model, 'product_id' => $model->primaryKey]);
