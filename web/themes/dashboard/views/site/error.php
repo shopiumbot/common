@@ -5,14 +5,7 @@ use yii\helpers\Html;
  * @var $handler \yii\web\ErrorHandler
  */
 
-//Тестовые API ключи
-//sandbox_i95790717140
-//sandbox_duCF4AhfVRF4l2wpSa21eOLF4nWTwHulxfJnRFH1
 
-
-//API ключи
-//public_key i50530989846
-//private_key LtoClvytIkRP2wRophiuEAIL6XFenIX9WnFlVCNR
 ?>
 
 <div class="row">

@@ -25,8 +25,6 @@ AdminErrorAsset::register($this);
                  class="animated <?php if (!Yii::$app->session->hasFlash('error')) { ?>bounceInDown<?php } ?> col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-lg-8 offset-lg-2">
 
 
-
-
                         <?= $content ?>
 
                 <div class="text-center copyright">&copy; 2019-<?= date('Y'); ?>

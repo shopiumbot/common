@@ -34,58 +34,119 @@ $telegram = Yii::$app->telegram;
     </li>
 </ul>
 <ul class="navbar-nav float-right">
-    <?php
-
-    $orders = \shopium\mod\cart\models\Order::find()->where('status_id')->all();
-    if($orders){
-    ?>
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="icon-cart"></i>
-            <span class="badge badge-pill badge-success"><?= Yii::$app->getModule('cart')->count['num']; ?></span>
+            <i class="icon-cash-money"></i>
+            <span><strong><?= Yii::$app->currency->number_format(Yii::$app->user->money); ?></strong> UAH.</span>
         </a>
         <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
             <span class="with-arrow"><span class="bg-danger"></span></span>
             <ul class="list-style-none">
                 <li>
                     <div class="drop-title text-white bg-danger">
-                        <h4 class=""><?= ucfirst(Yii::t('cart/default','ORDERS_COUNTER',Yii::$app->getModule('cart')->count['num']));?></h4>
+                        <h4 class="">Операции</h4>
                         <span class="font-light"></span>
                     </div>
                 </li>
                 <li>
                     <div class="message-center message-body">
                         <?php
+                        $payments = \core\modules\user\models\Payments::find()
+                            ->where(['user_id' => Yii::$app->user->id])
+                            ->orderBy(['id' => SORT_DESC])
+                            ->all();
+                        foreach ($payments as $payment) {
+                            ?>
+                            <div class="message-item">
 
-                        foreach ($orders as $order){
+                                <h5 class="message-title">#<?= $payment->id; ?>
+                                    <?php if ($payment->status == 'success') { ?>
+                                        <span class="badge badge-success">Success</span>
+                                    <?php } else { ?>
+                                        <?php
 
-            //                \panix\engine\CMS::dump($order->user->getPhoto());
-                        ?>
-                            <a href="<?= Url::to(['/admin/cart/default/update','id'=>$order->id]);?>" class="message-item">
-                                                <span class="user-img">
-                                                    <img src="<?= $order->user->getPhoto(); ?>" alt="<?= $order->firstname; ?> <?= $order->lastname; ?>"
-                                                         class="rounded-circle">
-                                                    <span class="profile-status online pull-right"></span>
-                                                </span>
-                                <div class="mail-content">
-                                    <h5 class="message-title"><?= $order->firstname; ?> <?= $order->lastname; ?></h5>
-                                    <span class="mail-desc"><?= Yii::t('shop/default','PRODUCTS_COUNTER',$order->productsCount);?></span>
-                                    <span class="time"><?= Yii::$app->currency->number_format($order->total_price); ?> грн</span>
-                                </div>
-                            </a>
+                                        if($payment->data && !empty($payment->data)){
+                                            $data = json_decode($payment->data);
+                                            $status = $data->err_code;
+                                        }else{
+                                            $status = $payment->status;
+                                        }
+
+                                        ?>
+                                        <span class="badge badge-danger"><?= $status; ?></span>
+                                    <?php } ?>
+                                </h5>
+                                <span class="mail-desc">
+                                    
+                                    <?= $payment->name; ?>
+
+                                </span>
+                                <div class="time"><strong><?= $payment->money; ?></strong> UAH</div>
+                            </div>
+
                         <?php } ?>
-
-
                     </div>
-                </li>
-                <li>
-                    <?= Html::a(Html::icon('arrow-right').' <string>Все заказы</string>',['/admin/cart'],['class'=>'nav-link text-center link text-dark']); ?>
                 </li>
             </ul>
         </div>
     </li>
-<?php } ?>
+    <?php
+
+    $orders = \shopium\mod\cart\models\Order::find()->where(['status_id' => 1])->all();
+    if ($orders) {
+        ?>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="icon-cart"></i>
+                <span class="badge badge-pill badge-success"><?= Yii::$app->getModule('cart')->count['num']; ?></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
+                <span class="with-arrow"><span class="bg-danger"></span></span>
+                <ul class="list-style-none">
+                    <li>
+                        <div class="drop-title text-white bg-danger">
+                            <h4 class=""><?= ucfirst(Yii::t('cart/default', 'ORDERS_COUNTER', Yii::$app->getModule('cart')->count['num'])); ?></h4>
+                            <span class="font-light"></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="message-center message-body">
+                            <?php
+
+                            foreach ($orders as $order) {
+
+                                //\panix\engine\CMS::dump($order->user->getPhoto());
+                                ?>
+                                <a href="<?= Url::to(['/admin/cart/default/update', 'id' => $order->id]); ?>"
+                                   class="message-item">
+                                                <span class="user-img">
+                                                    <img src="<?= $order->user->getPhoto(); ?>"
+                                                         alt="<?= $order->firstname; ?> <?= $order->lastname; ?>"
+                                                         class="rounded-circle">
+                                                    <span class="profile-status online pull-right d-none"></span>
+                                                </span>
+
+                                    <div class="mail-content">
+                                        <h5 class="message-title"><?= $order->firstname; ?> <?= $order->lastname; ?></h5>
+                                        <span class="mail-desc"><?= ($order->created_at) ? CMS::date($order->created_at) : ''; ?></span>
+                                        <span class="time"><?= Yii::t('shop/default', 'PRODUCTS_COUNTER', $order->productsCount); ?>
+                                            / <strong><?= Yii::$app->currency->number_format($order->total_price); ?></strong> грн</span>
+                                    </div>
+                                </a>
+                            <?php } ?>
+
+
+                        </div>
+                    </li>
+                    <li>
+                        <?= Html::a(Html::icon('arrow-right') . ' <string>Все заказы</string>', ['/admin/cart'], ['class' => 'nav-link text-center link text-dark']); ?>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    <?php } ?>
     <li class="nav-item dropdown border-right  d-none">
         <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
@@ -164,7 +225,8 @@ $telegram = Yii::$app->telegram;
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle pro-pic" href=""
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="<?= $telegram->getPhoto(); ?>" alt="<?= $telegram->getApi()->getBotUsername(); ?>" class="rounded-circle"
+            <img src="<?= $telegram->getPhoto(); ?>" alt="<?= $telegram->getApi()->getBotUsername(); ?>"
+                 class="rounded-circle"
                  width="40">
             <span class="m-l-5 font-medium d-none d-sm-inline-block"><?= Yii::$app->user->getDisplayName(); ?> <i
                         class="icon-arrow-down"></i></span>
@@ -175,18 +237,19 @@ $telegram = Yii::$app->telegram;
                                 </span>
             <div class="d-flex no-block align-items-center p-2 bg-primary text-white mb-3">
                 <div class="">
-                    <img src="<?= $telegram->getPhoto(); ?>" alt="<?= $telegram->getApi()->getBotUsername(); ?>" class="rounded-circle"
+                    <img src="<?= $telegram->getPhoto(); ?>" alt="<?= $telegram->getApi()->getBotUsername(); ?>"
+                         class="rounded-circle"
                          width="60">
                 </div>
                 <div class="ml-2">
                     <h5 class="mb-0"><?= Yii::$app->user->getDisplayName(); ?></h5>
-                    <p class="mb-0"><?= $telegram->getApi()->getBotUsername(); ?></a>
-                    </p>
+                    <p class="mb-0">Баланс <?= Yii::$app->user->money; ?> UAH</p>
+                    <p class="mb-0 d-none"><?= $telegram->getApi()->getBotUsername(); ?></p>
                 </div>
             </div>
             <div class="profile-dis scrollable">
-                <a class="dropdown-item" href="/user/index">
-                    <i class="icon-user-outline mr-1 ml-1"></i> Аккаунт</a>
+                <?= Html::a('<i class="icon-user-outline mr-1 ml-1"></i> Аккаунт', ['/user/index'], ['class' => 'dropdown-item']); ?>
+                <?= Html::a('<i class="icon-cash-money mr-1 ml-1"></i> Мои платежи', ['/user/payments'], ['class' => 'dropdown-item d-none']); ?>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/logout">
                     <i class="icon-logout mr-1 ml-1"></i> Выход</a>

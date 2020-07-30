@@ -18,6 +18,7 @@ body {
     background-image: url(../images/logo-dark.svg);
     background-repeat: no-repeat;
     background-position: center center;
+    background-size: contain;
     color:#777;
     position: relative;
     font-size:30px;
