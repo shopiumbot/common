@@ -25,34 +25,34 @@ class AdminController extends CommonController
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['auth'],
+                // 'only' => ['auth'],
                 'rules' => [
                     [
                         'allow' => false,
                         'roles' => ['?'],
                         'denyCallback' => function ($rule, $action) {
-                            throw new \Exception('У вас нет доступа к этой странице');
+                            return $this->redirect(Yii::$app->user->loginUrl);
+                          //   throw new \Exception('У вас нет доступа к этой странице');
                         }
                     ],
                     [
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-if(Yii::$app->user->isGuest){
-    return false;
-}
-
+                            if (Yii::$app->user->isGuest) {
+                                return false;
+                            }
                             return Yii::$app->user->id === Yii::$app->params['client_id'];
                         },
                         'denyCallback' => function ($rule, $action) {
+
                             throw new \Exception('У вас нет доступа к этой странице');
                         }
-                    ],
-                ],
-            ],
+                    ]
+                ]
+            ]
         ];
     }
-
 
 
     /**
@@ -76,6 +76,7 @@ if(Yii::$app->user->isGuest){
             'model' => $model,
         ]);
     }
+
     /**
      * @param boolean $isNewRecord
      * @param array $post
@@ -102,12 +103,12 @@ if(Yii::$app->user->isGuest){
     }
 
 
-    public function beforeAction($action)
+    public function beforeAction2($action)
     {
 
         if (Yii::$app->user->isGuest && get_class($this) !== 'shopium\mod\admin\controllers\AuthController') {
-
-            return Yii::$app->response->redirect(['/admin/auth'])->send();
+            die('z');
+            return $this->redirect(Yii::$app->user->loginUrl);
         }
         return parent::beforeAction($action);
     }
@@ -121,11 +122,11 @@ if(Yii::$app->user->isGuest){
 
         Yii::setAlias('@theme', Yii::getAlias("@core/web/themes/dashboard"));
         Yii::setAlias('@web_theme', Yii::getAlias("@app/web/themes/" . Yii::$app->settings->get('app', 'theme')));
-        $this->api = new \shopium\mod\telegram\components\Api(Yii::$app->user->token);
-        $bot = \shopium\mod\telegram\models\User::find()->where(['id'=>$this->api->getBotId()])->one();
-        if($bot){
-            $this->botPhoto = $bot->getPhoto();
-        }
+        //$this->api = new \shopium\mod\telegram\components\Api(Yii::$app->user->token);
+        //$bot = \shopium\mod\telegram\models\User::find()->where(['id'=>$this->api->getBotId()])->one();
+        // if($bot){
+        //     $this->botPhoto = $bot->getPhoto();
+        // }
 
         parent::init();
     }

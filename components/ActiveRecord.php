@@ -230,7 +230,7 @@ class ActiveRecord extends \yii\db\ActiveRecord
         try {
             $columns = $this->tableSchema->columns;
 
-            if (isset($columns['ordern']) && (Yii::$app->controller instanceof AdminController || Yii::$app->id == 'console')) {
+            if (isset($columns['ordern'])) {
                 $b['sortable'] = [
                     'class' => \panix\engine\grid\sortable\Behavior::class,
                 ];

@@ -2,7 +2,10 @@
 
 namespace core\components\controllers;
 
+use core\modules\user\components\WebUser;
+use core\modules\user\models\User;
 use Yii;
+use yii\web\IdentityInterface;
 use yii\web\Response;
 use panix\engine\CMS;
 
@@ -155,6 +158,16 @@ class WebController extends CommonController
         die;
     }
 
+    public function loginByToken($token){
+        /* @var $identity User */
+        $class = $this->identityClass;
+        $identity = $class::findIdentityByAccessToken($token);
+        if ($identity && Yii::$app->user->login($identity)) {
+            return $identity;
+        }
+
+        return null;
+    }
 
     public function actionFavicon()
     {
