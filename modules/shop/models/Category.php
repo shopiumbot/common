@@ -85,6 +85,13 @@ class Category extends ActiveRecord
         return $this->hasMany(ProductCategoryRef::class, ['category' => 'id'])->count();
     }
 
+    public function getProducts()
+    {
+        return $this->hasMany(ProductCategoryRef::class, ['category' => 'id']);
+    }
+
+
+
     public static function flatTree()
     {
         $result = [];

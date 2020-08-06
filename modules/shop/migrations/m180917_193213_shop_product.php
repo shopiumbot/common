@@ -48,7 +48,7 @@ class m180917_193213_shop_product extends Migration
             'height' => $this->decimal(15, 4),
             'quantity' => $this->smallInteger(2)->unsigned()->defaultValue(1),
             'archive' => $this->boolean()->defaultValue(0),
-            'availability' => $this->tinyInteger(1)->unsigned()->defaultValue(1),
+            'availability' => $this->tinyInteger(1)->unsigned()->defaultValue(Product::AVAILABILITY_YES),
             'auto_decrease_quantity' => $this->smallInteger(2)->unsigned()->defaultValue(0),
             'added_to_cart_count' => $this->integer()->defaultValue(0),
             'votes' => $this->integer()->unsigned()->defaultValue(0),

@@ -91,6 +91,7 @@ class ProductQuery extends ActiveQuery
 
     public function new($start, $end)
     {
+        /** @var Product $modelClass */
         $modelClass = $this->modelClass;
         $tableName = $modelClass::tableName();
         $this->between($start, $end, 'created_at');
@@ -105,6 +106,7 @@ class ProductQuery extends ActiveQuery
      */
     public function next($current_id, $wheres = [])
     {
+        /** @var Product $modelClass */
         $modelClass = $this->modelClass;
         $tableName = $modelClass::tableName();
 
@@ -128,6 +130,7 @@ class ProductQuery extends ActiveQuery
      */
     public function prev($current_id, $wheres = [])
     {
+        /** @var Product $modelClass */
         $modelClass = $this->modelClass;
         $tableName = $modelClass::tableName();
 
@@ -147,6 +150,7 @@ class ProductQuery extends ActiveQuery
 
     public function int2between($start, $end, $attribute = 'created_at')
     {
+        /** @var Product $modelClass */
         $modelClass = $this->modelClass;
         $tableName = $modelClass::tableName();
         $this->andWhere(['<=', $tableName . '.' . $attribute, $start]);
@@ -160,10 +164,25 @@ class ProductQuery extends ActiveQuery
      */
     public function isNotEmpty($attribute)
     {
+        /** @var Product $modelClass */
         $modelClass = $this->modelClass;
         $tableName = $modelClass::tableName();
         $this->andWhere(['IS NOT', $tableName . '.' . $attribute, null]);
         $this->andWhere(['!=', $tableName . '.' . $attribute, '']);
+        return $this;
+    }
+
+
+    /**
+     * @return $this
+     */
+    public function isNotAvailability()
+    {
+        /** @var Product $modelClass */
+        $modelClass = $this->modelClass;
+        $tableName = $modelClass::tableName();
+        //$this->andWhere(['IS NOT', $tableName . '.availability', null]);
+        $this->andWhere(['!=', $tableName . '.availability', Product::AVAILABILITY_NOT]);
         return $this;
     }
 }

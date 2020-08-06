@@ -66,6 +66,10 @@ class Product extends ActiveRecord
     const route = '/admin/shop/default';
     const MODULE_ID = 'shop';
 
+    const AVAILABILITY_YES = 1;
+    const AVAILABILITY_ORDER = 2;
+    const AVAILABILITY_NOT = 3;
+
     public static function find()
     {
         return new ProductQuery(get_called_class());
@@ -125,8 +129,9 @@ class Product extends ActiveRecord
 
     public function getIsAvailable()
     {
-        return $this->availability == 1;
+        return $this->availability == Product::AVAILABILITY_YES;
     }
+
     public function processVariants()
     {
         $result = [];
@@ -137,16 +142,19 @@ class Product extends ActiveRecord
         };
         return $result;
     }
+
     public function getVariants()
     {
         return $this->hasMany(ProductVariant::class, ['product_id' => 'id'])
             ->joinWith(['productAttribute', 'option'])
             ->orderBy(AttributeOption::tableName() . '.ordern');
     }
+
     public function setRelatedProducts($ids = [])
     {
         $this->_related = $ids;
     }
+
     private function clearRelatedProducts()
     {
         RelatedProduct::deleteAll(['product_id' => $this->id]);
@@ -154,6 +162,7 @@ class Product extends ActiveRecord
             RelatedProduct::deleteAll(['related_id' => $this->id]);
         }
     }
+
     public static function getSort()
     {
         return new \yii\data\Sort([
@@ -493,11 +502,13 @@ class Product extends ActiveRecord
 
         return Yii::$app->currency->number_format($price);
     }
+
     public function getRelatedProducts()
     {
         return $this->hasMany(Product::class, ['id' => 'product_id'])
             ->viaTable(RelatedProduct::tableName(), ['related_id' => 'id']);
     }
+
     public function afterSave($insert, $changedAttributes)
     {
 
@@ -525,9 +536,9 @@ class Product extends ActiveRecord
         }
 
 
-
         parent::afterSave($insert, $changedAttributes);
     }
+
     public function afterDelete()
     {
 

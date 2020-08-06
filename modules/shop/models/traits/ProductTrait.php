@@ -24,9 +24,9 @@ trait ProductTrait
     public static function getAvailabilityItems()
     {
         return [
-            1 => self::t('AVAILABILITY_1'),
-            2 => self::t('AVAILABILITY_2'),
-            3 => self::t('AVAILABILITY_3'),
+            Product::AVAILABILITY_YES => self::t('AVAILABILITY_1'),
+            Product::AVAILABILITY_ORDER => self::t('AVAILABILITY_2'),
+            Product::AVAILABILITY_NOT => self::t('AVAILABILITY_3'),
         ];
     }
 

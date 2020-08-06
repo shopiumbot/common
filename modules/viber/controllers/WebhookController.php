@@ -5,11 +5,17 @@ namespace core\modules\viber\controllers;
 
 use core\components\controllers\WebController;
 use panix\engine\CMS;
+use Viber\Api\Message\CarouselContent;
+use Viber\Api\Message\Video;
 use Viber\Client;
 use Viber\Bot;
 use Viber\Api\Sender;
 use yii\base\Exception;
 use yii\web\Response;
+use Viber\Api\Message\Text;
+use Viber\Api\Keyboard\Button;
+use Viber\Api\Keyboard;
+use Viber\Api\Message\Picture;
 
 class WebhookController extends WebController
 {
@@ -53,28 +59,28 @@ class WebhookController extends WebController
                 $buttons = [];
                 for ($i = 0; $i <= 8; $i++) {
                     $buttons[] =
-                        (new \Viber\Api\Keyboard\Button())
+                        (new Button())
                             ->setColumns(1)
                             ->setActionType('reply')
                             ->setActionBody('k' . $i)
                             ->setText('k' . $i);
                 }
-                /*return (new \Viber\Api\Message\Text())
+                /*return (new Text())
                     ->setSender($receiverId)
                     ->setText("Hi, you can see some demo: send 'k1' or 'k2' etc.")
                     ->setKeyboard(
-                        (new \Viber\Api\Keyboard())
+                        (new Keyboard())
                             ->setButtons($buttons)
                     );*/
 
 
 
                 $bot->getClient()->sendMessage(
-                    (new \Viber\Api\Message\Text())
+                    (new Text())
                         ->setSender($botSender)
                         ->setReceiver($receiverId)
                         ->setText('you press the button')->setKeyboard(
-                            (new \Viber\Api\Keyboard())
+                            (new Keyboard())
                                 ->setButtons($buttons)
                         )
                 );
@@ -87,24 +93,24 @@ class WebhookController extends WebController
                     $buttons = [];
                     for ($i = 0; $i <= 8; $i++) {
                         $buttons[] =
-                            (new \Viber\Api\Keyboard\Button())
+                            (new Button())
                                 ->setColumns(1)
                                 ->setActionType('reply')
                                 ->setActionBody('k' . $i)
                                 ->setText('k' . $i);
                     }
-                    return (new \Viber\Api\Message\Text())
+                    return (new Text())
                         ->setSender($botSender)
                         ->setText("Hi, you can see some demo: send 'k1' or 'k2' etc.")
                         ->setKeyboard(
-                            (new \Viber\Api\Keyboard())
+                            (new Keyboard())
                                 ->setButtons($buttons)
                         );
                 })
                 // when user subscribe to PA
                 ->onSubscribe(function ($event) use ($bot, $botSender) {
                     $this->getClient()->sendMessage(
-                        (new \Viber\Api\Message\Text())
+                        (new Text())
                             ->setSender($botSender)
                             ->setText('Thanks for subscription!')
                     );
@@ -113,7 +119,7 @@ class WebhookController extends WebController
                     // $log->info('click on button');
                     $receiverId = $event->getSender()->getId();
                     $bot->getClient()->sendMessage(
-                        (new \Viber\Api\Message\Text())
+                        (new Text())
                             ->setSender($botSender)
                             ->setReceiver($receiverId)
                             ->setText('you press the button')
@@ -123,21 +129,21 @@ class WebhookController extends WebController
                     // $log->info('click on button');
                     $receiverId = $event->getSender()->getId();
                     $bot->getClient()->sendMessage(
-                        (new \Viber\Api\Message\Text())
+                        (new Text())
                             ->setSender($botSender)
                             ->setReceiver($receiverId)
                             ->setText('А десь должен быть каталог ) 1')
                     );
 
                     $bot->getClient()->sendMessage(
-                        (new \Viber\Api\Message\Text())
+                        (new Text())
                             ->setSender($botSender)
                             ->setReceiver($receiverId)
                             ->setText('А десь должен быть каталог ) 2')
                     );
 
                     $bot->getClient()->sendMessage(
-                        (new \Viber\Api\Message\Picture())
+                        (new Picture())
                             ->setSender($botSender)
                             ->setReceiver($receiverId)
                             ->setText('some media data')
@@ -145,7 +151,7 @@ class WebhookController extends WebController
                     );
 
                     $bot->getClient()->sendMessage(
-                        (new \Viber\Api\Message\Text())
+                        (new Text())
                             ->setSender($botSender)
                             ->setReceiver($receiverId)
                             ->setText('А десь должен быть каталог ) 3')
@@ -158,14 +164,14 @@ class WebhookController extends WebController
                     switch ($caseNumber) {
                         case 0:
                             $client->sendMessage(
-                                (new \Viber\Api\Message\Text())
+                                (new Text())
                                     ->setSender($botSender)
                                     ->setReceiver($receiverId)
                                     ->setText('Basic keyboard layout')
                                     ->setKeyboard(
-                                        (new \Viber\Api\Keyboard())
+                                        (new Keyboard())
                                             ->setButtons([
-                                                (new \Viber\Api\Keyboard\Button())
+                                                (new Button())
                                                     ->setActionType('reply')
                                                     ->setActionBody('btn-click')
                                                     ->setText('Tap this button')
@@ -176,14 +182,14 @@ class WebhookController extends WebController
                         //
                         case 1:
                             $client->sendMessage(
-                                (new \Viber\Api\Message\Text())
+                                (new Text())
                                     ->setSender($botSender)
                                     ->setReceiver($receiverId)
                                     ->setText('More buttons and styles')
                                     ->setKeyboard(
-                                        (new \Viber\Api\Keyboard())
+                                        (new Keyboard())
                                             ->setButtons([
-                                                (new \Viber\Api\Keyboard\Button())
+                                                (new Button())
                                                     ->setBgColor('#8074d6')
                                                     ->setTextSize('small')
                                                     ->setTextHAlign('center')
@@ -191,14 +197,14 @@ class WebhookController extends WebController
                                                     ->setActionBody('catalog')
                                                     ->setText('Каталог'),
 
-                                                (new \Viber\Api\Keyboard\Button())
+                                                (new Button())
                                                     ->setBgColor('#2fa4e7')
                                                     ->setTextHAlign('center')
                                                     ->setActionType('reply')
                                                     ->setActionBody('btn-click')
                                                     ->setText('Button 2'),
 
-                                                (new \Viber\Api\Keyboard\Button())
+                                                (new Button())
                                                     ->setBgColor('#555555')
                                                     ->setTextSize('large')
                                                     ->setTextHAlign('left')
@@ -250,7 +256,7 @@ class WebhookController extends WebController
                         //
                         case 6:
                             $client->sendMessage(
-                                (new \Viber\Api\Message\Picture())
+                                (new Picture())
                                     ->setSender($botSender)
                                     ->setReceiver($receiverId)
                                     ->setText('some media data')
@@ -260,7 +266,7 @@ class WebhookController extends WebController
                         //
                         case 7:
                             $client->sendMessage(
-                                (new \Viber\Api\Message\Video())
+                                (new Video())
                                     ->setSender($botSender)
                                     ->setReceiver($receiverId)
                                     ->setSize(2 * 1024 * 1024)
@@ -270,29 +276,21 @@ class WebhookController extends WebController
                         //
                         case 8:
                             $client->sendMessage(
-                                (new \Viber\Api\Message\CarouselContent())
+                                (new CarouselContent())
                                     ->setSender($botSender)
                                     ->setReceiver($receiverId)
                                     ->setButtonsGroupColumns(6)
                                     ->setButtonsGroupRows(6)
-                                    //->setBgColor('#FFFFFF')
+                                    ->setBgColor('#FFFFFF')
                                     ->setButtons([
-                                        (new \Viber\Api\Keyboard\Button())
+                                        (new Button())
                                             ->setColumns(6)
                                             ->setRows(3)
                                             ->setActionType('open-url')
                                             ->setActionBody('https://www.google.com')
                                             ->setImage('https://bot.shopiumbot.com/images/get-file/6412a68512-1.jpg'),
 
-                                        (new \Viber\Api\Keyboard\Button())
-                                            ->setColumns(6)
-                                            ->setRows(3)
-                                            ->setActionType('open-url')
-                                            ->setActionBody('https://www.google.com')
-                                            ->setImage('https://bot.shopiumbot.com/images/get-file/6412a68512-1.jpg'),
-
-
-                                        (new \Viber\Api\Keyboard\Button())
+                                        (new Button())
                                             ->setColumns(6)
                                             ->setRows(3)
                                             ->setActionType('open-url')
@@ -300,16 +298,40 @@ class WebhookController extends WebController
                                             ->setImage('https://bot.shopiumbot.com/images/get-file/6412a68512-1.jpg'),
 
 
-                                        (new \Viber\Api\Keyboard\Button())
+                                        (new Button())
                                             ->setColumns(6)
                                             ->setRows(3)
                                             ->setActionType('open-url')
                                             ->setActionBody('https://www.google.com')
                                             ->setImage('https://bot.shopiumbot.com/images/get-file/6412a68512-1.jpg'),
 
-                                        (new \Viber\Api\Keyboard\Button())
+
+                                        (new Button())
+                                            ->setColumns(6)
+                                            ->setRows(6)
+                                            ->setActionType('open-url')
+                                            ->setActionBody('https://www.google.com')
+                                            ->setImage('https://bot.shopiumbot.com/images/get-file/6412a68512-1.jpg'),
+
+
+                                        (new Button())
                                             ->setColumns(6)
                                             ->setRows(3)
+                                            ->setActionType('open-url')
+                                            ->setActionBody('https://www.google.com')
+                                            ->setImage('https://bot.shopiumbot.com/images/get-file/6412a68512-1.jpg'),
+
+
+                                        (new Button())
+                                            ->setColumns(6)
+                                            ->setRows(6)
+                                            ->setActionType('open-url')
+                                            ->setActionBody('https://www.google.com')
+                                            ->setImage('https://bot.shopiumbot.com/images/get-file/6412a68512-1.jpg'),
+
+                                        (new Button())
+                                            ->setColumns(6)
+                                            ->setRows(6)
                                             ->setActionType('reply')
                                             ->setActionBody('https://www.google.com')
                                             ->setText('Buy')
@@ -334,8 +356,7 @@ class WebhookController extends WebController
 
     }
 
-    public
-    function actionSet()
+    public function actionSet()
     {
         $webhookUrl = 'https://bot.shopiumbot.com/viber/hook'; // for exmaple https://my.com/bot.php
         \Yii::$app->response->format = Response::FORMAT_JSON;

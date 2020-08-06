@@ -60,7 +60,7 @@ echo GridView::widget([
             // 'attribute' => 'test',
             'format' => 'raw',
             'value' => function ($model) {
-                if ($model->product->availability == 1) {
+                if ($model->product->availability == \core\modules\shop\models\Product::AVAILABILITY_YES) {
                     return Html::a(Yii::t('app/default', 'SEND_LETTER'), ['send', 'product_id' => $model->product_id], ['class' => 'btn btn-sm btn-primary','data-pjax'=>0]);
                 } else {
                     return '&mdash;';
