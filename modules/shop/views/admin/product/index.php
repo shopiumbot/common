@@ -14,8 +14,9 @@ if ($this->context->created) {
             'icon' => 'add',
         ];
 }
-Pjax::begin(['dataProvider' => $dataProvider]);
 ProductIndex::register($this);
+Pjax::begin(['dataProvider' => $dataProvider]);
+
 echo GridView::widget([
     'id' => 'grid-product',
     'tableOptions' => ['class' => 'table table-striped'],

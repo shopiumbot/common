@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use core\modules\shop\models\Category;
 
 \core\modules\shop\bundles\admin\CategoryAsset::register($this);
-
+\panix\engine\emoji\EmojiAsset::register($this);
 ?>
 
 <div class="card">
@@ -28,9 +28,9 @@ use core\modules\shop\models\Category;
         echo \panix\ext\jstree\JsTree::widget([
             'id' => 'CategoryTree',
             'allOpen' => true,
-            'data'=>Category::find()->dataTree(),
+            'data'=>Category::find()->tree(),
             'core' => [
-                'force_text' => true,
+                'force_text' => false,
                 'animation' => 0,
                 'strings' => [
                     'Loading ...' => Yii::t('app/default', 'LOADING')

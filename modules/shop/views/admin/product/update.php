@@ -2,9 +2,11 @@
 
 use panix\engine\Html;
 use panix\engine\bootstrap\ActiveForm;
-//use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use core\modules\shop\models\ProductType;
+
+
+echo \shopium\mod\telegram\components\Helper::Test($model->description);
 
 ?>
 <?php if (!$model->isNewRecord) { ?>

@@ -43,8 +43,9 @@ use yii\web\NotFoundHttpException;
  * @property integer $added_to_cart_count
  * @property integer $votes
  * @property integer $rating
- * @property Manufacturer[] $manufacturer
+ * @property Manufacturer $manufacturer
  * @property string $discount Discount
+ * @property string $description Description
  * @property boolean $hasDiscount See [[\shopium\mod\discounts\components\DiscountBehavior]] //Discount
  * @property float $originalPrice See [[\shopium\mod\discounts\components\DiscountBehavior]]
  * @property float $discountPrice See [[\shopium\mod\discounts\components\DiscountBehavior]]
@@ -218,7 +219,7 @@ class Product extends ActiveRecord
     {
         $small = $this->getMainImage($size);
         $big = $this->getMainImage();
-        return Html::a(Html::img($small->url, ['alt' => $small->title, 'class' => 'img-thumbnail']), $big->url, ['title' => $this->name, 'data-fancybox' => 'gallery']);
+        return Html::a(Html::img($small->url, ['alt' => $small->title, 'class' => 'img-thumbnail']), $big->url, ['title' => $this->name, 'data-fancybox' => 'gallery','data-pjax'=>0]);
     }
 
 

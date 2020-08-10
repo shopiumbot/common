@@ -3,8 +3,10 @@
 namespace core\modules\shop\models\query;
 
 use panix\engine\behaviors\nestedsets\NestedSetsQueryBehavior;
+use panix\engine\emoji\Emoji;
 use panix\engine\traits\query\DefaultQueryTrait;
 use yii\db\ActiveQuery;
+use yii\helpers\Html;
 use yii\helpers\Url;
 
 /**
@@ -58,7 +60,13 @@ class CategoryQuery extends ActiveQuery
         if (is_object($root)) {
             /** @var \core\modules\shop\models\Category|\panix\engine\behaviors\nestedsets\NestedSetsBehavior $root */
             $res[$root->{$root->idAttribute}]['key'] = $root->{$root->idAttribute};
-            $res[$root->{$root->idAttribute}]['title'] = $root->{$root->titleAttribute};
+            $title = $root->{$root->titleAttribute};
+            if($root->icon){
+                //$title = Emoji::emoji_unified_to_html($root->icon).' '.$root->{$root->titleAttribute};
+                $title = $root->icon.' '.$root->{$root->titleAttribute};
+            }
+            $res[$root->{$root->idAttribute}]['title'] = $title;
+            //$res[$root->{$root->idAttribute}]['icon'] = 'glyphicon glyphicon-leaf';
             $res[$root->{$root->idAttribute}]['count'] = $root->countItems;
             if (method_exists($root, 'getUrl'))
                 $res[$root->{$root->idAttribute}]['url'] = Url::to($root->getUrl(), $absoluteUrl);

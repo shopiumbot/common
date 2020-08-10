@@ -13,7 +13,7 @@ use core\modules\shop\models\Category;
 
 
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
+<?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
 
 <?= $form->field($model, 'sku')->textInput(['maxlength' => 255]) ?>
 
@@ -41,7 +41,7 @@ $form->field($model, 'main_category_id')->dropDownList(Category::flatTree(), [
 ?>
 <?php
 
-//echo $form->field($model, 'description')->widget(\core\components\TinyMceMarkdown::class);
-echo $form->field($model, 'description')->textarea();
+echo $form->field($model, 'description')->widget(\core\components\TinyMceTelegram::class);
+//echo $form->field($model, 'description')->textarea();
 
 ?>
