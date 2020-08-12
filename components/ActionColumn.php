@@ -278,9 +278,11 @@ class ActionColumn extends DataColumn
                             'title' => Yii::t('yii', 'Delete'),
                             'aria-label' => Yii::t('yii', 'Delete'),
                             'data-pjax' => '0',
+                            'data-method' => 'POST',
+                            'data-confirm' => Yii::t('app/default', 'DELETE_CONFIRM'),
                             'class' => 'btn ' . $this->btnSize . ' btn-outline-danger delete',
-                            'onclick' => "
-                                if (confirm('" . Yii::t('app/default', 'DELETE_CONFIRM') . "')) {
+                            'onclick2' => "
+                                //if (confirm('" . Yii::t('app/default', 'DELETE_CONFIRM') . "')) {
                                     $.ajax('$url', {
                                         type: 'POST',
                                         dataType:'json',
@@ -290,7 +292,7 @@ class ActionColumn extends DataColumn
                                             common.notify(data.message,'success');
                                             //$('#{$this->grid->id}').yiiGridView('applyFilter');
                                     });
-                                }
+                               // }
                                 return false;
                             ",
                         ]);

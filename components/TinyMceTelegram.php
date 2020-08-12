@@ -13,7 +13,7 @@ use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\widgets\InputWidget;
 
-class TinyMceMarkdown extends InputWidget
+class TinyMceTelegram extends InputWidget
 {
 
     /**
@@ -44,49 +44,20 @@ class TinyMceMarkdown extends InputWidget
         $lang = Yii::$app->language;
 
 
-       // $defaultClientOptions['textpattern_patterns'] = [
-         //   ['start' => '*', 'end' => '*', 'format' => 'bold'],
-          //  ['start' => '`', 'end' => '`', 'format' => 'italic'],
-            //['start' => '#', 'format' => 'h1'],
-            //['start' => '##', 'format' => 'h2'],
-            //['start' => '###', 'format' => 'h3'],
-            //['start' => '####', 'format' => 'h4'],
-            //['start' => '#####', 'format' => 'h5'],
-            //['start' => '######', 'format' => 'h6'],
-            //['start' => '1. ', 'cmd' => 'InsertOrderedList'],
-            //['start' => '* ', 'cmd' => 'InsertUnorderedList'],
-            //['start' => '- ', 'cmd' => 'InsertUnorderedList'],
-            //['start' => '//brb', 'replacement' => 'Be Right Back']
-       // ];
-      //  $defaultClientOptions['formats']=[
-       // 'alignleft'=>['selector'=> 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', 'classes' => 'left'],
-
-           // 'bold'=> ['inline'=> 'span', 'classes' => 'bold'],
-           // 'italic'=> ['inline'=> 'span', 'classes' => 'italic'],
-           // 'underline'=> ['inline'=> 'span', 'classes' => 'underline','exact'=>true],
-           // 'strikethrough'=> ['inline'=> 'del'],
-
-   // ];
         $defaultClientOptions['selector'] = "#{$this->options['id']}";
 
-$as = Yii::$app->assetManager->publish(Yii::getAlias('@telegram/assets'));
-//CMS::dump($as[1]);die;
+
+
         $defaultClientOptions['contextmenu'] = "link";
         $defaultClientOptions['plugins'] = [
             "autoresize advlist autolink link charmap print preview anchor",
             "searchreplace visualblocks code fullscreen",
-            "insertdatetime contextmenu paste markdowntelegram"//responsivefilemanager
+            "insertdatetime contextmenu paste"//responsivefilemanager
         ];
         $defaultClientOptions['menubar'] = false;
         $defaultClientOptions['statusbar'] = false;
         $defaultClientOptions['toolbar'] = "undo redo | bold italic underline strikethrough code | link"; // strikethrough blockquote
         $defaultClientOptions['image_advtab'] = true;
-
-
-
-        $defaultClientOptions['external_plugins'] = [
-            "markdowntelegram" => $as[1] . "/js/tinymce.markdown.plugin.js",
-        ];
 
         $view = $this->getView();
         $langAssetBundle = TinyMceLangAsset::register($view);
