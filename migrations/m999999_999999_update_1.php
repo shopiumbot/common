@@ -7,7 +7,7 @@ class m999999_999999_update_1 extends Migration
 {
 
 
-    public function up()
+    public function safeUp()
     {
 
 
