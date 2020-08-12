@@ -69,12 +69,6 @@ class ProductsDuplicator extends \yii\base\Component
         $product = new Product;
         $product->attributes = $model->attributes;
 
-        $behaviors = $model->behaviors();
-
-
-        foreach ($behaviors['translate']['translationAttributes'] as $attr)
-            $product->{$attr} = $model->{$attr};
-
         $product->name .= $this->getSuffix();
         $product->main_category_id = $model->mainCategory->id;
         $product->added_to_cart_count = 0;

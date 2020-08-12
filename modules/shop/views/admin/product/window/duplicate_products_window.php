@@ -1,15 +1,16 @@
 <?php
 use panix\engine\Html;
-\core\web\themes\dashboard\AdminAsset::register($this);
+//\core\web\themes\dashboard\AdminAsset::register($this);
 \panix\engine\widgets\PjaxAsset::register($this);
+\panix\engine\assets\CommonAsset::register($this);
 $this->registerJs("
     function checkAllDuplicateAttributes(el){
         if($(el).prev().attr('checked')){
             $('#duplicate_products_dialog form input').attr('checked', false);
-            $(el).prev().attr('checked', false);
+          //  $(el).prev().attr('checked', false);
         }else{
             $('#duplicate_products_dialog form input').attr('checked', true);
-            $(el).prev().attr('checked', true);
+           // $(el).prev().attr('checked', true);
         }
     }
 ");

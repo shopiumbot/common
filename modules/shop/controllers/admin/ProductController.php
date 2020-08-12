@@ -59,6 +59,10 @@ class ProductController extends AdminController
     public function beforeAction($action)
     {
 
+        if (in_array($action->id, ['render-products-price-window', 'set-products','render-duplicate-products-window'])) {
+            $this->enableCsrfValidation = false;
+        }
+
         /*
                     $this->count = Product::find()->count();
                     if ($this->count >= Yii::$app->params['plan'][Yii::$app->user->planId]['product_limit']) {
@@ -146,7 +150,6 @@ class ProductController extends AdminController
             $title .= ' "' . Html::encode($model->type->name) . '"';
 
         $this->pageName = $title;
-
 
 
         //print_r(Yii::$app->request->post('categories'));
@@ -406,7 +409,7 @@ class ProductController extends AdminController
     public function actionRenderDuplicateProductsWindow()
     {
         if (Yii::$app->request->isAjax) {
-            return $this->renderAjax('window/duplicate_products_window');
+            return $this->render('window/duplicate_products_window');
         } else {
             throw new ForbiddenHttpException(Yii::t('app/error', '403'));
         }
@@ -453,7 +456,7 @@ class ProductController extends AdminController
     {
         if (Yii::$app->request->isAjax) {
             $model = new Product;
-            return $this->renderAjax('window/products_price_window', ['model' => $model]);
+            return $this->render('window/products_price_window', ['model' => $model]);
         } else {
             throw new ForbiddenHttpException(Yii::t('app/error', '403'));
         }
@@ -477,13 +480,12 @@ class ProductController extends AdminController
                     if (!$p->currency_id || !$p->use_configurations) { //запрещаем редактирование товаров с привязанной ценой и/или концигурациями
                         $p->price = $price['Product']['price'];
                         $p->save(false);
+                        $result['success'] = true;
+                        $result['message'] = 'Цена успешно изменена';
                     }
                 }
             }
-            $result['success'] = true;
-            $result['message'] = 'Success';
             return $this->asJson($result);
-
         } else {
             throw new ForbiddenHttpException(Yii::t('app/error', '403'));
         }
