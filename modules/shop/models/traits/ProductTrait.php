@@ -289,7 +289,7 @@ trait ProductTrait
                         'icon' => 'folder-open',
                         'linkOptions' => [
                             'onClick' => 'return showCategoryAssignWindow(this);',
-                            'data-confirm' => self::t('CONFIRM_CATEGORY'),
+                           // 'data-confirm' => self::t('CONFIRM_CATEGORY'),
                             'data-pjax' => 0
                         ],
                     ],
@@ -299,7 +299,7 @@ trait ProductTrait
                         'icon' => 'copy',
                         'linkOptions' => [
                             'onClick' => 'return showDuplicateProductsWindow(this);',
-                            'data-confirm' => self::t('CONFIRM_COPY'),
+                           // 'data-confirm' => self::t('CONFIRM_COPY'),
                             'data-pjax' => 0
                         ],
                     ],
@@ -309,7 +309,7 @@ trait ProductTrait
                         'icon' => 'currencies',
                         'linkOptions' => [
                             'onClick' => 'return setProductsPrice(this);',
-                            'data-confirm' => self::t('CONFIRM_PRICE'),
+                            //'data-confirm' => self::t('CONFIRM_PRICE'),
                             'data-pjax' => 0
                         ],
                     ],
