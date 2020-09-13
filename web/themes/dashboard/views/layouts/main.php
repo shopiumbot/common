@@ -1,7 +1,7 @@
 <?php
 
 use panix\engine\Html;
-use yii\widgets\Breadcrumbs;
+use yii\bootstrap4\Breadcrumbs;
 
 $asset = \core\web\themes\dashboard\AdminAsset::register($this);
 //echo Yii::$app->security->generatePasswordHash('');
@@ -17,6 +17,7 @@ $asset = \core\web\themes\dashboard\AdminAsset::register($this);
     <title><?= Yii::t('app/admin', 'ADMIN_PANEL'); ?></title>
     <?= Html::csrfMetaTags() ?>
     <?php $this->head() ?>
+    <script src="//code-ya.jivosite.com/widget/fBqboDLNKN" async></script>
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -72,10 +73,28 @@ $asset = \core\web\themes\dashboard\AdminAsset::register($this);
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-5 align-self-center">
+                    <?php
+                    if (isset($this->context->breadcrumbs)) {
+                        echo Breadcrumbs::widget([
+                            'homeLink' => [
+                                'label' => Yii::t('yii', 'Home'),
+                                'url' => ['/admin']
+                            ],
+                            //'scheme' => false,
+                            'navOptions'=>['class' => 'd-none d-md-block'],
+                            'links' => $this->context->breadcrumbs,
+                            'options' => ['class' => 'breadcrumbs']
+                        ]);
+                    }
+                    ?>
                     <h4 class="page-title"><?= $this->context->pageName; ?></h4>
                 </div>
                 <div class="col-7 align-self-center">
                     <div class="d-flex align-items-center justify-content-end">
+
+
+
+
                         <?php
                         if (!isset($this->context->buttons)) {
                             if (method_exists($this->context, 'actionCreate')) {

@@ -22,7 +22,7 @@ AdminErrorAsset::register($this);
     <div class="container">
         <div class="row">
             <div id="login-container" style="margin-top:80px;"
-                 class="animated <?php if (!Yii::$app->session->hasFlash('error')) { ?>bounceInDown<?php } ?> col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-lg-8 offset-lg-2">
+                 class="animate__animated <?php if (!Yii::$app->session->hasFlash('error')) { ?>animate__bounceInDown<?php } ?> col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-lg-8 offset-lg-2">
 
 
                         <?= $content ?>

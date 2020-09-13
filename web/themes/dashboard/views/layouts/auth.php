@@ -41,9 +41,9 @@ $this->registerJs('
 <div class="container">
     <div class="row">
         <div id="login-container" style="margin-top:80px;"
-             class="animated <?php if (!Yii::$app->session->hasFlash('error')) { ?>bounceInDown<?php } ?> col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-lg-4 offset-lg-4">
+             class="animate__animated <?php if (!Yii::$app->session->hasFlash('error')) { ?>animate__flipInY<?php } ?> col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-lg-4 offset-lg-4">
 
-            <div class="text-center auth-logo animated zoomInDown2 ">
+            <div class="text-center auth-logo animate__animated animate__zoomInDown2">
                 <a href="//shopiumbot.com" target="_blank"></a>
             </div>
             <div class="card">

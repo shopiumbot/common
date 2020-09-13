@@ -40,7 +40,7 @@ $telegram = Yii::$app->telegram;
             <i class="icon-cash-money"></i>
             <span><strong><?= Yii::$app->currency->number_format(Yii::$app->user->money); ?></strong> UAH.</span>
         </a>
-        <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
+        <div class="dropdown-menu dropdown-menu-right mailbox animate__animated animate__bounceInDown" aria-labelledby="2">
             <span class="with-arrow"><span class="bg-danger"></span></span>
             <ul class="list-style-none">
                 <li>
@@ -102,7 +102,7 @@ $telegram = Yii::$app->telegram;
                 <i class="icon-cart"></i>
                 <span class="badge badge-pill badge-success"><?= Yii::$app->getModule('cart')->count['num']; ?></span>
             </a>
-            <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown" aria-labelledby="2">
+            <div class="dropdown-menu dropdown-menu-right mailbox animate__animated animate__bounceInDown" aria-labelledby="2">
                 <span class="with-arrow"><span class="bg-danger"></span></span>
                 <ul class="list-style-none">
                     <li>
@@ -153,7 +153,7 @@ $telegram = Yii::$app->telegram;
             <i class="icon-notification-outline"></i>
             <span class="badge badge-pill badge-info">3</span>
         </a>
-        <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown">
+        <div class="dropdown-menu dropdown-menu-right mailbox animate__animated animate__bounceInDown">
                                 <span class="with-arrow">
                                     <span class="bg-primary"></span>
                                 </span>
@@ -231,7 +231,7 @@ $telegram = Yii::$app->telegram;
             <span class="m-l-5 font-medium d-none d-sm-inline-block"><?= Yii::$app->user->getDisplayName(); ?> <i
                         class="icon-arrow-down"></i></span>
         </a>
-        <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+        <div class="dropdown-menu dropdown-menu-right user-dd animate__animated animate__flipInY">
                                 <span class="with-arrow">
                                     <span class="bg-primary"></span>
                                 </span>

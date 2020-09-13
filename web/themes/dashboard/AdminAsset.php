@@ -35,6 +35,7 @@ class AdminAsset extends AssetBundle
         'panix\engine\assets\JqueryCookieAsset',
         'panix\engine\assets\TouchPunchAsset',
         'panix\engine\assets\CommonAsset',
+        'panix\asset\animateCss\Asset'
     ];
 
     public $cssOptions = ['data-theme' => 1];

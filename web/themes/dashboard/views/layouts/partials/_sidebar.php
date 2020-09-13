@@ -67,6 +67,9 @@ use panix\engine\Html;
                     <?= Html::a(Html::icon('comments') . '<span class="hide-menu">Сообщения</span>', ['/telegram/message'], ['class' => 'sidebar-link']); ?>
                 </li>
                 <li class="sidebar-item">
+                    <?= Html::a(Html::icon('comments') . '<span class="hide-menu">Рассылка</span>', ['/telegram/mailing'], ['class' => 'sidebar-link']); ?>
+                </li>
+                <li class="sidebar-item">
                     <?= Html::a(Html::icon('user-outline') . '<span class="hide-menu">Пользователи</span>', ['/telegram/users'], ['class' => 'sidebar-link']); ?>
                 </li>
                 <li class="sidebar-item">
@@ -100,6 +103,9 @@ use panix\engine\Html;
                 </li>
                 <li class="sidebar-item">
                     <?= Html::a(Html::icon('file-csv') . '<span class="hide-menu">Экспорт</span>', ['/csv/default/export'], ['class' => 'sidebar-link']); ?>
+                </li>
+                <li class="sidebar-item">
+                    <?= Html::a(Html::icon('settings') . '<span class="hide-menu">Настройки</span>', ['/csv/settings/index'], ['class' => 'sidebar-link']); ?>
                 </li>
             </ul>
         </li>

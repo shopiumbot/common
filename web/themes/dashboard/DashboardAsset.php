@@ -18,9 +18,7 @@ class DashboardAsset extends AssetBundle
     public $sourcePath = __DIR__ . '/assets';
     public $js = [
         'js/perfect-scrollbar.jquery.min.js',
-
-         'js/app.js',
-
+        'js/app.js',
         'js/waves.js',
         'js/sidebarmenu.js',
         'js/custom.min.js',
@@ -36,5 +34,6 @@ class DashboardAsset extends AssetBundle
         'panix\engine\assets\JqueryCookieAsset',
         'panix\engine\assets\TouchPunchAsset',
         'panix\engine\assets\CommonAsset',
+        'panix\assets\animateCss\Asset'
     ];
 }
