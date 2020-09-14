@@ -9,6 +9,7 @@ use panix\engine\bootstrap\Alert;
  * @var $form \panix\engine\bootstrap\ActiveForm
  * @var $model \core\modules\shop\models\Category
  */
+
 ?>
 
 <div class="row">

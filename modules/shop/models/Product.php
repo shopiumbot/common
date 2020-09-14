@@ -448,6 +448,7 @@ class Product extends ActiveRecord
                 $record = new ProductCategoryRef;
                 $record->category = (int)$category;
                 $record->product = $this->id;
+                $record->availability = $this->availability;
                 if ($this->scenario == 'duplicate') {
                     $record->switch = 1;
                 } else {
@@ -462,14 +463,16 @@ class Product extends ActiveRecord
         // Clear main category
         ProductCategoryRef::updateAll([
             'is_main' => 0,
-            'switch' => $this->switch
-        ], 'product=:p', [':p' => $this->id]);
+            'switch' => $this->switch,
+            'availability' => $this->availability,
+        ], ['product'=>$this->id]);
 
         // Set main category
         ProductCategoryRef::updateAll([
             'is_main' => 1,
             'switch' => $this->switch,
-        ], 'product=:p AND category=:c', [':p' => $this->id, ':c' => $main_category]);
+            'availability' => $this->availability,
+        ], ['product'=>$this->id,'category'=>$main_category]);
 
         // Delete not used relations
         if (count($notDelete) > 0) {

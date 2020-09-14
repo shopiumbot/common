@@ -13,6 +13,7 @@ use yii\db\ActiveRecord;
  * @property integer $product
  * @property boolean $is_main
  * @property boolean $switch
+ * @property integer $availability
  */
 class ProductCategoryRef extends ActiveRecord
 {
