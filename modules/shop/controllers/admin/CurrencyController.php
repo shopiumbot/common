@@ -53,10 +53,6 @@ class CurrencyController extends AdminController
                 'options' => ['class' => 'btn btn-success']
             ]
         ];
-        $this->breadcrumbs[] = [
-            'label' => Yii::t('shop/default', 'MODULE_NAME'),
-            'url' => ['/admin/shop']
-        ];
         $this->breadcrumbs[] = $this->pageName;
 
         $searchModel = new CurrencySearch();
@@ -80,10 +76,6 @@ class CurrencyController extends AdminController
                 'url' => ['create'],
                 'options' => ['class' => 'btn btn-success']
             ]
-        ];
-        $this->breadcrumbs[] = [
-            'label' => $this->module->info['label'],
-            'url' => $this->module->info['url'],
         ];
         $this->breadcrumbs[] = [
             'label' => $this->pageName,

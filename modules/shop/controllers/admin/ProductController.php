@@ -154,10 +154,6 @@ class ProductController extends AdminController
 
         //print_r(Yii::$app->request->post('categories'));
         //print_r($_POST['categories']);die;
-        $this->breadcrumbs[] = [
-            'label' => $this->module->info['label'],
-            'url' => $this->module->info['url'],
-        ];
 
         $this->breadcrumbs[] = [
             'label' => Yii::t('shop/admin', 'PRODUCTS'),

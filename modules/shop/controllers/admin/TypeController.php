@@ -33,13 +33,7 @@ class TypeController extends AdminController
      */
     public function actionIndex()
     {
-
-
         $this->pageName = Yii::t('shop/admin', 'TYPE_PRODUCTS');
-        $this->breadcrumbs[] = [
-            'label' => $this->module->info['label'],
-            'url' => $this->module->info['url'],
-        ];
         $this->breadcrumbs[] = $this->pageName;
         // $this->topButtons = array(array('label' => Yii::t('shop/admin', 'Создать тип'),
         //         'url' => $this->createUrl('create'), 'htmlOptions' => array('class' => 'btn btn-success')));

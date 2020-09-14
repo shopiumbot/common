@@ -26,11 +26,6 @@ class NotifyController extends AdminController
     public function actionIndex()
     {
         $this->pageName = Yii::t('shop/admin', 'NOTIFIER');
-
-        $this->breadcrumbs[] = [
-            'label' => Yii::t('shop/default', 'MODULE_NAME'),
-            'url' => ['/admin/shop'],
-        ];
         $this->breadcrumbs[] = $this->pageName;
         $this->buttons = [
             [

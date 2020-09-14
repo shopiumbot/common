@@ -50,10 +50,6 @@ class AttributeController extends AdminController
         ];
 
         $this->pageName = Yii::t('shop/admin', 'ATTRIBUTES');
-        $this->breadcrumbs[] = [
-            'label' => Yii::t('shop/default', 'MODULE_NAME'),
-            'url' => ['/admin/shop']
-        ];
         $this->breadcrumbs[] = $this->pageName;
 
         return $this->render('index', [
@@ -72,11 +68,6 @@ class AttributeController extends AdminController
         $model = Attribute::findModel($id, Yii::t('shop/admin', 'NO_FOUND_ATTR'));
 
         $this->pageName = ($model->isNewRecord) ? $model::t('CREATE_ATTRIBUTES') : $model::t('UPDATE_ATTRIBUTES');
-
-        $this->breadcrumbs[] = [
-            'label' => Yii::t('shop/default', 'MODULE_NAME'),
-            'url' => ['/admin/shop']
-        ];
         $this->breadcrumbs[] = [
             'label' => Yii::t('shop/admin', 'ATTRIBUTES'),
             'url' => ['index']

@@ -68,10 +68,6 @@ class CategoryController extends AdminController
                 'options' => ['class' => 'btn btn-success']
             ]
         ];
-        $this->breadcrumbs[] = [
-            'label' => $this->module->info['label'],
-            'url' => $this->module->info['url'],
-        ];
         $this->breadcrumbs[] = $this->pageName;
 
 

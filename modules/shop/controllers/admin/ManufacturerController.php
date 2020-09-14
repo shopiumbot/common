@@ -45,10 +45,6 @@ class ManufacturerController extends AdminController
                 'options' => ['class' => 'btn btn-success']
             ]
         ];
-        $this->breadcrumbs[] = [
-            'label' => $this->module->info['label'],
-            'url' => $this->module->info['url'],
-        ];
         $this->breadcrumbs[] = $this->pageName;
 
         $searchModel = new ManufacturerSearch();
@@ -74,10 +70,6 @@ class ManufacturerController extends AdminController
                 'url' => ['create'],
                 'options' => ['class' => 'btn btn-success']
             ]
-        ];
-        $this->breadcrumbs[] = [
-            'label' => Yii::t('shop/default', 'MODULE_NAME'),
-            'url' => ['/shop']
         ];
         $this->breadcrumbs[] = [
             'label' => $this->pageName,

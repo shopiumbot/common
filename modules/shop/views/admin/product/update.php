@@ -8,7 +8,12 @@ use core\modules\shop\models\ProductType;
 ?>
     <div class="card">
         <div class="card-header">
-            <h5><?= Html::encode($this->context->pageName) ?></h5>
+            <h5 class=" float-left"><?= Html::encode($this->context->pageName) ?></h5>
+            <?php
+            if (!$model->isNewRecord) {
+                echo Html::tag('span', 'ID: ' . Html::tag('strong', $model->id), ['class' => 'badge badge-secondary float-right']);
+            }
+            ?>
         </div>
 
 
