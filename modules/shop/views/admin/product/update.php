@@ -5,13 +5,7 @@ use panix\engine\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 use core\modules\shop\models\ProductType;
 
-
-echo \shopium\mod\telegram\components\Helper::Test($model->description);
-
 ?>
-<?php if (!$model->isNewRecord) { ?>
-
-<?php } ?>
     <div class="card">
         <div class="card-header">
             <h5><?= Html::encode($this->context->pageName) ?></h5>

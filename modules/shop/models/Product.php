@@ -5,6 +5,7 @@ namespace core\modules\shop\models;
 
 use core\modules\shop\components\ExternalFinder;
 use shopium\mod\cart\models\OrderProduct;
+use shopium\mod\cart\models\OrderProductTemp;
 use shopium\mod\discounts\components\DiscountBehavior;
 use core\modules\images\models\Image;
 use panix\mod\user\models\User;
@@ -547,16 +548,16 @@ class Product extends ActiveRecord
         RelatedProduct::deleteAll(['related_id' => $this->id]);
 
         // Delete categorization
-        ProductCategoryRef::deleteAll([
-            'product' => $this->id
-        ]);
+        ProductCategoryRef::deleteAll(['product' => $this->id]);
 
         $external = new ExternalFinder('{{%csv}}');
         $external->removeByObject(ExternalFinder::OBJECT_PRODUCT, $this->id);
 
-        OrderProduct::deleteAll([
-            'product_id' => $this->id
-        ]);
+        // Delete order products
+        OrderProduct::deleteAll(['product_id' => $this->id]);
+
+        // Delete order temp products
+        OrderProductTemp::deleteAll(['product_id' => $this->id]);
 
         parent::afterDelete();
     }
