@@ -24,7 +24,7 @@ class m180917_193704_shop_product_category_ref extends Migration
             'category' => $this->integer()->notNull()->unsigned(),
             'is_main' => $this->boolean()->defaultValue(0),
             'switch' => $this->boolean()->defaultValue(1),
-            'availability' => $this->tinyInteger(1)->defaultValue(0),
+            'availability' => $this->tinyInteger(1)->defaultValue(1),
         ], $tableOptions);
 
 
