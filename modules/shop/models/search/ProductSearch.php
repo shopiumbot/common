@@ -16,6 +16,7 @@ class ProductSearch extends Product
     public $exclude = null;
     public $price_min;
     public $price_max;
+    public $search_string;
     // public $image;
     //public $commentsCount;
 
@@ -73,6 +74,9 @@ class ProductSearch extends Product
                 ],
             ],*/
         ]);
+
+
+
         if (isset($params[$className]['price']['min'])) {
             $this->price_min = $params[$className]['price']['min'];
             if (!is_numeric($this->price_min)) {
@@ -115,6 +119,15 @@ class ProductSearch extends Product
         if (isset($params[$className]['price']['min'])) {
             $query->applyPrice($params[$className]['price']['min'], '>=');
         }
+
+
+        if(isset($params[$className]['search_string'])){
+            $query->andWhere(['LIKE', 'sku', $params[$className]['search_string']]);
+            $query->orWhere(['LIKE', 'name', $params[$className]['search_string']]);
+            //$query->orWhere(['LIKE', 'id', $params[$className]['search_string']]);
+        }
+
+
 
         // Id of product to exclude from search
         if ($this->exclude) {

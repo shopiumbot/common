@@ -25,6 +25,7 @@ class ProductController extends AdminController
     public $count;
     public $created = true;
 
+
     public function actions()
     {
         return [
@@ -59,7 +60,7 @@ class ProductController extends AdminController
     public function beforeAction($action)
     {
 
-        if (in_array($action->id, ['render-products-price-window', 'set-products','render-duplicate-products-window'])) {
+        if (in_array($action->id, ['render-products-price-window', 'set-products', 'render-duplicate-products-window'])) {
             $this->enableCsrfValidation = false;
         }
 
@@ -82,6 +83,7 @@ class ProductController extends AdminController
     public function actionIndex()
     {
 
+
         $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
 
@@ -100,6 +102,20 @@ class ProductController extends AdminController
             'label' => $this->module->info['label'],
             'url' => $this->module->info['url'],
         ];
+
+        if (isset(Yii::$app->request->getQueryParams()['ProductSearch'])) {
+            if (isset(Yii::$app->request->getQueryParams()['ProductSearch']['search_string'])) {
+                $this->breadcrumbs[] = [
+                    'label' => Yii::t('shop/admin', 'PRODUCTS'),
+                    'url' => ['/shop/admin/product'],
+                ];
+                $this->pageName = Yii::t('shop/default', 'SEARCH_RESULT', [
+                    'query' => Yii::$app->request->getQueryParams()['ProductSearch']['search_string'],
+                    'count' => $dataProvider->count
+                ]);
+            }
+        }
+
         $this->breadcrumbs[] = $this->pageName;
 
         return $this->render('index', [
