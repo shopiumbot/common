@@ -448,7 +448,7 @@ class Product extends ActiveRecord
                 $record = new ProductCategoryRef;
                 $record->category = (int)$category;
                 $record->product = $this->id;
-                $record->availability = $this->availability;
+                $record->availability = (!is_null($this->availability))?$this->availability:1; //todo: error mysql Column 'availability' cannot be null (пересмотреть)
                 if ($this->scenario == 'duplicate') {
                     $record->switch = 1;
                 } else {
@@ -464,14 +464,14 @@ class Product extends ActiveRecord
         ProductCategoryRef::updateAll([
             'is_main' => 0,
             'switch' => $this->switch,
-            'availability' => $this->availability,
+            'availability' => (!is_null($this->availability))?$this->availability:1,
         ], ['product'=>$this->id]);
 
         // Set main category
         ProductCategoryRef::updateAll([
             'is_main' => 1,
             'switch' => $this->switch,
-            'availability' => $this->availability,
+            'availability' => (!is_null($this->availability))?$this->availability:1,
         ], ['product'=>$this->id,'category'=>$main_category]);
 
         // Delete not used relations
