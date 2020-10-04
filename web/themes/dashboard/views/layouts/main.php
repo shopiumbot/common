@@ -87,7 +87,7 @@ $asset = \core\web\themes\dashboard\AdminAsset::register($this);
                         ]);
                     }
                     ?>
-                    <h4 class="page-title"><?= $this->context->pageName; ?></h4>
+                    <h4 class="page-title d-none"><?= $this->context->pageName; ?></h4>
                 </div>
                 <div class="col-7 align-self-center">
                     <div class="d-flex align-items-center justify-content-end">

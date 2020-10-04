@@ -67,16 +67,13 @@ use panix\engine\Html;
                     <?= Html::a(Html::icon('comments') . '<span class="hide-menu">Сообщения</span>', ['/telegram/message'], ['class' => 'sidebar-link']); ?>
                 </li>
                 <li class="sidebar-item">
-                    <?= Html::a(Html::icon('comments') . '<span class="hide-menu">Рассылка</span>', ['/telegram/mailing'], ['class' => 'sidebar-link']); ?>
+                    <?= Html::a(Html::icon('messages') . '<span class="hide-menu">Рассылка</span>', ['/telegram/mailing'], ['class' => 'sidebar-link']); ?>
                 </li>
                 <li class="sidebar-item">
                     <?= Html::a(Html::icon('user-outline') . '<span class="hide-menu">Пользователи</span>', ['/telegram/users'], ['class' => 'sidebar-link']); ?>
                 </li>
                 <li class="sidebar-item">
                     <?= Html::a(Html::icon('arrow-right') . '<span class="hide-menu">Источники входа</span>', ['/telegram/start-source'], ['class' => 'sidebar-link']); ?>
-                </li>
-                <li class="sidebar-item d-none">
-                    <?= Html::a(Html::icon('comments') . '<span class="hide-menu">Рассылка <sup class="badge badge-danger">new</sup></span>', ['#'], ['class' => 'sidebar-link']); ?>
                 </li>
             </ul>
         </li>

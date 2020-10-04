@@ -3599,11 +3599,18 @@ ul.list-style-none li a:hover {
     border-color: transparent
 }
 
-.search-box .app-search .srh-btn {
+.search-box .app-search .search-close-btn {
     position: absolute;
     top: 23px;
     cursor: pointer;
     right: 20px
+}
+
+.search-box .app-search .search-submit-btn {
+    position: absolute;
+    top: 23px;
+    cursor: pointer;
+    right: 60px
 }
 
 .topbar .mega-dropdown {
@@ -5087,7 +5094,7 @@ html[dir=rtl] .topbar .dropdown-menu.dropdown-menu-right .with-arrow > span {
     right: auto
 }
 
-html[dir=rtl] .search-box .app-search .srh-btn {
+html[dir=rtl] .search-box .app-search .search-close-btn {
     right: auto;
     left: 20px
 }

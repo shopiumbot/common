@@ -8,7 +8,7 @@ use Yii;
 use yii\web\IdentityInterface;
 use yii\web\Response;
 use panix\engine\CMS;
-
+use shopium\mod\admin\models\LoginForm;
 /**
  * Class WebController
  * @package panix\engine\controllers
@@ -29,6 +29,12 @@ class WebController extends CommonController
 
     public function actionIndex()
     {
+		
+		if (Yii::$app->user->isGuest){
+            return $this->redirect(['/login']);
+	}else{
+		        return $this->redirect(['/admin']);
+	}
         $this->layout = "main";
         $this->view->title = Yii::t('yii', 'Home');
         return $this->render('index');
@@ -168,7 +174,22 @@ class WebController extends CommonController
 
         return null;
     }
+    public function actionLogin()
+    {
 
+        if (!Yii::$app->user->isGuest)
+            return $this->redirect(['/admin']);
+
+        $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login(86400*30)) {
+            return $this->goBack(['/admin']);
+        }
+
+        // render
+        return $this->render('login', [
+            'model' => $model,
+        ]);
+    }
     public function actionFavicon()
     {
         $this->enableStatistic = false;

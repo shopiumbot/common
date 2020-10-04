@@ -13,21 +13,21 @@ $telegram = Yii::$app->telegram;
             <i class="mdi mdi-menu font-24"></i>
         </a>
     </li> -->
-    <!-- ============================================================== -->
-    <!-- Search -->
-    <!-- ============================================================== -->
-    <li class="nav-item search-box d-none">
+    <li class="nav-item search-box">
         <a class="nav-link" href="javascript:void(0)">
             <div class="d-flex align-items-center">
                 <i class="icon-search font-20 mr-1"></i>
                 <div class="ml-1 d-none d-sm-block">
-                    <span>Поиск</span>
+                    <span>Поиск товара</span>
                 </div>
             </div>
         </a>
-        <form class="app-search position-absolute">
-            <input type="text" class="form-control" placeholder="Search &amp; enter">
-            <a class="srh-btn">
+        <form method="GET" action="/admin/shop/product" class="app-search position-absolute">
+            <input name="ProductSearch[search_string]" type="text" class="form-control" placeholder="Название или артикул">
+            <a class="search-submit-btn d-none">
+                <i class="icon-search"></i>
+            </a>
+            <a class="search-close-btn">
                 <i class="icon-delete"></i>
             </a>
         </form>

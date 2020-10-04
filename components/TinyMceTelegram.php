@@ -50,14 +50,19 @@ class TinyMceTelegram extends InputWidget
 
         $defaultClientOptions['contextmenu'] = "link";
         $defaultClientOptions['plugins'] = [
-            "autoresize advlist autolink link charmap print preview anchor",
-            "searchreplace visualblocks code fullscreen",
+            "autoresize advlist autolink charmap print preview anchor",
+            "searchreplace visualblocks fullscreen",
             "insertdatetime contextmenu paste"//responsivefilemanager
         ];
         $defaultClientOptions['menubar'] = false;
         $defaultClientOptions['statusbar'] = false;
         $defaultClientOptions['toolbar'] = "undo redo | bold italic underline strikethrough code | link"; // strikethrough blockquote
         $defaultClientOptions['image_advtab'] = true;
+        $defaultClientOptions['forced_root_block'] = ''; // p
+        $defaultClientOptions['keep_styles'] = false;
+        $defaultClientOptions['remove_trailing_brs'] = true;
+
+
 
         $view = $this->getView();
         $langAssetBundle = TinyMceLangAsset::register($view);
