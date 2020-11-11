@@ -168,9 +168,10 @@ class Product extends ActiveRecord
     public static function getSort()
     {
         return new \yii\data\Sort([
-            //'defaultOrder'=>'ordern DESC',
+            'defaultOrder'=>['ordern'=>SORT_DESC],
             'attributes' => [
                 '*',
+                'ordern',
                 'price' => [
                     'asc' => ['price' => SORT_ASC],
                     'desc' => ['price' => SORT_DESC],
@@ -188,8 +189,8 @@ class Product extends ActiveRecord
                 ],
                 'name' => [
                     'default' => SORT_ASC,
-                    'asc' => ['translation.name' => SORT_ASC],
-                    'desc' => ['translation.name' => SORT_DESC],
+                    'asc' => ['name' => SORT_ASC],
+                    'desc' => ['name' => SORT_DESC],
                 ],
             ],
         ]);

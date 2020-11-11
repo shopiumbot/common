@@ -3,7 +3,7 @@
 namespace core\modules\user\models;
 
 use Yii;
-use yii\db\ActiveRecord;
+use core\components\ActiveRecord;
 
 /**
  * This is the model class for table "tbl_user_key".

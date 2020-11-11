@@ -53,7 +53,6 @@ class ProductSearch extends Product
     public function search($params, $configure = [])
     {
         $query = Product::find();
-        $query->sort();
 
        // $query->joinWith(['categorization categories']); //, 'commentsCount'
         $className = substr(strrchr(__CLASS__, "\\"), 1);
@@ -62,7 +61,7 @@ class ProductSearch extends Product
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => self::getSort(),
-            /*'sort22' => [
+            /*'sort' => [
                 //'defaultOrder' => ['created_at' => SORT_ASC],
                 'attributes' => [
                     'price',

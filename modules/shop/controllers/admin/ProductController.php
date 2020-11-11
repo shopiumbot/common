@@ -107,7 +107,7 @@ class ProductController extends AdminController
             if (isset(Yii::$app->request->getQueryParams()['ProductSearch']['search_string'])) {
                 $this->breadcrumbs[] = [
                     'label' => Yii::t('shop/admin', 'PRODUCTS'),
-                    'url' => ['/shop/admin/product'],
+                    'url' => ['/admin/shop/product'],
                 ];
                 $this->pageName = Yii::t('shop/default', 'SEARCH_RESULT', [
                     'query' => Yii::$app->request->getQueryParams()['ProductSearch']['search_string'],
