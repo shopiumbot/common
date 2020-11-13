@@ -4,6 +4,7 @@ namespace core\modules\shop\models;
 
 
 use core\modules\shop\components\ExternalFinder;
+use core\modules\shop\models\translate\ProductTranslate;
 use shopium\mod\cart\models\OrderProduct;
 use shopium\mod\cart\models\OrderProductTemp;
 use shopium\mod\discounts\components\DiscountBehavior;
@@ -66,6 +67,7 @@ class Product extends ActiveRecord
     public $file;
     private $_related;
     const route = '/admin/shop/default';
+    public $translationClass = ProductTranslate::class;
     const MODULE_ID = 'shop';
 
     const AVAILABILITY_YES = 1;
@@ -189,8 +191,8 @@ class Product extends ActiveRecord
                 ],
                 'name' => [
                     'default' => SORT_ASC,
-                    'asc' => ['name' => SORT_ASC],
-                    'desc' => ['name' => SORT_DESC],
+                    'asc' => ['translate.name' => SORT_ASC],
+                    'desc' => ['translate.name' => SORT_DESC],
                 ],
             ],
         ]);
@@ -278,11 +280,11 @@ class Product extends ActiveRecord
 
         $rules[] = [['main_category_id', 'price', 'unit', 'name'], 'required'];
         $rules[] = ['price', 'commaToDot'];
-        $rules[] = [['file'], 'file', 'maxFiles' => Yii::$app->params['plan'][Yii::$app->user->planId]['product_upload_files']];
+        $rules[] = [['file'], 'file', 'extensions' => ['jpg','jpeg','gif','png'], 'maxFiles' => Yii::$app->params['plan'][Yii::$app->user->planId]['product_upload_files']];
         $rules[] = [['file'], 'validateLimit'];
         $rules[] = [['name'], 'string', 'max' => 255];
-        $rules[] = [['image'], 'image'];
-        $rules[] = [['name'], 'unique'];
+        //$rules[] = [['image'], 'image'];
+        //$rules[] = [['name'], 'unique'];
         $rules[] = [['name'], 'trim'];
         $rules[] = [['description'], 'string'];
         $rules[] = [['unit'], 'default', 'value' => 1];
@@ -297,7 +299,7 @@ class Product extends ActiveRecord
     public function validateLimit($attribute)
     {
         $planCount = Yii::$app->params['plan'][Yii::$app->user->planId]['product_upload_files'];
-        $imageCount = Image::find()->where([
+            $imageCount = Image::find()->where([
             'product_id' => $this->primaryKey,
         ])->count();
 

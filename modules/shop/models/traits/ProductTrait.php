@@ -209,8 +209,8 @@ trait ProductTrait
         $columns['manufacturer_id'] = [
             'attribute' => 'manufacturer_id',
             'filter' => ArrayHelper::map(Manufacturer::find()
-                ->addOrderBy(['name'=>SORT_ASC])
-                ->cache(3200, new DbDependency(['sql' => 'SELECT MAX(`updated_at`) FROM ' . Manufacturer::tableName()]))
+               // ->addOrderBy(['name'=>SORT_ASC])
+                //->cache(3200, new DbDependency(['sql' => 'SELECT MAX(`updated_at`) FROM ' . Manufacturer::tableName()]))
                 ->all(), 'id', 'name'),
             'filterInputOptions' => ['class' => 'form-control', 'prompt' => html_entity_decode('&mdash; выберите производителя &mdash;')],
             'value' => function ($model) {

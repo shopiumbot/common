@@ -13,7 +13,7 @@ return [
     'UPDATED_AT' => 'Дата обновления',
     'SKU' => 'Артикул',
     'PRICE' => 'Цена',
-    'UPLOAD_IMAGE_HINT'=>'Доступно изображений: <strong>{current}</strong> из <strong>{limit}</strong>',
+    'UPLOAD_IMAGE_HINT'=>'Доступно изображений: <strong>{current}</strong> из <strong>{limit}</strong>. Доступные форматы <strong>{formats}</strong>',
     'COMMENTS_COUNT' => 'Комментариев',
     'VIDEO' => 'Видео Youtube ссылка',
     'AUTO_DECREASE_QUANTITY' => 'Автоматически уменьшать количество',

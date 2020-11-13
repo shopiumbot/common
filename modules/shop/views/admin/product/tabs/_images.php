@@ -10,11 +10,20 @@ use panix\engine\bootstrap\Modal;
  * @var $form \panix\engine\bootstrap\ActiveForm
  */
 $plan = Yii::$app->params['plan'][Yii::$app->user->planId];
+
 ?>
 <?= Fancybox::widget(['target' => 'a.fancybox']); ?>
-<?= $form->field($model, 'file[]')->fileInput(['multiple' => true])->hint($model::t('UPLOAD_IMAGE_HINT',['current'=>($plan['product_upload_files'] - count($model->images)),'limit'=>$plan['product_upload_files']])); ?>
+<?= $form->field($model, 'file[]')->fileInput(['multiple' => true])->hint($model::t('UPLOAD_IMAGE_HINT',[
+    'formats'=>implode(', ',['jpg','jpeg','gif','png']),
+    'current'=>($plan['product_upload_files'] - count($model->images)),
+    'limit'=>$plan['product_upload_files']
+])); ?>
+
+<?php
 
 
+
+?>
 
 <?php
 

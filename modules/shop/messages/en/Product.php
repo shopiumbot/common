@@ -13,7 +13,7 @@ return [
     'UPDATED_AT' => 'Update date',
     'SKU' => 'Vendor code',
     'PRICE' => 'Price',
-    'UPLOAD_IMAGE_HINT'=>'Available images: <strong>{current}</strong> of <strong>{limit}</strong>',
+    'UPLOAD_IMAGE_HINT'=>'Available images: <strong>{current}</strong> of <strong>{limit}</strong>. Available formats <strong>{formats}</strong>',
     'COMMENTS_COUNT' => 'Comments',
     'VIDEO' => 'Youtube video link',
     'AUTO_DECREASE_QUANTITY' => 'Reduce quantity automatically',

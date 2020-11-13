@@ -2,6 +2,7 @@
 
 namespace core\modules\shop\models;
 
+use core\modules\shop\models\translate\AttributeOptionTranslate;
 use Yii;
 use yii\caching\DbDependency;
 use yii\db\Exception;
@@ -22,7 +23,7 @@ use core\components\ActiveRecord;
  */
 class AttributeOption extends ActiveRecord
 {
-
+    public $translationClass = AttributeOptionTranslate::class;
     /**
      * @return string the associated database table name
      */

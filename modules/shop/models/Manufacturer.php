@@ -2,6 +2,7 @@
 
 namespace core\modules\shop\models;
 
+use core\modules\shop\models\translate\ManufacturerTranslate;
 use panix\engine\Html;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -20,7 +21,7 @@ class Manufacturer extends ActiveRecord
 
     const MODULE_ID = 'shop';
     const route = '/admin/shop/manufacturer';
-
+    public $translationClass = ManufacturerTranslate::class;
     /**
      * @inheritdoc
      * @return ManufacturerQuery

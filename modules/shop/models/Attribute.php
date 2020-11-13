@@ -2,6 +2,7 @@
 
 namespace core\modules\shop\models;
 
+use core\modules\shop\models\translate\AttributeTranslate;
 use panix\engine\CMS;
 use Yii;
 use yii\caching\DbDependency;
@@ -43,7 +44,7 @@ class Attribute extends ActiveRecord
     const TYPE_COLOR = 9;//todo new Under construction
 
     const MODULE_ID = 'shop';
-
+    public $translationClass = AttributeTranslate::class;
 
     public static function find()
     {

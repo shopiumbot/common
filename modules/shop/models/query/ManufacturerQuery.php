@@ -9,6 +9,6 @@ use panix\engine\traits\query\TranslateQueryTrait;
 class ManufacturerQuery extends ActiveQuery
 {
 
-    use DefaultQueryTrait, FilterQueryTrait;
+    use DefaultQueryTrait, FilterQueryTrait, TranslateQueryTrait;
 
 }

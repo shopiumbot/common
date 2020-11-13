@@ -3,13 +3,12 @@
 namespace core\modules\shop\models;
 
 
+use core\modules\shop\models\translate\CategoryTranslate;
 use Yii;
 use yii\helpers\ArrayHelper;
 use panix\engine\behaviors\nestedsets\NestedSetsBehavior;
 use core\modules\shop\models\query\CategoryQuery;
-use panix\engine\CMS;
 use core\components\ActiveRecord;
-use panix\engine\behaviors\UploadFileBehavior;
 
 /**
  * Class Category
@@ -34,7 +33,7 @@ class Category extends ActiveRecord
     const route = '/admin/shop/category';
     const route_update = 'index';
     public $parent_id;
-
+    public $translationClass = CategoryTranslate::class;
     /**
      * @inheritdoc
      */

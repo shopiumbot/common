@@ -5,6 +5,7 @@ namespace core\modules\shop\models\query;
 use panix\engine\behaviors\nestedsets\NestedSetsQueryBehavior;
 use panix\engine\emoji\Emoji;
 use panix\engine\traits\query\DefaultQueryTrait;
+use panix\engine\traits\query\TranslateQueryTrait;
 use yii\db\ActiveQuery;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -17,7 +18,7 @@ use yii\helpers\Url;
 class CategoryQuery extends ActiveQuery
 {
 
-    use DefaultQueryTrait;
+    use DefaultQueryTrait, TranslateQueryTrait;
 
     public function behaviors()
     {

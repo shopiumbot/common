@@ -3,7 +3,6 @@ return [
     'MODULE_NAME' => 'Score',
     'MODULE_DESC' => 'Store management',
     'CATALOG' => 'Catalog',
-    'AND' => 'and',
     'SPECIFICATION' => 'Characteristics',
     'FILTERS' => 'Filters',
     'RESET_FILTERS_BTN' => 'Reset filters',

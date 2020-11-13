@@ -1,6 +1,5 @@
 <?php
 
-use core\modules\shop\models\translate\AttributeOptionTranslate;
 use panix\engine\Html;
 use panix\engine\widgets\Pjax;
 use core\modules\shop\models\AttributeOption;
@@ -22,12 +21,11 @@ use core\modules\shop\models\AttributeOption;
 <table>
     <tr class="copyMe">
         <td class="text-center">&mdash;</td>
-        <?php foreach (Yii::$app->languageManager->languages as $k => $l) { ?>
+
             <td>
-                <input name="sample" type="text" class="value form-control input-lang"
-                       style="background-image:url(/uploads/language/<?= $k ?>.png"/>
+                <input name="sample" type="text" class="value form-control" />
             </td>
-        <?php } ?>
+
         <td class="text-center">&mdash;</td>
         <td class="text-center">
             <a href="#" class="delete-option-attribute btn btn-sm btn-default"><i class="icon-delete"></i></a>
@@ -48,41 +46,28 @@ $test = [];
 foreach ($model->options as $k => $o) {
     //echo print_r($o->translations);
     $data2['delete'] = '<a href="#" class="delete-option-attribute btn btn-sm btn-outline-danger"><i class="icon-delete"></i></a>';
-    foreach (Yii::$app->languageManager->languages as $k => $l) {
-
-        $otest = AttributeOptionTranslate::find()->where([
-            'object_id' => $o->id,
-            'language_id' => $l->id])
-            ->one();
+   // foreach (Yii::$app->languageManager->languages as $k => $l) {
 
 
-        /*$otest = AttributeOption::find()
-            ->where([AttributeOption::tableName().'.id' => $o->id])
-            ->translate($l->id)
-            ->one();*/
 
+    $data2['name'] = Html::textInput('options[' . $o->id . '][]', Html::decode($o->value), ['class' => 'form-control']);
 
-        if ($otest) {
-            $data2['name' . $k] = Html::textInput('options[' . $o->id . '][]', Html::decode($otest->value), ['class' => 'form-control input-lang', 'style' => 'background-image:url(/uploads/language/' . $k . '.png);']);
-        } else {
-            $data2['name' . $k] = Html::textInput('options[' . $o->id . '][]', '', ['class' => 'form-control input-lang', 'style' => 'background-image:url(/uploads/language/' . $k . '.png);']);
-        }
         $data2['products'] = Html::a($o->productsCount, ['/admin/shop/product/index', 'ProductSearch[eav][' . $model->name . ']' => $o->id], ['target' => '_blank']);
         $data[$o->id] = (array)$data2;
-    }
+
 }
 
 
-foreach (Yii::$app->languageManager->languages as $k => $l) {
 
-    $columns[] = [
-        'header' => $l->name,
-        'attribute' => 'name' . $k,
-        'format' => 'raw',
-        //  'value' => '$data->name'
-    ];
-    $sortAttributes[] = 'name' . $k;
-}
+$columns[] = [
+    'header' => 'sdadsa',
+    'attribute' => 'name',
+    'format' => 'raw',
+    //  'value' => '$data->name'
+];
+
+    $sortAttributes[] = 'name';
+
 $columns[] = [
     'header' => Yii::t('shop/admin', 'PRODUCT_COUNT'),
     'attribute' => 'products',
@@ -105,11 +90,7 @@ $data_array = new \yii\data\ArrayDataProvider([
 ]);
 
 
-Pjax::begin([
-    'id' => 'pjax-container',
-    //'enablePushState' => false,
-    //  'linkSelector' => 'a:not(.linkTarget)'
-]);
+
 echo panix\engine\grid\GridView::widget([
     'tableOptions' => ['class' => 'table table-striped optionsEditTable'],
     'dataProvider' => $data_array,
@@ -119,5 +100,5 @@ echo panix\engine\grid\GridView::widget([
     'columns' => $columns,
     'filterModel' => true
 ]);
-Pjax::end();
+
 ?>

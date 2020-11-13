@@ -303,7 +303,6 @@ class m190316_061840_shop_insert extends Migration
     {
         $this->truncateTable(Attribute::tableName());
         $this->truncateTable(AttributeOption::tableName());
-        $this->truncateTable(AttributeGroup::tableName());
         $this->truncateTable(Product::tableName());
         $this->truncateTable(Category::tableName());
         $this->truncateTable(ProductType::tableName());

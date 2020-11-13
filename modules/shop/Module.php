@@ -106,7 +106,7 @@ class Module extends WebModule implements BootstrapInterface
                         'icon' => 'currencies'
                     ],
                     [
-                        'label' => Yii::t('shop/admin', 'MANUFACTURER'),
+                        'label' => Yii::t('shop/admin', 'MANUFACTURERS'),
                         "url" => ['/admin/shop/manufacturer'],
                         'icon' => 'apple'
                     ],

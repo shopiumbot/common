@@ -3,6 +3,7 @@
 namespace core\modules\shop\models\query;
 
 use core\components\traits\query\QueryTrait;
+use panix\engine\traits\query\TranslateQueryTrait;
 use yii\db\ActiveQuery;
 use core\modules\shop\models\traits\EavQueryTrait;
 use core\modules\shop\models\Category;
@@ -12,7 +13,7 @@ use core\modules\shop\models\ProductCategoryRef;
 class ProductQuery extends ActiveQuery
 {
 
-    use QueryTrait, EavQueryTrait, FilterQueryTrait;
+    use QueryTrait, EavQueryTrait, FilterQueryTrait, TranslateQueryTrait;
 
     /**
      * Product by category
