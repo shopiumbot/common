@@ -12,17 +12,18 @@ use core\modules\shop\models\Category;
         <h5><?= Html::encode($this->context->pageName) ?></h5>
     </div>
     <div class="card-body">
-        <div class="form-group mt-3">
+        <div class="form-group row">
             <div class="col-12">
                 <input class="form-control" placeholder="Поиск..." type="text"
                        onkeyup='$("#CategoryTree").jstree(true).search($(this).val())'/>
             </div>
-        </div>
-        <div class="col-12">
-            <div class="alert alert-info">
-                <?= Yii::t('app/admin', "USE_DND"); ?>
+            <div class="col-12 mt-3">
+                <div class="alert alert-info">
+                    <?= Yii::t('app/admin', "USE_DND"); ?>
+                </div>
             </div>
         </div>
+
         <?php
 
         echo \panix\ext\jstree\JsTree::widget([
