@@ -5,7 +5,7 @@ namespace core\components\traits\query;
 trait QueryTrait
 {
 
-    public function init()
+    public function init2()
     {
         /** @var \yii\db\ActiveRecord $modelClass */
         $modelClass = $this->modelClass;

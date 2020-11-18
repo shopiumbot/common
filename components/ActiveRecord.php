@@ -2,8 +2,8 @@
 
 namespace core\components;
 
+use core\components\behaviors\TranslateBehavior;
 use panix\engine\CMS;
-use core\components\controllers\AdminController;
 use Yii;
 use yii\base\Exception;
 use yii\behaviors\TimestampBehavior;
@@ -215,7 +215,13 @@ class ActiveRecord extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         $attrLabels = [];
-
+        if (isset($this->behaviors['translate'])) {
+            if (isset($this->behaviors['translate']->translationAttributes)) {
+                foreach ($this->behaviors['translate']->translationAttributes as $attr) {
+                    $attrLabels[$attr] = static::t(strtoupper($attr));
+                }
+            }
+        }
         foreach ($this->attributes as $attr => $val) {
             $attrLabels[$attr] = static::t(strtoupper($attr));
         }
@@ -229,7 +235,12 @@ class ActiveRecord extends \yii\db\ActiveRecord
         $b = [];
         try {
             $columns = $this->tableSchema->columns;
-
+            if ($this->translationClass) {
+                $class = $this->translationClass;
+                $b['translate']['class'] = TranslateBehavior::class;
+                $b['translate']['translationClass'] = $class;
+                $b['translate']['translationAttributes'] = $class::$translationAttributes;
+            }
             if (isset($columns['ordern'])) {
                 $b['sortable'] = [
                     'class' => \panix\engine\grid\sortable\Behavior::class,
@@ -326,7 +337,14 @@ class ActiveRecord extends \yii\db\ActiveRecord
         }
     }
 
-
+    public function getTranslations()
+    {
+        if ($this->translationClass) {
+            return $this->hasMany($this->translationClass, ['object_id' => 'id']);
+        } else {
+            return $this;
+        }
+    }
     public function getDeleteUrl()
     {
         if (static::route) {

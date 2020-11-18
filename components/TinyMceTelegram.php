@@ -1,121 +1,80 @@
 <?php
 
-
 namespace core\components;
 
-
 use panix\engine\CMS;
+use panix\engine\emoji\EmojiAsset;
 use panix\ext\tinymce\TinyMceAsset;
-use panix\ext\tinymce\TinyMceLangAsset;
 use Yii;
-use yii\helpers\ArrayHelper;
+use panix\ext\tinymce\TinyMce as BaseTinyMce;
 use yii\helpers\Html;
 use yii\helpers\Json;
-use yii\widgets\InputWidget;
 
-class TinyMceTelegram extends InputWidget
+class TinyMceTelegram extends BaseTinyMce
 {
 
-    /**
-     * @var string the language to use. Defaults to null (en).
-     */
-    public $language;
-
-    /**
-     * @var array the options for the TinyMCE JS plugin.
-     * Please refer to the TinyMCE JS plugin Web page for possible options.
-     * @see https://www.tiny.cloud/docs-4x/
-     */
-    public $clientOptions = [];
-
-    /**
-     * @var bool whether to set the on change event for the editor. This is required to be able to validate data.
-     */
-    public $triggerSaveOnBeforeValidateForm = true;
-    protected $assetsPlugins;
 
     public function init()
     {
         parent::init();
-        $this->assetsPlugins = Yii::$app->getAssetManager()->publish(Yii::getAlias("@vendor/panix/wgt-tinymce/plugins"));
+        //emoticons
+        EmojiAsset::register($this->view);
 
 
-        $defaultClientOptions = [];
-        $lang = Yii::$app->language;
+        $assetsPlugins = Yii::$app->getAssetManager()->publish(Yii::getAlias("@telegram/components/tinymce-plugin-emoji"));
+
+        $this->clientOptions['emoji_add_space'] = false; // emoji are quite wide, so a space is added automatically after each by default; this disables that extra space
+        $this->clientOptions['emoji_show_groups'] = true;   // hides the tabs and dsiplays all emojis on one page
+        $this->clientOptions['emoji_show_subgroups'] = true;    // hides the subheadings
+        $this->clientOptions['emoji_show_tab_icons'] = true;
 
 
-        $defaultClientOptions['selector'] = "#{$this->options['id']}";
-
-
-
-        $defaultClientOptions['contextmenu'] = "link";
-        $defaultClientOptions['plugins'] = [
-            "autoresize advlist autolink charmap print preview anchor",
-            "searchreplace visualblocks fullscreen",
-            "insertdatetime contextmenu paste"//responsivefilemanager
+        $this->clientOptions['contextmenu'] = "link";
+        $this->clientOptions['plugins'] = [
+            "autoresize advlist autolink charmap print preview",
+            "searchreplace visualblocks code fullscreen link",
+            "insertdatetime contextmenu paste tinymceEmoji"//responsivefilemanager
         ];
-        $defaultClientOptions['menubar'] = false;
-        $defaultClientOptions['statusbar'] = false;
-        $defaultClientOptions['toolbar'] = "undo redo | bold italic underline strikethrough code | link"; // strikethrough blockquote
-        $defaultClientOptions['image_advtab'] = true;
-        $defaultClientOptions['forced_root_block'] = ''; // p
-        $defaultClientOptions['keep_styles'] = false;
-        $defaultClientOptions['remove_trailing_brs'] = true;
+        $this->clientOptions['link_title'] = false;
+        $this->clientOptions['target_list'] = false;
+
+        $this->clientOptions['formats'] = [
+            //bold: {inline : 'span', 'classes' : 'bold'},
+            // italic: {inline : 'span', 'classes' : 'italic'},
+            // underline: {inline : 'span', 'classes' : 'underline', exact : true},
+            'underline' => ['inline' => 'u'],
+            'italic' => ['inline' => 'em'],
+            'bold' => ['inline' => 'strong'],
+            'strikethrough' => ['inline' => 's'],
+
+        ];
 
 
+        $this->clientOptions['menubar'] = false;
+        $this->clientOptions['statusbar'] = false;
+        $this->clientOptions['toolbar'] = "undo redo | bold italic underline strikethrough code | link tinymceEmoji"; // strikethrough blockquote
+        $this->clientOptions['image_advtab'] = true;
+        $this->clientOptions['forced_root_block'] = ''; // p
+        $this->clientOptions['keep_styles'] = false;
+        $this->clientOptions['remove_trailing_brs'] = true;
 
-        $view = $this->getView();
-        $langAssetBundle = TinyMceLangAsset::register($view);
-        if ($lang !== null && $lang !== 'en') {
-            $langFile = "i18n/{$lang}.js";
+        // $this->clientOptions['valid_elements'] = 'a[href],code,pre,strong,b,i,em,s,strike,u,ins,br';
+        /* $this->clientOptions['external_plugins'] = array_merge(
+             ["tinymceEmoji" => $assetsPlugins[1] . "/plugin.js",],
+             $this->clientOptions['external_plugins']
+         );*/
+        $this->clientOptions['external_plugins'] = ["tinymceEmoji" => $assetsPlugins[1] . "/plugin.js"];
+        $this->clientOptions['entities'] = '160,nbsp,162,cent,8364,euro,163,pound';
 
-            $langAssetBundle->js[] = $langFile;
-            $this->clientOptions['language_url'] = $langAssetBundle->baseUrl . "/{$langFile}";
-        }
-
-
-        $this->clientOptions = ArrayHelper::merge($defaultClientOptions, $this->clientOptions);
+        // CMS::dump($this->clientOptions);die;
 
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function run()
-    {
-        if ($this->hasModel()) {
-            echo Html::activeTextarea($this->model, $this->attribute, $this->options);
-        } else {
-            echo Html::textarea($this->name, $this->value, $this->options);
-        }
-
-
-        $this->registerClientScript();
-    }
-
-    /**
-     * Registers tinyMCE js plugin
-     */
     protected function registerClientScript()
     {
         $js = [];
         $view = $this->getView();
         TinyMceAsset::register($view);
 
-
-        if (isset(Yii::$app->controller->module)) {
-            if (file_exists(Yii::getAlias(Yii::$app->getModule(Yii::$app->controller->module->id)->uploadAliasPath))) {
-                // $moxiemanager_rootpath = Yii::$app->getModule(Yii::$app->controller->module->id)->uploadPath;
-
-            }
-        }
-
-        $theme = Yii::$app->settings->get('app', 'theme');
-
-
-        $bootstrapAsset = \yii\bootstrap4\BootstrapAsset::register($view);
-
-        $this->clientOptions['content_css'][] = $bootstrapAsset->baseUrl . '/css/bootstrap.min.css';
 
         $options = Json::encode($this->clientOptions);
 

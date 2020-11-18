@@ -2,6 +2,7 @@
 
 namespace core\components;
 
+use panix\engine\CMS;
 use Yii;
 use yii\web\Application;
 use panix\engine\Html;
@@ -22,7 +23,10 @@ class WebApplication extends Application
 
     public function run()
     {
-        $this->language = 'ru';
+        $langManager = $this->languageManager;
+        $this->language = (isset($langManager->default->code)) ? $langManager->default->code : $this->language;
+       // CMS::dump($this->request);die;
+        $langManager->setActive($this->language);
         return parent::run();
     }
 
