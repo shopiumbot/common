@@ -1,6 +1,6 @@
 <?php
 return [
-    'MODULE_NAME' => 'Страницы',
+    'MODULE_NAME' => 'Меню',
     'MODULE_DESC' => 'Статичные страницы',
-    'CREATE_BTN' => 'Создать страницу',
+    'CREATE_BTN' => 'Создать пункт меню',
 ];
