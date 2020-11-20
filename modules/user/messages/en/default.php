@@ -56,5 +56,7 @@ return [
     'PAY_TARIFF' => 'Pay Tariff',
     'ECONOMY' => '👍 Savings: {value} {currency}',
     'RENEW_FOR_YEAR' => 'Extend for 1 year - {value} {currency}',
-    'RENEW_FOR_MONTH' => 'Extend for 1 month - {value} {currency}'
+    'RENEW_FOR_MONTH' => 'Extend for 1 month - {value} {currency}',
+    'RENEW_CONFIRM_BALANCE' => 'Are you sure you want to renew the tariff from your personal balance?',
+    'PAYMENT_RENEW_YEAR_TARIFF' => 'Payment for the tariff plan "{tariff}" for 1 year + (commission {commission}%)'
 ];

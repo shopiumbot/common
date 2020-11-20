@@ -1,6 +1,6 @@
 <?php
 
-namespace core\modules\shop\controllers\admin;
+namespace core\modules\shop\controllers;
 
 use Yii;
 use core\modules\shop\models\ProductNotifications;

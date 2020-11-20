@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'SEARCH' => 'Product search',
+    'SEARCH_PRODUCT' => 'Product search',
     'SEARCH_PLACEHOLDER' => 'Name or sku',
     'MY_PAYMENTS' => 'My payments',
     'BALANCE' => 'Balance',
@@ -9,4 +9,7 @@ return [
     'INTEGRATION' => 'Integration',
     'ADDITIONAL' => 'Additional',
     'TELEGRAM_STORE' => 'Telegram store',
+    'SEARCH'=>'Search',
+    'SHOW_HIDE' => 'Hide/Show',
+    'HINT_TAG_EMAIL' => 'Enter E-mail and press Enter'
 ];

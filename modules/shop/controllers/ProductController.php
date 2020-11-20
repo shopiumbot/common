@@ -1,6 +1,6 @@
 <?php
 
-namespace core\modules\shop\controllers\admin;
+namespace core\modules\shop\controllers;
 
 use core\modules\shop\components\EavBehavior;
 use core\modules\shop\models\Category;
@@ -98,10 +98,7 @@ class ProductController extends AdminController
                 ]
             ];
         }
-        $this->view->params['breadcrumbs'][] = [
-            'label' => $this->module->info['label'],
-            'url' => $this->module->info['url'],
-        ];
+
 
         if (isset(Yii::$app->request->getQueryParams()['ProductSearch'])) {
             if (isset(Yii::$app->request->getQueryParams()['ProductSearch']['search_string'])) {

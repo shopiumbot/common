@@ -121,6 +121,7 @@ class ProductSearch extends Product
 
 
         if(isset($params[$className]['search_string'])){
+            $query->translate();
             $query->andWhere(['LIKE', 'sku', $params[$className]['search_string']]);
             $query->orWhere(['LIKE', 'name', $params[$className]['search_string']]);
             //$query->orWhere(['LIKE', 'id', $params[$className]['search_string']]);
@@ -143,7 +144,11 @@ class ProductSearch extends Product
             $query->andFilterWhere([
                 self::tableName() . '.id' => $this->id,
             ]);
-            $query->andFilterWhere(['like', 'translate.name', $this->name]);
+            if ($this->name){
+                $query->translate();
+                $query->andFilterWhere(['like', 'translate.name', $this->name]);
+            }
+
         }
 
         /*$query->andFilterWhere([

@@ -1,6 +1,6 @@
 <?php
 
-namespace core\modules\shop\controllers\admin;
+namespace core\modules\shop\controllers;
 
 use Yii;
 use yii\helpers\ArrayHelper;

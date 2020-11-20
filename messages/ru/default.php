@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'SEARCH' => 'Поиск товара',
+    'SEARCH_PRODUCT' => 'Поиск товара',
     'SEARCH_PLACEHOLDER' => 'Название или артикул',
     'MY_PAYMENTS' => 'Мои платежи',
     'BALANCE' => 'Баланс',
@@ -9,4 +9,7 @@ return [
     'INTEGRATION' => 'Интеграция',
     'ADDITIONAL' => 'Дополнительный',
     'TELEGRAM_STORE' => 'Telegram-магазин',
+    'SEARCH'=>'Поиск',
+    'SHOW_HIDE'=>'Скрыть/показать',
+    'HINT_TAG_EMAIL'=>'Введите E-mail и нажмите Enter'
 ];
