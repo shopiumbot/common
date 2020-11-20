@@ -27,7 +27,7 @@ $this->registerJs("
     <div class="form-group">
         <div class="custom-control custom-checkbox">
             <?= Html::checkbox('copy[]', true, ['value' => 'attributes', 'id' => 'attributes', 'class' => 'custom-control-input']); ?>
-            <?= Html::label(Yii::t('shop/Product', 'Характеристики'), 'attributes', ['class' => 'custom-control-label']); ?>
+            <?= Html::label(Yii::t('shop/default', 'SPECIFICATION'), 'attributes', ['class' => 'custom-control-label']); ?>
         </div>
     </div>
     <div class="form-group">

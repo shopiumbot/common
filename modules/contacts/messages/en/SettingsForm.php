@@ -20,5 +20,7 @@ return [
     'TAB_SCHEDULE' => 'Schedule',
     'ENABLE_SCHEDULE' => 'Activate work schedule',
     'LATITUDE' => 'Latitude',
-    'LONGITUDE' => 'Longitude'
+    'LONGITUDE' => 'Longitude',
+    'YOUR_NAME' => 'Your Name',
+    'NAME' => 'Name'
 ];

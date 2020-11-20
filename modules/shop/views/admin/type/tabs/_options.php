@@ -13,7 +13,7 @@ $this->registerJs('$.configureBoxes({useFilters: false, useCounters: false});');
 <div class="form-group row">
     <div class="leftBox col-lg-5">
 
-        <?= Html::label(Yii::t('shop/admin', 'Атрибуты продукта'), 'box2View',['class' => 'col-form-label']) ?>
+        <?= Html::label(Yii::t('shop/admin', 'PRODUCT_ATTRIBUTES'), 'box2View',['class' => 'col-form-label']) ?>
         <br/>
         <?php
         echo Html::dropDownList('attributes[]', null, ArrayHelper::map($model->shopAttributes, 'id', 'title'), array('id' => 'box2View', 'multiple' => true, 'class' => 'form-control multiple attributesList', 'style' => 'height:300px;width:100%;'));
@@ -45,7 +45,7 @@ $this->registerJs('$.configureBoxes({useFilters: false, useCounters: false});');
 
     <div class="rightBox col-lg-5">
 
-        <?= Html::label(Yii::t('shop/admin', 'Доступные атрибуты'), 'box1View',['class' => 'col-form-label']) ?><br/>
+        <?= Html::label(Yii::t('shop/admin', 'AVAILABLE_ATTRIBUTES'), 'box1View',['class' => 'col-form-label']) ?><br/>
         <?php
 
         echo Html::dropDownList('allAttributes', null, ArrayHelper::map($attributes, 'id', 'title'), array('id' => 'box1View', 'multiple' => true, 'class' => 'form-control multiple attributesList', 'style' => 'height:300px;width:100%;'));

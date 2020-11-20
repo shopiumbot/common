@@ -20,7 +20,7 @@ $form->field($model, 'longitude')->hint('longitude');
 <?=
 $form->field($model, 'email')
     ->widget(\panix\ext\taginput\TagInput::class, ['placeholder' => 'E-mail'])
-    ->hint('Введите E-mail и нажмите Enter');
+    ->hint(Yii::t('default','HINT_TAG_EMAIL'));
 ?>
 <?php
 
@@ -51,7 +51,7 @@ echo $form->field($model, 'phone')->widget(MultipleInput::class, [
             'enableError' => false,
             'title' => 'Имя',
             'options' => [
-                'placeholder' => 'Ваше Имя',
+                'placeholder' => $model::t('YOUR_NAME'),
             ],
         ],
     ]

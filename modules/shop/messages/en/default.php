@@ -12,7 +12,6 @@ return [
     'FILTER_CURRENT_PRICE_MIN' => 'from {value} {currency}',
     'FILTER_CURRENT_PRICE_MAX' => 'to {value} {currency}',
     'SORT' => 'Sort',
-    'SEARCH' => 'Search',
     'NEW' => 'New items',
     'PRODUCT_LIMIT' => 'Product limit reached {0} pcs.',
     'PRODUCT_LIMIT_IMAGE' => 'The image limit for product {0} has been reached.',

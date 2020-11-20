@@ -3,6 +3,9 @@
 namespace core\modules\shop\models;
 
 use core\components\ActiveRecord;
+use core\components\models\Currencies;
+use panix\engine\CMS;
+
 
 /**
  * Class Currency
@@ -21,6 +24,8 @@ class Currency extends ActiveRecord
 {
 
     const MODULE_ID = 'shop';
+    public $currency;
+    public static $currencies;
 
     /**
      * @inheritdoc
@@ -30,18 +35,10 @@ class Currency extends ActiveRecord
         return '{{%shop__currency}}';
     }
 
-    public static function currenciesList()
+    public function init()
     {
-        return [
-            ['name' => 'Доллар', 'iso' => 'USD', 'symbol' => '&#36;'],
-            ['name' => 'Гривна', 'iso' => 'UAH', 'symbol' => '&#8372;'],
-            ['name' => 'Рубль', 'iso' => 'RUB', 'symbol' => '&x584;'],
-            ['name' => 'Евро', 'iso' => 'EUR', 'symbol' => '&euro;'],
-            ['name' => 'Фунт', 'iso' => 'GBP', 'symbol' => '&pound;'],
-            ['name' => 'Юань', 'iso' => 'CNY', 'symbol' => '&yen;'],
-            ['name' => 'Рубль (белорусский рубль)', 'iso' => 'BYN', 'symbol' => 'Br.'],
-            ['name' => 'Тенге', 'iso' => 'KZT', 'symbol' => '&#8376;']
-        ];
+        parent::init();
+        self::$currencies = Currencies::find()->cache(86400 * 30)->select('iso')->asArray()->createCommand()->queryColumn();
     }
 
     /**
@@ -56,7 +53,10 @@ class Currency extends ActiveRecord
             [['name'], 'trim'],
             [['is_main', 'is_default'], 'boolean'],
             [['name'], 'string', 'max' => 255],
+            [['currency'], 'string', 'max' => 3],
+            ['currency', 'in', 'range' => self::$currencies],
             [['ordern'], 'integer'],
+
             [['rate'], 'number'],
             [['name', 'rate', 'symbol', 'iso'], 'safe'],
         ];

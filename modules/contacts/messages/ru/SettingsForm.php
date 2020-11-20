@@ -5,20 +5,6 @@ return [
     'FEEDBACK_TPL_BODY' => 'Шаблон письма',
     'PHONE' => 'Телефон',
     'ADDRESS' => 'Адрес',
-    /*'MONDAY_TIME' => 'Понедельник',
-    'TUESDAY_TIME' => 'Вторник',
-    'WEDNESDAY_TIME' => 'Среда',
-    'THURSDAY_TIME' => 'Четрвег',
-    'FRIDAY_TIME' => 'Пятница',
-    'SATURDAY_TIME' => 'Суббота',
-    'SUNDAY_TIME' => 'Воскресение',
-    'MONDAY_TIME_END' => 'Понедельник',
-    'TUESDAY_TIME_END' => 'Вторник',
-    'WEDNESDAY_TIME_END' => 'Среда',
-    'THURSDAY_TIME_END' => 'Четрвег',
-    'FRIDAY_TIME_END' => 'Пятница',
-    'SATURDAY_TIME_END' => 'Суббота',
-    'SUNDAY_TIME_END' => 'Воскресение',*/
     'START_TIME' => 'Начало работы',
     'END_TIME' => 'Конец работы',
     'DAY_OFF' => 'выходной',
@@ -33,6 +19,8 @@ return [
     'TAB_GENERAL' => 'Общие',
     'TAB_SCHEDULE' => 'График работы',
     'ENABLE_SCHEDULE' => 'Активировать график работы',
-    'LATITUDE'=>'Широта (lat)',
-    'LONGITUDE'=>'Долгота (lon)'
+    'LATITUDE' => 'Широта (lat)',
+    'LONGITUDE' => 'Долгота (lon)',
+    'YOUR_NAME' => 'Ваше Имя',
+    'NAME' => 'Имя'
 ];

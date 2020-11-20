@@ -9,7 +9,7 @@ use Yii;
 use core\components\ActiveRecord;
 
 /**
- * This is the model class for table "pages".
+ * This is the model class for table "menu".
  *
  * @property integer $id
  * @property string $name
@@ -21,9 +21,10 @@ class Menu extends ActiveRecord
 {
 
     const route = '/admin/menu/default';
-    const MODULE_ID = 'pages';
+    const MODULE_ID = 'menu';
     public $translationClass = MenuTranslate::class;
     public $disallow_delete = [1, 2, 3, 4, 5, 6];
+    public $disallow_switch = [1];
 
     public static function find()
     {

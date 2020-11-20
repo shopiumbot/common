@@ -20,5 +20,7 @@ return [
     'TAB_SCHEDULE' => 'Графік роботи',
     'ENABLE_SCHEDULE' => 'Активувати графік роботи',
     'LATITUDE' => 'Широта (lat)',
-    'LONGITUDE' => 'Довгота (lon)'
+    'LONGITUDE' => 'Довгота (lon)',
+    'YOUR_NAME' => 'Ваше ім\'я',
+    'NAME' => 'Ім\'я'
 ];

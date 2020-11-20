@@ -98,14 +98,14 @@ class ProductController extends AdminController
                 ]
             ];
         }
-        $this->breadcrumbs[] = [
+        $this->view->params['breadcrumbs'][] = [
             'label' => $this->module->info['label'],
             'url' => $this->module->info['url'],
         ];
 
         if (isset(Yii::$app->request->getQueryParams()['ProductSearch'])) {
             if (isset(Yii::$app->request->getQueryParams()['ProductSearch']['search_string'])) {
-                $this->breadcrumbs[] = [
+                $this->view->params['breadcrumbs'][] = [
                     'label' => Yii::t('shop/admin', 'PRODUCTS'),
                     'url' => ['/admin/shop/product'],
                 ];
@@ -116,7 +116,7 @@ class ProductController extends AdminController
             }
         }
 
-        $this->breadcrumbs[] = $this->pageName;
+        $this->view->params['breadcrumbs'][] = $this->pageName;
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
@@ -171,11 +171,11 @@ class ProductController extends AdminController
         //print_r(Yii::$app->request->post('categories'));
         //print_r($_POST['categories']);die;
 
-        $this->breadcrumbs[] = [
+        $this->view->params['breadcrumbs'][] = [
             'label' => Yii::t('shop/admin', 'PRODUCTS'),
             'url' => ['index']
         ];
-        $this->breadcrumbs[] = $title;
+        $this->view->params['breadcrumbs'][] = $title;
 
 
         if ($model->load($post) && $model->validate() && $this->validateAttributes($model) && $this->validatePrices($model)) {

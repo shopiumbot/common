@@ -17,7 +17,7 @@ class DefaultController extends AdminController
     public function actionIndex()
     {
         $this->pageName = $this->module->info['label'];
-        $this->breadcrumbs = [
+        $this->view->params['breadcrumbs'] = [
             $this->pageName
         ];
         $model = new SettingsForm();

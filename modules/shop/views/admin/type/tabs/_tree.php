@@ -1,7 +1,7 @@
 <?php
 
 use core\modules\shop\models\Category;
-
+use yii\helpers\Html;
 ?>
 <div class="form-group">
     <div class="alert alert-info">
@@ -9,11 +9,14 @@ use core\modules\shop\models\Category;
     </div>
 </div>
 <div class="form-group row">
-    <div class="col-sm-4">
-        <label class="col-form-label" for="search-type-category"><?= Yii::t('app/default', 'Поиск:') ?></label></div>
-    <div class="col-sm-8">
-        <input class="form-control" id="search-type-category" type="text"
-               onkeyup='$("#TypeCategoryTree").jstree("search", $(this).val());'/>
+    <div class="col-sm-12">
+
+        <?= Html::textInput('search', null, [
+            'id' => 'search-type-category',
+            'class' => 'form-control',
+            'placeholder' => Yii::t('default', 'SEARCH'),
+            'onClick' => '$("#TypeCategoryTree").jstree("search", $(this).val());'
+        ]); ?>
     </div>
 </div>
 

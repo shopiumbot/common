@@ -85,7 +85,7 @@ use core\modules\shop\models\ProductType;
                         'options' => ['class' => 'flex-sm-fill text-center nav-item'],
                     ];
                     $tabs[] = [
-                        'label' => (isset($this->context->tab_errors['attributes'])) ? Html::icon('warning', ['class' => 'text-danger']) . ' Характеристики' : 'Характеристики',
+                        'label' => (isset($this->context->tab_errors['attributes'])) ? Html::icon('warning', ['class' => 'text-danger']) . ' '.Yii::t('shop/default', 'SPECIFICATION') : Yii::t('shop/default', 'SPECIFICATION'),
                         'encode' => false,
                         'content' => $this->render('tabs/_attributes', ['form' => $form, 'model' => $model]),
                         'options' => ['class' => 'flex-sm-fill text-center nav-item'],

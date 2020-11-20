@@ -44,7 +44,7 @@ class DefaultController extends AdminController
             ]
         ];
 
-        $this->breadcrumbs = [
+        $this->view->params['breadcrumbs'] = [
             $this->pageName
         ];
 
@@ -61,7 +61,8 @@ class DefaultController extends AdminController
     {
 
         $model = Menu::findModel($id);
-        $this->pageName = Yii::t('menu/default', 'CREATE_BTN');
+        $isNew = $model->isNewRecord;
+        $this->pageName = ($isNew) ? Yii::t('menu/default', 'CREATE_BTN') : Yii::t('menu/default', 'UPDATE');
         $this->buttons = [
             [
                 'icon' => 'add',
@@ -71,14 +72,14 @@ class DefaultController extends AdminController
             ]
         ];
 
-        $this->breadcrumbs[] = [
+        $this->view->params['breadcrumbs'][] = [
             'label' => Yii::t('menu/default', 'MODULE_NAME'),
             'url' => ['index']
         ];
-        $this->breadcrumbs[] = $this->pageName;
+        $this->view->params['breadcrumbs'][] = $this->pageName;
         $result = [];
         $result['success'] = false;
-        $isNew = $model->isNewRecord;
+
         //$model->setScenario("admin");
         $post = Yii::$app->request->post();
         if ($model->load($post)) {
@@ -99,7 +100,8 @@ class DefaultController extends AdminController
 
                 return $this->redirectPage($isNew, $post);
             } else {
-                 print_r($model->getErrors());die;
+                print_r($model->getErrors());
+                die;
             }
         }
 

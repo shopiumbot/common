@@ -106,7 +106,7 @@ $month= strtotime("+1 month");
         ?>
         <div class="card">
             <div class="card-header">
-                <h5>Команды бота</h5>
+                <h5><?= Yii::t('user/default','BOT_COMMANDS'); ?></h5>
             </div>
             <div class="card-body p-0">
                 <?php
@@ -117,7 +117,7 @@ $month= strtotime("+1 month");
                 if ($command->load(Yii::$app->request->post())) {
                     if ($command->validate()) {
                         $command->save();
-                        Yii::$app->session->setFlash("success", Yii::t('app/default', 'Команды бота успешно сохранены'));
+                        Yii::$app->session->setFlash("success", Yii::t('user/default', 'BOT_COMMANDS_SUCCESS'));
                         return Yii::$app->response->refresh();
                     } else {
                         // print_r($model->errors);die;
@@ -137,9 +137,9 @@ $month= strtotime("+1 month");
                         [
                             'name' => 'command',
                             'enableError' => false,
-                            'title' => 'Команда',
+                            'title' => Yii::t('telegram/default','COMMAND'),
                             'options' => [
-                                'placeholder' => 'Например: start',
+                                'placeholder' => Yii::t('user/default','EXAMPLE','start'),
                             ],
                             'headerOptions' => [
                                 'style' => 'width: 250px;',
@@ -148,10 +148,7 @@ $month= strtotime("+1 month");
                         [
                             'name' => 'description',
                             'enableError' => false,
-                            'title' => 'Описание',
-                            'options' => [
-                                'placeholder' => 'Например: Старт',
-                            ],
+                            'title' => Yii::t('telegram/default','DESCRIPTION'),
                         ],
                     ]
                 ])->label(false);

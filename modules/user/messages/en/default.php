@@ -47,4 +47,14 @@ return [
     'INVALID_KEY' => 'Invalid key',
     'FORGOT' => 'Forgot password',
     'PASSWORD_RESET_HINT' => 'Password recovered',
+    'BOT_COMMANDS_SUCCESS' => 'Bot commands have been successfully saved',
+    'BOT_COMMANDS' => 'Bot Commands',
+    'EXAMPLE' => 'Example: {0}',
+    'PAYMENT_COMMISSION_HINT' => 'A service fee will be added to the total cost <strong>{0}</strong>',
+    'RENEW' => 'Renew',
+    'RENEW_FROM_BALANCE' => 'Renew from balance',
+    'PAY_TARIFF' => 'Pay Tariff',
+    'ECONOMY' => '👍 Savings: {value} {currency}',
+    'RENEW_FOR_YEAR' => 'Extend for 1 year - {value} {currency}',
+    'RENEW_FOR_MONTH' => 'Extend for 1 month - {value} {currency}'
 ];

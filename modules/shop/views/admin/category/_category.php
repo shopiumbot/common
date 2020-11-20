@@ -14,7 +14,7 @@ use core\modules\shop\models\Category;
     <div class="card-body">
         <div class="form-group row">
             <div class="col-12">
-                <input class="form-control" placeholder="Поиск..." type="text"
+                <input class="form-control" placeholder="<?= Yii::t('default', 'SEARCH') ?>..." type="text"
                        onkeyup='$("#CategoryTree").jstree(true).search($(this).val())'/>
             </div>
             <div class="col-12 mt-3">
@@ -50,7 +50,7 @@ use core\modules\shop\models\Category;
                 return {
                     "Switch": {
                         "icon":"icon-eye",
-                        "label": "' . Yii::t('app/default', 'Скрыть показать') . '",
+                        "label": "' . Yii::t('default', 'SHOW_HIDE') . '",
                         "action": function (obj) {
                             $node = tree.get_node($node);
                             categorySwitch($node);

@@ -41,7 +41,7 @@ class DefaultController extends AdminController
 
         $this->pageName = Yii::t('user/default', 'MODULE_NAME');
 
-        $this->breadcrumbs = [
+        $this->view->params['breadcrumbs'] = [
             ['label' => $this->pageName, 'url' => ['index']],
             Yii::t('app/default', 'UPDATE')
         ];

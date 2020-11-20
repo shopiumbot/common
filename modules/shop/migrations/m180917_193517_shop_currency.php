@@ -39,9 +39,12 @@ class m180917_193517_shop_currency extends Migration {
         $this->createIndex('ordern', Currency::tableName(), 'ordern');
         $this->createIndex('updated_at', Currency::tableName(), 'updated_at');
 
-        $columns = ['name', 'iso', 'symbol', 'rate', 'penny', 'separator_hundredth', 'separator_thousandth', 'is_main', 'is_default', 'switch', 'ordern'];
+        $columns = ['name', 'iso', 'symbol', 'rate', 'penny', 'separator_hundredth', 'separator_thousandth', 'is_main', 'is_default', 'switch', 'created_at', 'ordern'];
         $this->batchInsert(Currency::tableName(), $columns, [
-            ['Гривна', 'UAH', 'грн.', 1, 0, ' ', ' ', 1, 1, 1, 1],
+            ['Гривна', 'UAH', 'грн.', 1, 0, ' ', ' ', 1, 1, 1, time(), 1],
+            ['Russian Ruble', 'RUB', 'p.', 1, 0, ' ', ' ', 0, 0, 0, time(), 2],
+            ['United States Dollar', 'USD', '$', 1, 0, ' ', ' ', 0, 0, 0, time(), 3],
+            ['Euro', 'EUR', '€', 1, 0, ' ', ' ', 0, 0, 0, time(), 4],
         ]);
     }
 

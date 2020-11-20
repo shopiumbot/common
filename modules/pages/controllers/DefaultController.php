@@ -44,7 +44,7 @@ class DefaultController extends AdminController
             ]
         ];
 
-        $this->breadcrumbs = [
+        $this->view->params['breadcrumbs'] = [
             $this->pageName
         ];
 
@@ -71,11 +71,11 @@ class DefaultController extends AdminController
             ]
         ];
 
-        $this->breadcrumbs[] = [
+        $this->view->params['breadcrumbs'][] = [
             'label' => Yii::t('pages/default', 'MODULE_NAME'),
             'url' => ['index']
         ];
-        $this->breadcrumbs[] = $this->pageName;
+        $this->view->params['breadcrumbs'][] = $this->pageName;
         $result = [];
         $result['success'] = false;
         $isNew = $model->isNewRecord;

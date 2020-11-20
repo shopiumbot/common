@@ -234,7 +234,7 @@ class Attribute extends ActiveRecord
                 break;
             case self::TYPE_RADIO_LIST:
                 $data = ArrayHelper::map($this->options, 'id', 'value');
-                return Html::radioList($name, $value[$this->name], $data, ['separator' => '<br/>']);
+                return Html::radioList($name, $value, $data, ['separator' => '<br/>']);
                 break;
             case self::TYPE_CHECKBOX_LIST:
                 $data = ArrayHelper::map($this->options, 'id', 'value');
@@ -346,7 +346,7 @@ class Attribute extends ActiveRecord
         if (!in_array($this->type, [self::TYPE_DROPDOWN, self::TYPE_RADIO_LIST, self::TYPE_CHECKBOX_LIST, self::TYPE_SELECT_MANY, self::TYPE_COLOR])) {
             $this->select_many = false;
         }
-        $this->name = CMS::slug($this->title);
+        $this->name = CMS::slug($this->title,'_');
         return parent::beforeSave($insert);
     }
 

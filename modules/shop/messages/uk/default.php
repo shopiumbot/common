@@ -12,7 +12,6 @@ return [
     'FILTER_CURRENT_PRICE_MIN' => 'від {value} {currency}',
     'FILTER_CURRENT_PRICE_MAX' => 'до {value} {currency}',
     'SORT' => 'Сортувати',
-    'SEARCH' => 'Пошук',
     'NEW' => 'Новинки',
     'PRODUCT_LIMIT' => 'Досягнуто ліміт товарів {0} шт.',
     'PRODUCT_LIMIT_IMAGE' => 'Досягнуто ліміт зображень на товар {0} шт.',

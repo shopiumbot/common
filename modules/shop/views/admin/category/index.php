@@ -34,7 +34,7 @@ use panix\engine\bootstrap\Alert;
                 ?>
                 <?= $form->field($model, 'chunk')->dropDownList([1 => 1, 2 => 2, 3 => 3]) ?>
                 <?= $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
-                <?= $form->field($model, 'icon')->textInput(['maxlength' => 5])->hint('Пример: 📂') ?>
+                <?= $form->field($model, 'icon')->textInput(['maxlength' => 5])->hint(Yii::t('user/default','EXAMPLE','📂')) ?>
 
             </div>
             <div class="card-footer text-center">

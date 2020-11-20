@@ -45,7 +45,7 @@ class ManufacturerController extends AdminController
                 'options' => ['class' => 'btn btn-success']
             ]
         ];
-        $this->breadcrumbs[] = $this->pageName;
+        $this->view->params['breadcrumbs'][] = $this->pageName;
 
         $searchModel = new ManufacturerSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
@@ -71,14 +71,14 @@ class ManufacturerController extends AdminController
                 'options' => ['class' => 'btn btn-success']
             ]
         ];
-        $this->breadcrumbs[] = [
+        $this->view->params['breadcrumbs'][] = [
             'label' => $this->pageName,
             'url' => ['index']
         ];
 
 
         $isNew = $model->isNewRecord;
-        $this->breadcrumbs[] = Yii::t('app/default', ($isNew) ? 'CREATE' : 'UPDATE');
+        $this->view->params['breadcrumbs'][] = Yii::t('app/default', ($isNew) ? 'CREATE' : 'UPDATE');
         $post = Yii::$app->request->post();
         if ($model->load($post)) {
             if ($model->validate()) {

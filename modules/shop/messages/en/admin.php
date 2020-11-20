@@ -29,4 +29,8 @@ return [
     'TYPE_CREATE' => 'Creating a new product type',
     'TYPE_UPDATE' => 'Editing a product type',
     'MAIL_PRODUCT_NOTIFY_SUBJECT' => '{site_name} notifies about the availability of the product you are interested in',
+    'GENERAL' => 'General',
+    'PRICE_FORMAT' => 'Price format',
+    'PRODUCT_ATTRIBUTES' => 'Product Attributes',
+    'AVAILABLE_ATTRIBUTES' => 'Available attributes'
 ];

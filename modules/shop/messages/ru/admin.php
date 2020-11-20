@@ -29,4 +29,8 @@ return [
     'TYPE_CREATE' => 'Создание нового типа продукта',
     'TYPE_UPDATE' => 'Редактирование типа продукта',
     'MAIL_PRODUCT_NOTIFY_SUBJECT' => '{site_name} уведомляет о наличии интересующего Вас товара',
+    'GENERAL' => 'Общие',
+    'PRICE_FORMAT' => 'Формат цены',
+    'PRODUCT_ATTRIBUTES' => 'Атрибуты продукта',
+    'AVAILABLE_ATTRIBUTES' => 'Доступные атрибуты'
 ];

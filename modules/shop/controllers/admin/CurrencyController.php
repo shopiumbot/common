@@ -2,10 +2,13 @@
 
 namespace core\modules\shop\controllers\admin;
 
+use core\components\models\Currencies;
+use panix\engine\CMS;
 use Yii;
 use core\modules\shop\models\Currency;
 use core\modules\shop\models\search\CurrencySearch;
 use core\components\controllers\AdminController;
+use yii\web\HttpException;
 
 class CurrencyController extends AdminController
 {
@@ -53,7 +56,7 @@ class CurrencyController extends AdminController
                 'options' => ['class' => 'btn btn-success']
             ]
         ];
-        $this->breadcrumbs[] = $this->pageName;
+        $this->view->params['breadcrumbs'][] = $this->pageName;
 
         $searchModel = new CurrencySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams());
@@ -69,6 +72,19 @@ class CurrencyController extends AdminController
 
         $model = Currency::findModel($id);
         $this->pageName = Yii::t('shop/admin', 'CURRENCY');
+        $isNew = $model->isNewRecord;
+
+        if ($isNew && isset(Yii::$app->request->get('Currency')['currency'])) {
+
+            if (!in_array(Yii::$app->request->get('Currency')['currency'], $model::$currencies)) {
+                throw new HttpException(404, 'Currency error');
+            }
+            $model->currency = Yii::$app->request->get('Currency')['currency'];
+            //  $this->pageName .= ' '.$model->currency;
+
+        }
+
+
         $this->buttons = [
             [
                 'icon' => 'add',
@@ -77,18 +93,28 @@ class CurrencyController extends AdminController
                 'options' => ['class' => 'btn btn-success']
             ]
         ];
-        $this->breadcrumbs[] = [
+        $this->view->params['breadcrumbs'][] = [
             'label' => $this->pageName,
             'url' => ['index']
         ];
 
-        $this->breadcrumbs[] = Yii::t('app/default', 'UPDATE');
+        $this->view->params['breadcrumbs'][] = Yii::t('app/default', 'UPDATE');
 
-        $isNew = $model->isNewRecord;
         $post = Yii::$app->request->post();
-        if ($model->load($post) && $model->validate()) {
-            $model->save();
-            return $this->redirectPage($isNew, $post);
+
+        if ($isNew && isset(Yii::$app->request->get('Currency')['currency'])) {
+            $model->iso = $model->currency;
+            $cur = Currencies::findOne(['iso' => $model->iso]);
+            $model->name = $cur->name;
+            $model->symbol = $cur->symbol;
+
+        }
+        if ($model->load($post)) {
+            if ($model->validate()) {
+                $model->save();
+                Yii::$app->session->setFlash('success','OK');
+                return $this->redirectPage($isNew, $post);
+            }
         }
 
         return $this->render('update', [

@@ -12,7 +12,6 @@ return [
     'FILTER_CURRENT_PRICE_MIN' => 'от {value} {currency}',
     'FILTER_CURRENT_PRICE_MAX' => 'до {value} {currency}',
     'SORT' => 'Сортировать',
-    'SEARCH' => 'Поиск',
     'NEW' => 'Новинки',
     'PRODUCT_LIMIT' => 'Достигнут лимит товаров {0} шт.',
     'PRODUCT_LIMIT_IMAGE' => 'Достигнут лимит изображений на товар {0} шт.',

@@ -98,11 +98,11 @@ class m170518_135110_menu extends Migration
             ],
             [
                 'menu_id' => 1,
-                'callback' => 'help',
+                'callback' => 'settings',
                 'translates' => [
-                    1 => '❓ Помощь',
-                    2 => '❓ Help',
-                    3 => '❓ Допомога',
+                    1 => '⚙️ Настройки',
+                    2 => '⚙️ Settings',
+                    3 => '⚙️ Налаштування',
                 ]
             ]
         ];
