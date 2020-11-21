@@ -98,7 +98,7 @@ class CurrencyController extends AdminController
             'url' => ['index']
         ];
 
-        $this->view->params['breadcrumbs'][] = Yii::t('app/default', 'UPDATE');
+        $this->view->params['breadcrumbs'][] = $isNew ? Yii::t('app/default', 'CREATE') : Yii::t('app/default', 'UPDATE');
 
         $post = Yii::$app->request->post();
 
@@ -112,7 +112,7 @@ class CurrencyController extends AdminController
         if ($model->load($post)) {
             if ($model->validate()) {
                 $model->save();
-                Yii::$app->session->setFlash('success','OK');
+                Yii::$app->session->setFlash('success', 'OK');
                 return $this->redirectPage($isNew, $post);
             }
         }

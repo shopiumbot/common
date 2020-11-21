@@ -32,5 +32,6 @@ return [
     'GENERAL' => 'General',
     'PRICE_FORMAT' => 'Price format',
     'PRODUCT_ATTRIBUTES' => 'Product Attributes',
-    'AVAILABLE_ATTRIBUTES' => 'Available attributes'
+    'AVAILABLE_ATTRIBUTES' => 'Available attributes',
+    'PHOTO' => 'Photo',
 ];

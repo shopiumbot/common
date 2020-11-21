@@ -32,5 +32,6 @@ return [
     'GENERAL' => 'Общие',
     'PRICE_FORMAT' => 'Формат цены',
     'PRODUCT_ATTRIBUTES' => 'Атрибуты продукта',
-    'AVAILABLE_ATTRIBUTES' => 'Доступные атрибуты'
+    'AVAILABLE_ATTRIBUTES' => 'Доступные атрибуты',
+    'PHOTO' => 'Фото',
 ];

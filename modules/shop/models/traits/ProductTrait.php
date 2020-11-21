@@ -32,15 +32,15 @@ trait ProductTrait
 
     public function getGridColumns()
     {
-		
-		$price_max = Product::find()->aggregatePrice('MAX')->asArray()->one();
+
+        $price_max = Product::find()->aggregatePrice('MAX')->asArray()->one();
         $price_min = Product::find()->aggregatePrice('MIN')->asArray()->one();
 
         $columns = [];
         $columns['image'] = [
             'class' => 'panix\engine\grid\columns\ImageColumn',
             'attribute' => 'image',
-            // 'filter'=>true,
+            'header' => Yii::t('shop/admin', 'PHOTO'),
             'value' => function ($model) {
                 /** @var $model Product */
                 return $model->renderGridImage();
@@ -150,7 +150,7 @@ trait ProductTrait
                 if ($model->currency_id) {
                     $newprice[$model->currency_id]['symbol'] = Yii::$app->currency->currencies[$model->currency_id]['symbol'];
 
-                     $newprice[$model->currency_id]['price']=$price;
+                    $newprice[$model->currency_id]['price'] = $price;
 
                     // $symbol = Html::tag('span', Yii::$app->currency->currencies[$model->currency_id]['symbol']);
                     // $symbol2 = Html::tag('span', Yii::$app->currency->currencies[1]['symbol']);
@@ -167,49 +167,49 @@ trait ProductTrait
                 }
 
 
-               // CMS::dump($newprice);//die;
-                $html='';
-                $data=[];
-                foreach ($newprice as $currency=>$price_data){
-                    $price='';
+                // CMS::dump($newprice);//die;
+                $html = '';
+                $data = [];
+                foreach ($newprice as $currency => $price_data) {
+                    $price = '';
 
-                    if(isset($price_data['discount_price'])){
-                        $price.='<del class="text-secondary">'.Yii::$app->currency->number_format($price_data['discount_price']).'</del> / ';
+                    if (isset($price_data['discount_price'])) {
+                        $price .= '<del class="text-secondary">' . Yii::$app->currency->number_format($price_data['discount_price']) . '</del> / ';
                     }
-                    $price.=Html::tag('span', Yii::$app->currency->number_format($price_data['price']), ['class' => 'text-success font-weight-bold']).' '.$price_data['symbol'];
+                    $price .= Html::tag('span', Yii::$app->currency->number_format($price_data['price']), ['class' => 'text-success font-weight-bold']) . ' ' . $price_data['symbol'];
 
-                    $data[]=$price;
+                    $data[] = $price;
 
-                    $pricesub='';
-                    if(isset($price_data[Yii::$app->currency->main['iso']])){
+                    $pricesub = '';
+                    if (isset($price_data[Yii::$app->currency->main['iso']])) {
                         $subPrice = $price_data[Yii::$app->currency->main['iso']];
 
-                        if(isset($subPrice['discount_price'])){
-                          //  $pricesub.='<del class="text-secondary">'.Yii::$app->currency->number_format($subPrice['discount_price']).'</del> / ';
+                        if (isset($subPrice['discount_price'])) {
+                            //  $pricesub.='<del class="text-secondary">'.Yii::$app->currency->number_format($subPrice['discount_price']).'</del> / ';
                         }
 
                         //foreach ($price_data[Yii::$app->currency->main['iso']] as $price1){
-                        $pricesub.=Html::tag('span', Yii::$app->currency->number_format($subPrice['price']), ['class' => 'text-success font-weight-bold']).' '.$price_data[Yii::$app->currency->main['iso']]['symbol'];
+                        $pricesub .= Html::tag('span', Yii::$app->currency->number_format($subPrice['price']), ['class' => 'text-success font-weight-bold']) . ' ' . $price_data[Yii::$app->currency->main['iso']]['symbol'];
                         //}
 
                         $data[] = $pricesub;
-                       // if(isset($price_data[Yii::$app->currency->main['iso']]['old_price'])){
-                       //     $data[]=Html::tag('span', Yii::$app->currency->number_format($price_data['old_price']), ['class' => 'text-success font-weight-bold']).' '.$price_data['symbol'];
-                       // }
+                        // if(isset($price_data[Yii::$app->currency->main['iso']]['old_price'])){
+                        //     $data[]=Html::tag('span', Yii::$app->currency->number_format($price_data['old_price']), ['class' => 'text-success font-weight-bold']).' '.$price_data['symbol'];
+                        // }
                     }
 
                 }
 
 
                 //$ss .= '<span class="badge badge-danger position-absolute" style="top:0;right:0;">123</span>';
-                return implode('<br>',$data);
+                return implode('<br>', $data);
             }
         ];
 
         $columns['manufacturer_id'] = [
             'attribute' => 'manufacturer_id',
             'filter' => ArrayHelper::map(Manufacturer::find()
-               // ->addOrderBy(['name'=>SORT_ASC])
+                // ->addOrderBy(['name'=>SORT_ASC])
                 //->cache(3200, new DbDependency(['sql' => 'SELECT MAX(`updated_at`) FROM ' . Manufacturer::tableName()]))
                 ->all(), 'id', 'name'),
             'filterInputOptions' => ['class' => 'form-control', 'prompt' => html_entity_decode('&mdash; выберите производителя &mdash;')],
@@ -239,7 +239,7 @@ trait ProductTrait
                     } else {
                         $options['class'] = 'badge badge-light';
                     }
-                    $result .= Html::tag('span',$category->name, $options);
+                    $result .= Html::tag('span', $category->name, $options);
                 }
                 return $result;
             }
@@ -289,7 +289,7 @@ trait ProductTrait
                         'icon' => 'folder-open',
                         'linkOptions' => [
                             'onClick' => 'return showCategoryAssignWindow(this);',
-                           // 'data-confirm' => self::t('CONFIRM_CATEGORY'),
+                            // 'data-confirm' => self::t('CONFIRM_CATEGORY'),
                             'data-pjax' => 0
                         ],
                     ],
@@ -299,7 +299,7 @@ trait ProductTrait
                         'icon' => 'copy',
                         'linkOptions' => [
                             'onClick' => 'return showDuplicateProductsWindow(this);',
-                           // 'data-confirm' => self::t('CONFIRM_COPY'),
+                            // 'data-confirm' => self::t('CONFIRM_COPY'),
                             'data-pjax' => 0
                         ],
                     ],
@@ -333,7 +333,7 @@ trait ProductTrait
 
         // $query = Attribute::getDb()->cache(function () {
         $query = Attribute::find()
-            ->where(['name'=>array_keys($attributes)])
+            ->where(['name' => array_keys($attributes)])
             ->sort()
             ->all();
         // }, 3600);

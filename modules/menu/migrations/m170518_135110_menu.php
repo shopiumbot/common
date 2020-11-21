@@ -13,6 +13,7 @@ use yii\db\Migration;
 use core\modules\menu\models\Menu;
 use core\modules\menu\models\MenuTranslate;
 
+
 class m170518_135110_menu extends Migration
 {
 
@@ -51,6 +52,64 @@ class m170518_135110_menu extends Migration
         $columns = ['id', 'menu_id', 'callback', 'ordern', 'switch'];
         $columnsLang = ['object_id', 'language_id', 'name'];
         $buttons = [
+            [
+                'menu_id' => 1,
+                'callback' => 'start',
+                'translates' => [
+                    1 => Yii::$app->settings->get('app','button_text_start'),
+                    2 => Yii::$app->settings->get('app','button_text_start'),
+                    3 => Yii::$app->settings->get('app','button_text_start'),
+                ]
+            ],
+            [
+                'menu_id' => 1,
+                'callback' => 'catalog',
+                'translates' => [
+                    1 => Yii::$app->settings->get('app','button_text_catalog'),
+                    2 => Yii::$app->settings->get('app','button_text_catalog'),
+                    3 => Yii::$app->settings->get('app','button_text_catalog'),
+                ]
+            ],
+            [
+                'menu_id' => 1,
+                'callback' => 'history',
+                'translates' => [
+                    1 => Yii::$app->settings->get('app','button_text_history'),
+                    2 => Yii::$app->settings->get('app','button_text_history'),
+                    3 => Yii::$app->settings->get('app','button_text_history'),
+                ]
+            ],
+            [
+                'menu_id' => 1,
+                'callback' => 'search',
+                'translates' => [
+                    1 => Yii::$app->settings->get('app','button_text_search'),
+                    2 => Yii::$app->settings->get('app','button_text_search'),
+                    3 => Yii::$app->settings->get('app','button_text_search'),
+                ]
+            ],
+            [
+                'menu_id' => 1,
+                'callback' => 'cart',
+                'translates' => [
+                    1 => Yii::$app->settings->get('app','button_text_cart'),
+                    2 => Yii::$app->settings->get('app','button_text_cart'),
+                    3 => Yii::$app->settings->get('app','button_text_cart'),
+                ]
+            ],
+            [
+                'menu_id' => 1,
+                'callback' => 'settings',
+                'translates' => [
+                    1 => '⚙️ Настройки',
+                    2 => '⚙️ Settings',
+                    3 => '⚙️ Налаштування',
+                ]
+            ]
+        ];
+
+
+       /* $buttons = [
             [
                 'menu_id' => 1,
                 'callback' => 'start',
@@ -105,7 +164,7 @@ class m170518_135110_menu extends Migration
                     3 => '⚙️ Налаштування',
                 ]
             ]
-        ];
+        ];*/
 
 
 
@@ -122,11 +181,7 @@ class m170518_135110_menu extends Migration
         }
 
         $this->batchInsert(Menu::tableName(), $columns, $data);
-
-
         $this->batchInsert(MenuTranslate::tableName(), $columnsLang, $dataLang);
-
-
 
     }
 
