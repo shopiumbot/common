@@ -33,7 +33,7 @@ $attributes = (isset($model->type->shopAttributes)) ? $model->type->shopAttribut
         </div>
     </div>
 
-    <h5 class="text-center mt-4 mb-4">Атрибуты</h5>
+    <h5 class="text-center mt-4 mb-4"><?= Yii::t('shop/admin','ATTRIBUTES'); ?></h5>
     <div class="row">
         <?php
         if (empty($attributes)) {

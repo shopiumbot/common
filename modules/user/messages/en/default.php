@@ -58,5 +58,7 @@ return [
     'RENEW_FOR_YEAR' => 'Extend for 1 year - {value} {currency}',
     'RENEW_FOR_MONTH' => 'Extend for 1 month - {value} {currency}',
     'RENEW_CONFIRM_BALANCE' => 'Are you sure you want to renew the tariff from your personal balance?',
-    'PAYMENT_RENEW_YEAR_TARIFF' => 'Payment for the tariff plan "{tariff}" for 1 year + (commission {commission}%)'
+    'PAYMENT_RENEW_YEAR_TARIFF' => 'Payment for the tariff plan "{tariff}" for 1 year + (commission {commission}%)',
+    'ACCOUNT_SETTINGS' => 'account settings',
+    'BOT_NO_ADMINS' => 'Your bot has no administrators, to set administrators go to your account settings'
 ];

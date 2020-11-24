@@ -7,7 +7,7 @@ $(function () {
         var row = $(".copyMe").clone().removeClass('copyMe');
 
         if (tr.length === 1) {
-            tr.addClass('d-none');
+           // tr.addClass('d-none');
         }
 
         console.log('clicked',row);

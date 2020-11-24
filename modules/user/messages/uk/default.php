@@ -58,5 +58,7 @@ return [
     'RENEW_FOR_YEAR' => 'Продлити на 1 рік - {value} {currency}',
     'RENEW_FOR_MONTH' => 'Продлить на 1 мес. - {value} {currency}',
     'RENEW_CONFIRM_BALANCE' => 'Ви впевнені що хочете продовжити тариф з особистого балансу?',
-    'PAYMENT_RENEW_YEAR_TARIFF' => 'Оплата тарифного плану "{tariff}" на 1 рік + (комісія {commission}%)'
+    'PAYMENT_RENEW_YEAR_TARIFF' => 'Оплата тарифного плану "{tariff}" на 1 рік + (комісія {commission}%)',
+    'ACCOUNT_SETTINGS' => 'настройки аккаунта',
+    'BOT_NO_ADMINS' => 'Ваш бот не має адміністраторів, для встановлення адміністраторів перейдіть в'
 ];

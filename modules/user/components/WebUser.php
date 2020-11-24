@@ -90,7 +90,7 @@ class WebUser extends User
     public function getBotAdmins()
     {
         $user = $this->getIdentity();
-        return $user ? explode(',', $user->bot_admins) : [];
+        return $user ? ($user->bot_admins)?explode(',', $user->bot_admins):[] : [];
     }
 
     public function getByToken()
@@ -190,7 +190,8 @@ class WebUser extends User
 
     public function getWebhookUrl()
     {
-        return 'https://' . Yii::$app->request->serverName . '/telegram/default/hook';
+        $user = $this->getIdentity();
+        return 'https://' . Yii::$app->request->serverName . '/'.$user->id.'/telegram/default/hook';
     }
 
     public function getDb_name()

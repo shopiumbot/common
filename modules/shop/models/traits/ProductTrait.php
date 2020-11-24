@@ -283,7 +283,7 @@ trait ProductTrait
                             'data-pjax' => 0
                         ],
                     ],
-                    [
+                    /*[
                         'label' => self::t('GRID_OPTION_SETCATEGORY'),
                         'url' => '#',
                         'icon' => 'folder-open',
@@ -292,7 +292,7 @@ trait ProductTrait
                             // 'data-confirm' => self::t('CONFIRM_CATEGORY'),
                             'data-pjax' => 0
                         ],
-                    ],
+                    ],*/
                     [
                         'label' => self::t('GRID_OPTION_COPY'),
                         'url' => '#',

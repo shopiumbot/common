@@ -2,7 +2,7 @@ var treeSelector = $('#CategoryTree');
 treeSelector.bind('move_node.jstree', function (node, parent) {
     $.ajax({
         type: 'GET',
-        url: '/admin/shop/category/move-node',
+        url: common.baseUrl+'/shop/category/move-node',
         data: {
             'id': parent.node.id.replace('node_', ''),
             'ref': parent.parent.replace('node_', ''),
@@ -20,7 +20,7 @@ treeSelector.bind('rename_node.jstree', function (node, text) {
     if (text.old !== text.text) {
         $.ajax({
             type: 'GET',
-            url: "/admin/shop/category/rename-node",
+            url: common.baseUrl+"/shop/category/rename-node",
             dataType: 'json',
             data: {
                 "id": text.node.id.replace('node_', ''),
@@ -40,7 +40,7 @@ treeSelector.bind('rename_node.jstree', function (node, text) {
 treeSelector.bind('create_node.jstree', function (node, parent, position) {
     $.ajax({
         type: 'GET',
-        url: "/admin/shop/category/create-node",
+        url: common.baseUrl+"/shop/category/create-node",
         dataType: 'json',
         data: {
             text: parent.node.text,
@@ -55,7 +55,7 @@ treeSelector.bind('create_node.jstree', function (node, parent, position) {
 treeSelector.bind("delete_node.jstree", function (node, parent) {
     $.ajax({
         type: 'GET',
-        url: "/admin/shop/category/delete-node",
+        url: common.baseUrl+"/shop/category/delete-node",
         data: {
             "id": parent.node.id.replace('node_', '')
         },
@@ -72,7 +72,7 @@ treeSelector.bind("delete_node.jstree", function (node, parent) {
 function categorySwitch(node) {
     $.ajax({
         type: 'GET',
-        url: "/admin/shop/category/switch-node",
+        url: common.baseUrl+"/shop/category/switch-node",
         dataType: 'json',
         data: {
             id: node.id.replace('node_', ''),

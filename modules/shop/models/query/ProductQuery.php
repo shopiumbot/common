@@ -9,7 +9,7 @@ use core\modules\shop\models\traits\EavQueryTrait;
 use core\modules\shop\models\Category;
 use core\modules\shop\models\Product;
 use core\modules\shop\models\ProductCategoryRef;
-
+use Yii;
 class ProductQuery extends ActiveQuery
 {
 
@@ -29,9 +29,10 @@ class ProductQuery extends ActiveQuery
 
     /**
      * @param $manufacturers array|int
+     * @param $whereType string
      * @return $this
      */
-    public function applyManufacturers($manufacturers)
+    public function applyManufacturers($manufacturers,$whereType = 'andWhere')
     {
         if (!is_array($manufacturers))
             $manufacturers = [$manufacturers];
@@ -41,7 +42,7 @@ class ProductQuery extends ActiveQuery
 
         sort($manufacturers);
 
-        $this->andWhere(['manufacturer_id' => $manufacturers]);
+        $this->$whereType(['manufacturer_id' => $manufacturers]);
         return $this;
     }
 
@@ -183,7 +184,8 @@ class ProductQuery extends ActiveQuery
         $modelClass = $this->modelClass;
         $tableName = $modelClass::tableName();
         //$this->andWhere(['IS NOT', $tableName . '.availability', null]);
-        $this->andWhere(['!=', $tableName . '.availability', Product::AVAILABILITY_NOT]);
+        $this->andWhere(['!=', $tableName . '.availability', $modelClass::AVAILABILITY_NOT]);
         return $this;
     }
+
 }

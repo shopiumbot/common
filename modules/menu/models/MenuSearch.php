@@ -19,7 +19,7 @@ class MenuSearch extends Menu
     {
         return [
             [['id'], 'integer'],
-            [['name'], 'safe'],
+            [['name'], 'string'],
         ];
     }
 
@@ -41,7 +41,9 @@ class MenuSearch extends Menu
      */
     public function search($params)
     {
+
         $query = Menu::find();
+        $query->translate();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -55,12 +57,12 @@ class MenuSearch extends Menu
             // $query->where('0=1');
             return $dataProvider;
         }
-
+        if ($this->name) {
+            $query->andFilterWhere(['like', 'translate.name', $this->name]);
+        }
         $query->andFilterWhere([
             'id' => $this->id,
         ]);
-
-        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }
@@ -70,8 +72,8 @@ class MenuSearch extends Menu
         $sort = new \yii\data\Sort([
             'attributes' => [
                 'name' => [
-                    'asc' => ['name' => SORT_ASC],
-                    'desc' => ['name' => SORT_DESC],
+                    'asc' => ['translate.name' => SORT_ASC],
+                    'desc' => ['translate.name' => SORT_DESC],
                 ],
             ],
         ]);

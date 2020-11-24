@@ -25,7 +25,7 @@ use core\modules\shop\models\AttributeOption;
         <?php foreach (Yii::$app->languageManager->languages as $k => $l) { ?>
             <td>
                 <input name="sample" type="text" class="value form-control input-lang"
-                       style="background-image:url(/uploads/language/<?= $k ?>.png"/>
+                       style="background-image:url(<?= Yii::$app->request->baseUrl;?>/uploads/language/<?= $k ?>.png"/>
             </td>
         <?php } ?>
         <td class="text-center">&mdash;</td>
@@ -40,7 +40,7 @@ use core\modules\shop\models\AttributeOption;
 $columns = [];
 $columns[] = [
     'class' => 'panix\engine\grid\sortable\Column',
-    'url' => ['/admin/shop/attribute/sortableOptions']
+    'url' => ['/shop/attribute/sortableOptions']
 ];
 $data = [];
 $data2 = [];
@@ -67,7 +67,7 @@ foreach ($model->options as $k => $o) {
         } else {
             $data2['name' . $k] = Html::textInput('options[' . $o->id . '][]', '', ['class' => 'form-control input-lang', 'style' => 'background-image:url(/uploads/language/' . $k . '.png);']);
         }
-        $data2['products'] = Html::a($o->productsCount, ['/admin/shop/product/index', 'ProductSearch[eav][' . $model->name . ']' => $o->id], ['target' => '_blank']);
+        $data2['products'] = Html::a($o->productsCount, ['/shop/product/index', 'ProductSearch[eav][' . $model->name . ']' => $o->id], ['target' => '_blank']);
         $data[$o->id] = (array)$data2;
     }
 }

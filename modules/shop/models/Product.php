@@ -497,7 +497,7 @@ class Product extends ActiveRecord
         } else {
             $price = $this->price;
         }
-        return $price;
+        return Yii::$app->currency->convert($price,$this->currency_id);
     }
 
     public function priceRange()
