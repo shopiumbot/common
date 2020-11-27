@@ -85,6 +85,7 @@ class ProductQuery extends ActiveQuery
     public function applySearch($q = null)
     {
         if ($q) {
+            $this->translate();
             $this->andWhere(['LIKE', Product::tableName() . '.sku', $q]);
             $this->orWhere(['LIKE', 'translate.name', $q]);
         }

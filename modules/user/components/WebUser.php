@@ -191,7 +191,7 @@ class WebUser extends User
     public function getWebhookUrl()
     {
         $user = $this->getIdentity();
-        return 'https://' . Yii::$app->request->serverName . '/'.$user->id.'/telegram/default/hook';
+        return 'https://' . Yii::$app->request->serverName . Yii::$app->request->baseUrl.'/telegram/default/hook';
     }
 
     public function getDb_name()

@@ -11,6 +11,7 @@ namespace core\modules\shop\migrations;
  * Class m190316_061840_shop_insert
  */
 
+use core\modules\shop\models\translate\CategoryTranslate;
 use Yii;
 use panix\engine\CMS;
 use panix\engine\db\Migration;
@@ -33,6 +34,7 @@ class m190316_061840_shop_insert extends Migration
 
     public function up()
     {
+
         $typesList = [1 => 'Основной', 2 => 'Ноутбук'];
         foreach ($typesList as $id => $name) {
             $this->batchInsert(ProductType::tableName(), ['id', 'name'], [
@@ -53,10 +55,22 @@ class m190316_061840_shop_insert extends Migration
 
 
         //Add Root Category
-        $this->batchInsert(Category::tableName(), ['lft', 'rgt', 'depth', 'name'], [
-            [1, 2, 1, 'Каталог продукции']
+        $root = new Category;
+        $root->lft = 1;
+        $root->rgt = 2;
+        $root->depth = 2;
+        $root->name = 'Каталог продукции';
+        $root->saveNode(false);
+       /* $this->batchInsert(Category::tableName(), ['lft', 'rgt', 'depth'], [
+            [1, 2, 1]
         ]);
-
+        foreach (Yii::$app->languageManager->getLanguages() as $lang) {
+            $this->insert(CategoryTranslate::tableName(), [
+                'object_id' => 1,
+                'language_id' => $lang->id,
+                'name' => 'Каталог продукции'
+            ]);
+        }*/
 
         $categories = [
             [
@@ -248,12 +262,12 @@ class m190316_061840_shop_insert extends Migration
                 }
             }
 
-            if (isset($product['attributes'])) {
+            if (isset($product['attributes']) && false) {
 
                 foreach ($product['attributes'] as $attribute_name => $attribute_value) {
 
-                    $attribute = Attribute::find()
-                        ->where(['title' => $attribute_name])
+                    $attribute = Attribute::find()->translate()
+                        ->where(['translate.title' => $attribute_name])
                         ->one();
                     if (!$attribute) {
                         $attribute = new Attribute;

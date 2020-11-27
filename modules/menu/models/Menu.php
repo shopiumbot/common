@@ -31,30 +31,6 @@ class Menu extends ActiveRecord
         return new MenuQuery(get_called_class());
     }
 
-    public function getGridColumns()
-    {
-        return [
-            'id' => [
-                'attribute' => 'id',
-                'contentOptions' => ['class' => 'text-center'],
-            ],
-            [
-                'attribute' => 'name',
-                'format' => 'raw',
-                'contentOptions' => ['class' => 'text-left'],
-                'value' => function ($model) {
-                    EmojiAsset::register(Yii::$app->controller->view);
-                    return Emoji::emoji_unified_to_html($model->name);
-                }
-            ],
-            'DEFAULT_CONTROL' => [
-                'class' => 'panix\engine\grid\columns\ActionColumn',
-            ],
-            'DEFAULT_COLUMNS' => [
-                ['class' => 'panix\engine\grid\columns\CheckboxColumn'],
-            ],
-        ];
-    }
 
     /**
      * @inheritdoc

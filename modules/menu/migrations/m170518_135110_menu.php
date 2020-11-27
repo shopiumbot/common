@@ -8,8 +8,9 @@ namespace core\modules\menu\migrations;
  *
  * Class m170518_135110_menu
  */
+
 use Yii;
-use yii\db\Migration;
+use panix\engine\db\Migration;
 use core\modules\menu\models\Menu;
 use core\modules\menu\models\MenuTranslate;
 
@@ -51,7 +52,7 @@ class m170518_135110_menu extends Migration
 
         $columns = ['id', 'menu_id', 'callback', 'ordern', 'switch'];
         $columnsLang = ['object_id', 'language_id', 'name'];
-        $buttons = [
+     /*   $buttons = [
             [
                 'menu_id' => 1,
                 'callback' => 'start',
@@ -106,10 +107,10 @@ class m170518_135110_menu extends Migration
                     3 => '⚙️ Налаштування',
                 ]
             ]
-        ];
+        ];*/
 
 
-       /* $buttons = [
+        $buttons = [
             [
                 'menu_id' => 1,
                 'callback' => 'start',
@@ -164,7 +165,7 @@ class m170518_135110_menu extends Migration
                     3 => '⚙️ Налаштування',
                 ]
             ]
-        ];*/
+        ];
 
 
 
@@ -182,7 +183,6 @@ class m170518_135110_menu extends Migration
 
         $this->batchInsert(Menu::tableName(), $columns, $data);
         $this->batchInsert(MenuTranslate::tableName(), $columnsLang, $dataLang);
-
     }
 
     public function down()

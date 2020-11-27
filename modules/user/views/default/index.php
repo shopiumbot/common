@@ -19,13 +19,6 @@ $month= strtotime("+1 month");
 ?>
 
 
-<?php if ($flash = Yii::$app->session->getFlash("success")) { ?>
-    <div class="alert alert-success">
-        <?= $flash ?>
-    </div>
-<?php } ?>
-
-
 <?php if (!$model->status && !$model->isNewRecord) { ?>
     <div class="alert alert-warning">
         Аккаунет не

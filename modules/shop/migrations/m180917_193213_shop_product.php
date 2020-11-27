@@ -10,6 +10,7 @@ namespace core\modules\shop\migrations;
  */
 
 use core\modules\shop\models\Product;
+use core\modules\shop\models\translate\ProductTranslate;
 use panix\engine\db\Migration;
 
 class m180917_193213_shop_product extends Migration
@@ -76,6 +77,20 @@ class m180917_193213_shop_product extends Migration
         $this->createIndex('custom_id', Product::tableName(), 'custom_id');
 
 
+
+        $this->createTable(ProductTranslate::tableName(), [
+            'id' => $this->primaryKey()->unsigned(),
+            'object_id' => $this->integer()->unsigned(),
+            'language_id' => $this->tinyInteger()->unsigned(),
+            'name' => $this->string(255)->notNull(),
+            'description' => $this->text()->null(),
+        ], $tableOptions);
+        $this->createIndex('object_id', ProductTranslate::tableName(), 'object_id');
+        $this->createIndex('language_id', ProductTranslate::tableName(), 'language_id');
+
+
+        $this->addFk([ProductTranslate::tableName(), 'object_id'], [Product::tableName(), 'id']);
+
         $this->loadColumns('grid-product', Product::class, ['image', 'name', 'price', 'created_at']);
     }
 
@@ -85,6 +100,20 @@ class m180917_193213_shop_product extends Migration
     public function down()
     {
         $this->dropTable(Product::tableName());
+        $this->dropTable(ProductTranslate::tableName());
     }
-
+    public function addFk($table1 = array(), $table2 = array())
+    {
+        $gename = str_replace('{{%', '{{%fk_', $table1[0]);
+        $gename = str_replace('}}', '_' . $table1[1] . '}}', $gename);
+        $this->addForeignKey(
+            $gename,
+            $table1[0],
+            $table1[1],
+            $table2[0],
+            $table2[1],
+            'CASCADE',
+            'CASCADE'
+        );
+    }
 }

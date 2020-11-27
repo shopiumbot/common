@@ -10,8 +10,6 @@ use core\modules\shop\models\Currency;
 ?>
 
 <?php
-
-
     echo $form->field($model, 'price', [
         'parts' => [
             '{label_unit}' => Html::activeLabel($model, 'unit'),
@@ -26,8 +24,9 @@ use core\modules\shop\models\Currency;
         ],
         'template' => '<div class="col-sm-4 col-lg-2">{label}</div>
 <div class="input-group col-sm-8 col-lg-10">{input}
+<span class="input-group-text">{label_currency}</span>{currency}
 <span class="input-group-text">{label_unit}</span>
-{unit}<span class="input-group-text">{label_currency}</span>{currency}{hint}{error}</div>',
+{unit}{hint}{error}</div>',
     ])->textInput(['maxlength' => 10]);
 
 
