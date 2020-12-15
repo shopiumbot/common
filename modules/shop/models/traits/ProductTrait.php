@@ -212,20 +212,20 @@ trait ProductTrait
                 // ->addOrderBy(['name'=>SORT_ASC])
                 //->cache(3200, new DbDependency(['sql' => 'SELECT MAX(`updated_at`) FROM ' . Manufacturer::tableName()]))
                 ->all(), 'id', 'name'),
-            'filterInputOptions' => ['class' => 'form-control', 'prompt' => html_entity_decode('&mdash; выберите производителя &mdash;')],
+            'filterInputOptions' => ['class' => 'form-control', 'prompt' => html_entity_decode(self::t('SELECT_MANUFACTURER_ID'))],
             'value' => function ($model) {
                 return ($model->manufacturer) ? $model->manufacturer->name : NULL;
             }
         ];
         $columns['categories'] = [
-            'header' => static::t('Категории'),
+            'header' => self::t('CATEGORIES'),
             'attribute' => 'main_category_id',
             'format' => 'html',
             'contentOptions' => ['style' => 'max-width:180px'],
             'filter' => Html::dropDownList(Html::getInputName(new ProductSearch, 'main_category_id'), (isset(Yii::$app->request->get('ProductSearch')['main_category_id'])) ? Yii::$app->request->get('ProductSearch')['main_category_id'] : null, Category::flatTree(),
                 [
                     'class' => 'form-control',
-                    'prompt' => html_entity_decode('&mdash; выберите категорию &mdash;')
+                    'prompt' => html_entity_decode(self::t('SELECT_MAIN_CATEGORY_ID'))
                 ]
             ),
             'value' => function ($model) {

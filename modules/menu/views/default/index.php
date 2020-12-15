@@ -6,12 +6,14 @@ use panix\engine\widgets\Pjax;
 
 
 Pjax::begin([
-    'dataProvider' => $dataProvider
+    //'dataProvider' => $dataProvider,
+    'id'=>'pjax-grid-menu',
 ]);
 
 echo GridView::widget([
     'tableOptions' => ['class' => 'table table-striped'],
     'dataProvider' => $dataProvider,
+    'id'=>'grid-menu',
     'filterModel' => $searchModel,
     'layoutOptions' => ['title' => $this->context->pageName],
     'showFooter' => true,

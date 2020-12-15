@@ -12,7 +12,7 @@ use panix\engine\helpers\TimeZoneHelper;
  * @var yii\widgets\ActiveForm $form
  */
 $api = Yii::$app->telegram;
-$month= strtotime("+1 month");
+$month = strtotime("+1 month");
 //echo $month;
 //echo Yii::$app->security->generateRandomString();
 //echo date("Y-m-d H:i:s", $month)
@@ -29,7 +29,7 @@ $month= strtotime("+1 month");
     <div class="col-md-7 col-lg-6 col-xl-7">
         <?php
 
-           $model->bot_admins = explode(',', $model->bot_admins);
+        $model->bot_admins = explode(',', $model->bot_admins);
 
         $form = ActiveForm::begin([
             'options' => [],
@@ -99,7 +99,7 @@ $month= strtotime("+1 month");
         ?>
         <div class="card">
             <div class="card-header">
-                <h5><?= Yii::t('user/default','BOT_COMMANDS'); ?></h5>
+                <h5><?= Yii::t('user/default', 'BOT_COMMANDS'); ?></h5>
             </div>
             <div class="card-body p-0">
                 <?php
@@ -130,9 +130,9 @@ $month= strtotime("+1 month");
                         [
                             'name' => 'command',
                             'enableError' => false,
-                            'title' => Yii::t('telegram/default','COMMAND'),
+                            'title' => Yii::t('telegram/default', 'COMMAND'),
                             'options' => [
-                                'placeholder' => Yii::t('user/default','EXAMPLE','start'),
+                                'placeholder' => Yii::t('user/default', 'EXAMPLE', 'start'),
                             ],
                             'headerOptions' => [
                                 'style' => 'width: 250px;',
@@ -141,7 +141,7 @@ $month= strtotime("+1 month");
                         [
                             'name' => 'description',
                             'enableError' => false,
-                            'title' => Yii::t('telegram/default','DESCRIPTION'),
+                            'title' => Yii::t('telegram/default', 'DESCRIPTION'),
                         ],
                     ]
                 ])->label(false);

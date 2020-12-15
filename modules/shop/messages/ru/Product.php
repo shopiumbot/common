@@ -41,6 +41,7 @@ return [
     'TAB_IMG' => 'Изображение',
     'TAB_WAREHOUSE' => 'Склад',
     'TAB_CATEGORIES' => 'Категории',
+    'CATEGORIES'=>'Категории',
     'TYPE_ID' => 'Тип товара',
     'DESCRIPTION' => 'Описание',
     'CONFIRM_COPY' => 'Вы уверены, что хотите скопировать это?',
