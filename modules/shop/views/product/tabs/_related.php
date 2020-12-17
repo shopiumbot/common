@@ -97,7 +97,7 @@ echo \panix\engine\grid\GridView::widget([
             }
         ],
         [
-            'class' => 'panix\engine\grid\columns\ActionColumn',
+            'class' => 'core\components\ActionColumn',
             'template' => '{add}',
             'buttons' => [
                 'add' => function ($url, $model) { //$model->id . '/' . Html::encode($model->name)

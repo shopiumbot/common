@@ -75,7 +75,7 @@ class Pages extends ActiveRecord
                 }
             ],
             'DEFAULT_CONTROL' => [
-                'class' => 'panix\engine\grid\columns\ActionColumn',
+                'class' => 'core\components\ActionColumn',
             ],
             'DEFAULT_COLUMNS' => [
                 ['class' => 'panix\engine\grid\columns\CheckboxColumn'],

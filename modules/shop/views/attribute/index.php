@@ -22,7 +22,7 @@ echo GridView::widget([
             'attribute' => 'title',
             'format' => 'raw',
         ],
-        ['class' => 'panix\engine\grid\columns\ActionColumn'],
+        ['class' => 'core\components\ActionColumn'],
     ]
 ]);
 Pjax::end();

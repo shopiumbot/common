@@ -23,7 +23,7 @@ GridView::widget([
             'class' => 'panix\engine\grid\sortable\Column',
         ],
         'name',
-        ['class' => 'panix\engine\grid\columns\ActionColumn',
+        ['class' => 'core\components\ActionColumn',
             'template' => '{switch}{update}{delete}',
         ],
     ],

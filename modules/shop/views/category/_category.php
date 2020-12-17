@@ -29,7 +29,8 @@ use core\modules\shop\models\Category;
         echo \panix\ext\jstree\JsTree::widget([
             'id' => 'CategoryTree',
             'allOpen' => true,
-            'data'=>Category::find()->tree(),
+            'iconEye'=>true,
+            'data' => Category::find()->tree(),
             'core' => [
                 'force_text' => false,
                 'animation' => 0,

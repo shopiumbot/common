@@ -112,7 +112,7 @@ echo panix\engine\grid\GridView::widget([
             },
         ],
         [
-            'class' => 'panix\engine\grid\columns\ActionColumn',
+            'class' => 'core\components\ActionColumn',
             'template' => '{resize} {settings} {delete}',
             'filter' => false,
             'buttons' => [

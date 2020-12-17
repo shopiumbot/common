@@ -6,14 +6,12 @@ use panix\engine\widgets\Pjax;
 
 
 Pjax::begin([
-    //'dataProvider' => $dataProvider,
-    'id'=>'pjax-grid-menu',
+    'dataProvider' => $dataProvider,
 ]);
 
 echo GridView::widget([
     'tableOptions' => ['class' => 'table table-striped'],
     'dataProvider' => $dataProvider,
-    'id'=>'grid-menu',
     'filterModel' => $searchModel,
     'layoutOptions' => ['title' => $this->context->pageName],
     'showFooter' => true,
@@ -30,7 +28,7 @@ echo GridView::widget([
             }
         ],
         [
-            'class' => 'panix\engine\grid\columns\ActionColumn',
+            'class' => 'core\components\ActionColumn',
         ],
 
     ]

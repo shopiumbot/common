@@ -254,7 +254,7 @@ trait ProductTrait
         ];
 
         $columns['DEFAULT_CONTROL'] = [
-            'class' => 'panix\engine\grid\columns\ActionColumn',
+            'class' => 'core\components\ActionColumn',
         ];
         $columns['DEFAULT_COLUMNS'] = [
             [

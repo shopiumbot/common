@@ -52,7 +52,7 @@ GridView::widget([
                 return $model->rate;
             }
         ],
-        ['class' => 'panix\engine\grid\columns\ActionColumn',
+        ['class' => 'core\components\ActionColumn',
             'template' => '{update}',
             'buttons' => [
                 "active" => function ($url, $model) {

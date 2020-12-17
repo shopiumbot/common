@@ -52,7 +52,7 @@ class Manufacturer extends ActiveRecord
                 }
             ],
             'DEFAULT_CONTROL' => [
-                'class' => 'panix\engine\grid\columns\ActionColumn',
+                'class' => 'core\components\ActionColumn',
             ],
             'DEFAULT_COLUMNS' => [
                 [
