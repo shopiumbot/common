@@ -57,7 +57,7 @@ $this->registerJs('
                 </div>
             </div>
             <div class="text-center copyright">&copy; 2019-<?= date('Y'); ?>
-                &laquo;<?= Html::a('ShopiumBot', ['https://shopiumbot.com']); ?>&raquo;
+                &laquo;<?= Html::a('ShopiumBot', 'https://shopiumbot.com'); ?>&raquo;
             </div>
         </div>
     </div>

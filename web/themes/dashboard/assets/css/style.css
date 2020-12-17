@@ -1,7 +1,10 @@
 .search-box .app-search .form-control, .topbar .mega-dropdown .dropdown-menu {
     border-radius: 0
 }
-
+.input-lang{
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+}
 .has-error .help-block{
     color: #fa6557;
     text-align: left;

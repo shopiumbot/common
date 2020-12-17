@@ -106,7 +106,7 @@ $('.app-chat .chat-user ').on('click', function(event) {
 
 
         $.ajax({
-            url:'/telegram/message/load-chat',
+            url:common.baseUrl+'/telegram/message/load-chat',
             type:'GET',
             data:{user_id:findChat},
             success:function (data) {

@@ -18,12 +18,13 @@ $telegram = Yii::$app->telegram;
             <div class="d-flex align-items-center">
                 <i class="icon-search font-20 mr-1"></i>
                 <div class="ml-1 d-none d-sm-block">
-                    <span>Поиск товара</span>
+                    <span><?= Yii::t('default','SEARCH_PRODUCT'); ?></span>
                 </div>
             </div>
         </a>
-        <form method="GET" action="/admin/shop/product" class="app-search position-absolute">
-            <input name="ProductSearch[search_string]" type="text" class="form-control" placeholder="Название или артикул">
+        <form method="GET" action="<?= Url::to(['/admin/shop/product']); ?>" class="app-search position-absolute">
+            <input name="ProductSearch[search_string]" type="text" class="form-control"
+                   placeholder="<?= Yii::t('default','SEARCH_PLACEHOLDER'); ?>">
             <a class="search-submit-btn d-none">
                 <i class="icon-search"></i>
             </a>
@@ -34,13 +35,44 @@ $telegram = Yii::$app->telegram;
     </li>
 </ul>
 <ul class="navbar-nav float-right">
+    <?php
+    \panix\engine\emoji\EmojiAsset::register($this);
+    $emoji = new \panix\engine\emoji\Emoji;
+    ?>
+    <?php if (count(Yii::$app->languageManager->getLanguages()) > 1) { ?>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <?= $emoji->emoji_unified_to_html(Yii::$app->languageManager->active['icon']); ?>
+                <span class="text-uppercase ml-2"><?= Yii::$app->languageManager->active['code']; ?></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right animate__animated animate__bounceInDown" aria-labelledby="2">
+                <span class="with-arrow"><span class=""></span></span>
+
+                <?php
+                foreach (Yii::$app->languageManager->getLanguages() as $lang) {
+                    $active = ($lang->code == Yii::$app->language) ? $lang->code . ' active' : $lang->code;
+                   // $link = ($lang->is_default) ? CMS::currentUrl() : '/' . $lang->code . CMS::currentUrl();
+                    ?>
+                    <?php
+                    echo Html::a($emoji->emoji_unified_to_html($lang->icon) . ' <span class="ml-2">' . $lang->name . '</span>',['/admin/app/default/set-language','lang'=>$lang->code,'redirect'=>Yii::$app->request->url], ['class' => $active . ' dropdown-item  d-flex align-items-center']);
+                    ?>
+                    <?php // Html::a($emoji->emoji_unified_to_html($lang->icon) . ' <span class="ml-2">' . $lang->name . '</span>', $link, ['class' => $active . ' dropdown-item  d-flex align-items-center']); ?>
+                <?php } ?>
+
+            </div>
+        </li>
+    <?php } ?>
+
+
     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#"
+        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="icon-cash-money"></i>
-            <span><strong><?= Yii::$app->currency->number_format(Yii::$app->user->money); ?></strong> UAH.</span>
+            <i class="icon-cash-money d-none d-md-inline"></i>
+            <span class="ml-2"><strong><?= Yii::$app->currency->number_format(Yii::$app->user->money); ?></strong> <small>UAH</small></span>
         </a>
-        <div class="dropdown-menu dropdown-menu-right mailbox animate__animated animate__bounceInDown" aria-labelledby="2">
+        <div class="dropdown-menu dropdown-menu-right mailbox animate__animated animate__bounceInDown"
+             aria-labelledby="2">
             <span class="with-arrow"><span class="bg-danger"></span></span>
             <ul class="list-style-none">
                 <li>
@@ -66,10 +98,10 @@ $telegram = Yii::$app->telegram;
                                     <?php } else { ?>
                                         <?php
 
-                                        if($payment->data && !empty($payment->data)){
+                                        if ($payment->data && !empty($payment->data)) {
                                             $data = json_decode($payment->data);
                                             $status = $data->err_code;
-                                        }else{
+                                        } else {
                                             $status = $payment->status;
                                         }
 
@@ -82,7 +114,9 @@ $telegram = Yii::$app->telegram;
                                     <?= $payment->name; ?>
 
                                 </span>
-                                <div class="time"><strong><?= $payment->money; ?></strong> UAH</div>
+                                <div class="time"><strong><?= $payment->money; ?></strong>
+                                    <small>UAH</small>
+                                </div>
                             </div>
 
                         <?php } ?>
@@ -102,7 +136,8 @@ $telegram = Yii::$app->telegram;
                 <i class="icon-cart"></i>
                 <span class="badge badge-pill badge-success"><?= Yii::$app->getModule('cart')->count['num']; ?></span>
             </a>
-            <div class="dropdown-menu dropdown-menu-right mailbox animate__animated animate__bounceInDown" aria-labelledby="2">
+            <div class="dropdown-menu dropdown-menu-right mailbox animate__animated animate__bounceInDown"
+                 aria-labelledby="2">
                 <span class="with-arrow"><span class="bg-danger"></span></span>
                 <ul class="list-style-none">
                     <li>
@@ -132,7 +167,7 @@ $telegram = Yii::$app->telegram;
                                         <h5 class="message-title"><?= $order->firstname; ?> <?= $order->lastname; ?></h5>
                                         <span class="mail-desc"><?= ($order->created_at) ? CMS::date($order->created_at) : ''; ?></span>
                                         <span class="time"><?= Yii::t('shop/default', 'PRODUCTS_COUNTER', $order->productsCount); ?>
-                                            / <strong><?= Yii::$app->currency->number_format($order->total_price); ?></strong> грн</span>
+                                            / <strong><?= Yii::$app->currency->number_format($order->total_price); ?></strong> UAH</span>
                                     </div>
                                 </a>
                             <?php } ?>
@@ -141,7 +176,7 @@ $telegram = Yii::$app->telegram;
                         </div>
                     </li>
                     <li>
-                        <?= Html::a(Html::icon('arrow-right') . ' <string>Все заказы</string>', ['/admin/cart'], ['class' => 'nav-link text-center link text-dark']); ?>
+                        <?= Html::a(Html::icon('arrow-right') . ' <string>'.Yii::t('default','ALL_ORDERS').'</string>', ['/cart'], ['class' => 'nav-link text-center link text-dark']); ?>
                     </li>
                 </ul>
             </div>
@@ -243,16 +278,17 @@ $telegram = Yii::$app->telegram;
                 </div>
                 <div class="ml-2">
                     <h5 class="mb-0"><?= Yii::$app->user->getDisplayName(); ?></h5>
-                    <p class="mb-0">Баланс <?= Yii::$app->user->money; ?> UAH</p>
+                    <p class="mb-0"><?= Yii::t('default','BALANCE'); ?> <?= Yii::$app->user->money; ?> UAH</p>
                     <p class="mb-0 d-none"><?= $telegram->getApi()->getBotUsername(); ?></p>
                 </div>
             </div>
             <div class="profile-dis scrollable">
-                <?= Html::a('<i class="icon-user-outline mr-1 ml-1"></i> Аккаунт', ['/user/index'], ['class' => 'dropdown-item']); ?>
-                <?= Html::a('<i class="icon-cash-money mr-1 ml-1"></i> Мои платежи', ['/user/payments'], ['class' => 'dropdown-item d-none']); ?>
+                <?= Html::a('<i class="icon-user-outline mr-1 ml-1"></i> '.Yii::t('user/default','ACCOUNT'), ['/user/index'], ['class' => 'dropdown-item']); ?>
+                <?= Html::a('<i class="icon-cash-money mr-1 ml-1"></i> '.Yii::t('default','MY_PAYMENTS'), ['/user/payments'], ['class' => 'dropdown-item d-none']); ?>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/logout">
-                    <i class="icon-logout mr-1 ml-1"></i> Выход</a>
+
+                <a class="dropdown-item" href="<?= Url::to(['/user/default/logout']); ?>">
+                    <i class="icon-logout mr-1 ml-1"></i> <?= Yii::t('user/default','LOGOUT');?></a>
                 <div class="dropdown-divider"></div>
             </div>
             <div class="pl-3 p-2 d-none">
@@ -260,7 +296,5 @@ $telegram = Yii::$app->telegram;
             </div>
         </div>
     </li>
-    <!-- ============================================================== -->
-    <!-- User profile and search -->
-    <!-- ============================================================== -->
+
 </ul>

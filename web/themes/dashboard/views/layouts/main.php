@@ -59,7 +59,7 @@ $asset = \core\web\themes\dashboard\AdminAsset::register($this);
                 </a>
             </div>
             <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin6">
-                <?= $this->render('partials/_navbar',['asset'=>$asset]); ?>
+                <?= $this->render('partials/_navbar', ['asset' => $asset]); ?>
             </div>
         </nav>
     </header>
@@ -74,25 +74,23 @@ $asset = \core\web\themes\dashboard\AdminAsset::register($this);
             <div class="row">
                 <div class="col-5 align-self-center">
                     <?php
-                    if (isset($this->context->breadcrumbs)) {
+                    if (isset($this->params['breadcrumbs'])) {
                         echo Breadcrumbs::widget([
                             'homeLink' => [
                                 'label' => Yii::t('yii', 'Home'),
                                 'url' => ['/admin']
                             ],
                             //'scheme' => false,
-                            'navOptions'=>['class' => 'd-none d-md-block'],
-                            'links' => $this->context->breadcrumbs,
+                            'navOptions' => ['class' => 'd-none d-md-block'],
+                            'links' => $this->params['breadcrumbs'],
                             'options' => ['class' => 'breadcrumbs']
                         ]);
                     }
                     ?>
-                    <h4 class="page-title d-none"><?= $this->context->pageName; ?></h4>
+                    <h4 class="page-title d-none"><?= \yii\helpers\Html::encode($this->context->pageName); ?></h4>
                 </div>
                 <div class="col-7 align-self-center">
                     <div class="d-flex align-items-center justify-content-end">
-
-
 
 
                         <?php
@@ -138,9 +136,22 @@ $asset = \core\web\themes\dashboard\AdminAsset::register($this);
 
         <div class="container-fluid">
 
+            <?php foreach (Yii::$app->session->getAllFlashes() as $key => $flesh) { ?>
+                <?php if (is_array($flesh)) { ?>
+                    <?php foreach ($flesh as $message) { ?>
+                        <div class="alert alert-<?= ($key == 'error') ? 'danger' : $key; ?>"><?= $message; ?></div>
+                    <?php } ?>
+                <?php } else { ?>
+                    <div class="alert alert-<?= ($key == 'error') ? 'danger' : $key; ?>"><?= $flesh; ?></div>
+                <?php } ?>
 
+            <?php } ?>
 
-
+            <?php
+            $admins = Yii::$app->user->getBotAdmins();
+            if (!$admins) { ?>
+                <div class="alert alert-warning"><i class="icon-warning"></i><?= Yii::t('user/default','BOT_NO_ADMINS'); ?> <?= Html::a(Yii::t('user/default','ACCOUNT_SETTINGS'), ['/user/default/index']); ?></div>
+            <?php } ?>
 
 
             <?= $content; ?>
@@ -148,7 +159,7 @@ $asset = \core\web\themes\dashboard\AdminAsset::register($this);
         </div>
 
         <footer class="footer text-center">
-            &copy; 2019-<?= date('Y');?> &laquo;<?= Html::a('ShopiumBot',['https://shopiumbot.com']); ?>&raquo;
+            &copy; 2019-<?= date('Y'); ?> &laquo;<?= Html::a('ShopiumBot', 'https://shopiumbot.com'); ?>&raquo;
         </footer>
 
     </div>
