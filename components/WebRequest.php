@@ -9,7 +9,7 @@ class WebRequest extends Request {
 
     private $_pathInfo;
 
-    public function getPathInfo() {
+    public function getPathInfo2() {
         $langCode = null;
         $pathInfo = parent::getPathInfo();
         $parts = explode('/', $pathInfo);
@@ -30,6 +30,12 @@ class WebRequest extends Request {
         // Activate language by code
         Yii::$app->languageManager->setActive($langCode);
         return $this->_pathInfo;
+    }
+
+    public function init()
+    {
+        $this->baseUrl = '/'.Yii::$app->params['client_id'];
+        parent::init();
     }
 
 }

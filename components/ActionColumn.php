@@ -1,6 +1,6 @@
 <?php
 
-namespace panix\engine\grid\columns;
+namespace core\components;
 
 
 use panix\engine\db\ActiveRecord;
@@ -37,7 +37,7 @@ class ActionColumn extends DataColumn
             $this->header = Yii::t('app/default', 'OPTIONS');
 
         if (!$this->editColumnsUrl) {
-            $this->editColumnsUrl = Url::to('/admin/app/default/edit-columns');
+            $this->editColumnsUrl = Url::to(['/admin/app/default/edit-columns']);
         }
         // $this->btnSize = $config['grid_btn_icon_size'];
         // if (!$this->pjax) {
@@ -272,7 +272,41 @@ class ActionColumn extends DataColumn
                                 }
                                 //return false;
                             });", View::POS_END, 'delete');*/
+                        $this->grid->view->registerJs("
+                                $(document).on('click','.delete',function(e){
+                                var that = $(this);
+                                e.preventDefault();
 
+            yii.confirm = function(message, ok, cancel) {
+                bootbox.confirm({
+                    message:message,
+                    buttons: {
+                        confirm: {
+                            label: '<i class=\"icon-check\"></i> '+common.message.ok,
+                            className: 'btn-success'
+                        },
+                        cancel: {
+                            label: '<i class=\"icon-cancel\"></i> '+common.message.cancel,
+                            className: 'btn-outline-secondary'
+                        }
+                    },
+                    callback:function(result) {
+                        if (result) { 
+                            $.ajax(that.attr('href'), {
+                                type: 'POST',
+                                dataType:'json',
+                            }).done(function(data) {
+                                $.pjax.reload({container: '#" . $this->grid->id . "'});
+                                common.notify(data.message,'success');
+                            });
+                        } else {
+                            !cancel || cancel();
+                        }
+                    }
+                });
+            }
+                              return false;
+                                });", View::POS_END, 'delete');
 
                         return Html::a(Html::icon('delete'), $url, [
                             'title' => Yii::t('yii', 'Delete'),
@@ -281,7 +315,7 @@ class ActionColumn extends DataColumn
                             'data-method' => 'POST',
                             'data-confirm' => Yii::t('app/default', 'DELETE_CONFIRM'),
                             'class' => 'btn ' . $this->btnSize . ' btn-outline-danger delete',
-                            'onclick2' => "
+                           /* 'onclick2' => "
                                 //if (confirm('" . Yii::t('app/default', 'DELETE_CONFIRM') . "')) {
                                     $.ajax('$url', {
                                         type: 'POST',
@@ -294,7 +328,7 @@ class ActionColumn extends DataColumn
                                     });
                                // }
                                 return false;
-                            ",
+                            ",*/
                         ]);
                     }
                 } else {

@@ -26,6 +26,12 @@ class WebApplication extends Application
         $langManager = $this->languageManager;
         $this->language = (isset($langManager->default->code)) ? $langManager->default->code : $this->language;
        // CMS::dump($this->request);die;
+
+
+        if (Yii::$app->request->cookies->has('language')){
+            $this->language= Yii::$app->request->cookies->getValue('language');
+        }
+
         $langManager->setActive($this->language);
         return parent::run();
     }
