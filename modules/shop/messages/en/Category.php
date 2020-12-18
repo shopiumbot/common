@@ -2,8 +2,8 @@
 return [
     'NAME' => 'Name of category',
     'DESCRIPTION' => 'Description',
-    'NODE_SWITCH_ON' => 'Category successfully hidden',
-    'NODE_SWITCH_OFF' => 'Category successfully displayed',
+    'NODE_SWITCH_ON' => 'Category successfully displayed',
+    'NODE_SWITCH_OFF' => 'Category successfully hidden',
     'NODE_CREATE' => 'Category added successfully',
     'NODE_RENAME_SUCCESS' => 'Category renamed successfully',
     'NODE_RENAME_ERROR' => 'Failed to rename category',

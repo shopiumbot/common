@@ -53,7 +53,7 @@ return [
     'ERROR_PRICE_DUPLICATE_ORDER_FROM' => 'The price for this quantity is already present.',
     'ERROR_PRICE_MAX_BASIC' => 'The price must not exceed the base price.',
     'FROM' => 'When ordering from',
-    'UNIT_THING' => 'thing',
+    'UNIT_THING' => 'pc.',
     'UNIT_METER' => 'meter.',
     'UNIT_BOX' => 'box.',
     'SELECT_MANUFACTURER_ID' => '&mdash; Select manufacturer &mdash;',
