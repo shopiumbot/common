@@ -60,7 +60,7 @@ class AdminController extends CommonController
                         // 'allow' => false,
                         'roles' => ['?'],
                         'denyCallback' => function ($rule, $action) {
-                            return $this->redirect(Yii::$app->user->loginUrl);
+                            return $this->redirect(['login']);
                             //  throw new \Exception('У вас нет доступа к этой странице');
                         }
                     ],

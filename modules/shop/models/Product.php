@@ -490,14 +490,20 @@ class Product extends ActiveRecord
 
     }
 
-    public function getFrontPrice()
+    public function getPrice()
     {
         if ($this->hasDiscount) {
             $price = $this->discountPrice;
         } else {
             $price = $this->price;
         }
-        return Yii::$app->currency->convert($price,$this->currency_id);
+        return $price;
+    }
+
+
+    public function getFrontPrice()
+    {
+        return Yii::$app->currency->convert($this->getPrice(),$this->currency_id);
     }
 
     public function priceRange()

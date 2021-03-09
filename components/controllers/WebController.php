@@ -32,7 +32,7 @@ class WebController extends CommonController
     {
 
         if (Yii::$app->user->isGuest) {
-            return $this->redirect(['/login']);
+            return $this->redirect(['/user/login']);
         } else {
             return $this->redirect(['/admin']);
         }

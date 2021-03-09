@@ -1,4 +1,4 @@
-<?php
+    <?php
 use panix\engine\grid\GridView;
 use panix\engine\widgets\Pjax;
 use panix\ext\fancybox\Fancybox;
@@ -15,7 +15,9 @@ if ($this->context->created) {
         ];
 }
 ProductIndex::register($this);
-Pjax::begin(['dataProvider' => $dataProvider]);
+Pjax::begin([
+    'id'=>'pjax-grid-product'
+]);
 
 echo GridView::widget([
     'id' => 'grid-product',
